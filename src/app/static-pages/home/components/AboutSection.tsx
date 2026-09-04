@@ -8,18 +8,27 @@ import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 
 export interface AboutSectionData {
-  heading: string;
-  description: string;
-  btnLabel: string;
-  btnUrl: string;
+  title: string;
+  subtitle1: string;
+  subtitle2: string;
+  paragraph1: string;
+  paragraph2: string;
+  primaryBtnLabel: string;
+  primaryBtnUrl: string;
+  secondaryBtnLabel: string;
+  secondaryBtnUrl: string;
 }
 
 export const DEFAULT_ABOUT_DATA: AboutSectionData = {
-  heading: "About Mahalaxmi Enterprises",
-  description:
-    "Mahalaxmi Enterprises is an Authorized Industrial Lubricants Division (ILD), offering a comprehensive range of industrial lubricants, greases, metalworking fluids, and industrial maintenance solutions. Backed by trusted quality, we deliver high-performance products that enhance equipment reliability, reduce downtime, and improve operational efficiency across industries.",
-  btnLabel: "Read More",
-  btnUrl: "#products",
+  title: "",
+  subtitle1: "",
+  subtitle2: "",
+  paragraph1: "",
+  paragraph2: "",
+  primaryBtnLabel: "",
+  primaryBtnUrl: "",
+  secondaryBtnLabel: "",
+  secondaryBtnUrl: "",
 };
 
 export function AboutSection({ initialData }: { initialData?: any }) {
@@ -31,20 +40,33 @@ export function AboutSection({ initialData }: { initialData?: any }) {
   useEffect(() => {
     if (initialData) {
       setFormData({
-        heading:
-          initialData.heading ||
-          (initialData.headingPrefix
-            ? `${initialData.headingPrefix} ${initialData.headingHighlight || ""}`.trim()
-            : DEFAULT_ABOUT_DATA.heading),
-        description: initialData.description || DEFAULT_ABOUT_DATA.description,
-        btnLabel:
-          initialData.btnLabel ||
+        title: initialData.title || initialData.heading || "",
+        subtitle1: initialData.subtitle1 || initialData.subtitle || "",
+        subtitle2: initialData.subtitle2 || "",
+        paragraph1:
+          initialData.paragraph1 ||
+          (initialData.description ? initialData.description.split("\n\n")[0] : "") ||
+          "",
+        paragraph2:
+          initialData.paragraph2 ||
+          (initialData.description && initialData.description.includes("\n\n")
+            ? initialData.description.split("\n\n")[1]
+            : "") ||
+          "",
+        primaryBtnLabel:
           initialData.primaryBtnLabel ||
-          DEFAULT_ABOUT_DATA.btnLabel,
-        btnUrl:
-          initialData.btnUrl ||
+          initialData.btnLabel ||
+          initialData.buttonText ||
+          "",
+        primaryBtnUrl:
           initialData.primaryBtnUrl ||
-          DEFAULT_ABOUT_DATA.btnUrl,
+          initialData.btnUrl ||
+          initialData.buttonLink ||
+          "",
+        secondaryBtnLabel:
+          initialData.secondaryBtnLabel || "",
+        secondaryBtnUrl:
+          initialData.secondaryBtnUrl || "",
       });
     }
   }, [initialData]);
@@ -54,12 +76,15 @@ export function AboutSection({ initialData }: { initialData?: any }) {
     setSaved(false);
     try {
       const payload = {
-        heading: formData.heading,
-        description: formData.description,
-        btnLabel: formData.btnLabel,
-        btnUrl: formData.btnUrl,
-        primaryBtnLabel: formData.btnLabel,
-        primaryBtnUrl: formData.btnUrl,
+        title: formData.title,
+        subtitle1: formData.subtitle1,
+        subtitle2: formData.subtitle2,
+        paragraph1: formData.paragraph1,
+        paragraph2: formData.paragraph2,
+        primaryBtnLabel: formData.primaryBtnLabel,
+        primaryBtnUrl: formData.primaryBtnUrl,
+        secondaryBtnLabel: formData.secondaryBtnLabel,
+        secondaryBtnUrl: formData.secondaryBtnUrl,
       };
 
       const res = await fetch("/api/home", {
@@ -90,7 +115,7 @@ export function AboutSection({ initialData }: { initialData?: any }) {
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
           title="About Section Content"
-          description="Manage the introductory overview, company division text, and product link button on the homepage."
+          description="Manage the introductory overview, company division text, and action buttons on the homepage."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -104,46 +129,100 @@ export function AboutSection({ initialData }: { initialData?: any }) {
             <div className="flex flex-col gap-6 pt-4">
               {/* Section Heading */}
               <InputField
-                label="Section Heading"
-                value={formData.heading}
+                label="Section Heading / Title"
+                value={formData.title}
                 onChange={(e) =>
-                  setFormData({ ...formData, heading: e.target.value })
+                  setFormData({ ...formData, title: e.target.value })
                 }
-                placeholder="About Mahalaxmi Enterprises"
+                placeholder="MULTI-BRAND LUBRICANT SOLUTIONS"
                 helperText="Main title for the about section"
               />
 
-              {/* Description */}
-              <TextAreaField
-                label="About Description (Company Overview)"
-                rows={5}
-                value={formData.description}
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
-                placeholder="Mahalaxmi Enterprises is an Authorized Industrial Lubricants Division (ILD)..."
-                helperText="Main narrative overview describing company background and operations"
-              />
-
-              {/* Button Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {/* Subtitles */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <InputField
-                  label="CTA Button Label"
-                  value={formData.btnLabel}
+                  label="Primary Subtitle (Orange Tagline)"
+                  value={formData.subtitle1}
                   onChange={(e) =>
-                    setFormData({ ...formData, btnLabel: e.target.value })
+                    setFormData({ ...formData, subtitle1: e.target.value })
                   }
-                  placeholder="Read More"
+                  placeholder="Multi-Brand Industrial & Automotive Lubricant Distributor"
                 />
 
                 <InputField
-                  label="CTA Button Target URL"
-                  value={formData.btnUrl}
+                  label="Secondary Subtitle"
+                  value={formData.subtitle2}
                   onChange={(e) =>
-                    setFormData({ ...formData, btnUrl: e.target.value })
+                    setFormData({ ...formData, subtitle2: e.target.value })
                   }
-                  placeholder="#products or /products"
-                  helperText="Destination link for the button"
+                  placeholder="Reliable Lubrication Solutions for Every Industry & Application"
+                />
+              </div>
+
+              {/* Paragraphs */}
+              <TextAreaField
+                label="Paragraph 1 (Establishment & Background)"
+                rows={3}
+                value={formData.paragraph1}
+                onChange={(e) =>
+                  setFormData({ ...formData, paragraph1: e.target.value })
+                }
+                placeholder="Established in 2008, Jai Deva Oil Co. is a trusted Authorized Distributors..."
+                helperText="First paragraph describing company heritage and authorized distributor status"
+              />
+
+              <TextAreaField
+                label="Paragraph 2 (Product Scope & Applications)"
+                rows={3}
+                value={formData.paragraph2}
+                onChange={(e) =>
+                  setFormData({ ...formData, paragraph2: e.target.value })
+                }
+                placeholder="From Engine Oil, Hydraulic Oil and Gear Oil..."
+                helperText="Second paragraph detailing product offerings and industry solutions"
+              />
+
+              {/* Primary Button */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <InputField
+                  label="Primary Button Label"
+                  value={formData.primaryBtnLabel}
+                  onChange={(e) =>
+                    setFormData({ ...formData, primaryBtnLabel: e.target.value })
+                  }
+                  placeholder="Explore Products"
+                />
+
+                <InputField
+                  label="Primary Button URL"
+                  value={formData.primaryBtnUrl}
+                  onChange={(e) =>
+                    setFormData({ ...formData, primaryBtnUrl: e.target.value })
+                  }
+                  placeholder="/products"
+                  helperText="Destination link for explore products button"
+                />
+              </div>
+
+              {/* Secondary Button */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <InputField
+                  label="Secondary Button Label"
+                  value={formData.secondaryBtnLabel}
+                  onChange={(e) =>
+                    setFormData({ ...formData, secondaryBtnLabel: e.target.value })
+                  }
+                  placeholder="Contact Us"
+                />
+
+                <InputField
+                  label="Secondary Button URL"
+                  value={formData.secondaryBtnUrl}
+                  onChange={(e) =>
+                    setFormData({ ...formData, secondaryBtnUrl: e.target.value })
+                  }
+                  placeholder="/contact-us"
+                  helperText="Destination link for contact button"
                 />
               </div>
 

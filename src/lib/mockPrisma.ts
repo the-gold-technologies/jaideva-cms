@@ -137,11 +137,15 @@ let mockPages: any[] = [
         type: "AboutSection",
         order: 1,
         content: {
-          title: "ABOUT HP LUBRICANTS & MAHALAXMI ENTERPRISES",
-          subtitle: "Hindustan Petroleum Corporation Limited (HPCL) is a Fortune 500 company and one of India’s largest lubricant marketers.",
-          bodyText: "Mahalaxmi Enterprises serves as an Authorized Industrial Lubricants Division (ILD), supplying genuine HPCL products directly to industrial plants, OEM contractors, transport fleets, and government departments.",
-          buttonText: "READ MORE ABOUT US",
-          buttonLink: "/about-us"
+          title: "MULTI-BRAND LUBRICANT SOLUTIONS",
+          subtitle1: "Multi-Brand Industrial & Automotive Lubricant Distributor",
+          subtitle2: "Reliable Lubrication Solutions for Every Industry & Application",
+          paragraph1: "Established in 2008, Jai Deva Oil Co. is a trusted Authorized Distributors of Industrial & Automotive Lubricants, offering a comprehensive range of quality lubrication products from leading brands.",
+          paragraph2: "From Engine Oil, Hydraulic Oil and Gear Oil to Automotive Grease, Cutting Oil, Rust Preventive Oil and Specialty Lubricants, we provide reliable lubrication solutions for diverse industrial, automotive and machinery applications.",
+          primaryBtnLabel: "Explore Products",
+          primaryBtnUrl: "/products",
+          secondaryBtnLabel: "Contact Us",
+          secondaryBtnUrl: "/contact-us",
         }
       },
       {
@@ -150,14 +154,171 @@ let mockPages: any[] = [
         type: "ProductsServicesSection",
         order: 2,
         content: {
-          title: "OUR PRODUCTS & SERVICES",
-          subtitle: "Comprehensive lubrication solutions engineered for peak mechanical efficiency.",
-          categories: [
-            { name: "Industrial Oils", slug: "industrial-oils", count: "15+ Subcategories" },
-            { name: "Industrial Greases", slug: "industrial-greases", count: "High-Load Bearings" },
-            { name: "Automotive Oils", slug: "automotive-oils", count: "Commercial Fleets" },
-            { name: "Bike Engine Oils", slug: "bike-oils", count: "2-Wheelers & Bikes" }
-          ]
+          title: "OUR PRODUCT RANGE",
+          subtitle: "Complete Lubrication Solutions under One Roof",
+          items: [
+            {
+              id: "engine-oil",
+              slug: "engine-oil",
+              name: "Engine Oil",
+              link: "/products/engine-oil",
+              img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-1.png",
+              hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-1-hover.png",
+            },
+            {
+              id: "hydraulic-oil",
+              slug: "hydraulic-oil",
+              name: "Hydraulic Oil",
+              link: "/products/hydraulic-oil",
+              img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-2.png",
+              hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-2-hover.png",
+            },
+            {
+              id: "gear-oil",
+              slug: "gear-oil",
+              name: "Gear Oil",
+              link: "/products/gear-oil",
+              img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-3.png",
+              hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-3-hover.png",
+            },
+            {
+              id: "industrial-grease",
+              slug: "industrial-grease",
+              name: "Industrial Grease",
+              link: "/products/industrial-grease",
+              img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-4.png",
+              hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-4-hover.png",
+            },
+            {
+              id: "cutting-oil",
+              slug: "cutting-oil",
+              name: "Cutting Oil",
+              link: "/products/cutting-oil",
+              img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-5.png",
+              hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-5-hover.png",
+            },
+            {
+              id: "rust-preventive-oil",
+              slug: "rust-preventive-oil",
+              name: "Rust Preventive Oil",
+              link: "/products/rust-preventive-oil",
+              img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-6.png",
+              hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-6-hover.png",
+            },
+          ],
+        }
+      },
+      {
+        id: "sec-3b",
+        pageId: "page-home",
+        type: "MultiBrandSolutionsSection",
+        order: 3,
+        content: {
+          badge: "MULTI-BRAND LUBRICANT SOLUTIONS",
+          title: "Multiple Brands.",
+          titleHighlight: "One Reliable Partner.",
+          paragraph1: "At Jai Deva Oil Co., we bring together a diverse portfolio of leading lubricant and industrial solution brands, making it easier for businesses to source the right products from one trusted distributor.",
+          paragraph2: "Our multi-brand approach allows us to cater to different industrial, automotive and machinery lubrication requirements with a broad range of products and applications.",
+          btnLabel: "Explore Our Brands",
+          btnUrl: "#brands",
+          steps: [
+            {
+              num: "1",
+              name: "Understand",
+              desc: "Analyze machinery and operating conditions to define exact lubrication needs.",
+              icon: "Search",
+            },
+            {
+              num: "2",
+              name: "Recommend",
+              desc: "Suggest the ideal brand, grade, and viscosity for maximum equipment life.",
+              icon: "ThumbsUp",
+            },
+            {
+              num: "3",
+              name: "Supply",
+              desc: "Prompt delivery of 100% genuine lubricants directly from authorized stock.",
+              icon: "Truck",
+            },
+            {
+              num: "4",
+              name: "Support",
+              desc: "Ongoing technical guidance, oil condition monitoring, and customer support.",
+              icon: "Headphones",
+            },
+          ],
+        }
+      },
+      {
+        id: "sec-3c",
+        pageId: "page-home",
+        type: "IndustriesWeServeSection",
+        order: 4,
+        content: {
+          title: "INDUSTRIES WE SERVE",
+          subtitle: "Lubrication Solutions for Diverse Industries",
+          leadText: "Our extensive lubricant portfolio serves the requirements of various industries, including:",
+          description: "We provide lubrication products for industrial machinery, hydraulic systems, gears, bearings, engines, metalworking equipment and other critical applications.",
+          btnLabel: "Explore Industries",
+          btnUrl: "#industries",
+          industries: [
+            { id: "ind-0", name: "Steel", icon: "Factory" },
+            { id: "ind-1", name: "Cement", icon: "Building2" },
+            { id: "ind-2", name: "Power", icon: "Zap" },
+            { id: "ind-3", name: "Textile", icon: "Scissors" },
+            { id: "ind-4", name: "Paper", icon: "FileText" },
+            { id: "ind-5", name: "Manufacturing", icon: "Cog" },
+            { id: "ind-6", name: "Engineering", icon: "Wrench" },
+            { id: "ind-7", name: "Automotive", icon: "Car" },
+          ],
+        }
+      },
+      {
+        id: "sec-4",
+        pageId: "page-home",
+        type: "WhyJaiDevaSection",
+        order: 6,
+        content: {
+          title: "WHY JAI DEVA OIL CO.?",
+          subtitle: "Your Trusted Lubrication Partner Since 2008",
+          points: [
+            {
+              id: "pt-1",
+              title: "18+ Years of Experience",
+              desc: "Strong industry experience in lubricant distribution and trading since 2008.",
+              icon: "Calendar",
+            },
+            {
+              id: "pt-2",
+              title: "Multi-Brand Portfolio",
+              desc: "A diverse range of lubricant products from leading brands.",
+              icon: "Layers",
+            },
+            {
+              id: "pt-3",
+              title: "Wide Product Range",
+              desc: "Industrial oils, automotive lubricants, greases and specialty lubrication products.",
+              icon: "Boxes",
+            },
+            {
+              id: "pt-4",
+              title: "Quality-Focused Approach",
+              desc: "We focus on supplying quality products suited to customer requirements.",
+              icon: "ShieldCheck",
+            },
+            {
+              id: "pt-5",
+              title: "Experienced Team",
+              desc: "Skilled professionals with industry knowledge and understanding of customer needs.",
+              icon: "Users",
+            },
+            {
+              id: "pt-6",
+              title: "Reliable Service",
+              desc: "Committed to dependable supply and long-term customer relationships.",
+              icon: "Clock",
+            },
+          ],
         }
       }
     ]

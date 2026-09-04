@@ -10,11 +10,24 @@ async function main() {
   const adminPassword = await bcrypt.hash("Admin@123", 10);
 
   await prisma.user.upsert({
+    where: { email: "admin@jaideva.com" },
+    update: {},
+    create: {
+      email: "admin@jaideva.com",
+      name: "Jai Deva Admin",
+      password: adminPassword,
+      role: "admin",
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+    },
+  });
+
+  // Keep admin@mahalaxmi.com too for backward compatibility
+  await prisma.user.upsert({
     where: { email: "admin@mahalaxmi.com" },
     update: {},
     create: {
       email: "admin@mahalaxmi.com",
-      name: "Mahalaxmi Admin",
+      name: "Admin User",
       password: adminPassword,
       role: "admin",
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
@@ -26,43 +39,37 @@ async function main() {
   await prisma.globalConfig.upsert({
     where: { id: "global" },
     update: {
-      siteTitle: "Mahalaxmi Enterprises | HP Lubricants Distributor",
-      siteDescription: "Authorized Industrial Lubricants Division (ILD) for Hindustan Petroleum Corporation Limited (HPCL).",
+      siteTitle: "Jai Deva Oil Co. | Multi-Brand Industrial & Automotive Lubricant Distributor",
+      siteDescription: "Established in 2008, Jai Deva Oil Co. is a trusted Authorized Distributor of Industrial & Automotive Lubricants, offering quality lubrication products from leading brands.",
       phone: "+91 98765 43210",
-      email: "sales@mahalaxmienterprises.com",
-      address: "Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh, India",
+      email: "sales@jaidevaoil.com",
+      address: "Industrial Area & Regional Distribution Hub, India",
       logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787728459/mahalaxmi/branding/aet8vc9jfakxqvmybcib.png",
       socialLinks: {
-      "facebook": "https://www.facebook.com/hindustanpetroleumcorporateltd",
-      "youtube": "https://www.youtube.com/channel/UCJzt53YmvAJQjT-rLSTqNjg",
-      "instagram": "https://www.instagram.com/hplubricants_hpcl/",
-      "linkedin": "https://www.linkedin.com/company/hpcl",
-      "twitter": "https://twitter.com/hpcl",
-      "hpclBadge": "https://res.cloudinary.com/dpa93copz/image/upload/v1787731176/mahalaxmi/footer/aygvpp2xhjpyk555i2x4.jpg",
-      "indiaGovBadge": "https://res.cloudinary.com/dpa93copz/image/upload/v1787731176/mahalaxmi/footer/adpiqziz0m5aenxzuerh.jpg",
-      "globalCompactBadge": "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/footer/rnrmsenowtlzykcxuprr.jpg",
-      "copyrightText": "© 2026 Mahalaxmi Enterprises. All rights reserved."
-},
+        facebook: "https://facebook.com",
+        youtube: "https://youtube.com",
+        instagram: "https://instagram.com",
+        linkedin: "https://linkedin.com",
+        twitter: "https://twitter.com",
+        copyrightText: "© 2026 Jai Deva Oil Co. All rights reserved."
+      },
     },
     create: {
       id: "global",
-      siteTitle: "Mahalaxmi Enterprises | HP Lubricants Distributor",
-      siteDescription: "Authorized Industrial Lubricants Division (ILD) for Hindustan Petroleum Corporation Limited (HPCL).",
+      siteTitle: "Jai Deva Oil Co. | Multi-Brand Industrial & Automotive Lubricant Distributor",
+      siteDescription: "Established in 2008, Jai Deva Oil Co. is a trusted Authorized Distributor of Industrial & Automotive Lubricants, offering quality lubrication products from leading brands.",
       phone: "+91 98765 43210",
-      email: "sales@mahalaxmienterprises.com",
-      address: "Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh, India",
+      email: "sales@jaidevaoil.com",
+      address: "Industrial Area & Regional Distribution Hub, India",
       logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787728459/mahalaxmi/branding/aet8vc9jfakxqvmybcib.png",
       socialLinks: {
-      "facebook": "https://www.facebook.com/hindustanpetroleumcorporateltd",
-      "youtube": "https://www.youtube.com/channel/UCJzt53YmvAJQjT-rLSTqNjg",
-      "instagram": "https://www.instagram.com/hplubricants_hpcl/",
-      "linkedin": "https://www.linkedin.com/company/hpcl",
-      "twitter": "https://twitter.com/hpcl",
-      "hpclBadge": "https://res.cloudinary.com/dpa93copz/image/upload/v1787731176/mahalaxmi/footer/aygvpp2xhjpyk555i2x4.jpg",
-      "indiaGovBadge": "https://res.cloudinary.com/dpa93copz/image/upload/v1787731176/mahalaxmi/footer/adpiqziz0m5aenxzuerh.jpg",
-      "globalCompactBadge": "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/footer/rnrmsenowtlzykcxuprr.jpg",
-      "copyrightText": "© 2026 Mahalaxmi Enterprises. All rights reserved."
-},
+        facebook: "https://facebook.com",
+        youtube: "https://youtube.com",
+        instagram: "https://instagram.com",
+        linkedin: "https://linkedin.com",
+        twitter: "https://twitter.com",
+        copyrightText: "© 2026 Jai Deva Oil Co. All rights reserved."
+      },
     },
   });
   console.log("✓ Global config ready.");
@@ -95,17 +102,23 @@ async function main() {
   // 4. Home Page & Sections
   const homePage = await prisma.page.upsert({
     where: { slug: "home" },
-    update: {},
+    update: {
+      title: "Home",
+      description: "Established in 2008, Jai Deva Oil Co. is a trusted Multi-Brand Distributor of Industrial & Automotive Lubricants.",
+      metaTitle: "Jai Deva Oil Co. | Multi-Brand Industrial & Automotive Lubricant Distributor",
+      metaDescription:
+        "Reliable Lubrication Solutions for Every Industry & Application. Authorized Distributors of Engine Oil, Hydraulic Oil, Gear Oil, Greases, and Specialty Lubricants.",
+    },
     create: {
       title: "Home",
       slug: "home",
       type: "static",
       visibility: "published",
       isStatic: true,
-      description: "Authorized Industrial Lubricants Distributor for Hindustan Petroleum Corporation Limited (HPCL).",
-      metaTitle: "Mahalaxmi Enterprises | Authorized HP Lubricants Distributor",
+      description: "Established in 2008, Jai Deva Oil Co. is a trusted Multi-Brand Distributor of Industrial & Automotive Lubricants.",
+      metaTitle: "Jai Deva Oil Co. | Multi-Brand Industrial & Automotive Lubricant Distributor",
       metaDescription:
-        "Official Industrial Lubricants Division supplying high performance hydraulic oils, turbine oils, gear lubricants, and greases.",
+        "Reliable Lubrication Solutions for Every Industry & Application. Authorized Distributors of Engine Oil, Hydraulic Oil, Gear Oil, Greases, and Specialty Lubricants.",
     },
   });
 
@@ -118,62 +131,20 @@ async function main() {
           {
             id: 1,
             img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726300/mahalaxmi/banners/xra1pg306ketpuq4ab3k.png",
-            link: "#products",
-            title: "HP Lubricants No. 1 Banner",
+            link: "/products",
+            title: "JAI DEVA OIL CO. - Multi-Brand Lubricant Distributor",
           },
           {
             id: 2,
             img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726301/mahalaxmi/banners/zgo69n1kol3nyentztgn.jpg",
-            link: "#products",
-            title: "FUTUR-X ULTRA-SYNTHETIC PREMIUM ENGINE OILS",
+            link: "/products",
+            title: "Reliable Lubrication Solutions for Every Industry & Application",
           },
           {
             id: 3,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726303/mahalaxmi/banners/s0sa8sjhamtftngfd1rr.jpg",
-            link: "#products",
-            title: "FUTUR-X NEXT GEN ENGINE PROTECTION",
-          },
-          {
-            id: 4,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726304/mahalaxmi/banners/dtvoaac6u9cecqbdscpm.png",
-            link: "#products",
-            title: "HP Lube New Banner",
-          },
-          {
-            id: 5,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726305/mahalaxmi/banners/let7pxnxkacymkupzsxa.jpg",
-            link: "#products",
-            title: "HP Racer New Banner",
-          },
-          {
-            id: 6,
             img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726307/mahalaxmi/banners/iqfigsf6tkyolkuhbztq.jpg",
-            link: "#products",
-            title: "HIGH PERFORMANCE INDUSTRIAL & SECTORIAL LUBRICANTS",
-          },
-          {
-            id: 7,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726308/mahalaxmi/banners/duryfwzobvjhaloafhff.jpg",
-            link: "#products",
-            title: "INDIA'S LEADING LUBE MARKETER",
-          },
-          {
-            id: 8,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726309/mahalaxmi/banners/jlwhuhdhwwtgqtzamv60.jpg",
-            link: "#products",
-            title: "HP MILCY FLEET HEAVY DUTY DIESEL ENGINE OIL",
-          },
-          {
-            id: 9,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726310/mahalaxmi/banners/vsr1aewspmvdp17sjyrd.jpg",
-            link: "#products",
-            title: "HP NEOSYNTH ENGINE OIL",
-          },
-          {
-            id: 10,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726371/mahalaxmi/banners/c9uociisss9tqz5ytmxa.jpg",
-            link: "#products",
-            title: "HP RACER GEN6 2-WHEELER ENGINE OIL",
+            link: "/products",
+            title: "Established 2008 - Quality Products from Leading Brands",
           },
         ],
       },
@@ -182,323 +153,364 @@ async function main() {
       type: "AboutSection",
       order: 1,
       content: {
-        title: "ABOUT HP LUBRICANTS & MAHALAXMI ENTERPRISES",
-        subtitle: "Hindustan Petroleum Corporation Limited (HPCL) is a Fortune 500 company and one of India’s largest lubricant marketers.",
-        bodyText: "Mahalaxmi Enterprises serves as an Authorized Industrial Lubricants Division (ILD), supplying genuine HPCL products directly to industrial plants, OEM contractors, transport fleets, and government departments.",
-        buttonText: "READ MORE ABOUT US",
-        buttonLink: "/about-us"
-      }
+        title: "MULTI-BRAND LUBRICANT SOLUTIONS",
+        subtitle1: "Multi-Brand Industrial & Automotive Lubricant Distributor",
+        subtitle2: "Reliable Lubrication Solutions for Every Industry & Application",
+        paragraph1: "Established in 2008, Jai Deva Oil Co. is a trusted Authorized Distributors of Industrial & Automotive Lubricants, offering a comprehensive range of quality lubrication products from leading brands.",
+        paragraph2: "From Engine Oil, Hydraulic Oil and Gear Oil to Automotive Grease, Cutting Oil, Rust Preventive Oil and Specialty Lubricants, we provide reliable lubrication solutions for diverse industrial, automotive and machinery applications.",
+        primaryBtnLabel: "Explore Products",
+        primaryBtnUrl: "/products",
+        secondaryBtnLabel: "Contact Us",
+        secondaryBtnUrl: "/contact-us",
+      },
     },
     {
       type: "ProductsServicesSection",
       order: 2,
       content: {
-        title: "OUR PRODUCTS AND SERVICES",
-        subtitle: "Mahalaxmi Enterprises has always been in the forefront developing and marketing of technology advanced lubricants as per the market trends",
+        title: "OUR PRODUCT RANGE",
+        subtitle: "Complete Lubrication Solutions under One Roof",
         items: [
           {
-            id: "industrial",
-            name: "Industrial Oils",
-            link: "/products/industrial-oils",
-            hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726763/mahalaxmi/categories/mumoftaiiufxqmihyfrn.png",
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726764/mahalaxmi/categories/yxbtenjom0icur0ubwmm.png"
+            id: "engine-oil",
+            slug: "engine-oil",
+            name: "Engine Oil",
+            link: "/products/engine-oil",
+            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-1.png",
+            hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-1-hover.png",
           },
           {
-            id: "greases",
-            name: "Greases",
-            link: "/products/industrial-greases",
-            hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726765/mahalaxmi/categories/m6vhana1ocyt25gcqyfm.png",
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726766/mahalaxmi/categories/dqbzxsek6v52ifwoxvb8.png"
-          }
-        ]
-      }
+            id: "hydraulic-oil",
+            slug: "hydraulic-oil",
+            name: "Hydraulic Oil",
+            link: "/products/hydraulic-oil",
+            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-2.png",
+            hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-2-hover.png",
+          },
+          {
+            id: "gear-oil",
+            slug: "gear-oil",
+            name: "Gear Oil",
+            link: "/products/gear-oil",
+            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-3.png",
+            hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-3-hover.png",
+          },
+          {
+            id: "industrial-grease",
+            slug: "industrial-grease",
+            name: "Industrial Grease",
+            link: "/products/industrial-grease",
+            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-4.png",
+            hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-4-hover.png",
+          },
+          {
+            id: "cutting-oil",
+            slug: "cutting-oil",
+            name: "Cutting Oil",
+            link: "/products/cutting-oil",
+            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-5.png",
+            hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-5-hover.png",
+          },
+          {
+            id: "rust-preventive-oil",
+            slug: "rust-preventive-oil",
+            name: "Rust Preventive Oil",
+            link: "/products/rust-preventive-oil",
+            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-6.png",
+            hoverImg: "https://res.cloudinary.com/dpa93copz/image/upload/v1787731177/mahalaxmi/products/cat-6-hover.png",
+          },
+        ],
+      },
     },
     {
-      "type": "TestimonialsSection",
-      "order": 3,
-      "content": {
-            "title": "Our Prominent Customers",
-            "description": "Mahalaxmi Enterprises has always been in the forefront supplying and delivering technology advanced lubricants as per industrial market trends",
-            "testimonials": [
-                  {
-                        "id": 1,
-                        "org": "National Automobiles",
-                        "name": "MR. Gudu Bhai",
-                        "role": "MECHANIC",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726866/mahalaxmi/testimonials/fzlpp5qdzzikoc9wcmqt.png",
-                        "quote": "We are using Milcy happy with different skims running by the firm.",
-                        "location": "Valsad-Vapi Market - Gujarat"
-                  },
-                  {
-                        "id": 2,
-                        "org": "Aggarwal Auto Enterprises",
-                        "name": "Sanjay Aggarwal",
-                        "role": "Retailer",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726867/mahalaxmi/testimonials/kzzowa1y35oxdrarqzti.png",
-                        "quote": "Milcy has given great performance with longer durability.",
-                        "location": "Chandrapur - Maharashtra"
-                  },
-                  {
-                        "id": 3,
-                        "org": "S.S. Automotive",
-                        "name": "Bikash",
-                        "role": "Retailer",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726872/mahalaxmi/testimonials/nkhvdnzz9zqz2ehy1nxj.png",
-                        "quote": "Good in performance and reasonable price for our customers.",
-                        "location": "Siliguri - West Bengal"
-                  },
-                  {
-                        "id": 4,
-                        "org": "Karan Auto Parts",
-                        "name": "Karan Singh",
-                        "role": "Distributor Partner",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726873/mahalaxmi/testimonials/ne8iotlazm0nqii5skkf.png",
-                        "quote": "Genuine HP products and rapid delivery have grown our customer base tremendously.",
-                        "location": "Patna - Bihar"
-                  },
-                  {
-                        "id": 5,
-                        "org": "Patel Motors",
-                        "name": "Rameshwar Patel",
-                        "role": "Workshop Owner",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726874/mahalaxmi/testimonials/xk8gpjxlkufmvl4vaaoy.png",
-                        "quote": "Excellent oil viscosity retention even in extreme heavy vehicle highway conditions.",
-                        "location": "Ahmedabad - Gujarat"
-                  },
-                  {
-                        "id": 6,
-                        "org": "Verma Garage",
-                        "name": "Mahesh Verma",
-                        "role": "Senior Mechanic",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726875/mahalaxmi/testimonials/pimg6tb3w8hbuxlyxssk.png",
-                        "quote": "We recommend only HP Racer and Milcy to our regular commercial customers.",
-                        "location": "Lucknow - Uttar Pradesh"
-                  },
-                  {
-                        "id": 7,
-                        "org": "Choudhary Logistics",
-                        "name": "Devendra Choudhary",
-                        "role": "Fleet In-charge",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726876/mahalaxmi/testimonials/bjd0z6onit7szqxsji6l.png",
-                        "quote": "Significantly reduced engine wear and minimized downtime for our 40-truck fleet.",
-                        "location": "Jaipur - Rajasthan"
-                  },
-                  {
-                        "id": 8,
-        "org": "Pooja Earth Movers",
-        "name": "Pooja Earth Movers",
-        "role": "Equipment Manager",
-        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726884/mahalaxmi/testimonials/dmwsjrvbn3xaljgj7syw.png",
-                        "quote": "HP lubes are the high quality lubes with affordable price for all heavy machinery.",
-                        "location": "Chandrapur - Maharashtra"
-                  },
-                  {
-                        "id": 9,
-                        "org": "SKF India Limited",
-                        "name": "Mr. Santosh Sankpal",
-                        "role": "Deputy Manager – Heat Treatment",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726878/mahalaxmi/testimonials/um5c2owltmv66llgtkim.jpg",
-                        "quote": "We in SKF Pune using the Metaquench-42 Quenching oil from more than 15 years, this is the best oil among the industry.",
-                        "location": "Pune - Maharashtra"
-                  },
-                  {
-                        "id": 10,
-                        "org": "Diesel Loco Shed GPR",
-                        "name": "Shri. S D KOKATE",
-                        "role": "C & MS (G)",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726880/mahalaxmi/testimonials/dzpz7oyr077tzbsypout.jpg",
-                        "quote": "Mahalaxmi Enterprises is most trusted partner for Indian Railways and the only approved supplier for coolant.",
-                        "location": "Pune - Maharashtra"
-                  },
-                  {
-                        "id": 11,
-                        "org": "Diesel Loco Shed GPR",
-                        "name": "Shri. K W DESHMUKH",
-                        "role": "ADME",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726882/mahalaxmi/testimonials/k7zx7qofdtvo0dk6jrnq.jpg",
-                        "quote": "Mahalaxmi Enterprises cares its customer for timely delivery and uninterrupted supply of its products. Customer service is prompt and efficient.",
-                        "location": "Pune - Maharashtra"
-                  },
-                  {
-                        "id": 12,
-                        "org": "Sunbeam Auto Pvt Ltd",
-                        "name": "Mr. Harish Samtani",
-                        "role": "G.M - Materials",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726883/mahalaxmi/testimonials/incphtosk3mrtaast3mb.jpg",
-                        "quote": "We are using Hydraulic and Cutting oil for more than 20 years now. Performance is very good and technical support is exceptional.",
-                        "location": "Gurugram - Delhi NCR"
-                  },
-                  {
-                        "id": 13,
-                        "org": "CEAT",
-                        "name": "Shishir Tripathi",
-                        "role": "Manager Procurement",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726884/mahalaxmi/testimonials/dmwsjrvbn3xaljgj7syw.png",
-                        "quote": "Mahalaxmi Enterprises has been a reliable and strategic partner. We expect to continue this relationship and grow together for many years to come.",
-                        "location": "Mumbai - Maharashtra"
-                  },
-                  {
-                        "id": 14,
-                        "org": "Amit Tractors",
-                        "name": "Amit Soni",
-                        "role": "Retailer",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726885/mahalaxmi/testimonials/aht3sbuhu1vou5lbsccs.png",
-                        "quote": "Mahalaxmi Enterprises Retailer Program is best. Great rewards program for retailers and dealers across India.",
-                        "location": "Naubagh - Fatehpur"
-                  },
-                  {
-                        "id": 15,
-                        "org": "JCB Alliance Industrial Marketing",
-                        "name": "Praveen Kumar Singh",
-                        "role": "Asst. General Manager",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726872/mahalaxmi/testimonials/nkhvdnzz9zqz2ehy1nxj.png",
-                        "quote": "Mahalaxmi Enterprises always deserves appreciation for their prompt action and technical support services.",
-                        "location": "New Delhi"
-                  },
-                  {
-                        "id": 16,
-                        "org": "Vintage Car & Motorcycle Club",
-                        "name": "Sandeep Das",
-                        "role": "Secretary",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726873/mahalaxmi/testimonials/ne8iotlazm0nqii5skkf.png",
-                        "quote": "Even for our Vintage Cars and Motorcycles, we bank upon Mahalaxmi Enterprises for maximum performance.",
-                        "location": "Kolkata - West Bengal"
-                  },
-                  {
-                        "id": 17,
-                        "org": "Grasim Industries Limited",
-                        "name": "Yogesh Wadhwa",
-                        "role": "Mechanical Engineer",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726874/mahalaxmi/testimonials/xk8gpjxlkufmvl4vaaoy.png",
-                        "quote": "We have been associated with HPCL for many years taking turbine oil supply with zero issues.",
-                        "location": "Jagdishpur - Amethi"
-                  },
-                  {
-                        "id": 18,
-                        "org": "RDSO Manak Nagar",
-                        "name": "Birendra Kumar",
-                        "role": "SSE / Motive Power",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726875/mahalaxmi/testimonials/pimg6tb3w8hbuxlyxssk.png",
-                        "quote": "I appreciate HP Lube Technical Services for their support & timely response to Indian Railways.",
-                        "location": "Lucknow - Uttar Pradesh"
-                  },
-                  {
-                        "id": 19,
-                        "org": "Metro Auto Center",
-                        "name": "Rajan Mallick",
-                        "role": "Retailer",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726876/mahalaxmi/testimonials/bjd0z6onit7szqxsji6l.png",
-                        "quote": "Mahalaxmi Enterprises is best in the Market. Superior quality and price structure for customers.",
-                        "location": "Jamshedpur - Jharkhand"
-                  },
-                  {
-                        "id": 20,
-                        "org": "Mihir Traders",
-                        "name": "Kishor Bhai",
-                        "role": "Retailer",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726878/mahalaxmi/testimonials/um5c2owltmv66llgtkim.jpg",
-                        "quote": "Mahalaxmi Enterprises is excellent with best price and Milcy is best success product.",
-                        "location": "Bhuj - Gujarat"
-                  },
-                  {
-                        "id": 21,
-                        "org": "Samir Auto Garage",
-                        "name": "Samir Bhai",
-                        "role": "MECHANIC",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726880/mahalaxmi/testimonials/dzpz7oyr077tzbsypout.jpg",
-                        "quote": "Mahalaxmi Enterprises products give top performance, good grade wise performance like Milcy and Racer4.",
-                        "location": "Bhuj - Gujarat"
-                  },
-                  {
-                        "id": 22,
-                        "org": "Smita Motors",
-                        "name": "Arvind Srivastava",
-                        "role": "Retailer",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726882/mahalaxmi/testimonials/k7zx7qofdtvo0dk6jrnq.jpg",
-                        "quote": "We sell lubricants from Mahalaxmi Enterprises. High quality products with no complaints so far from mechanics or end-users.",
-                        "location": "Unnao - Uttar Pradesh"
-                  },
-                  {
-                        "id": 23,
-                        "org": "Natraj JCB",
-                        "name": "Pavitra Khanna",
-                        "role": "Managing Director",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726883/mahalaxmi/testimonials/incphtosk3mrtaast3mb.jpg",
-                        "quote": "We are dealing with Mahalaxmi Enterprises for last 4 years. Customers using your lubricants are fully satisfied.",
-                        "location": "Jhansi - Uttar Pradesh"
-                  },
-                  {
-                        "id": 24,
-                        "org": "Pooja Earth Movers",
-                        "name": "Pankaj Barman",
-                        "role": "Retailer",
-                        "image": "https://res.cloudinary.com/dpa93copz/image/upload/v1787726884/mahalaxmi/testimonials/dmwsjrvbn3xaljgj7syw.png",
-                        "quote": "HP lubes are the high quality lubes with affordable price for all types of consumers.",
-                        "location": "Chandrapur - Maharashtra"
-                  }
-            ]
-      }
-}
-,
+      type: "MultiBrandSolutionsSection",
+      order: 3,
+      content: {
+        badge: "MULTI-BRAND LUBRICANT SOLUTIONS",
+        title: "Multiple Brands.",
+        titleHighlight: "One Reliable Partner.",
+        paragraph1: "At Jai Deva Oil Co., we bring together a diverse portfolio of leading lubricant and industrial solution brands, making it easier for businesses to source the right products from one trusted distributor.",
+        paragraph2: "Our multi-brand approach allows us to cater to different industrial, automotive and machinery lubrication requirements with a broad range of products and applications.",
+        btnLabel: "Explore Our Brands",
+        btnUrl: "#brands",
+        steps: [
+          {
+            num: "1",
+            name: "Understand",
+            desc: "Analyze machinery and operating conditions to define exact lubrication needs.",
+            icon: "Search",
+          },
+          {
+            num: "2",
+            name: "Recommend",
+            desc: "Suggest the ideal brand, grade, and viscosity for maximum equipment life.",
+            icon: "ThumbsUp",
+          },
+          {
+            num: "3",
+            name: "Supply",
+            desc: "Prompt delivery of 100% genuine lubricants directly from authorized stock.",
+            icon: "Truck",
+          },
+          {
+            num: "4",
+            name: "Support",
+            desc: "Ongoing technical guidance, oil condition monitoring, and customer support.",
+            icon: "Headphones",
+          },
+        ],
+      },
+    },
     {
-      "type": "TrustedClientsSection",
-      "order": 4,
-      "content": {
-            "title": "TRUSTED CLIENTS & PARTNERS",
-            "subtitle": "Proudly serving leading public enterprises, defense organizations, and industrial giants across India with high-performance lubricants.",
-            "clients": [
-                  {
-                        "id": "haldiram",
-                        "name": "Haldiram's",
-                        "category": "Food Processing Giant",
-                        "logo": "https://res.cloudinary.com/dpa93copz/image/upload/v1787727090/mahalaxmi/clients/iwjyvy3p4tm4pfjwoqp9.jpg"
-                  },
-                  {
-                        "id": "thdc",
-                        "name": "THDC Khurja",
-                        "category": "Power & Thermal Energy",
-                        "logo": "https://res.cloudinary.com/dpa93copz/image/upload/v1787727091/mahalaxmi/clients/x6erp0glqa6qkzgogs8l.jpg"
-                  },
-                  {
-                        "id": "ordnance",
-                        "name": "Ordnance Factories",
-                        "category": "Ministry of Defence, Govt of India",
-                        "logo": "https://res.cloudinary.com/dpa93copz/image/upload/v1787727092/mahalaxmi/clients/d7vj33wjvr5ectr839ku.jpg"
-                  },
-                  {
-                        "id": "indian-army",
-                        "name": "Indian Army",
-                        "category": "Armed Forces of India",
-                        "logo": "https://res.cloudinary.com/dpa93copz/image/upload/v1787727094/mahalaxmi/clients/wzer7j4ztww2jqvkmvf0.jpg"
-                  }
-            ]
-      }
-},
+      type: "IndustriesWeServeSection",
+      order: 4,
+      content: {
+        title: "INDUSTRIES WE SERVE",
+        subtitle: "Lubrication Solutions for Diverse Industries",
+        leadText: "Our extensive lubricant portfolio serves the requirements of various industries, including:",
+        description: "We provide lubrication products for industrial machinery, hydraulic systems, gears, bearings, engines, metalworking equipment and other critical applications.",
+        btnLabel: "Explore Industries",
+        btnUrl: "#industries",
+        industries: [
+          { name: "Steel", icon: "Factory" },
+          { name: "Cement", icon: "Building2" },
+          { name: "Power", icon: "Zap" },
+          { name: "Textile", icon: "Scissors" },
+          { name: "Paper", icon: "FileText" },
+          { name: "Manufacturing", icon: "Cog" },
+          { name: "Engineering", icon: "Wrench" },
+          { name: "Automotive", icon: "Car" },
+        ],
+      },
+    },
     {
-      "type": "DistributorBanner",
-      "order": 5,
-      "content": {
-            "btnLabel": "BECOME AN INDUSTRIAL LUBE DISTRIBUTOR (ILD)/ BAZAAR LUBE DISTRIBUTOR (BLD)",
-            "buttonText": "BECOME AN INDUSTRIAL LUBE DISTRIBUTOR (ILD)/ BAZAAR LUBE DISTRIBUTOR (BLD)",
-            "enquirySubject": "Distributor Dealership Application"
-      }
-},
+      type: "TrustedClientsSection",
+      order: 5,
+      content: {
+        title: "OUR BRANDS",
+        subtitle: "Leading Brands. Reliable Lubrication.",
+        description: "We offer products across multiple lubricant and industrial solution brands, helping customers find suitable products for their specific applications.",
+        industriesTitle: "INDUSTRIES WE SERVE",
+        industriesSubtitle: "Lubrication Solutions for Diverse Industries",
+        industriesDescription: "Our extensive lubricant portfolio serves the requirements of various industries, including: Steel | Cement | Power | Textile | Paper | Manufacturing | Engineering | Automotive. We provide lubrication products for industrial machinery, hydraulic systems, gears, bearings, engines, metalworking equipment and other critical applications.",
+        industries: [
+          "Steel",
+          "Cement",
+          "Power",
+          "Textile",
+          "Paper",
+          "Manufacturing",
+          "Engineering",
+          "Automotive",
+        ],
+        clients: [
+          {
+            id: "hp-lubricants",
+            name: "HP Lubricants",
+            category: "Industrial & Automotive Lubricants",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727090/mahalaxmi/clients/iwjyvy3p4tm4pfjwoqp9.jpg",
+          },
+          {
+            id: "valvoline",
+            name: "Valvoline",
+            category: "Automotive & Heavy-Duty Fluids",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727091/mahalaxmi/clients/x6erp0glqa6qkzgogs8l.jpg",
+          },
+          {
+            id: "gs-caltex",
+            name: "GS Caltex",
+            category: "High-Performance Lubricants",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727092/mahalaxmi/clients/d7vj33wjvr5ectr839ku.jpg",
+          },
+          {
+            id: "idemitsu",
+            name: "Idemitsu",
+            category: "Japanese Precision Lubrication",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727094/mahalaxmi/clients/wzer7j4ztww2jqvkmvf0.jpg",
+          },
+          {
+            id: "molygraph",
+            name: "Molygraph",
+            category: "Specialty Lubricants & Greases",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727090/mahalaxmi/clients/iwjyvy3p4tm4pfjwoqp9.jpg",
+          },
+          {
+            id: "motultech",
+            name: "MotulTech",
+            category: "Industrial Fluids & Metalworking",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727091/mahalaxmi/clients/x6erp0glqa6qkzgogs8l.jpg",
+          },
+          {
+            id: "deep-pneumatics",
+            name: "Deep Pneumatics",
+            category: "Compressed Air & Industrial Fluids",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727092/mahalaxmi/clients/d7vj33wjvr5ectr839ku.jpg",
+          },
+          {
+            id: "lubricon",
+            name: "Lubricon",
+            category: "Specialized Industrial Lubricants",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727094/mahalaxmi/clients/wzer7j4ztww2jqvkmvf0.jpg",
+          },
+          {
+            id: "tw-chemie",
+            name: "TW Chemie",
+            category: "Specialty Chemicals & Cleaners",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727090/mahalaxmi/clients/iwjyvy3p4tm4pfjwoqp9.jpg",
+          },
+          {
+            id: "filtermist",
+            name: "Filtermist",
+            category: "Oil Mist Extraction & Air Filtration",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727091/mahalaxmi/clients/x6erp0glqa6qkzgogs8l.jpg",
+          },
+        ],
+        buttonText: "View All Brands",
+        buttonLink: "/about-us",
+      },
+    },
     {
-      "type": "LocateDistributorSection",
-      "order": 6,
-      "content": {
-            "locateTitle": "LOCATE INDUSTRIAL DISTRIBUTOR",
-            "locateSubtitle": "HP Lubricants are marketed through an extensive network of Authorized Industrial Lube Distributors (ILD) and CFA stock points across India.",
-            "searchBtnText": "SEARCH DISTRIBUTOR",
-            "contactTitle": "CONTACT DETAILS",
-            "companyName": "Mahalaxmi Enterprises",
-            "address": "Authorized Industrial Lubricants Division (ILD), Hindustan Petroleum Corp. Ltd.",
-            "phone": "+91 98970 56000",
-            "workingHours": "Working Hours: Mon - Sat: 9:00 AM - 7:00 PM",
-            "email": "info@mahalaxmi.com",
-            "contactBtnText": "CONTACT US"
-      }
-}  ];
+      type: "WhyJaiDevaSection",
+      order: 6,
+      content: {
+        title: "WHY JAI DEVA OIL CO.?",
+        subtitle: "Your Trusted Lubrication Partner Since 2008",
+        points: [
+          {
+            title: "18+ Years of Experience",
+            desc: "Strong industry experience in lubricant distribution and trading since 2008.",
+            icon: "Calendar",
+          },
+          {
+            title: "Multi-Brand Portfolio",
+            desc: "A diverse range of lubricant products from leading brands.",
+            icon: "Layers",
+          },
+          {
+            title: "Wide Product Range",
+            desc: "Industrial oils, automotive lubricants, greases and specialty lubrication products.",
+            icon: "Boxes",
+          },
+          {
+            title: "Quality-Focused Approach",
+            desc: "We focus on supplying quality products suited to customer requirements.",
+            icon: "ShieldCheck",
+          },
+          {
+            title: "Experienced Team",
+            desc: "Skilled professionals with industry knowledge and understanding of customer needs.",
+            icon: "Users",
+          },
+          {
+            title: "Reliable Service",
+            desc: "Committed to dependable supply and long-term customer relationships.",
+            icon: "Clock",
+          },
+        ],
+      },
+    },
+    {
+      type: "TestimonialsSection",
+      order: 7,
+      content: {
+        title: "WHY JAI DEVA OIL CO.?",
+        subtitle: "Your Trusted Lubrication Partner Since 2008",
+        description: "With 18+ years of industry experience, a diverse multi-brand portfolio and a customer-focused approach, Jai Deva Oil Co. continues to provide dependable lubrication products and solutions for industries, machinery and automotive applications.",
+        whyChooseItems: [
+          {
+            title: "18+ Years of Experience",
+            description: "Strong industry experience in lubricant distribution and trading since 2008.",
+          },
+          {
+            title: "Multi-Brand Portfolio",
+            description: "A diverse range of lubricant products from leading brands.",
+          },
+          {
+            title: "Wide Product Range",
+            description: "Industrial oils, automotive lubricants, greases and specialty lubrication products.",
+          },
+          {
+            title: "Quality-Focused Approach",
+            description: "We focus on supplying quality products suited to customer requirements.",
+          },
+          {
+            title: "Experienced Team",
+            description: "Skilled professionals with industry knowledge and understanding of customer needs.",
+          },
+          {
+            title: "Reliable Service",
+            description: "Committed to dependable supply and long-term customer relationships.",
+          },
+        ],
+        testimonials: [
+          {
+            id: 1,
+            org: "18+ Years Experience",
+            name: "Industry Heritage",
+            role: "Established 2008",
+            image: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726866/mahalaxmi/testimonials/fzlpp5qdzzikoc9wcmqt.png",
+            quote: "Strong industry experience in lubricant distribution and trading since 2008 across major industrial sectors.",
+            location: "Pan-India Network",
+          },
+          {
+            id: 2,
+            org: "Multi-Brand Distribution",
+            name: "Comprehensive Portfolio",
+            role: "Authorized Partner",
+            image: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726867/mahalaxmi/testimonials/kzzowa1y35oxdrarqzti.png",
+            quote: "A diverse range of lubricant products from leading brands under one trusted distributor.",
+            location: "Industrial & Automotive Hubs",
+          },
+          {
+            id: 3,
+            org: "Quality & Reliability",
+            name: "Quality Assurance",
+            role: "Certified Standards",
+            image: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726872/mahalaxmi/testimonials/nkhvdnzz9zqz2ehy1nxj.png",
+            quote: "Quality Products | Multiple Brands | Reliable Supply | Customer-Focused Service.",
+            location: "Industrial Manufacturing Units",
+          },
+        ],
+      },
+    },
+    {
+      type: "DistributorBanner",
+      order: 8,
+      content: {
+        title: "FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION",
+        heading: "FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION",
+        subtitle: "Looking for the Right Lubrication Solution?",
+        description: "Every machine and application has different lubrication requirements. Our team can help you identify suitable products based on your equipment, application and operating conditions. Whether you require Hydraulic Oil, Gear Oil, Engine Oil, Industrial Grease, Cutting Oil or other specialty lubricants, Jai Deva Oil Co. is ready to assist.",
+        buttonText: "Send Your Enquiry",
+        btnLabel: "Send Your Enquiry",
+        secondaryBtnLabel: "Talk to Our Team",
+        enquirySubject: "Lubricant Application Enquiry",
+      },
+    },
+    {
+      type: "LocateDistributorSection",
+      order: 9,
+      content: {
+        locateTitle: "FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION",
+        locateSubtitle: "Every machine and application has different lubrication requirements. Our team can help you identify suitable products based on your equipment, application and operating conditions.",
+        searchButtonText: "SEARCH PRODUCTS",
+        searchResultCompany: "Jai Deva Oil Co.",
+        searchResultAddress: "Multi-Brand Industrial & Automotive Lubricant Distributor",
+        searchResultPhone: "+91 98765 43210",
+        contactTitle: "JAI DEVA OIL CO.",
+        companyName: "Jai Deva Oil Co.",
+        address: "Industrial Area & Distribution Hub, India",
+        phone: "+91 98765 43210",
+        workingHours: "Working Hours: Mon - Sat: 9:00 AM - 6:30 PM",
+        email: "sales@jaidevaoil.com",
+        contactButtonText: "Talk to Our Team",
+        summaryTitle: "JAI DEVA OIL CO.",
+        summarySubtitle: "Your Trusted Partner in Industrial & Automotive Lubrication",
+        summaryText: "With 18+ years of industry experience, a diverse multi-brand portfolio and a customer-focused approach, Jai Deva Oil Co. continues to provide dependable lubrication products and solutions for industries, machinery and automotive applications.",
+        taglineHighlights: "Quality Products | Multiple Brands | Reliable Supply | Customer-Focused Service",
+      },
+    },
+  ];
 
   // Clean up any old duplicate section names
   await prisma.section.deleteMany({

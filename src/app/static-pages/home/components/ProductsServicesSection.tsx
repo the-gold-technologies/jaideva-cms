@@ -15,43 +15,32 @@ import {
 import toast from "react-hot-toast";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 
 export interface ProductServiceItem {
   id: string;
+  slug?: string;
   name: string;
-  link: string;
+  link?: string;
   img: string;
   hoverImg: string;
 }
 
 export interface ProductsServicesData {
   title: string;
-  description: string;
+  subtitle: string;
+  btnLabel?: string;
+  btnUrl?: string;
+  description?: string;
   items: ProductServiceItem[];
 }
 
 export const DEFAULT_PRODUCTS_SERVICES: ProductsServicesData = {
-  title: "OUR PRODUCTS AND SERVICES",
-  description:
-    "Mahalaxmi Enterprises has always been in the forefront developing and marketing of technology advanced lubricants as per the market trends",
-  items: [
-    {
-      id: "industrial",
-      name: "Industrial Oils",
-      link: "/products/industrial-oils",
-      hoverImg: "/industrial-1.png",
-      img: "/industrial-2.png",
-    },
-    {
-      id: "greases",
-      name: "Greases",
-      link: "/products/industrial-greases",
-      hoverImg: "/greases-1.png",
-      img: "/greases-2.png",
-    },
-  ],
+  title: "",
+  subtitle: "",
+  btnLabel: "",
+  btnUrl: "",
+  items: [],
 };
 
 function CircularImageDropzone({
@@ -123,7 +112,9 @@ function CircularImageDropzone({
         <label className="text-xs font-semibold text-slate-700 tracking-wide">
           {label}
         </label>
-        <span className="text-[11px] text-gray-400 font-medium">{sublabel}</span>
+        <span className="text-[11px] text-gray-400 font-medium">
+          {sublabel}
+        </span>
       </div>
 
       <input
@@ -197,20 +188,24 @@ function CircularImageDropzone({
           onClick={() => fileInputRef.current?.click()}
           className={`w-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-4 transition-all cursor-pointer group ${
             isDragging
-              ? "border-[#D8232A] bg-red-50/50 scale-[0.99]"
+              ? "border-[#0C356A] bg-blue-50/50 scale-[0.99]"
               : "border-gray-300 bg-gray-50/60 hover:bg-gray-50 hover:border-gray-400"
           }`}
         >
           {isUploading ? (
             <div className="flex flex-col items-center gap-1.5">
-              <Loader2 className="w-5 h-5 text-[#D8232A] animate-spin" />
-              <span className="text-xs font-medium text-gray-600">Uploading...</span>
+              <Loader2 className="w-5 h-5 text-[#0C356A] animate-spin" />
+              <span className="text-xs font-medium text-gray-600">
+                Uploading...
+              </span>
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <CloudUpload className="w-4 h-4 text-gray-500 group-hover:text-[#D8232A] transition-colors" />
+              <CloudUpload className="w-4 h-4 text-gray-500 group-hover:text-[#0C356A] transition-colors" />
               <span className="text-xs font-bold text-gray-700">
-                <span className="text-[#D8232A] hover:underline mr-1">Upload</span>
+                <span className="text-[#0C356A] hover:underline mr-1">
+                  Upload
+                </span>
                 or drag & drop
               </span>
             </div>
@@ -221,16 +216,19 @@ function CircularImageDropzone({
   );
 }
 
-export function ProductsServicesSection({ initialData }: { initialData?: any }) {
+export function ProductsServicesSection({
+  initialData,
+}: {
+  initialData?: any;
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
   const [data, setData] = useState<ProductsServicesData>(
-    DEFAULT_PRODUCTS_SERVICES
+    DEFAULT_PRODUCTS_SERVICES,
   );
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({
-    industrial: true,
-    greases: true,
+    "engine-oil": true,
   });
 
   useEffect(() => {
@@ -242,8 +240,18 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
 
       setData({
         title: initialData.title || DEFAULT_PRODUCTS_SERVICES.title,
-        description:
-          initialData.description || DEFAULT_PRODUCTS_SERVICES.description,
+        subtitle:
+          initialData.subtitle ||
+          initialData.description ||
+          DEFAULT_PRODUCTS_SERVICES.subtitle,
+        btnLabel:
+          initialData.btnLabel ||
+          initialData.buttonText ||
+          DEFAULT_PRODUCTS_SERVICES.btnLabel,
+        btnUrl:
+          initialData.btnUrl ||
+          initialData.buttonLink ||
+          DEFAULT_PRODUCTS_SERVICES.btnUrl,
         items,
       });
 
@@ -264,11 +272,12 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
   };
 
   const handleAddItem = () => {
-    const newId = `item-${Date.now()}`;
+    const newId = `category-${Date.now()}`;
     const newItem: ProductServiceItem = {
       id: newId,
+      slug: newId,
       name: "New Product Category",
-      link: "/products",
+      link: `/products/${newId}`,
       img: "",
       hoverImg: "",
     };
@@ -294,7 +303,7 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
   const handleItemChange = (
     idx: number,
     field: keyof ProductServiceItem,
-    value: string
+    value: string,
   ) => {
     const updated = [...data.items];
     updated[idx] = { ...updated[idx], [field]: value };
@@ -305,12 +314,22 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
     setLoading(true);
     setSaved(false);
     try {
+      const payload = {
+        title: data.title,
+        subtitle: data.subtitle,
+        btnLabel: data.btnLabel || "View All Products",
+        btnUrl: data.btnUrl || "/products",
+        buttonText: data.btnLabel || "View All Products",
+        buttonLink: data.btnUrl || "/products",
+        items: data.items,
+      };
+
       const res = await fetch("/api/home", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           section: "ProductsServicesSection",
-          content: data,
+          content: payload,
         }),
       });
 
@@ -335,7 +354,7 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
         <SectionHeader
           title="Products & Services Section"
           description="Manage the circular category icons, hover states, titles, and link routes on the homepage."
-          badge={`${data.items.length} Item${data.items.length === 1 ? "" : "s"}`}
+          badge={`${data.items.length} Category Icon${data.items.length === 1 ? "" : "s"}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -347,45 +366,44 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-6 pt-4">
-              {/* Section Headline and Description */}
-              <div className="grid grid-cols-1 gap-5">
+              {/* Section Headline and Subtitle */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <InputField
                   label="Section Title"
                   value={data.title}
                   onChange={(e) =>
                     setData((prev) => ({ ...prev, title: e.target.value }))
                   }
-                  placeholder="OUR PRODUCTS AND SERVICES"
+                  placeholder="OUR PRODUCT RANGE"
                   helperText="Main uppercase heading"
                 />
 
-                <TextAreaField
-                  label="Section Subtitle / Description"
-                  rows={3}
-                  value={data.description}
+                <InputField
+                  label="Section Subtitle"
+                  value={data.subtitle || ""}
                   onChange={(e) =>
                     setData((prev) => ({
                       ...prev,
-                      description: e.target.value,
+                      subtitle: e.target.value,
                     }))
                   }
-                  placeholder="Mahalaxmi Enterprises has always been in the forefront..."
-                  helperText="Introductory description below the title"
+                  placeholder="Complete Lubrication Solutions under One Roof"
+                  helperText="Tagline below the title"
                 />
               </div>
 
               {/* Items Header */}
               <div className="flex items-center justify-between border-t border-gray-100 pt-5">
                 <span className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                  <Layers className="w-4 h-4 text-[#D8232A]" />
-                  Category Items ({data.items.length})
+                  <Layers className="w-4 h-4 text-[#C86218]" />
+                  Product Category Items ({data.items.length})
                 </span>
                 <button
                   type="button"
                   onClick={handleAddItem}
-                  className="px-4 py-2 rounded-full border border-dashed border-gray-300 hover:border-[#0B0F29] text-xs font-bold text-gray-700 hover:text-black flex items-center gap-1.5 transition-all cursor-pointer bg-white shadow-xs"
+                  className="px-4 py-2 rounded-full border border-dashed border-gray-300 hover:border-[#0C356A] text-xs font-bold text-gray-700 hover:text-[#0C356A] flex items-center gap-1.5 transition-all cursor-pointer bg-white shadow-xs"
                 >
-                  <Plus className="w-3.5 h-3.5 text-[#D8232A]" />
+                  <Plus className="w-3.5 h-3.5 text-[#C86218]" />
                   Add Category
                 </button>
               </div>
@@ -407,13 +425,13 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
                         className="p-4 flex items-center justify-between cursor-pointer hover:bg-gray-100/70 transition-colors select-none"
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <span className="w-6 h-6 rounded-lg bg-[#0B0F29] text-white text-[11px] font-bold flex items-center justify-center shrink-0">
+                          <span className="w-6 h-6 rounded-lg bg-[#0C356A] text-white text-[11px] font-bold flex items-center justify-center shrink-0">
                             {idx + 1}
                           </span>
 
                           {/* Thumbnail preview if exists */}
                           {item.img ? (
-                            <div className="w-8 h-8 rounded-full bg-white border border-gray-200 overflow-hidden shrink-0 flex items-center justify-center">
+                            <div className="w-9 h-9 rounded-full bg-white border border-gray-200 overflow-hidden shrink-0 flex items-center justify-center p-0.5">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img
                                 src={item.img}
@@ -422,17 +440,17 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
                               />
                             </div>
                           ) : (
-                            <div className="w-8 h-8 rounded-full bg-gray-200/70 border border-gray-200 flex items-center justify-center shrink-0">
+                            <div className="w-9 h-9 rounded-full bg-gray-200/70 border border-gray-200 flex items-center justify-center shrink-0">
                               <ImageIcon className="w-4 h-4 text-gray-400" />
                             </div>
                           )}
 
                           <div className="flex flex-col min-w-0">
-                            <span className="text-xs font-bold text-[#0B0F29] uppercase tracking-wide truncate">
+                            <span className="text-xs font-bold text-[#0C356A] uppercase tracking-wide truncate">
                               {item.name || `Category #${idx + 1}`}
                             </span>
-                            <span className="text-[11px] text-gray-400 font-mono truncate">
-                              {item.link || "/products"}
+                            <span className="text-[11px] text-gray-500 font-mono truncate">
+                              {item.link || `/products/${item.slug || item.id}`}
                             </span>
                           </div>
                         </div>
@@ -476,30 +494,34 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
                               onChange={(e) =>
                                 handleItemChange(idx, "name", e.target.value)
                               }
-                              placeholder="e.g. Industrial Oils"
+                              placeholder="e.g. Engine Oil"
                             />
                             <InputField
                               label="Destination Link"
-                              value={item.link}
+                              value={
+                                item.link || `/products/${item.slug || item.id}`
+                              }
                               onChange={(e) =>
                                 handleItemChange(idx, "link", e.target.value)
                               }
-                              placeholder="e.g. /products/industrial-oils"
+                              placeholder="e.g. /products/engine-oil"
                             />
                           </div>
 
                           {/* Default & Hover Image Dropzones */}
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                             <CircularImageDropzone
-                              label="Default Image (Idle State)"
-                              sublabel="e.g. /industrial-2.png"
+                              label="Default Circular Icon (Idle State)"
+                              sublabel="PNG with transparent background"
                               value={item.img}
-                              onChange={(url) => handleItemChange(idx, "img", url)}
+                              onChange={(url) =>
+                                handleItemChange(idx, "img", url)
+                              }
                             />
 
                             <CircularImageDropzone
-                              label="Hover Image (Active State)"
-                              sublabel="e.g. /industrial-1.png"
+                              label="Hover Circular Icon (Hover State)"
+                              sublabel="PNG with transparent background"
                               value={item.hoverImg}
                               onChange={(url) =>
                                 handleItemChange(idx, "hoverImg", url)
@@ -511,6 +533,33 @@ export function ProductsServicesSection({ initialData }: { initialData?: any }) 
                     </div>
                   );
                 })}
+              </div>
+
+              {/* Bottom CTA Button Settings */}
+              <div className="border-t border-gray-100 pt-5">
+                <span className="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-4">
+                  Bottom Call to Action Button
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <InputField
+                    label="Button Label"
+                    value={data.btnLabel || "View All Products"}
+                    onChange={(e) =>
+                      setData((prev) => ({ ...prev, btnLabel: e.target.value }))
+                    }
+                    placeholder="View All Products"
+                  />
+
+                  <InputField
+                    label="Button Destination URL"
+                    value={data.btnUrl || "/products"}
+                    onChange={(e) =>
+                      setData((prev) => ({ ...prev, btnUrl: e.target.value }))
+                    }
+                    placeholder="/products"
+                    helperText="Target link for the bottom action button"
+                  />
+                </div>
               </div>
 
               {/* Full Width Save Changes Button */}

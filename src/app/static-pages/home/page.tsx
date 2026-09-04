@@ -5,7 +5,10 @@ import { PageHeader } from "@/components/PageHeader";
 import { HeroSliderSection } from "./components/HeroSliderSection";
 import { AboutSection } from "./components/AboutSection";
 import { ProductsServicesSection } from "./components/ProductsServicesSection";
+import { MultiBrandSolutionsSection } from "./components/MultiBrandSolutionsSection";
+import { IndustriesWeServeSection } from "./components/IndustriesWeServeSection";
 import { TrustedClientsSection } from "./components/TrustedClientsSection";
+import { WhyJaiDevaSection } from "./components/WhyJaiDevaSection";
 import { TestimonialsSection } from "./components/TestimonialsSection";
 import { DistributorBannerSection } from "./components/DistributorBannerSection";
 import { LocateDistributorSection } from "./components/LocateDistributorSection";
@@ -40,7 +43,26 @@ export default function HomePageEditor() {
       <ProductsServicesSection
         initialData={homeData?.ProductsServicesSection}
       />
+      <MultiBrandSolutionsSection
+        initialData={
+          homeData?.MultiBrandSolutionsSection ||
+          homeData?.MultiBrandSolutions
+        }
+      />
+      <IndustriesWeServeSection
+        initialData={
+          homeData?.IndustriesWeServeSection ||
+          homeData?.IndustriesWeServe
+        }
+      />
       <TrustedClientsSection initialData={homeData?.TrustedClientsSection} />
+      <WhyJaiDevaSection
+        initialData={
+          homeData?.WhyJaiDevaSection ||
+          homeData?.WhyJaiDeva ||
+          homeData?.TestimonialsSection
+        }
+      />
       <TestimonialsSection initialData={homeData?.TestimonialsSection} />
       <DistributorBannerSection initialData={homeData?.DistributorBanner} />
       <LocateDistributorSection

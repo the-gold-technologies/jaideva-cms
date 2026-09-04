@@ -12,9 +12,8 @@ export interface DistributorBannerData {
 }
 
 export const DEFAULT_DISTRIBUTOR_BANNER: DistributorBannerData = {
-  buttonText:
-    "BECOME AN INDUSTRIAL LUBE DISTRIBUTOR (ILD)/ BAZAAR LUBE DISTRIBUTOR (BLD)",
-  enquirySubject: "Distributor Dealership Application",
+  buttonText: "",
+  enquirySubject: "",
 };
 
 export function DistributorBannerSection({
@@ -36,10 +35,10 @@ export function DistributorBannerSection({
           initialData.buttonText ||
           initialData.btnLabel ||
           initialData.title ||
-          DEFAULT_DISTRIBUTOR_BANNER.buttonText,
+          "",
         enquirySubject:
           initialData.enquirySubject ||
-          DEFAULT_DISTRIBUTOR_BANNER.enquirySubject,
+          "",
       });
     }
   }, [initialData]);

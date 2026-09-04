@@ -30,38 +30,12 @@ export interface TrustedClientsData {
   clients: ClientItem[];
 }
 
-export const DEFAULT_TRUSTED_CLIENTS: ClientItem[] = [
-  {
-    id: "haldiram",
-    name: "Haldiram's",
-    category: "Food Processing Giant",
-    logo: "/Haldirams.jpeg",
-  },
-  {
-    id: "thdc",
-    name: "THDC Khurja",
-    category: "Power & Thermal Energy",
-    logo: "/THDC.jpeg",
-  },
-  {
-    id: "ordnance",
-    name: "Ordnance Factories",
-    category: "Ministry of Defence, Govt of India",
-    logo: "/Ordnan.jpeg",
-  },
-  {
-    id: "indian-army",
-    name: "Indian Army",
-    category: "Armed Forces of India",
-    logo: "/Indian_Army.jpeg",
-  },
-];
+export const DEFAULT_TRUSTED_CLIENTS: ClientItem[] = [];
 
 export const DEFAULT_TRUSTED_CLIENTS_DATA: TrustedClientsData = {
-  title: "TRUSTED CLIENTS & PARTNERS",
-  description:
-    "Proudly serving leading public enterprises, defense organizations, and industrial giants across India with high-performance lubricants.",
-  clients: DEFAULT_TRUSTED_CLIENTS,
+  title: "",
+  description: "",
+  clients: [],
 };
 
 function LogoDropzone({
@@ -234,16 +208,15 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
   useEffect(() => {
     if (initialData) {
       const list =
-        Array.isArray(initialData.clients) && initialData.clients.length > 0
+        Array.isArray(initialData.clients)
           ? initialData.clients
-          : Array.isArray(initialData) && initialData.length > 0
+          : Array.isArray(initialData)
           ? initialData
-          : DEFAULT_TRUSTED_CLIENTS;
+          : [];
 
       setData({
-        title: initialData.title || DEFAULT_TRUSTED_CLIENTS_DATA.title,
-        description:
-          initialData.description || DEFAULT_TRUSTED_CLIENTS_DATA.description,
+        title: initialData.title || "",
+        description: initialData.description || "",
         clients: list,
       });
 

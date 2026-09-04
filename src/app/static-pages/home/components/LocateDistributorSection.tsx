@@ -29,27 +29,20 @@ export interface LocateDistributorData {
 }
 
 export const DEFAULT_LOCATE_DISTRIBUTOR_DATA: LocateDistributorData = {
-  locateTitle:
-    "LOCATE AN INDUSTRIAL LUBE DISTRIBUTOR (ILD)/ BAZAAR LUBE DISTRIBUTOR (BLD)",
-  locateSubtitle:
-    "Find the dealer of HP products in your area by selecting your options below.",
-  searchButtonText: "SEARCH",
-  searchResultCompany:
-    "Mahalaxmi Enterprises - Authorized Industrial Lubricants Distributor",
-  searchResultAddress:
-    "Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh",
-  searchResultPhone: "+91 98765 43210",
-
-  contactTitle: "CONTACT DETAILS",
-  logo: "/mahalaxmi png logo .png",
-  companyName: "Mahalaxmi Enterprises",
-  address:
-    "Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh, India.",
-  phone: "+91 98765 43210",
-  workingHours:
-    "Working Hours Monday to Saturday from 9.00 am to 6.00pm except for Public Holidays.",
-  email: "sales@mahalaxmienterprises.com",
-  contactButtonText: "CONTACT US",
+  locateTitle: "",
+  locateSubtitle: "",
+  searchButtonText: "",
+  searchResultCompany: "",
+  searchResultAddress: "",
+  searchResultPhone: "",
+  contactTitle: "",
+  logo: "",
+  companyName: "",
+  address: "",
+  phone: "",
+  workingHours: "",
+  email: "",
+  contactButtonText: "",
 };
 
 export function LocateDistributorSection({
@@ -68,48 +61,20 @@ export function LocateDistributorSection({
   useEffect(() => {
     if (initialData) {
       setFormData({
-        locateTitle:
-          initialData.locateTitle ||
-          initialData.heading ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.locateTitle,
-        locateSubtitle:
-          initialData.locateSubtitle ||
-          initialData.description ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.locateSubtitle,
-        searchButtonText:
-          initialData.searchButtonText ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.searchButtonText,
-        searchResultCompany:
-          initialData.searchResultCompany ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.searchResultCompany,
-        searchResultAddress:
-          initialData.searchResultAddress ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.searchResultAddress,
-        searchResultPhone:
-          initialData.searchResultPhone ||
-          initialData.phone ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.searchResultPhone,
-
-        contactTitle:
-          initialData.contactTitle ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.contactTitle,
-        logo: initialData.logo || DEFAULT_LOCATE_DISTRIBUTOR_DATA.logo,
-        companyName:
-          initialData.companyName ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.companyName,
-        address:
-          initialData.address || DEFAULT_LOCATE_DISTRIBUTOR_DATA.address,
-        phone:
-          initialData.phone ||
-          initialData.directPhone ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.phone,
-        workingHours:
-          initialData.workingHours ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.workingHours,
-        email: initialData.email || DEFAULT_LOCATE_DISTRIBUTOR_DATA.email,
-        contactButtonText:
-          initialData.contactButtonText ||
-          DEFAULT_LOCATE_DISTRIBUTOR_DATA.contactButtonText,
+        locateTitle: initialData.locateTitle || initialData.heading || "",
+        locateSubtitle: initialData.locateSubtitle || initialData.description || "",
+        searchButtonText: initialData.searchButtonText || "",
+        searchResultCompany: initialData.searchResultCompany || "",
+        searchResultAddress: initialData.searchResultAddress || "",
+        searchResultPhone: initialData.searchResultPhone || initialData.phone || "",
+        contactTitle: initialData.contactTitle || "",
+        logo: initialData.logo || "",
+        companyName: initialData.companyName || "",
+        address: initialData.address || "",
+        phone: initialData.phone || initialData.directPhone || "",
+        workingHours: initialData.workingHours || "",
+        email: initialData.email || "",
+        contactButtonText: initialData.contactButtonText || "",
       });
     }
   }, [initialData]);
