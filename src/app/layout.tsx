@@ -18,8 +18,16 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Mahalaxmi Enterprises CMS",
-  description: "Manage your HP Lubricants website content and distributor portal",
+  title: {
+    default: "Jai Deva Oil Co. CMS",
+    template: "%s | Jai Deva Oil Co. CMS",
+  },
+  description: "Manage your Jai Deva Oil Co. lubricant catalog, pages, and distributor leads",
+  icons: {
+    icon: "/jaideva-logo.png",
+    shortcut: "/jaideva-logo.png",
+    apple: "/jaideva-logo.png",
+  },
 };
 
 export default async function RootLayout({

@@ -591,16 +591,21 @@ async function main() {
   // 6. Contact Us Page & Sections
   const contactPage = await prisma.page.upsert({
     where: { slug: "contact-us" },
-    update: {},
+    update: {
+      title: "Contact Us",
+      description: "Get in touch with Jai Deva Oil Co. for bulk lubricants supply, custom quotes, and distribution enquiries.",
+      metaTitle: "Contact Us | Jai Deva Oil Co. - Multi-Brand Lubricants Distributor",
+      metaDescription: "Reach out to Jai Deva Oil Co. sales and technical team for industrial oils, automotive lubricants, and greases across India.",
+    },
     create: {
       title: "Contact Us",
       slug: "contact-us",
       type: "static",
       visibility: "published",
       isStatic: true,
-      description: "Get in touch with Mahalaxmi Enterprises for bulk lubricants supply, enquiries, and dealership.",
-      metaTitle: "Contact Us | Mahalaxmi Enterprises HPCL Distributor",
-      metaDescription: "Reach out to our sales engineering team, head office, and regional branches across India.",
+      description: "Get in touch with Jai Deva Oil Co. for bulk lubricants supply, custom quotes, and distribution enquiries.",
+      metaTitle: "Contact Us | Jai Deva Oil Co. - Multi-Brand Lubricants Distributor",
+      metaDescription: "Reach out to Jai Deva Oil Co. sales and technical team for industrial oils, automotive lubricants, and greases across India.",
     },
   });
 
@@ -612,21 +617,21 @@ async function main() {
         title: "Contact Us",
         subtitle: "",
         image: "https://res.cloudinary.com/dpa93copz/image/upload/v1787738184/mahalaxmi/contact/contact-us-banner.jpg",
-        altText: "Contact Us - Mahalaxmi Enterprises",
+        altText: "Contact Us - Jai Deva Oil Co.",
       },
     },
     {
       type: "ContactHeadquarter",
       order: 1,
       content: {
-        companyName: "Mahalaxmi Enterprises",
-        badge: "Authorized HP Lubricants Distributor",
-        description: "Connect with our team for bulk HP Lubricants supply, dealership opportunities, technical data sheets, and custom quotes.",
-        proprietor: "Neha Goyal",
-        address: "HPCL Petrol Pump, Ground & First Floor, Kh No- 487/0048, Aggarwal Mandi Tatiri, Tatiri, Agarwal Mandi, Baghpat, Uttar Pradesh - 250601",
-        phone: "88007 78032",
-        whatsapp: "918800778032",
-        email: "sales@mahalaxmienterprises.com",
+        companyName: "Jai Deva Oil Co.",
+        badge: "Multi-Brand Industrial & Automotive Lubricants Distributor",
+        description: "Connect with our team for bulk lubricants supply, dealership opportunities, technical data sheets, and custom quotes.",
+        proprietor: "Mr. Mayank Goyal",
+        address: "Industrial Area & Regional Distribution Hub, India",
+        phone: "+91 98765 43210",
+        whatsapp: "919876543210",
+        email: "sales@jaidevaoil.com",
         workingHours: "Monday to Saturday: 9:00 AM – 6:00 PM",
       },
     },
@@ -667,16 +672,21 @@ async function main() {
   // 7. Events Page & Sections
   const eventsPage = await prisma.page.upsert({
     where: { slug: "events" },
-    update: {},
+    update: {
+      title: "Events & Activities",
+      description: "Photo gallery and stakeholder engagement events hosted by Jai Deva Oil Co.",
+      metaTitle: "Events & Gallery | Jai Deva Oil Co.",
+      metaDescription: "Explore photo gallery and coverage of dealer meets, exhibitions, and industrial seminars by Jai Deva Oil Co.",
+    },
     create: {
       title: "Events & Activities",
       slug: "events",
       type: "static",
       visibility: "published",
       isStatic: true,
-      description: "Photo gallery and stakeholder engagement events hosted by Mahalaxmi Enterprises.",
-      metaTitle: "Events & Gallery | Mahalaxmi Enterprises",
-      metaDescription: "Explore photo gallery and coverage of dealer meets, exhibitions, and industrial seminars.",
+      description: "Photo gallery and stakeholder engagement events hosted by Jai Deva Oil Co.",
+      metaTitle: "Events & Gallery | Jai Deva Oil Co.",
+      metaDescription: "Explore photo gallery and coverage of dealer meets, exhibitions, and industrial seminars by Jai Deva Oil Co.",
     },
   });
 
@@ -2537,7 +2547,12 @@ async function main() {
   // 10. Blogs Page & Sections
   const blogsPage = await prisma.page.upsert({
     where: { slug: "blogs" },
-    update: {},
+    update: {
+      title: "Technical Articles & Lubrication Insights",
+      description: "Technical articles, educational guides, and lubrication maintenance recommendations.",
+      metaTitle: "Blogs & Insights | Jai Deva Oil Co.",
+      metaDescription: "Learn how often to change engine oils, hydraulic fluid maintenance, and lubrication best practices from Jai Deva Oil Co.",
+    },
     create: {
       title: "Technical Articles & Lubrication Insights",
       slug: "blogs",
@@ -2545,8 +2560,8 @@ async function main() {
       visibility: "published",
       isStatic: true,
       description: "Technical articles, educational guides, and lubrication maintenance recommendations.",
-      metaTitle: "Blogs & Insights | Mahalaxmi Enterprises",
-      metaDescription: "Learn how often to change engine oils, hydraulic fluid maintenance, and lubrication best practices.",
+      metaTitle: "Blogs & Insights | Jai Deva Oil Co.",
+      metaDescription: "Learn how often to change engine oils, hydraulic fluid maintenance, and lubrication best practices from Jai Deva Oil Co.",
     },
   });
 
@@ -3067,18 +3082,26 @@ async function main() {
   // 10. Privacy Policy Page & Content
   const privacyPage = await prisma.page.upsert({
     where: { slug: "privacy-policy" },
-    update: {},
+    update: {
+      title: "Privacy Policy",
+      metaTitle: "Privacy Policy | Jai Deva Oil Co.",
+      metaDescription:
+        "Read the Privacy Policy of Jai Deva Oil Co., trusted multi-brand distributor for industrial and automotive lubricants and greases.",
+      targetKeywords:
+        "Privacy Policy, Jai Deva Oil Co., lubricants data protection",
+      canonicalUrl: "/privacy-policy",
+    },
     create: {
       title: "Privacy Policy",
       slug: "privacy-policy",
       type: "legal",
       visibility: "published",
       order: 50,
-      metaTitle: "Privacy Policy | Mahalaxmi Enterprises",
+      metaTitle: "Privacy Policy | Jai Deva Oil Co.",
       metaDescription:
-        "Read the Privacy Policy of Mahalaxmi Enterprises, authorized Industrial Lubricants Division (ILD) for HPCL lubricants and greases.",
+        "Read the Privacy Policy of Jai Deva Oil Co., trusted multi-brand distributor for industrial and automotive lubricants and greases.",
       targetKeywords:
-        "Privacy Policy, Mahalaxmi Enterprises, HP Lubricants data protection",
+        "Privacy Policy, Jai Deva Oil Co., lubricants data protection",
       canonicalUrl: "/privacy-policy",
       noIndex: false,
     },
@@ -3087,7 +3110,7 @@ async function main() {
   const privacyContent = {
     title: "Privacy Policy",
     lastUpdated: "August 2026",
-    content: `<p>Welcome to <strong>Mahalaxmi Enterprises</strong> ("we", "our", or "us"). We are an Authorized Industrial Lubricants Division (ILD) master distributor for <strong>Hindustan Petroleum Corporation Limited (HPCL)</strong>.</p>
+    content: `<p>Welcome to <strong>Jai Deva Oil Co.</strong> ("we", "our", or "us"). We are an established Multi-Brand Distributor and Trader of Industrial & Automotive Lubricants and Greases.</p>
 <p>We are committed to protecting and respecting your personal privacy. This Privacy Policy explains how we collect, use, store, and safeguard your personal information when you visit our website or interact with our enquiry, dealership, and quotation forms.</p>
 
 <h2>1. Information We Collect</h2>
@@ -3095,26 +3118,26 @@ async function main() {
 <ul>
   <li><strong>Contact Information:</strong> Name, business/firm name, email address, phone number, city, and state submitted via enquiry or distributor application forms.</li>
   <li><strong>Product Interests:</strong> Lubricant categories, Technical Data Sheet (TDS) / Material Safety Data Sheet (MSDS) download requests, and bulk procurement queries.</li>
-  <li><strong>Technical Data:</strong> IP address, browser type, device details, and interaction logs through cookies and Google Analytics to improve website responsiveness.</li>
+  <li><strong>Technical Data:</strong> IP address, browser type, device details, and interaction logs through cookies and analytics to improve website responsiveness.</li>
 </ul>
 
 <h2>2. How We Use Your Information</h2>
 <p>We utilize the collected information strictly for legitimate commercial and customer service purposes:</p>
 <ul>
   <li>To provide product specifications, quotation pricing, and technical lubrication recommendations.</li>
-  <li>To process Industrial Lube Distributor (ILD) / Bazaar Lube Distributor (BLD) dealership applications.</li>
-  <li>To coordinate dispatch, doorstep supply logistics, and after-sales support across Uttar Pradesh and North India.</li>
+  <li>To process Dealership / Distribution Partner applications.</li>
+  <li>To coordinate dispatch, doorstep supply logistics, and after-sales support across North India and nationwide.</li>
   <li>To enhance website performance, security, and user experience.</li>
 </ul>
 
 <h2>3. Information Sharing & Protection</h2>
-<p>We do <strong>not</strong> sell, rent, trade, or commercially exploit your personal contact data. Your information is only shared with authorized sales engineers, regional supply depots, or HPCL technical representatives solely to fulfill your product delivery and service requests.</p>
+<p>We do <strong>not</strong> sell, rent, trade, or commercially exploit your personal contact data. Your information is only shared with authorized sales engineers and regional supply depots solely to fulfill your product delivery and service requests.</p>
 
 <h2>4. Cookies & Analytics</h2>
-<p>We utilize standard cookies, Google Tag Manager (GTM), and Google Analytics to understand website traffic patterns and improve responsiveness. You can adjust your browser settings to decline cookies if preferred.</p>
+<p>We utilize standard cookies and analytics tools to understand website traffic patterns and improve responsiveness. You can adjust your browser settings to decline cookies if preferred.</p>
 
 <h2>5. Contact Us Regarding Your Privacy</h2>
-<p>If you have any questions, feedback, or requests regarding this Privacy Policy or data retention, please contact our compliance desk at <strong>sales@mahalaxmienterprises.com</strong>.</p>`,
+<p>If you have any questions, feedback, or requests regarding this Privacy Policy or data retention, please contact our compliance desk at <strong>sales@jaidevaoil.com</strong>.</p>`,
     isPublished: true,
   };
 
