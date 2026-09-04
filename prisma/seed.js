@@ -44,7 +44,7 @@ async function main() {
       phone: "+91 98765 43210",
       email: "sales@jaidevaoil.com",
       address: "Industrial Area & Regional Distribution Hub, India",
-      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787728459/mahalaxmi/branding/aet8vc9jfakxqvmybcib.png",
+      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1788504772/jaideva/logo/jaideva-main-logo.png",
       socialLinks: {
         facebook: "https://facebook.com",
         youtube: "https://youtube.com",
@@ -61,7 +61,7 @@ async function main() {
       phone: "+91 98765 43210",
       email: "sales@jaidevaoil.com",
       address: "Industrial Area & Regional Distribution Hub, India",
-      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787728459/mahalaxmi/branding/aet8vc9jfakxqvmybcib.png",
+      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1788504772/jaideva/logo/jaideva-main-logo.png",
       socialLinks: {
         facebook: "https://facebook.com",
         youtube: "https://youtube.com",

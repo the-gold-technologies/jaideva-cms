@@ -7,10 +7,10 @@ export default {
     signIn: "/login",
   },
   trustHost: true,
-  secret: process.env.AUTH_SECRET || "mahalaxmi-hp-lubricants-cms-secret-key-2026-auth",
+  secret: process.env.AUTH_SECRET || "jaideva-oil-cms-secret-key-2026-auth",
   cookies: {
     sessionToken: {
-      name: "mahalaxmi-cms.session-token",
+      name: "jaideva-cms.session-token",
       options: {
         httpOnly: true,
         sameSite: "lax",

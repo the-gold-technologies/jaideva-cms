@@ -41,10 +41,13 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-[#f8f9fa] font-sans">
       <div className="w-full max-w-md p-8 bg-white rounded-3xl shadow-xl border border-gray-100">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#0B0F29] mb-2">
-            Welcome Back
-          </h1>
-          <p className="text-gray-500 text-sm">Sign in to manage your CMS</p>
+          <div className="flex justify-center">
+            <img
+              src="https://res.cloudinary.com/dpa93copz/image/upload/v1788504772/jaideva/logo/jaideva-main-logo.png"
+              alt="Jai Deva Oil Co. Logo"
+              className="h-16 w-auto object-contain"
+            />
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -75,15 +78,15 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-4 bg-[#D8232A] text-white rounded-2xl font-bold uppercase tracking-widest hover:bg-[#0B0F29] transition-all shadow-lg shadow-red-600/20 disabled:opacity-50 cursor-pointer"
+            className="w-full py-3.5 bg-[#C86218] hover:bg-[#0C356A] text-white rounded-2xl font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg disabled:opacity-50 cursor-pointer text-sm"
           >
             {isLoading ? "Signing in..." : "Sign In"}
           </button>
         </form>
 
         <div className="mt-8 text-center">
-          <p className="text-gray-400 text-xs">
-            &copy; {new Date().getFullYear()} Mahalaxmi Enterprises. All rights reserved.
+          <p className="text-gray-400 text-xs font-medium">
+            &copy; {new Date().getFullYear()} Jai Deva Oil Co. All rights reserved.
           </p>
         </div>
       </div>
