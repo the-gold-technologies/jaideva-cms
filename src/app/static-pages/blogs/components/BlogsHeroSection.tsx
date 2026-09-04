@@ -107,7 +107,7 @@ export function BlogsHeroSection({
               label="Banner Alt Text (SEO & Accessibility)"
               value={altText}
               onChange={(e) => setAltText(e.target.value)}
-              placeholder="e.g. Blogs - Mahalaxmi Enterprises HP Lubricants"
+              placeholder="e.g. Blogs - Jai Deva Oil Co. HP Lubricants"
             />
 
             <div className="pt-4 border-t border-gray-100">

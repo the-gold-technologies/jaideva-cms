@@ -22,7 +22,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   const [linkUrl, setLinkUrl] = useState("");
   const [linkText, setLinkText] = useState("");
 
-  const textareaClass = `w-full px-5 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#D8232A] focus:ring-1 focus:ring-[#D8232A] outline-none transition-all text-gray-800 ${className}`;
+  const textareaClass = `w-full px-5 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#C86218] focus:ring-1 focus:ring-[#C86218] outline-none transition-all text-gray-800 ${className}`;
 
   const handleOpenLinkModal = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -82,7 +82,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
             {label}
             {(tooltip || helperText) && (
               <div className="group relative flex items-center">
-                <HelpCircle className="w-3.5 h-3.5 cursor-help text-gray-300 hover:text-[#D8232A] transition-colors" />
+                <HelpCircle className="w-3.5 h-3.5 cursor-help text-gray-300 hover:text-[#C86218] transition-colors" />
                 {/* Tooltip Bubble */}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max max-w-[280px] px-4 py-3 bg-white text-gray-900 text-[11px] font-medium rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-100 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50 normal-case tracking-normal text-center leading-relaxed backdrop-blur-sm">
                   {tooltip || helperText}
@@ -97,7 +97,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
         <button
           type="button"
           onClick={handleOpenLinkModal}
-          className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#D8232A] hover:text-[#b51b21] transition-colors cursor-pointer"
+          className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#C86218] hover:text-[#0C356A] transition-colors cursor-pointer"
           title="Insert link formatting"
         >
           <LinkIcon className="w-3.5 h-3.5" />
@@ -138,7 +138,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
                 value={linkText}
                 onChange={(e) => setLinkText(e.target.value)}
                 placeholder="e.g. Click here"
-                className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-[#D8232A] focus:border-[#D8232A] outline-none text-gray-800"
+                className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-[#C86218] focus:border-[#C86218] outline-none text-gray-800"
               />
             </div>
 
@@ -151,7 +151,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
                 value={linkUrl}
                 onChange={(e) => setLinkUrl(e.target.value)}
                 placeholder="e.g. /products or https://google.com"
-                className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-[#D8232A] focus:border-[#D8232A] outline-none text-gray-800"
+                className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:ring-1 focus:ring-[#C86218] focus:border-[#C86218] outline-none text-gray-800"
                 required
               />
             </div>
@@ -166,7 +166,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
               </button>
               <button
                 type="submit"
-                className="px-4 py-1.5 bg-[#D8232A] text-white rounded-lg text-xs font-semibold hover:bg-[#b51b21] cursor-pointer transition-colors"
+                className="px-4 py-1.5 bg-[#C86218] text-white rounded-lg text-xs font-semibold hover:bg-[#0C356A] cursor-pointer transition-colors shadow-xs"
               >
                 Insert
               </button>

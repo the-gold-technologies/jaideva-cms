@@ -124,7 +124,7 @@ export default function PageSEODashboard() {
               {isLoading ? (
                 <tr>
                   <td colSpan={6} className="py-20 text-center">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D8232A] mx-auto"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C86218] mx-auto"></div>
                   </td>
                 </tr>
               ) : rootLinks.length === 0 ? (
@@ -183,7 +183,7 @@ export default function PageSEODashboard() {
                                 className={`inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${
                                   hasTitle
                                     ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                    : "bg-red-50 text-[#D8232A] border border-red-100"
+                                    : "bg-orange-50 text-[#C86218] border border-orange-100"
                                 }`}
                               >
                                 {hasTitle ? "Title ✓" : "Title ✗"}
@@ -192,7 +192,7 @@ export default function PageSEODashboard() {
                                 className={`inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${
                                   hasDesc
                                     ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                    : "bg-red-50 text-[#D8232A] border border-red-100"
+                                    : "bg-orange-50 text-[#C86218] border border-orange-100"
                                 }`}
                               >
                                 {hasDesc ? "Desc ✓" : "Desc ✗"}
@@ -257,7 +257,7 @@ export default function PageSEODashboard() {
                                     className={`inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${
                                       childHasTitle
                                         ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                        : "bg-red-50 text-[#D8232A] border border-red-100"
+                                        : "bg-orange-50 text-[#C86218] border border-orange-100"
                                     }`}
                                   >
                                     {childHasTitle ? "Title ✓" : "Title ✗"}
@@ -266,7 +266,7 @@ export default function PageSEODashboard() {
                                     className={`inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${
                                       childHasDesc
                                         ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                        : "bg-red-50 text-[#D8232A] border border-red-100"
+                                        : "bg-orange-50 text-[#C86218] border border-orange-100"
                                     }`}
                                   >
                                     {childHasDesc ? "Desc ✓" : "Desc ✗"}

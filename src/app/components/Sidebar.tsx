@@ -123,7 +123,7 @@ export function AdminSidebar() {
             J
           </div>
           <span className="font-bold text-lg tracking-tight">
-            Jai Deva <span className="text-[#D8232A] font-semibold">CMS</span>
+            Jai Deva <span className="text-[#C86218] font-semibold">CMS</span>
           </span>
         </Link>
       </div>
@@ -164,7 +164,7 @@ export function AdminSidebar() {
                             className={cn(
                               "block px-4 py-2.5 rounded-2xl text-[13px] font-medium transition-all duration-200",
                               isSubActive
-                                ? "bg-[#D8232A] text-white shadow-sm shadow-[#D8232A]/20 transform scale-[1.02]"
+                                ? "bg-[#C86218] text-white shadow-sm shadow-[#C86218]/25 transform scale-[1.02]"
                                 : "text-gray-400 hover:bg-white/5 hover:text-white",
                             )}
                           >
@@ -185,7 +185,7 @@ export function AdminSidebar() {
                 className={cn(
                   "flex items-center justify-between px-4 py-3 rounded-2xl text-[14px] font-medium transition-all duration-200 mt-2",
                   isActive
-                    ? "bg-[#D8232A] text-white shadow-sm shadow-[#D8232A]/20 transform scale-[1.02]"
+                    ? "bg-[#C86218] text-white shadow-sm shadow-[#C86218]/25 transform scale-[1.02]"
                     : "text-gray-400 hover:bg-white/5 hover:text-white",
                 )}
               >
@@ -200,7 +200,7 @@ export function AdminSidebar() {
                   {item.title}
                 </div>
                 {item.badge && (
-                  <div className="flex items-center justify-center w-5 h-5 rounded-full bg-[#D8232A]/80 text-white text-[10px] font-bold">
+                  <div className="flex items-center justify-center w-5 h-5 rounded-full bg-[#C86218] text-white text-[10px] font-bold">
                     {item.badge}
                   </div>
                 )}

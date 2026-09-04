@@ -71,7 +71,7 @@ export default function PageSpecificSEODetail() {
             ...prev,
             title: slug.charAt(0).toUpperCase() + slug.slice(1),
             slug: slug,
-            canonicalUrl: `https://mahalaxmilubricants.com/${slug === "home" ? "" : slug}`,
+            canonicalUrl: `https://jaidevaoil.com/${slug === "home" ? "" : slug}`,
           }));
         }
       } catch (error) {
@@ -152,7 +152,7 @@ export default function PageSpecificSEODetail() {
   if (isLoading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D8232A]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C86218]"></div>
       </div>
     );
   }
@@ -201,7 +201,7 @@ export default function PageSpecificSEODetail() {
             onChange={(e) =>
               setFormData({ ...formData, metaTitle: e.target.value })
             }
-            placeholder="e.g. Products & Industrial Oils | Mahalaxmi Enterprises"
+            placeholder="e.g. Products & Industrial Oils | Jai Deva Oil Co."
             tooltip="Page-specific title. Overrides the default site title to improve search relevance for this page."
           />
 
@@ -232,7 +232,7 @@ export default function PageSpecificSEODetail() {
               onChange={(e) =>
                 setFormData({ ...formData, canonicalUrl: e.target.value })
               }
-              placeholder="https://mahalaxmilubricants.com/products"
+              placeholder="https://jaidevaoil.com/products"
               tooltip="The preferred URL for this page. Helps prevent duplicate content issues."
             />
           </div>
@@ -243,7 +243,7 @@ export default function PageSpecificSEODetail() {
               <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4 flex items-center gap-1.5 relative">
                 Structured Data (Schema Markup JSON-LD)
                 <div className="group relative flex items-center">
-                  <HelpCircle className="w-3.5 h-3.5 cursor-help text-gray-300 hover:text-[#D8232A] transition-colors" />
+                  <HelpCircle className="w-3.5 h-3.5 cursor-help text-gray-300 hover:text-[#C86218] transition-colors" />
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max max-w-[280px] px-4 py-3 bg-white text-gray-900 text-[11px] font-medium rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-100 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50 normal-case tracking-normal text-center leading-relaxed backdrop-blur-sm">
                     JSON-LD structured data schema markup for this specific
                     page. Do not include &lt;script&gt; tags, just the raw JSON

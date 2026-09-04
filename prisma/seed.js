@@ -20,19 +20,6 @@ async function main() {
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
     },
   });
-
-  // Keep admin@mahalaxmi.com too for backward compatibility
-  await prisma.user.upsert({
-    where: { email: "admin@mahalaxmi.com" },
-    update: {},
-    create: {
-      email: "admin@mahalaxmi.com",
-      name: "Admin User",
-      password: adminPassword,
-      role: "admin",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
-    },
-  });
   console.log("✓ Admin user created.");
 
   // 2. Global Brand Configuration

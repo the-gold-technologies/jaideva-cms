@@ -233,7 +233,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   if (fetching) {
     return (
       <div className="py-24 text-center text-gray-400 text-sm animate-pulse flex flex-col items-center justify-center gap-3">
-        <Package className="w-8 h-8 text-[#D8232A] animate-spin" />
+        <Package className="w-8 h-8 text-[#C86218] animate-spin" />
         <span>Loading product details...</span>
       </div>
     );
@@ -246,7 +246,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         <div className="flex flex-col gap-1.5">
           <Link
             href="/static-pages/products"
-            className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#D8232A] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#C86218] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Products Catalog
@@ -281,7 +281,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           {/* Card 1: Basic Information */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-              <Package className="w-4 h-4 text-[#D8232A]" />
+              <Package className="w-4 h-4 text-[#C86218]" />
               1. Commercial Identification
             </h3>
 
@@ -356,7 +356,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           {/* Card 2: Narrative & Application Scope */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-              <Layers className="w-4 h-4 text-[#D8232A]" />
+              <Layers className="w-4 h-4 text-[#C86218]" />
               2. Description & Application Scope
             </h3>
 
@@ -380,7 +380,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           {/* Card 3: Performance Benefits & Features */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-6">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#D8232A]" />
+              <ShieldCheck className="w-4 h-4 text-[#C86218]" />
               3. Benefits & OEM Approvals
             </h3>
 
@@ -412,7 +412,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           {/* Card 4: Physico-Chemical Lab Properties */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-              <FlaskConical className="w-4 h-4 text-[#D8232A]" />
+              <FlaskConical className="w-4 h-4 text-[#C86218]" />
               4. Physico-Chemical Test Specifications
             </h3>
 
@@ -428,7 +428,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           {/* Card 5: Container Packaging Image */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-4">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-              <Package className="w-4 h-4 text-[#D8232A]" />
+              <Package className="w-4 h-4 text-[#C86218]" />
               Packaging Graphic
             </h3>
 
@@ -444,7 +444,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           {/* Card 6: Technical Datasheets Upload */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-              <FileText className="w-4 h-4 text-[#D8232A]" />
+              <FileText className="w-4 h-4 text-[#C86218]" />
               Datasheet Downloads (PDF)
             </h3>
 
@@ -475,7 +475,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                 type="checkbox"
                 checked={isFeatured}
                 onChange={(e) => setIsFeatured(e.target.checked)}
-                className="mt-0.5 rounded text-[#D8232A] focus:ring-[#D8232A] cursor-pointer"
+                className="mt-0.5 rounded text-[#C86218] focus:ring-[#C86218] cursor-pointer"
               />
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-gray-800">

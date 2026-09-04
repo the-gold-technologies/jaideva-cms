@@ -27,14 +27,14 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-50">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="font-bold text-lg text-[#0B0F29]">Mahalaxmi Website Pages</h3>
+          <h3 className="font-bold text-lg text-[#0C356A]">Jai Deva Website Pages</h3>
           <p className="text-xs font-medium text-gray-400 mt-0.5">
             Overview of static pages, layout layouts, and section configurations.
           </p>
         </div>
         <Link
           href="/seo/pages"
-          className="text-xs font-bold text-[#D8232A] hover:text-black flex items-center gap-1 bg-red-50/50 px-3 py-1.5 rounded-xl transition-all"
+          className="text-xs font-bold text-[#C86218] hover:text-[#0C356A] flex items-center gap-1 bg-orange-50/70 px-3 py-1.5 rounded-xl transition-all"
         >
           Manage SEO <ArrowRight className="w-3.5 h-3.5" />
         </Link>
@@ -42,7 +42,7 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
 
       {loading ? (
         <div className="py-12 flex justify-center">
-          <Loader2 className="w-6 h-6 animate-spin text-[#D8232A]" />
+          <Loader2 className="w-6 h-6 animate-spin text-[#C86218]" />
         </div>
       ) : pagesList.length === 0 ? (
         <div className="py-8 text-center text-gray-400 text-xs italic">
@@ -79,11 +79,11 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
                   <tr key={page.id} className="hover:bg-gray-50/20 transition-colors">
                     <td className="py-3.5">
                       <Link href={editorUrl} className="flex items-center gap-2 group">
-                        <div className="h-8 w-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-[#D8232A]/10 group-hover:text-[#D8232A] transition-colors">
+                        <div className="h-8 w-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-[#C86218]/10 group-hover:text-[#C86218] transition-colors">
                           <Layout className="w-4 h-4" />
                         </div>
                         <div className="flex flex-col">
-                          <span className="font-bold text-gray-900 group-hover:text-[#D8232A] transition-colors">
+                          <span className="font-bold text-gray-900 group-hover:text-[#C86218] transition-colors">
                             {page.title}
                           </span>
                           <span className="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">

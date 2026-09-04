@@ -114,7 +114,7 @@ export function ContactHeroSection({
                 label="Section Subtitle / Tagline"
                 value={subtitle}
                 onChange={(e) => setSubtitle(e.target.value)}
-                placeholder="Get in touch with Mahalaxmi Enterprises"
+                placeholder="Get in touch with Jai Deva Oil Co."
               />
             </div>
 
@@ -130,7 +130,7 @@ export function ContactHeroSection({
               label="Banner Alt Text (SEO & Accessibility)"
               value={altText}
               onChange={(e) => setAltText(e.target.value)}
-              placeholder="e.g. Contact Us - Mahalaxmi Enterprises"
+              placeholder="e.g. Contact Us - Jai Deva Oil Co."
             />
 
             <div className="pt-4 border-t border-gray-100">

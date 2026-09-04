@@ -199,7 +199,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
         <button
           type="button"
           onClick={() => setShowUrlInput(!showUrlInput)}
-          className="text-[11px] text-[#002B5C] hover:text-[#D8232A] font-semibold transition-colors cursor-pointer"
+          className="text-[11px] text-[#0C356A] hover:text-[#C86218] font-semibold transition-colors cursor-pointer"
         >
           {showUrlInput ? "Hide Direct URL" : "Paste Direct URL"}
         </button>
@@ -220,7 +220,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
           <button
             type="button"
             onClick={handleAddManualUrl}
-            className="px-3 py-1.5 bg-[#002B5C] text-white text-xs font-bold rounded-xl hover:bg-[#D8232A] transition cursor-pointer"
+            className="px-3 py-1.5 bg-[#0C356A] text-white text-xs font-bold rounded-xl hover:bg-[#C86218] transition cursor-pointer"
           >
             Add
           </button>
@@ -239,99 +239,102 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
 
       {/* Uploaded Images List */}
       {images.length > 0 && (
-        <div className="flex flex-col gap-2">
-          {images.map((img, idx) => {
-            if (!img) return null;
-            const imgSrc = typeof img === "string" ? img : URL.createObjectURL(img as Blob);
-            const fileName =
+        <div className="space-y-3">
+          {images.map((img, index) => {
+            const url =
               typeof img === "string"
-                ? img.split("/").pop() || "Uploaded Image"
-                : (img as File).name || "Image";
+                ? img
+                : img instanceof File
+                ? URL.createObjectURL(img)
+                : "";
+            const isLocal = img instanceof File;
+            const filename =
+              typeof img === "string"
+                ? img.split("/").pop()
+                : img instanceof File
+                ? img.name
+                : "Image";
 
             return (
               <div
-                key={idx}
-                className="w-full border border-gray-200 rounded-2xl bg-slate-50/70 flex items-center justify-between p-3 px-4 relative overflow-hidden group hover:border-slate-300 transition-all shadow-xs"
+                key={index}
+                className="flex items-center justify-between p-3.5 bg-slate-50 border border-slate-200 rounded-2xl hover:border-slate-300 transition-colors"
               >
-                <div className="flex items-center gap-3.5 min-w-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={imgSrc}
-                    alt={`Preview ${idx + 1}`}
-                    className="w-12 h-12 object-contain bg-white rounded-xl shadow-xs border border-gray-200 shrink-0 p-0.5"
-                  />
+                <div className="flex items-center gap-3.5 overflow-hidden">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-white border border-slate-200 shrink-0 flex items-center justify-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={url}
+                      alt="Uploaded preview"
+                      className="w-full h-full object-contain p-1"
+                    />
+                  </div>
                   <div className="flex flex-col min-w-0">
-                    <span className="text-slate-900 font-bold text-xs truncate max-w-[220px] sm:max-w-[340px]">
-                      {fileName}
+                    <span className="text-xs font-semibold text-slate-800 truncate max-w-[240px] sm:max-w-xs">
+                      {filename}
                     </span>
-                    <span className="text-emerald-600 font-semibold text-[11px] flex items-center gap-1 mt-0.5">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      Uploaded & Ready
+                    <span className="text-[10px] text-slate-400">
+                      {isLocal ? "Pending save upload" : "✓ Active on Cloudinary"}
                     </span>
                   </div>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    removeImage(idx);
-                  }}
-                  className="p-1.5 bg-white text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl border border-gray-200 shadow-xs transition-colors cursor-pointer"
-                  title="Remove image"
-                >
-                  <X className="w-4 h-4" />
-                </button>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => removeImage(index)}
+                    className="p-2 text-slate-400 hover:text-red-500 hover:bg-white rounded-xl transition-colors cursor-pointer"
+                    title="Remove Image"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             );
           })}
         </div>
       )}
 
-      {/* Upload Dropzone */}
+      {/* Dropzone Upload Trigger */}
       {images.length < maxImages && (
         <div
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           onClick={() => !isUploading && fileInputRef.current?.click()}
-          className={`w-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-6 sm:p-8 transition-all cursor-pointer group
-          ${
+          className={`relative border-2 border-dashed rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center transition-all cursor-pointer group ${
             isDragging
-              ? "border-[#002B5C] bg-blue-50/50 scale-[0.99]"
-              : "border-gray-200 bg-slate-50/60 hover:bg-slate-100/70 hover:border-slate-300"
-          }
-          ${isUploading ? "opacity-75 pointer-events-none" : ""}
-        `}
+              ? "border-[#0C356A] bg-blue-50/40 scale-[0.99]"
+              : "border-gray-200 bg-gray-50/50 hover:bg-gray-50 hover:border-gray-300"
+          } ${isUploading ? "opacity-60 pointer-events-none" : ""}`}
         >
           {isUploading ? (
-            <div className="flex flex-col items-center gap-3">
-              <Loader2 className="w-8 h-8 text-[#002B5C] animate-spin" />
-              <p className="text-xs font-bold text-slate-700">
-                {uploadProgressText || "Uploading image to Cloudinary..."}
+            <div className="flex flex-col items-center gap-3 py-3">
+              <Loader2 className="w-8 h-8 animate-spin text-[#C86218]" />
+              <p className="text-xs font-semibold text-slate-600">
+                Uploading to Cloudinary...
               </p>
-              <p className="text-[11px] text-slate-400">Please wait a moment</p>
             </div>
           ) : (
             <>
-              <span className="text-slate-600 font-semibold text-xs sm:text-sm mb-3">
+              <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">
                 {maxImages > 1
-                  ? `Upload Images (${images.length}/${maxImages} selected)`
+                  ? `Upload Images (${images.length}/${maxImages})`
                   : "Provide an image or lubricant graphic"}
               </span>
 
               <div
                 className={`p-3 rounded-2xl shadow-xs border mb-3 transition-transform ${
                   isDragging
-                    ? "bg-[#002B5C] text-white scale-110 border-[#002B5C]"
-                    : "bg-white text-[#002B5C] border-gray-100 group-hover:scale-110"
+                    ? "bg-[#0C356A] text-white scale-110 border-[#0C356A]"
+                    : "bg-white text-[#0C356A] border-gray-100 group-hover:scale-110"
                 }`}
               >
                 <CloudUpload className="w-6 h-6" strokeWidth={2} />
               </div>
 
               <p className="text-slate-600 text-xs sm:text-sm mb-1 text-center font-medium">
-                <span className="text-[#D8232A] font-bold hover:underline mr-1">
+                <span className="text-[#C86218] font-bold hover:underline mr-1">
                   Click to upload
                 </span>
                 or drag and drop

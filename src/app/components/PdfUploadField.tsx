@@ -121,7 +121,7 @@ export function PdfUploadField({
               setIsUrlMode(!isUrlMode);
               setTempUrl("");
             }}
-            className="text-[11px] font-semibold text-gray-400 hover:text-[#D8232A] transition-colors cursor-pointer flex items-center gap-1"
+            className="text-[11px] font-semibold text-gray-400 hover:text-[#C86218] transition-colors cursor-pointer flex items-center gap-1"
           >
             <LinkIcon className="w-3 h-3" />
             {isUrlMode ? "Upload File Instead" : "Enter URL"}
@@ -138,15 +138,15 @@ export function PdfUploadField({
       />
 
       {uploading ? (
-        <div className="p-6 rounded-2xl bg-red-50/40 border border-red-100 flex items-center justify-center gap-3 text-xs text-[#D8232A] font-bold animate-pulse">
-          <Loader2 className="w-4 h-4 animate-spin text-[#D8232A]" />
+        <div className="p-6 rounded-2xl bg-orange-50/40 border border-orange-100 flex items-center justify-center gap-3 text-xs text-[#C86218] font-bold animate-pulse">
+          <Loader2 className="w-4 h-4 animate-spin text-[#C86218]" />
           <span>Uploading PDF document to server...</span>
         </div>
       ) : value ? (
         /* Attached PDF Card Preview */
         <div className="flex items-center justify-between p-3.5 bg-gray-50 border border-gray-200 rounded-2xl group hover:border-gray-300 transition-all shadow-xs">
           <div className="flex items-center gap-3 min-w-0 pr-2">
-            <div className="w-10 h-10 rounded-xl bg-red-50 text-[#D8232A] flex items-center justify-center shrink-0 border border-red-100">
+            <div className="w-10 h-10 rounded-xl bg-orange-50 text-[#C86218] flex items-center justify-center shrink-0 border border-orange-100">
               <FileText className="w-5 h-5" />
             </div>
             <div className="flex flex-col min-w-0">
@@ -164,7 +164,7 @@ export function PdfUploadField({
               href={value}
               target="_blank"
               rel="noreferrer"
-              className="p-2 text-gray-500 hover:text-[#D8232A] rounded-xl hover:bg-white transition-colors"
+              className="p-2 text-gray-500 hover:text-[#C86218] rounded-xl hover:bg-white transition-colors"
               title="Preview PDF"
             >
               <ExternalLink className="w-4 h-4" />
@@ -172,7 +172,7 @@ export function PdfUploadField({
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="px-3 py-1.5 text-xs font-bold text-[#D8232A] bg-white border border-red-100 rounded-xl hover:bg-red-50 transition-colors cursor-pointer shadow-2xs"
+              className="px-3 py-1.5 text-xs font-bold text-[#C86218] bg-white border border-orange-200 rounded-xl hover:bg-orange-50 transition-colors cursor-pointer shadow-2xs"
             >
               Replace
             </button>
@@ -194,7 +194,7 @@ export function PdfUploadField({
             value={tempUrl}
             onChange={(e) => setTempUrl(e.target.value)}
             placeholder={placeholder}
-            className="flex-1 px-4 py-2.5 text-xs bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#D8232A] focus:ring-1 focus:ring-[#D8232A] outline-none text-gray-800"
+            className="flex-1 px-4 py-2.5 text-xs bg-gray-50 border border-gray-200 rounded-xl focus:bg-white focus:border-[#C86218] focus:ring-1 focus:ring-[#C86218] outline-none text-gray-800"
           />
           <button
             type="button"
@@ -204,7 +204,7 @@ export function PdfUploadField({
                 setIsUrlMode(false);
               }
             }}
-            className="px-4 py-2.5 bg-[#0B0F29] text-white text-xs font-bold rounded-xl hover:bg-black transition-colors cursor-pointer"
+            className="px-4 py-2.5 bg-[#0C356A] text-white text-xs font-bold rounded-xl hover:bg-[#082245] transition-colors cursor-pointer"
           >
             Apply
           </button>
@@ -221,15 +221,15 @@ export function PdfUploadField({
           onClick={() => fileInputRef.current?.click()}
           className={`p-5 rounded-2xl border-2 border-dashed transition-all cursor-pointer flex flex-col items-center justify-center gap-2 text-center group ${
             isDragOver
-              ? "border-[#D8232A] bg-red-50/30"
+              ? "border-[#C86218] bg-orange-50/30"
               : "border-gray-200 bg-gray-50 hover:bg-gray-100 hover:border-gray-300"
           }`}
         >
-          <div className="w-9 h-9 rounded-xl bg-white text-gray-500 group-hover:text-[#D8232A] group-hover:scale-105 border border-gray-100 flex items-center justify-center transition-all shadow-2xs">
+          <div className="w-9 h-9 rounded-xl bg-white text-gray-500 group-hover:text-[#C86218] group-hover:scale-105 border border-gray-100 flex items-center justify-center transition-all shadow-2xs">
             <Upload className="w-4 h-4" />
           </div>
           <div>
-            <p className="text-xs font-bold text-gray-700 group-hover:text-[#D8232A] transition-colors">
+            <p className="text-xs font-bold text-gray-700 group-hover:text-[#C86218] transition-colors">
               Click to browse or drop PDF here
             </p>
             <p className="text-[10px] text-gray-400 mt-0.5">

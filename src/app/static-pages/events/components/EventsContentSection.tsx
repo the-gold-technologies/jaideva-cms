@@ -24,7 +24,7 @@ export function EventsContentSection({
   const [isOpen, setIsOpen] = useState(true);
   const [title, setTitle] = useState("EVENTS");
   const [introText, setIntroText] = useState(
-    "Mahalaxmi Enterprises actively engages with their stakeholders by frequently hosting meetings and events with them. This includes meeting business partners, strategic partners, distributors, OEMs, agencies, mechanics, and industrial clients."
+    "Jai Deva Oil Co. actively engages with their stakeholders by frequently hosting meetings and events with them. This includes meeting business partners, strategic partners, distributors, OEMs, agencies, mechanics, and industrial clients."
   );
   const [loading, setLoading] = useState(false);
 
@@ -100,7 +100,7 @@ export function EventsContentSection({
               rows={4}
               value={introText}
               onChange={(e) => setIntroText(e.target.value)}
-              placeholder="Mahalaxmi Enterprises actively engages with their stakeholders..."
+              placeholder="Jai Deva Oil Co. actively engages with their stakeholders..."
               required
             />
 

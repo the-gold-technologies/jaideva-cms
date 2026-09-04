@@ -174,7 +174,7 @@ export default function ProfileSettingsPage() {
         {/* 2. Change Password */}
         <div className="flex flex-col gap-5 pt-2">
           <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-            <div className="p-2.5 bg-red-50 text-[#D8232A] rounded-2xl">
+            <div className="p-2.5 bg-orange-50 text-[#C86218] rounded-2xl">
               <Lock className="w-5 h-5" />
             </div>
             <div>

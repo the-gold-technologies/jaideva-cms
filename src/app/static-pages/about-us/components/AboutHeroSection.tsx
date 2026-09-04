@@ -126,7 +126,7 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
               label="Image Alt Text (SEO & Accessibility)"
               value={altText}
               onChange={(e) => setAltText(e.target.value)}
-              placeholder="e.g. About MAHALAXMI ENTERPRISES Banner"
+              placeholder="e.g. About JAI DEVA OIL CO. Banner"
             />
 
             <div className="pt-4 border-t border-gray-100">

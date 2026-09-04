@@ -9,7 +9,7 @@ const DEFAULT_PRIVACY_DATA = {
   title: "Privacy Policy",
   lastUpdated: "August 2026",
   content: `
-    <p>Welcome to <strong>Mahalaxmi Enterprises</strong> ("we", "our", or "us"). We are an Authorized Industrial Lubricants Division (ILD) master distributor for <strong>Hindustan Petroleum Corporation Limited (HPCL)</strong>.</p>
+    <p>Welcome to <strong>Jai Deva Oil Co.</strong> ("we", "our", or "us"). We are an Authorized Industrial Lubricants Division (ILD) master distributor for <strong>Hindustan Petroleum Corporation Limited (HPCL)</strong>.</p>
     <p>We are committed to protecting and respecting your personal privacy. This Privacy Policy explains how we collect, use, store, and safeguard your personal information when you visit our website or interact with our enquiry, dealership, and quotation forms.</p>
     
     <h2>1. Information We Collect</h2>
@@ -36,7 +36,7 @@ const DEFAULT_PRIVACY_DATA = {
     <p>We utilize standard cookies, Google Tag Manager (GTM), and Google Analytics to understand website traffic patterns and improve responsiveness. You can adjust your browser settings to decline cookies if preferred.</p>
 
     <h2>5. Contact Us Regarding Your Privacy</h2>
-    <p>If you have any questions, feedback, or requests regarding this Privacy Policy or data retention, please contact our compliance desk at <strong>sales@mahalaxmienterprises.com</strong>.</p>
+    <p>If you have any questions, feedback, or requests regarding this Privacy Policy or data retention, please contact our compliance desk at <strong>sales@jaidevaoil.com</strong>.</p>
   `.trim(),
 };
 
@@ -52,12 +52,12 @@ export async function GET() {
         success: true,
         data: DEFAULT_PRIVACY_DATA,
         seo: {
-          title: "Privacy Policy | Mahalaxmi Enterprises",
-          metaTitle: "Privacy Policy | Mahalaxmi Enterprises",
+          title: "Privacy Policy | Jai Deva Oil Co.",
+          metaTitle: "Privacy Policy | Jai Deva Oil Co.",
           metaDescription:
-            "Read the Privacy Policy of Mahalaxmi Enterprises, authorized Industrial Lubricants Division (ILD) for HPCL lubricants and greases.",
+            "Read the Privacy Policy of Jai Deva Oil Co., authorized Industrial Lubricants Division (ILD) for HPCL lubricants and greases.",
           targetKeywords:
-            "Privacy Policy, Mahalaxmi Enterprises, HP Lubricants data protection",
+            "Privacy Policy, Jai Deva Oil Co., HP Lubricants data protection",
           canonicalUrl: "/privacy-policy",
           noIndex: false,
           headingOptions: { heroHeadingTag: "h1" },

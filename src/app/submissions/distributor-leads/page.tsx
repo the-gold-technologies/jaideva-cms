@@ -101,7 +101,7 @@ export default function DistributorLeadsCMSPage() {
               {loading ? (
                 <tr>
                   <td colSpan={5} className="py-20 text-center">
-                    <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#D8232A]" />
+                    <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#C86218]" />
                   </td>
                 </tr>
               ) : filtered.length === 0 ? (
@@ -122,7 +122,7 @@ export default function DistributorLeadsCMSPage() {
                           <User className="w-3.5 h-3.5 text-gray-400" />
                           {lead.name}
                         </span>
-                        <span className="text-xs font-semibold text-[#D8232A] flex items-center gap-1 mt-0.5">
+                        <span className="text-xs font-semibold text-[#C86218] flex items-center gap-1 mt-0.5">
                           <Building className="w-3.5 h-3.5 text-gray-400" />
                           {lead.firmName}
                         </span>
@@ -159,7 +159,7 @@ export default function DistributorLeadsCMSPage() {
                         type="button"
                         onClick={() => setActiveLead(lead)}
                         title="View Application Details"
-                        className="p-2.5 bg-gray-50 text-gray-500 rounded-xl hover:bg-red-50 hover:text-[#D8232A] transition-all cursor-pointer inline-flex items-center gap-1.5 text-xs font-bold"
+                        className="p-2.5 bg-gray-50 text-gray-500 rounded-xl hover:bg-orange-50 hover:text-[#C86218] transition-all cursor-pointer inline-flex items-center gap-1.5 text-xs font-bold"
                       >
                         <MessageSquare className="w-4 h-4" />
                         View

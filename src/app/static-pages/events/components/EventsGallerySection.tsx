@@ -203,15 +203,15 @@ export function EventsGallerySection({
               onClick={() => fileInputRef.current?.click()}
               className={`p-8 rounded-3xl border-2 border-dashed transition-all cursor-pointer flex flex-col items-center justify-center gap-3 text-center group ${
                 isDragOver
-                  ? "border-[#D8232A] bg-red-50/40"
+                  ? "border-[#C86218] bg-orange-50/40"
                   : "border-gray-200 bg-gray-50 hover:bg-gray-100 hover:border-gray-300"
               }`}
             >
-              <div className="w-12 h-12 rounded-2xl bg-white border border-gray-200 text-[#D8232A] flex items-center justify-center group-hover:scale-110 transition-transform shadow-xs">
+              <div className="w-12 h-12 rounded-2xl bg-white border border-gray-200 text-[#C86218] flex items-center justify-center group-hover:scale-110 transition-transform shadow-xs">
                 <CloudUpload className="w-6 h-6" />
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-sm font-bold text-gray-800 group-hover:text-[#D8232A] transition-colors">
+                <p className="text-sm font-bold text-gray-800 group-hover:text-[#C86218] transition-colors">
                   Click to choose photos or drag & drop images here
                 </p>
                 <p className="text-xs text-gray-400 font-medium">
@@ -238,7 +238,7 @@ export function EventsGallerySection({
                   return (
                     <div
                       key={item.id || idx}
-                      className="bg-gray-50 rounded-2xl border border-gray-200/90 overflow-hidden flex flex-col justify-between group hover:border-[#D8232A]/40 hover:shadow-sm transition-all"
+                      className="bg-gray-50 rounded-2xl border border-gray-200/90 overflow-hidden flex flex-col justify-between group hover:border-[#C86218]/40 hover:shadow-sm transition-all"
                     >
                       {/* Image Thumbnail Preview */}
                       <div className="relative aspect-[4/3] bg-gray-200 overflow-hidden">
@@ -249,14 +249,14 @@ export function EventsGallerySection({
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         {isNewUpload && (
-                          <span className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-[#D8232A] text-white text-[10px] font-bold shadow-xs">
+                          <span className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-[#C86218] text-white text-[10px] font-bold shadow-xs">
                             New Upload
                           </span>
                         )}
                         <button
                           type="button"
                           onClick={() => handleDeleteItem(idx)}
-                          className="absolute top-2 right-2 p-1.5 bg-white/90 hover:bg-red-50 text-gray-600 hover:text-red-600 rounded-lg shadow-sm transition-colors cursor-pointer"
+                          className="absolute top-2 right-2 p-1.5 bg-white/90 hover:bg-orange-50 text-gray-600 hover:text-red-600 rounded-lg shadow-sm transition-colors cursor-pointer"
                           title="Delete photo"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -272,7 +272,7 @@ export function EventsGallerySection({
                             handleUpdateItem(idx, "title", e.target.value)
                           }
                           placeholder="Event Title / Caption"
-                          className="w-full px-2.5 py-1.5 text-xs bg-white border border-gray-200 rounded-xl focus:border-[#D8232A] focus:outline-none text-gray-800 font-medium"
+                          className="w-full px-2.5 py-1.5 text-xs bg-white border border-gray-200 rounded-xl focus:border-[#C86218] focus:outline-none text-gray-800 font-medium"
                         />
                       </div>
                     </div>

@@ -67,8 +67,8 @@ export function AdminHeader() {
   return (
     <section className="flex flex-col gap-6">
       <header className="flex justify-between items-center w-full">
-        <h1 className="text-[28px] font-bold tracking-tight text-[#0B0F29] flex items-center gap-2">
-          Welcome back <span className="text-[#D8232A]">{userName}</span>
+        <h1 className="text-[28px] font-bold tracking-tight text-[#0C356A] flex items-center gap-2">
+          Welcome back <span className="text-[#C86218]">{userName}</span>
           <span className="text-2xl animate-bounce origin-bottom-right delay-700">
             👋
           </span>
@@ -86,7 +86,7 @@ export function AdminHeader() {
 
       <div className="flex justify-between items-center relative">
         <div className="relative group w-[350px]" ref={searchRef}>
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-[#0B0F29] transition-colors" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 group-focus-within:text-[#0C356A] transition-colors" />
           <input
             type="text"
             value={searchQuery}
@@ -96,7 +96,7 @@ export function AdminHeader() {
             }}
             onFocus={() => setIsOpen(true)}
             placeholder="Search CMS pages & settings..."
-            className="pl-10 pr-10 py-3.5 bg-white border-0 ring-1 ring-gray-100 w-full rounded-full text-sm font-medium focus:ring-2 focus:ring-[#D8232A] focus:outline-none shadow-sm transition-all"
+            className="pl-10 pr-10 py-3.5 bg-white border-0 ring-1 ring-gray-100 w-full rounded-full text-sm font-medium focus:ring-2 focus:ring-[#C86218] focus:outline-none shadow-sm transition-all"
           />
           {searchQuery && (
             <button
@@ -128,7 +128,7 @@ export function AdminHeader() {
                       }}
                       className="flex items-center gap-3 px-5 py-3 text-left hover:bg-gray-50 transition-colors w-full cursor-pointer"
                     >
-                      <div className="p-2 rounded-xl bg-red-50 text-[#D8232A]">
+                      <div className="p-2 rounded-xl bg-orange-50 text-[#C86218]">
                         <item.icon className="w-4 h-4" />
                       </div>
                       <div className="flex flex-col">

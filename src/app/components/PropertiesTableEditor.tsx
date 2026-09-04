@@ -46,7 +46,7 @@ export function PropertiesTableEditor({
         <button
           type="button"
           onClick={handleAddRow}
-          className="text-xs font-bold text-[#D8232A] hover:text-[#b51b21] flex items-center gap-1 cursor-pointer"
+          className="text-xs font-bold text-[#C86218] hover:text-[#0C356A] flex items-center gap-1 cursor-pointer"
         >
           <Plus className="w-3.5 h-3.5" />
           Add Spec Row
@@ -78,7 +78,7 @@ export function PropertiesTableEditor({
                         handleUpdateCell(idx, "property", e.target.value)
                       }
                       placeholder="e.g. Kinematic Viscosity @ 100°C, cSt"
-                      className="w-full px-3 py-2 bg-gray-50/60 border border-gray-200 rounded-xl text-xs text-gray-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#D8232A]"
+                      className="w-full px-3 py-2 bg-gray-50/60 border border-gray-200 rounded-xl text-xs text-gray-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#C86218]"
                     />
                   </td>
                   <td className="p-2.5 px-3">
@@ -89,7 +89,7 @@ export function PropertiesTableEditor({
                         handleUpdateCell(idx, "value", e.target.value)
                       }
                       placeholder="e.g. 14.5 - 15.5"
-                      className="w-full px-3 py-2 bg-gray-50/60 border border-gray-200 rounded-xl text-xs text-gray-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#D8232A]"
+                      className="w-full px-3 py-2 bg-gray-50/60 border border-gray-200 rounded-xl text-xs text-gray-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#C86218]"
                     />
                   </td>
                   <td className="p-2.5 px-3 text-right">

@@ -194,7 +194,7 @@ model GlobalConfig {
   canonicalOrdering   String   @default("default")
   sitemapEnabled      Boolean  @default(true)
   sitemapCustomContent String?
-  robotsTxt           String?  @default("User-agent: *\nAllow: /\n\nSitemap: https://mahalaxmilubricants.com/sitemap.xml")
+  robotsTxt           String?  @default("User-agent: *\nAllow: /\n\nSitemap: https://jaidevaoil.com/sitemap.xml")
   schema              String?
   headingOptions      Json?
   createdAt           DateTime @default(now())

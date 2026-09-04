@@ -237,7 +237,7 @@ export function BlogForm({ blogId, isNew = false }: BlogFormProps) {
   if (fetching) {
     return (
       <div className="py-24 text-center text-gray-400 text-sm animate-pulse flex flex-col items-center justify-center gap-3">
-        <FileText className="w-8 h-8 text-[#D8232A] animate-spin" />
+        <FileText className="w-8 h-8 text-[#C86218] animate-spin" />
         <span>Loading article details...</span>
       </div>
     );
@@ -250,7 +250,7 @@ export function BlogForm({ blogId, isNew = false }: BlogFormProps) {
         <div className="flex flex-col gap-1.5">
           <Link
             href="/static-pages/blogs"
-            className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#D8232A] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-[#C86218] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Articles List
@@ -284,7 +284,7 @@ export function BlogForm({ blogId, isNew = false }: BlogFormProps) {
           {/* Card 1: Identification & Metadata */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-              <FileText className="w-4 h-4 text-[#D8232A]" />
+              <FileText className="w-4 h-4 text-[#C86218]" />
               1. Article Identification
             </h3>
 
@@ -314,7 +314,7 @@ export function BlogForm({ blogId, isNew = false }: BlogFormProps) {
                   <button
                     type="button"
                     onClick={() => setIsCategoryModalOpen(true)}
-                    className="inline-flex items-center gap-1 text-[11px] font-bold text-[#D8232A] hover:underline cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-[#C86218] hover:underline cursor-pointer"
                   >
                     <Plus className="w-3 h-3" />
                     New
@@ -354,7 +354,7 @@ export function BlogForm({ blogId, isNew = false }: BlogFormProps) {
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-                <PenTool className="w-4 h-4 text-[#D8232A]" />
+                <PenTool className="w-4 h-4 text-[#C86218]" />
                 2. Article Body (Rich Text Editor)
               </h3>
               <span className="text-[11px] text-gray-400 font-medium">
@@ -378,7 +378,7 @@ export function BlogForm({ blogId, isNew = false }: BlogFormProps) {
           {/* Card 3: Cover Graphic */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-4">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-              <FileText className="w-4 h-4 text-[#D8232A]" />
+              <FileText className="w-4 h-4 text-[#C86218]" />
               Article Cover Graphic
             </h3>
 
@@ -394,7 +394,7 @@ export function BlogForm({ blogId, isNew = false }: BlogFormProps) {
           {/* Card 4: Publication Controls */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-4">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-[#D8232A]" />
+              <Calendar className="w-4 h-4 text-[#C86218]" />
               Publication & Visibility
             </h3>
 
@@ -410,7 +410,7 @@ export function BlogForm({ blogId, isNew = false }: BlogFormProps) {
                 type="checkbox"
                 checked={isPublished}
                 onChange={(e) => setIsPublished(e.target.checked)}
-                className="mt-0.5 rounded text-[#D8232A] focus:ring-[#D8232A] cursor-pointer"
+                className="mt-0.5 rounded text-[#C86218] focus:ring-[#C86218] cursor-pointer"
               />
               <div className="flex flex-col">
                 <span className="text-xs font-bold text-gray-800">

@@ -579,15 +579,15 @@ let mockPages: any[] = [
   },
   {
     "id": 4,
-    "title": "Excon 2017 Mahalaxmi Enterprises Stall Sideview",
+    "title": "Excon 2017 Jai Deva Oil Co. Stall Sideview",
     "image": "https://www.hplubricants.in/sites/default/files/b4.jpg",
-    "altText": "Excon 2017 Mahalaxmi Enterprises Stall Sideview"
+    "altText": "Excon 2017 Jai Deva Oil Co. Stall Sideview"
   },
   {
     "id": 5,
-    "title": "Excon 2017 Mahalaxmi Enterprises Stall",
+    "title": "Excon 2017 Jai Deva Oil Co. Stall",
     "image": "https://www.hplubricants.in/sites/default/files/b3.jpg",
-    "altText": "Excon 2017 Mahalaxmi Enterprises Stall"
+    "altText": "Excon 2017 Jai Deva Oil Co. Stall"
   },
   {
     "id": 6,
@@ -663,15 +663,15 @@ let mockPages: any[] = [
   },
   {
     "id": 18,
-    "title": "Mahalaxmi Enterprises ConMac 2017 Showcase",
+    "title": "Jai Deva Oil Co. ConMac 2017 Showcase",
     "image": "https://www.hplubricants.in/sites/default/files/8.jpg",
-    "altText": "Mahalaxmi Enterprises ConMac 2017 Showcase"
+    "altText": "Jai Deva Oil Co. ConMac 2017 Showcase"
   },
   {
     "id": 19,
-    "title": "Mahalaxmi Enterprises ConMac 2017",
+    "title": "Jai Deva Oil Co. ConMac 2017",
     "image": "https://www.hplubricants.in/sites/default/files/7.jpg",
-    "altText": "Mahalaxmi Enterprises ConMac 2017"
+    "altText": "Jai Deva Oil Co. ConMac 2017"
   },
   {
     "id": 20,
@@ -769,7 +769,7 @@ let mockCategories: any[] = [
     "name": "Industrial Oils",
     "slug": "industrial-oils",
     "shortDesc": "High performance hydraulic, compressor, turbine, transformer, gear, film, and machinery lubricants.",
-    "fullDesc": "Discover MAHALAXMI ENTERPRISES' industrial oils tailored for hydraulic systems, gearboxes, compressors, sugar mills, and more. Trusted for quality, innovation, and reliability.",
+    "fullDesc": "Discover JAI DEVA OIL CO.' industrial oils tailored for hydraulic systems, gearboxes, compressors, sugar mills, and more. Trusted for quality, innovation, and reliability.",
     "coverImage": "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Compressor-Oils.png",
     "order": 0,
     "isFeatured": true,
@@ -781,7 +781,7 @@ let mockCategories: any[] = [
     "name": "Industrial Greases",
     "slug": "industrial-greases",
     "shortDesc": "Extreme pressure lithium, complex, wheel bearing, and specialty temperature resistant greases.",
-    "fullDesc": "MAHALAXMI ENTERPRISES supplies premium industrial greases formulated for heavy machinery bearings, steel mills, and high temperature applications.",
+    "fullDesc": "JAI DEVA OIL CO. supplies premium industrial greases formulated for heavy machinery bearings, steel mills, and high temperature applications.",
     "coverImage": "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Industrial-Greases.png",
     "order": 1,
     "isFeatured": true,
@@ -793,7 +793,7 @@ let mockCategories: any[] = [
     "name": "Automotive Oils",
     "slug": "automotive-oils",
     "shortDesc": "High-quality automotive, agricultural, passenger car, and engine oils.",
-    "fullDesc": "Explore MAHALAXMI ENTERPRISES' range of automotive, agricultural, and commercial engine oils offering superior quality and performance for all your vehicles.",
+    "fullDesc": "Explore JAI DEVA OIL CO.' range of automotive, agricultural, and commercial engine oils offering superior quality and performance for all your vehicles.",
     "coverImage": "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Automotive-Oils.png",
     "order": 2,
     "isFeatured": true,
@@ -2720,7 +2720,7 @@ let mockBlogs: any[] = [
           ],
           "bulletPoints": [
             "API Standards (CK-4 / CI-4 Plus): Look for API donut marks. API CK-4 and CJ-4 low-SAPS oils are mandatory for modern BS-VI engines equipped with DPF and SCR systems, while API CI-4 Plus is ideal for BS-IV fleets.",
-            "OEM Approvals: Top lubricants distributed by MAHALAXMI ENTERPRISES carry OEM approvals from major vehicle manufacturers (Tata Motors, Ashok Leyland, Mahindra, Cummins), giving extra assurance of performance."
+            "OEM Approvals: Top lubricants distributed by JAI DEVA OIL CO. carry OEM approvals from major vehicle manufacturers (Tata Motors, Ashok Leyland, Mahindra, Cummins), giving extra assurance of performance."
           ]
         },
         {
@@ -2757,11 +2757,11 @@ let mockBlogs: any[] = [
         {
           "heading": "8. Cost vs. Performance",
           "paragraphs": [
-            "Weigh short-term lubricant costs against long-term fuel efficiency, reduced maintenance, and engine overhaul prevention. Investing in high-grade lubricants from MAHALAXMI ENTERPRISES saves significant operating costs over time."
+            "Weigh short-term lubricant costs against long-term fuel efficiency, reduced maintenance, and engine overhaul prevention. Investing in high-grade lubricants from JAI DEVA OIL CO. saves significant operating costs over time."
           ]
         }
       ],
-      "conclusion": "Selecting the right Diesel Engine Oil requires balancing vehicle manufacturer specifications, climate conditions, duty cycles, and budget. Choosing HP MILCY series diesel lubricants from Mahalaxmi Enterprises ensures maximum engine protection, extended drain intervals, and optimal fuel economy for your commercial fleet or personal vehicle.",
+      "conclusion": "Selecting the right Diesel Engine Oil requires balancing vehicle manufacturer specifications, climate conditions, duty cycles, and budget. Choosing HP MILCY series diesel lubricants from Jai Deva Oil Co. ensures maximum engine protection, extended drain intervals, and optimal fuel economy for your commercial fleet or personal vehicle.",
       "recommendedProducts": [
         "HP MILCY TURBO ULTIMA 10W-40",
         "HP MILCY POWER 15W-40",
@@ -2827,7 +2827,7 @@ let mockBlogs: any[] = [
           ]
         }
       ],
-      "conclusion": "Trust the HP MILCY 15W-40 series from Mahalaxmi Enterprises for exceptional engine cleanliness, reduced oil consumption, and long-term machinery protection.",
+      "conclusion": "Trust the HP MILCY 15W-40 series from Jai Deva Oil Co. for exceptional engine cleanliness, reduced oil consumption, and long-term machinery protection.",
       "recommendedProducts": [
         "HP MILCY TURBO STAR 15W-40",
         "HP MILCY SUPER 15W-40",
@@ -2931,13 +2931,13 @@ let mockBlogs: any[] = [
           ]
         },
         {
-          "heading": "3. Advanced Lubrication Technology by MAHALAXMI ENTERPRISES",
+          "heading": "3. Advanced Lubrication Technology by JAI DEVA OIL CO.",
           "paragraphs": [
             "HP RACER 4T oils are blended with premium Group II base stocks and synthetic additives. They deliver exceptional thermal stability, preventing oil breakdown when idling in dense Indian city traffic."
           ]
         }
       ],
-      "conclusion": "Keep your motorcycle engine smooth, responsive, and long-lasting with HP RACER 4T series motorcycle oils supplied by Mahalaxmi Enterprises.",
+      "conclusion": "Keep your motorcycle engine smooth, responsive, and long-lasting with HP RACER 4T series motorcycle oils supplied by Jai Deva Oil Co..",
       "recommendedProducts": [
         "HP RACER 4T 20W-40",
         "HP RACER 4T SYNTH 10W-30",
@@ -3009,11 +3009,11 @@ let mockBlogs: any[] = [
     "category": "Bike Oils",
     "publishDate": "February 08, 2026",
     "readTime": "6 min read",
-    "author": "Mahalaxmi Two-Wheeler Lube Advisory",
+    "author": "Jai Deva Two-Wheeler Lube Advisory",
     "excerpt": "Discover why HP RACER 4T series is the top choice for two-wheelers, delivering wet clutch friction control, reduced oil consumption, and lower maintenance costs.",
     "coverImage": "https://www.hplubricants.in/sites/default/files/The-best-engine-oil-for-your-bike-thumb.jpg",
     "content": {
-      "intro": "Choosing the right engine oil for your bike is crucial for maintaining performance, efficiency, and engine longevity. MAHALAXMI ENTERPRISES' Two Wheeler Engine Oil range is engineered to meet the stringent demands of modern motorcycles, commuters, and scooters across Indian road conditions.",
+      "intro": "Choosing the right engine oil for your bike is crucial for maintaining performance, efficiency, and engine longevity. JAI DEVA OIL CO.' Two Wheeler Engine Oil range is engineered to meet the stringent demands of modern motorcycles, commuters, and scooters across Indian road conditions.",
       "sections": [
         {
           "heading": "1. Enhanced Engine Durability",
@@ -3040,7 +3040,7 @@ let mockBlogs: any[] = [
           ]
         }
       ],
-      "conclusion": "Experience an unparalleled biking experience with HP RACER 4T motorcycle lubricants from Mahalaxmi Enterprises.",
+      "conclusion": "Experience an unparalleled biking experience with HP RACER 4T motorcycle lubricants from Jai Deva Oil Co..",
       "recommendedProducts": [
         "HP RACER 4T 20W-40",
         "HP RACER 4T SYNTH 10W-30",

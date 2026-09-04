@@ -35,9 +35,7 @@ export default function AboutUsPageEditor() {
 
       <AboutHeroSection initialData={aboutData?.AboutHero} />
       <AboutJaiDevaContentSection
-        initialData={
-          aboutData?.AboutJaiDevaContent || aboutData?.AboutMahalaxmiContent
-        }
+        initialData={aboutData?.AboutJaiDevaContent}
       />
       <LubesHeadquarterSection
         initialData={aboutData?.LubesHeadquarterSection}

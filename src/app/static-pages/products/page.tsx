@@ -241,7 +241,7 @@ export default function ProductsCatalogCMSPage() {
         />
         <Link
           href="/static-pages/products/create"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-[#D8232A] hover:bg-[#b51b21] text-white text-xs font-semibold rounded-full shadow-sm hover:shadow-[0_0_20px_rgba(216,35,42,0.35)] transition-all shrink-0"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-[#C86218] hover:bg-[#0C356A] text-white text-xs font-semibold rounded-full shadow-sm hover:shadow-[0_0_20px_rgba(200,98,24,0.35)] transition-all shrink-0"
         >
           <Plus className="w-4 h-4" />
           Add Product
@@ -276,7 +276,7 @@ export default function ProductsCatalogCMSPage() {
                     onClick={() => setSelectedCategory(cat.slug)}
                     className={`px-4 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
                       isSelected
-                        ? "bg-[#D8232A] text-white shadow-sm"
+                        ? "bg-[#C86218] text-white shadow-sm"
                         : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                     }`}
                   >
@@ -311,7 +311,7 @@ export default function ProductsCatalogCMSPage() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search grade / viscosity..."
-              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-xs font-medium focus:ring-1 focus:ring-[#D8232A] focus:border-[#D8232A] outline-none"
+              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-xs font-medium focus:ring-1 focus:ring-[#C86218] focus:border-[#C86218] outline-none"
             />
           </div>
         </div>
@@ -329,9 +329,9 @@ export default function ProductsCatalogCMSPage() {
           <button
             type="button"
             onClick={openNewCategoryModal}
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-red-50/70 hover:bg-red-100/80 text-[#D8232A] text-xs font-bold rounded-full border border-[#D8232A]/20 transition-all cursor-pointer shadow-2xs"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-orange-50/70 hover:bg-orange-100/80 text-[#C86218] text-xs font-bold rounded-full border border-[#C86218]/20 transition-all cursor-pointer shadow-2xs"
           >
-            <Plus className="w-3.5 h-3.5 text-[#D8232A]" />
+            <Plus className="w-3.5 h-3.5 text-[#C86218]" />
             <span>Add / Manage Categories</span>
           </button>
         </div>
@@ -340,7 +340,7 @@ export default function ProductsCatalogCMSPage() {
       {/* Products Grid */}
       {loading ? (
         <div className="py-20 text-center text-gray-400 text-sm animate-pulse flex flex-col items-center justify-center gap-3">
-          <Package className="w-8 h-8 text-[#D8232A] animate-spin" />
+          <Package className="w-8 h-8 text-[#C86218] animate-spin" />
           <span>Loading catalog...</span>
         </div>
       ) : filteredProducts.length === 0 ? (
@@ -360,7 +360,7 @@ export default function ProductsCatalogCMSPage() {
             >
               <div>
                 <div className="flex items-start justify-between gap-3 mb-4">
-                  <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-50 text-[#D8232A]">
+                  <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-orange-50 text-[#C86218]">
                     {p.categoryName || p.categorySlug}
                   </span>
                   {p.isFeatured && (
@@ -373,7 +373,7 @@ export default function ProductsCatalogCMSPage() {
                 {p.containerImage && (
                   <Link
                     href={`/static-pages/products/edit/${p.id}`}
-                    className="w-full h-40 bg-gray-50 rounded-2xl mb-4 overflow-hidden border border-gray-100 flex items-center justify-center p-3 block group-hover:border-[#D8232A]/30 transition-colors"
+                    className="w-full h-40 bg-gray-50 rounded-2xl mb-4 overflow-hidden border border-gray-100 flex items-center justify-center p-3 block group-hover:border-[#C86218]/30 transition-colors"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -386,7 +386,7 @@ export default function ProductsCatalogCMSPage() {
 
                 <Link
                   href={`/static-pages/products/edit/${p.id}`}
-                  className="font-bold text-base text-gray-900 group-hover:text-[#D8232A] transition-colors line-clamp-1 block"
+                  className="font-bold text-base text-gray-900 group-hover:text-[#C86218] transition-colors line-clamp-1 block"
                 >
                   {p.name}
                 </Link>
@@ -422,7 +422,7 @@ export default function ProductsCatalogCMSPage() {
                       href={p.pdfUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="p-1.5 rounded-lg bg-gray-50 text-gray-500 hover:text-[#D8232A] transition-colors"
+                      className="p-1.5 rounded-lg bg-gray-50 text-gray-500 hover:text-[#C86218] transition-colors"
                       title="View TDS Document"
                     >
                       <FileText className="w-3.5 h-3.5" />
@@ -440,7 +440,7 @@ export default function ProductsCatalogCMSPage() {
                   <button
                     type="button"
                     onClick={() => handleDeleteProduct(p.id, p.name)}
-                    className="p-2 rounded-xl text-gray-400 hover:bg-red-50 hover:text-red-600 transition-colors cursor-pointer"
+                    className="p-2 rounded-xl text-gray-400 hover:bg-orange-50 hover:text-red-600 transition-colors cursor-pointer"
                     title="Delete Product"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -458,7 +458,7 @@ export default function ProductsCatalogCMSPage() {
           <div className="bg-white w-full max-w-lg max-h-[90vh] rounded-3xl shadow-2xl border border-gray-100 flex flex-col overflow-hidden">
             <div className="flex items-center justify-between px-8 py-5 border-b border-gray-100 bg-gray-50/50">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-2xl bg-red-50 text-[#D8232A] flex items-center justify-center font-bold">
+                <div className="h-10 w-10 rounded-2xl bg-orange-50 text-[#C86218] flex items-center justify-center font-bold">
                   <FolderTree className="w-5 h-5" />
                 </div>
                 <div>

@@ -29,7 +29,7 @@ export function ContactHeadquarterSection({
   onSave,
 }: ContactHeadquarterSectionProps) {
   const [isOpen, setIsOpen] = useState(true);
-  const [companyName, setCompanyName] = useState("Mahalaxmi Enterprises");
+  const [companyName, setCompanyName] = useState("Jai Deva Oil Co.");
   const [badge, setBadge] = useState("Authorized HP Lubricants Distributor");
   const [description, setDescription] = useState(
     "Connect with our team for bulk HP Lubricants supply, dealership opportunities, technical data sheets, and custom quotes."
@@ -39,7 +39,7 @@ export function ContactHeadquarterSection({
     "HPCL Petrol Pump, Ground & First Floor, Kh No- 487/0048, Aggarwal Mandi Tatiri, Tatiri, Agarwal Mandi, Baghpat, Uttar Pradesh - 250601"
   );
   const [phone, setPhone] = useState("+91 88007 78032");
-  const [email, setEmail] = useState("sales@mahalaxmienterprises.com");
+  const [email, setEmail] = useState("sales@jaidevaoil.com");
   const [whatsapp, setWhatsapp] = useState("+91 88007 78032");
   const [workingHours, setWorkingHours] = useState(
     "Monday to Saturday: 9:00 AM – 6:00 PM"
@@ -124,7 +124,7 @@ export function ContactHeadquarterSection({
                 label="Enterprise Name *"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
-                placeholder="Mahalaxmi Enterprises"
+                placeholder="Jai Deva Oil Co."
                 required
               />
               <InputField
@@ -167,7 +167,7 @@ export function ContactHeadquarterSection({
                 label="Official Email *"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="sales@mahalaxmienterprises.com"
+                placeholder="sales@jaidevaoil.com"
                 required
               />
             </div>

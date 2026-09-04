@@ -98,7 +98,7 @@ export default function EnquiriesCMSPage() {
               {isLoading ? (
                 <tr>
                   <td colSpan={4} className="py-20 text-center">
-                    <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#D8232A]" />
+                    <Loader2 className="w-8 h-8 animate-spin mx-auto text-[#C86218]" />
                   </td>
                 </tr>
               ) : filtered.length === 0 ? (
@@ -132,7 +132,7 @@ export default function EnquiriesCMSPage() {
                       </div>
                     </td>
                     <td className="px-6 py-5">
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-[#D8232A] text-[11px] font-bold uppercase tracking-wider">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#C86218] text-[11px] font-bold uppercase tracking-wider">
                         <Tag className="w-3 h-3" />
                         {enquiry.product || enquiry.interestedIn || "General Quote"}
                       </div>
@@ -158,7 +158,7 @@ export default function EnquiriesCMSPage() {
                         type="button"
                         onClick={() => setActiveMessage(enquiry)}
                         title="View Full Message"
-                        className="p-2.5 bg-gray-50 text-gray-500 rounded-xl hover:bg-red-50 hover:text-[#D8232A] transition-all cursor-pointer inline-flex items-center gap-1.5 text-xs font-bold"
+                        className="p-2.5 bg-gray-50 text-gray-500 rounded-xl hover:bg-orange-50 hover:text-[#C86218] transition-all cursor-pointer inline-flex items-center gap-1.5 text-xs font-bold"
                       >
                         <MessageSquare className="w-4 h-4" />
                         View

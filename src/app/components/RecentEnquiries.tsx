@@ -39,14 +39,14 @@ export function RecentEnquiries() {
     <div className="bg-white rounded-3xl p-6 shadow-sm ring-1 ring-gray-50">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="font-bold text-lg text-[#0B0F29]">Recent Enquiries</h3>
+          <h3 className="font-bold text-lg text-[#0C356A]">Recent Enquiries</h3>
           <p className="text-xs font-medium text-gray-400 mt-0.5">
             Latest incoming messages from the contact page and product modals.
           </p>
         </div>
         <Link
           href="/submissions/enquiries"
-          className="text-xs font-bold text-[#D8232A] hover:text-black flex items-center gap-1 bg-red-50/50 px-3 py-1.5 rounded-xl transition-all"
+          className="text-xs font-bold text-[#C86218] hover:text-[#0C356A] flex items-center gap-1 bg-orange-50/70 px-3 py-1.5 rounded-xl transition-all"
         >
           View All <ArrowRight className="w-3.5 h-3.5" />
         </Link>
@@ -54,7 +54,7 @@ export function RecentEnquiries() {
 
       {loading ? (
         <div className="py-8 flex justify-center">
-          <Loader2 className="w-6 h-6 animate-spin text-[#D8232A]" />
+          <Loader2 className="w-6 h-6 animate-spin text-[#C86218]" />
         </div>
       ) : enquiries.length === 0 ? (
         <div className="py-8 text-center text-gray-400 text-xs italic">
@@ -72,7 +72,7 @@ export function RecentEnquiries() {
                   {enquiry.name ? enquiry.name.charAt(0).toUpperCase() : <User className="w-4 h-4" />}
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-[#0B0F29] group-hover:text-[#D8232A] transition-colors">
+                  <h4 className="text-sm font-bold text-[#0C356A] group-hover:text-[#C86218] transition-colors">
                     {enquiry.name}
                   </h4>
                   <div className="flex items-center gap-3 text-xs text-gray-400 mt-0.5 font-medium">

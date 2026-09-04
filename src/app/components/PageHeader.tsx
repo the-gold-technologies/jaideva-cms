@@ -34,7 +34,7 @@ export function PageHeader({
         <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight flex items-center gap-3">
           {title}
           {badge && (
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-red-50 text-[#D8232A]">
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-orange-50 text-[#C86218] border border-orange-100">
               {badge}
             </span>
           )}
@@ -69,7 +69,7 @@ export function PageHeader({
                   setIsOpen?.(true);
                 }
               }}
-              className="inline-flex items-center gap-2 w-fit px-6 bg-[#0B0F29] text-white font-semibold py-3 rounded-full hover:bg-black transition-all hover:border-[#D8232A] hover:shadow-[0_0_25px_rgba(216,35,42,0.4)] cursor-pointer text-sm"
+              className="inline-flex items-center gap-2 w-fit px-6 bg-[#0C356A] text-white font-semibold py-3 rounded-full hover:bg-[#C86218] transition-all hover:shadow-[0_0_25px_rgba(200,98,24,0.4)] cursor-pointer text-sm"
             >
               {action.icon ? (
                 action.icon

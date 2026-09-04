@@ -143,7 +143,7 @@ function LogoDropzone({
               type="button"
               onClick={() => onChange("")}
               disabled={isUploading}
-              className="p-1 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+              className="p-1 text-gray-400 hover:text-red-600 hover:bg-orange-50 rounded-lg transition-colors cursor-pointer"
               title="Remove image"
             >
               <X className="w-3.5 h-3.5" />
@@ -170,20 +170,20 @@ function LogoDropzone({
           onClick={() => fileInputRef.current?.click()}
           className={`w-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-4 transition-all cursor-pointer group ${
             isDragging
-              ? "border-[#D8232A] bg-red-50/50 scale-[0.99]"
+              ? "border-[#C86218] bg-orange-50/50 scale-[0.99]"
               : "border-gray-300 bg-gray-50/60 hover:bg-gray-50 hover:border-gray-400"
           }`}
         >
           {isUploading ? (
             <div className="flex flex-col items-center gap-1.5">
-              <Loader2 className="w-5 h-5 text-[#D8232A] animate-spin" />
+              <Loader2 className="w-5 h-5 text-[#C86218] animate-spin" />
               <span className="text-xs font-medium text-gray-600">Uploading logo...</span>
             </div>
           ) : (
             <div className="flex items-center gap-2">
-              <CloudUpload className="w-4 h-4 text-gray-500 group-hover:text-[#D8232A] transition-colors" />
+              <CloudUpload className="w-4 h-4 text-gray-500 group-hover:text-[#C86218] transition-colors" />
               <span className="text-xs font-bold text-gray-700">
-                <span className="text-[#D8232A] hover:underline mr-1">Upload Logo</span>
+                <span className="text-[#C86218] hover:underline mr-1">Upload Logo</span>
                 or drag & drop
               </span>
             </div>
@@ -351,7 +351,7 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
               {/* Action Bar */}
               <div className="flex items-center justify-between border-t border-gray-100 pt-5 flex-wrap gap-3">
                 <span className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                  <Building2 className="w-4 h-4 text-[#D8232A]" />
+                  <Building2 className="w-4 h-4 text-[#C86218]" />
                   Partner Clients ({data.clients.length})
                 </span>
 
@@ -361,7 +361,7 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
                     onClick={handleAddClient}
                     className="px-4 py-2 rounded-full border border-dashed border-gray-300 hover:border-[#0B0F29] text-xs font-bold text-gray-700 hover:text-black flex items-center gap-1.5 transition-all cursor-pointer bg-white shadow-xs"
                   >
-                    <Plus className="w-3.5 h-3.5 text-[#D8232A]" />
+                    <Plus className="w-3.5 h-3.5 text-[#C86218]" />
                     Add Client
                   </button>
                 </div>
@@ -408,7 +408,7 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
                             <span className="text-xs font-bold text-[#0B0F29] uppercase tracking-wide truncate">
                               {client.name || `Client #${idx + 1}`}
                             </span>
-                            <span className="text-[11px] text-[#D8232A] font-semibold truncate">
+                            <span className="text-[11px] text-[#C86218] font-semibold truncate">
                               {client.category || "Client Category"}
                             </span>
                           </div>
@@ -421,7 +421,7 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
                               type="button"
                               onClick={(e) => handleRemoveClient(idx, e)}
                               title="Delete Client"
-                              className="p-1.5 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                              className="p-1.5 rounded-lg text-gray-400 hover:text-red-600 hover:bg-orange-50 transition-colors cursor-pointer"
                             >
                               <Trash2 className="w-4 h-4" />
                             </button>

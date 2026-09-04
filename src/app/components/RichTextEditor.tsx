@@ -150,7 +150,7 @@ export function RichTextEditor({
         className={`rich-editor-wrapper bg-white rounded-2xl border transition-all overflow-hidden ${
           error
             ? "border-red-500 ring-1 ring-red-500"
-            : "border-gray-200 focus-within:border-[#D8232A] focus-within:ring-1 focus-within:ring-[#D8232A]"
+            : "border-gray-200 focus-within:border-[#C86218] focus-within:ring-1 focus-within:ring-[#C86218]"
         }`}
       >
         <ReactQuill
@@ -206,30 +206,30 @@ export function RichTextEditor({
         .rich-editor-wrapper .ql-snow.ql-toolbar button:hover .ql-stroke,
         .rich-editor-wrapper .ql-snow .ql-toolbar button:focus .ql-stroke,
         .rich-editor-wrapper .ql-snow.ql-toolbar button.ql-active .ql-stroke {
-          stroke: #d8232a;
+          stroke: #c86218;
         }
         .rich-editor-wrapper .ql-snow.ql-toolbar button:hover .ql-fill,
         .rich-editor-wrapper .ql-snow .ql-toolbar button:focus .ql-fill,
         .rich-editor-wrapper .ql-snow.ql-toolbar button.ql-active .ql-fill {
-          fill: #d8232a;
+          fill: #c86218;
         }
         .rich-editor-wrapper .ql-snow .ql-picker:hover,
         .rich-editor-wrapper .ql-snow .ql-picker.ql-expanded .ql-picker-label {
-          color: #d8232a;
+          color: #c86218;
         }
         .rich-editor-wrapper .ql-editor h2 {
           font-size: 1.4rem;
           font-weight: 700;
           margin-top: 1.5rem;
           margin-bottom: 0.5rem;
-          color: #0b0f29;
+          color: #0c356a;
         }
         .rich-editor-wrapper .ql-editor h3 {
           font-size: 1.2rem;
           font-weight: 700;
           margin-top: 1.25rem;
           margin-bottom: 0.5rem;
-          color: #0b0f29;
+          color: #0c356a;
         }
         .rich-editor-wrapper .ql-editor ul,
         .rich-editor-wrapper .ql-editor ol {
@@ -238,12 +238,12 @@ export function RichTextEditor({
           margin-bottom: 0.5rem;
         }
         .rich-editor-wrapper .ql-editor blockquote {
-          border-left: 4px solid #d8232a;
+          border-left: 4px solid #c86218;
           padding-left: 1rem;
           margin: 1rem 0;
           color: #475569;
           font-style: italic;
-          background: #fef2f2;
+          background: #fff7ed;
           padding-top: 0.5rem;
           padding-bottom: 0.5rem;
           border-radius: 0 0.5rem 0.5rem 0;
