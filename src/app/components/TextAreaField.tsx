@@ -51,11 +51,12 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
     const finalLinkUrl = linkUrl.trim() || "#";
 
     const linkMarkdown = `[${finalLinkText}](${finalLinkUrl})`;
-    const newValue = text.substring(0, start) + linkMarkdown + text.substring(end);
+    const newValue =
+      text.substring(0, start) + linkMarkdown + text.substring(end);
 
     const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
       HTMLTextAreaElement.prototype,
-      "value"
+      "value",
     )?.set;
     nativeInputValueSetter?.call(textarea, newValue);
 
@@ -72,7 +73,9 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   };
 
   return (
-    <div className={`flex flex-col gap-1.5 ${containerClassName} px-0.5 relative`}>
+    <div
+      className={`flex flex-col gap-1.5 ${containerClassName} px-0.5 relative`}
+    >
       <div className="flex justify-between items-center w-full pr-4">
         {label && (
           <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4 flex items-center gap-1.5 relative">

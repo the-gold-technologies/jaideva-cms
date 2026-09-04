@@ -6,43 +6,43 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
-import { MapPin, Building } from "lucide-react";
+import { HelpCircle, Building, PhoneCall, Mail } from "lucide-react";
 
 export interface LocateDistributorData {
-  // Left Column - Locate Tool
-  locateTitle: string;
-  locateSubtitle: string;
-  searchButtonText: string;
-  searchResultCompany: string;
-  searchResultAddress: string;
-  searchResultPhone: string;
+  // Left Column - Find Right Lubricant
+  heading: string;
+  subheading: string;
+  paragraph1: string;
+  paragraph2: string;
+  primaryBtnLabel: string;
+  secondaryBtnLabel: string;
 
-  // Right Column - Contact Details
+  // Right Column - Contact Card
   contactTitle: string;
-  logo: string;
   companyName: string;
   address: string;
   phone: string;
   workingHours: string;
   email: string;
-  contactButtonText: string;
+  btn1Text: string;
+  btn2Text: string;
 }
 
 export const DEFAULT_LOCATE_DISTRIBUTOR_DATA: LocateDistributorData = {
-  locateTitle: "",
-  locateSubtitle: "",
-  searchButtonText: "",
-  searchResultCompany: "",
-  searchResultAddress: "",
-  searchResultPhone: "",
+  heading: "",
+  subheading: "",
+  paragraph1: "",
+  paragraph2: "",
+  primaryBtnLabel: "",
+  secondaryBtnLabel: "",
   contactTitle: "",
-  logo: "",
   companyName: "",
   address: "",
   phone: "",
   workingHours: "",
   email: "",
-  contactButtonText: "",
+  btn1Text: "",
+  btn2Text: "",
 };
 
 export function LocateDistributorSection({
@@ -53,7 +53,7 @@ export function LocateDistributorSection({
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [activeTab, setActiveTab] = useState<"locate" | "contact">("locate");
+  const [activeTab, setActiveTab] = useState<"left" | "right">("left");
   const [formData, setFormData] = useState<LocateDistributorData>(
     DEFAULT_LOCATE_DISTRIBUTOR_DATA
   );
@@ -61,20 +61,66 @@ export function LocateDistributorSection({
   useEffect(() => {
     if (initialData) {
       setFormData({
-        locateTitle: initialData.locateTitle || initialData.heading || "",
-        locateSubtitle: initialData.locateSubtitle || initialData.description || "",
-        searchButtonText: initialData.searchButtonText || "",
-        searchResultCompany: initialData.searchResultCompany || "",
-        searchResultAddress: initialData.searchResultAddress || "",
-        searchResultPhone: initialData.searchResultPhone || initialData.phone || "",
-        contactTitle: initialData.contactTitle || "",
-        logo: initialData.logo || "",
-        companyName: initialData.companyName || "",
-        address: initialData.address || "",
-        phone: initialData.phone || initialData.directPhone || "",
-        workingHours: initialData.workingHours || "",
-        email: initialData.email || "",
-        contactButtonText: initialData.contactButtonText || "",
+        heading:
+          initialData.heading ||
+          initialData.locateTitle ||
+          initialData.title ||
+          "",
+        subheading:
+          initialData.subheading ||
+          initialData.locateSubtitle ||
+          initialData.subtitle ||
+          "",
+        paragraph1:
+          initialData.paragraph1 ||
+          initialData.description ||
+          initialData.locateSubtitle ||
+          "",
+        paragraph2:
+          initialData.paragraph2 ||
+          initialData.summaryText ||
+          "",
+        primaryBtnLabel:
+          initialData.primaryBtnLabel ||
+          initialData.searchButtonText ||
+          initialData.btnLabel ||
+          "",
+        secondaryBtnLabel:
+          initialData.secondaryBtnLabel ||
+          initialData.contactButtonText ||
+          "",
+        contactTitle:
+          initialData.contactTitle ||
+          initialData.summaryTitle ||
+          "",
+        companyName:
+          initialData.companyName ||
+          initialData.searchResultCompany ||
+          "",
+        address:
+          initialData.address ||
+          initialData.searchResultAddress ||
+          "",
+        phone:
+          initialData.phone ||
+          initialData.searchResultPhone ||
+          initialData.directPhone ||
+          "",
+        workingHours:
+          initialData.workingHours ||
+          "",
+        email:
+          initialData.email ||
+          "",
+        btn1Text:
+          initialData.btn1Text ||
+          initialData.buttonText ||
+          initialData.btnLabel ||
+          "",
+        btn2Text:
+          initialData.btn2Text ||
+          initialData.secondaryButtonText ||
+          "",
       });
     }
   }, [initialData]);
@@ -85,12 +131,18 @@ export function LocateDistributorSection({
     try {
       const payload = {
         ...formData,
-        // Backward-compatibility keys
-        heading: formData.locateTitle,
-        description: formData.locateSubtitle,
-        phone: formData.phone,
-        email: formData.email,
-        workingHours: formData.workingHours,
+        // Backward-compatibility keys for frontend consumers
+        locateTitle: formData.heading,
+        locateSubtitle: formData.paragraph1,
+        title: formData.heading,
+        subtitle: formData.subheading,
+        searchResultCompany: formData.companyName,
+        searchResultAddress: formData.address,
+        searchResultPhone: formData.phone,
+        contactButtonText: formData.secondaryBtnLabel,
+        summaryTitle: formData.contactTitle,
+        summarySubtitle: formData.subheading,
+        summaryText: `${formData.paragraph1} ${formData.paragraph2}`,
       };
 
       const res = await fetch("/api/home", {
@@ -105,13 +157,13 @@ export function LocateDistributorSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Locate distributor & contact section saved!");
+        toast.success("Contact section saved successfully!");
         setTimeout(() => setSaved(false), 3000);
       } else {
         toast.error(json.error || "Failed to save");
       }
     } catch {
-      toast.error("Error saving section");
+      toast.error("Error saving contact section");
     } finally {
       setLoading(false);
     }
@@ -121,8 +173,8 @@ export function LocateDistributorSection({
     <section>
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
-          title="Locate Distributor & Contact Hub"
-          description="Manage the interactive dealer search tool on the left and the direct company contact details card on the right."
+          title="Contact & Application Section (Bottom)"
+          description="Manage the Lubricant Application Assistance banner on the left and the Jai Deva Direct Contact card on the right."
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -138,118 +190,119 @@ export function LocateDistributorSection({
               <div className="flex items-center gap-2 bg-gray-100/80 p-1.5 rounded-2xl w-fit border border-gray-200/80">
                 <button
                   type="button"
-                  onClick={() => setActiveTab("locate")}
+                  onClick={() => setActiveTab("left")}
                   className={`px-5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
-                    activeTab === "locate"
-                      ? "bg-white text-[#002749] shadow-xs"
+                    activeTab === "left"
+                      ? "bg-white text-[#0C356A] shadow-xs"
                       : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
-                  <MapPin className="w-3.5 h-3.5 text-[#EB1E25]" />
-                  Locate Dealer Tool (Left)
+                  <HelpCircle className="w-3.5 h-3.5 text-[#C86218]" />
+                  Lubricant Assistance (Left 68%)
                 </button>
                 <button
                   type="button"
-                  onClick={() => setActiveTab("contact")}
+                  onClick={() => setActiveTab("right")}
                   className={`px-5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
-                    activeTab === "contact"
-                      ? "bg-white text-[#002749] shadow-xs"
+                    activeTab === "right"
+                      ? "bg-white text-[#0C356A] shadow-xs"
                       : "text-gray-600 hover:text-gray-900"
                   }`}
                 >
-                  <Building className="w-3.5 h-3.5 text-[#002749]" />
-                  Contact Card (Right)
+                  <Building className="w-3.5 h-3.5 text-[#0C356A]" />
+                  Contact Card (Right 32%)
                 </button>
               </div>
 
-              {/* Tab 1: Locate Dealer Tool */}
-              {activeTab === "locate" && (
+              {/* Tab 1: Left Card (Lubricant Assistance) */}
+              {activeTab === "left" && (
                 <div className="flex flex-col gap-5 animate-in fade-in duration-200">
-                  <InputField
-                    label="Search Section Heading"
-                    value={formData.locateTitle}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        locateTitle: e.target.value,
-                      }))
-                    }
-                    placeholder="LOCATE AN INDUSTRIAL LUBE DISTRIBUTOR (ILD)/ BAZAAR LUBE DISTRIBUTOR (BLD)"
-                    helperText="Main uppercase heading in the search box"
-                  />
-
-                  <TextAreaField
-                    label="Instructions / Subtitle"
-                    rows={2}
-                    value={formData.locateSubtitle}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        locateSubtitle: e.target.value,
-                      }))
-                    }
-                    placeholder="Find the dealer of HP products in your area..."
-                    helperText="Guidance text displayed above the search dropdowns"
-                  />
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <InputField
-                      label="Search Button Text"
-                      value={formData.searchButtonText}
+                      label="Main Title (Uppercase)"
+                      value={formData.heading}
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,
-                          searchButtonText: e.target.value,
+                          heading: e.target.value,
                         }))
                       }
-                      placeholder="SEARCH"
+                      placeholder="FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION"
                     />
+
                     <InputField
-                      label="Result Company Name"
-                      value={formData.searchResultCompany}
+                      label="Subheading (Orange Text)"
+                      value={formData.subheading}
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,
-                          searchResultCompany: e.target.value,
+                          subheading: e.target.value,
                         }))
                       }
-                      placeholder="Mahalaxmi Enterprises..."
+                      placeholder="Looking for the Right Lubrication Solution?"
                     />
                   </div>
 
+                  <TextAreaField
+                    label="Paragraph 1"
+                    rows={2}
+                    value={formData.paragraph1}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        paragraph1: e.target.value,
+                      }))
+                    }
+                    placeholder="Every machine and application has different lubrication requirements..."
+                  />
+
+                  <TextAreaField
+                    label="Paragraph 2"
+                    rows={2}
+                    value={formData.paragraph2}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        paragraph2: e.target.value,
+                      }))
+                    }
+                    placeholder="Whether you require Hydraulic Oil, Gear Oil, Engine Oil..."
+                  />
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <InputField
-                      label="Result Region / Territory"
-                      value={formData.searchResultAddress}
+                      label="Primary Button Label (Orange)"
+                      value={formData.primaryBtnLabel}
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,
-                          searchResultAddress: e.target.value,
+                          primaryBtnLabel: e.target.value,
                         }))
                       }
-                      placeholder="Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh"
+                      placeholder="Send Your Enquiry"
                     />
+
                     <InputField
-                      label="Result Helpline Phone"
-                      value={formData.searchResultPhone}
+                      label="Secondary Button Label (Navy)"
+                      value={formData.secondaryBtnLabel}
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,
-                          searchResultPhone: e.target.value,
+                          secondaryBtnLabel: e.target.value,
                         }))
                       }
-                      placeholder="+91 98765 43210"
+                      placeholder="Talk to Our Team"
                     />
                   </div>
                 </div>
               )}
 
-              {/* Tab 2: Contact Card */}
-              {activeTab === "contact" && (
+              {/* Tab 2: Right Card (Contact Details) */}
+              {activeTab === "right" && (
                 <div className="flex flex-col gap-5 animate-in fade-in duration-200">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <InputField
-                      label="Contact Box Title"
+                      label="Contact Title"
                       value={formData.contactTitle}
                       onChange={(e) =>
                         setFormData((prev) => ({
@@ -257,7 +310,7 @@ export function LocateDistributorSection({
                           contactTitle: e.target.value,
                         }))
                       }
-                      placeholder="CONTACT DETAILS"
+                      placeholder="JAI DEVA OIL CO."
                     />
                     <InputField
                       label="Company Name"
@@ -268,12 +321,12 @@ export function LocateDistributorSection({
                           companyName: e.target.value,
                         }))
                       }
-                      placeholder="Mahalaxmi Enterprises"
+                      placeholder="Jai Deva Oil Co."
                     />
                   </div>
 
                   <InputField
-                    label="Physical Office / Depot Address"
+                    label="Depot / Hub Address"
                     value={formData.address}
                     onChange={(e) =>
                       setFormData((prev) => ({
@@ -281,7 +334,7 @@ export function LocateDistributorSection({
                         address: e.target.value,
                       }))
                     }
-                    placeholder="Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh, India."
+                    placeholder="Industrial Area & Distribution Hub, India"
                   />
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -305,13 +358,12 @@ export function LocateDistributorSection({
                           email: e.target.value,
                         }))
                       }
-                      placeholder="sales@mahalaxmienterprises.com"
+                      placeholder="sales@jaidevaoil.com"
                     />
                   </div>
 
-                  <TextAreaField
-                    label="Working Hours & Notice"
-                    rows={2}
+                  <InputField
+                    label="Working Hours Text"
                     value={formData.workingHours}
                     onChange={(e) =>
                       setFormData((prev) => ({
@@ -319,20 +371,33 @@ export function LocateDistributorSection({
                         workingHours: e.target.value,
                       }))
                     }
-                    placeholder="Working Hours Monday to Saturday from 9.00 am to 6.00pm except for Public Holidays."
+                    placeholder="Working Hours: Mon - Sat: 9:00 AM - 6:30 PM"
                   />
 
-                  <InputField
-                    label="Contact Action Button Text"
-                    value={formData.contactButtonText}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        contactButtonText: e.target.value,
-                      }))
-                    }
-                    placeholder="CONTACT US"
-                  />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <InputField
+                      label="Button 1 Label (Orange)"
+                      value={formData.btn1Text}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          btn1Text: e.target.value,
+                        }))
+                      }
+                      placeholder="Send Enquiry"
+                    />
+                    <InputField
+                      label="Button 2 Label (Navy)"
+                      value={formData.btn2Text}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          btn2Text: e.target.value,
+                        }))
+                      }
+                      placeholder="Become a Distributor"
+                    />
+                  </div>
                 </div>
               )}
 

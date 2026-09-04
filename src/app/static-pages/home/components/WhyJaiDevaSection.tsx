@@ -53,11 +53,7 @@ export const DEFAULT_WHY_JAIDEVA_DATA: WhyJaiDevaData = {
   points: [],
 };
 
-export function WhyJaiDevaSection({
-  initialData,
-}: {
-  initialData?: any;
-}) {
+export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -112,7 +108,7 @@ export function WhyJaiDevaSection({
   const handlePointChange = (
     idx: number,
     field: keyof WhyPointItem,
-    value: string
+    value: string,
   ) => {
     const updated = [...data.points];
     updated[idx] = { ...updated[idx], [field]: value };

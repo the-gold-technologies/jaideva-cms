@@ -410,111 +410,47 @@ async function main() {
       },
     },
     {
-      type: "TestimonialsSection",
+      type: "BrandClosingBannerSection",
       order: 7,
       content: {
-        title: "WHY JAI DEVA OIL CO.?",
-        subtitle: "Your Trusted Lubrication Partner Since 2008",
+        badge: "JAI DEVA OIL CO.",
+        title: "YOUR TRUSTED PARTNER IN INDUSTRIAL & AUTOMOTIVE LUBRICATION",
         description: "With 18+ years of industry experience, a diverse multi-brand portfolio and a customer-focused approach, Jai Deva Oil Co. continues to provide dependable lubrication products and solutions for industries, machinery and automotive applications.",
-        whyChooseItems: [
-          {
-            title: "18+ Years of Experience",
-            description: "Strong industry experience in lubricant distribution and trading since 2008.",
-          },
-          {
-            title: "Multi-Brand Portfolio",
-            description: "A diverse range of lubricant products from leading brands.",
-          },
-          {
-            title: "Wide Product Range",
-            description: "Industrial oils, automotive lubricants, greases and specialty lubrication products.",
-          },
-          {
-            title: "Quality-Focused Approach",
-            description: "We focus on supplying quality products suited to customer requirements.",
-          },
-          {
-            title: "Experienced Team",
-            description: "Skilled professionals with industry knowledge and understanding of customer needs.",
-          },
-          {
-            title: "Reliable Service",
-            description: "Committed to dependable supply and long-term customer relationships.",
-          },
+        highlights: [
+          "Quality Products",
+          "Multiple Brands",
+          "Reliable Supply",
+          "Customer-Focused Service",
         ],
-        testimonials: [
-          {
-            id: 1,
-            org: "18+ Years Experience",
-            name: "Industry Heritage",
-            role: "Established 2008",
-            image: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726866/mahalaxmi/testimonials/fzlpp5qdzzikoc9wcmqt.png",
-            quote: "Strong industry experience in lubricant distribution and trading since 2008 across major industrial sectors.",
-            location: "Pan-India Network",
-          },
-          {
-            id: 2,
-            org: "Multi-Brand Distribution",
-            name: "Comprehensive Portfolio",
-            role: "Authorized Partner",
-            image: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726867/mahalaxmi/testimonials/kzzowa1y35oxdrarqzti.png",
-            quote: "A diverse range of lubricant products from leading brands under one trusted distributor.",
-            location: "Industrial & Automotive Hubs",
-          },
-          {
-            id: 3,
-            org: "Quality & Reliability",
-            name: "Quality Assurance",
-            role: "Certified Standards",
-            image: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726872/mahalaxmi/testimonials/nkhvdnzz9zqz2ehy1nxj.png",
-            quote: "Quality Products | Multiple Brands | Reliable Supply | Customer-Focused Service.",
-            location: "Industrial Manufacturing Units",
-          },
-        ],
-      },
-    },
-    {
-      type: "DistributorBanner",
-      order: 8,
-      content: {
-        title: "FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION",
-        heading: "FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION",
-        subtitle: "Looking for the Right Lubrication Solution?",
-        description: "Every machine and application has different lubrication requirements. Our team can help you identify suitable products based on your equipment, application and operating conditions. Whether you require Hydraulic Oil, Gear Oil, Engine Oil, Industrial Grease, Cutting Oil or other specialty lubricants, Jai Deva Oil Co. is ready to assist.",
-        buttonText: "Send Your Enquiry",
-        btnLabel: "Send Your Enquiry",
-        secondaryBtnLabel: "Talk to Our Team",
-        enquirySubject: "Lubricant Application Enquiry",
+        btnLabel: "PARTNER WITH JAI DEVA OIL CO.",
+        btnUrl: "/contact-us",
       },
     },
     {
       type: "LocateDistributorSection",
-      order: 9,
+      order: 8,
       content: {
-        locateTitle: "FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION",
-        locateSubtitle: "Every machine and application has different lubrication requirements. Our team can help you identify suitable products based on your equipment, application and operating conditions.",
-        searchButtonText: "SEARCH PRODUCTS",
-        searchResultCompany: "Jai Deva Oil Co.",
-        searchResultAddress: "Multi-Brand Industrial & Automotive Lubricant Distributor",
-        searchResultPhone: "+91 98765 43210",
+        heading: "FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION",
+        subheading: "Looking for the Right Lubrication Solution?",
+        paragraph1: "Every machine and application has different lubrication requirements. Our team can help you identify suitable products based on your equipment, application and operating conditions.",
+        paragraph2: "Whether you require Hydraulic Oil, Gear Oil, Engine Oil, Industrial Grease, Cutting Oil or other specialty lubricants, Jai Deva Oil Co. is ready to assist.",
+        primaryBtnLabel: "Send Your Enquiry",
+        secondaryBtnLabel: "Talk to Our Team",
         contactTitle: "JAI DEVA OIL CO.",
         companyName: "Jai Deva Oil Co.",
         address: "Industrial Area & Distribution Hub, India",
         phone: "+91 98765 43210",
         workingHours: "Working Hours: Mon - Sat: 9:00 AM - 6:30 PM",
         email: "sales@jaidevaoil.com",
-        contactButtonText: "Talk to Our Team",
-        summaryTitle: "JAI DEVA OIL CO.",
-        summarySubtitle: "Your Trusted Partner in Industrial & Automotive Lubrication",
-        summaryText: "With 18+ years of industry experience, a diverse multi-brand portfolio and a customer-focused approach, Jai Deva Oil Co. continues to provide dependable lubrication products and solutions for industries, machinery and automotive applications.",
-        taglineHighlights: "Quality Products | Multiple Brands | Reliable Supply | Customer-Focused Service",
+        btn1Text: "Send Enquiry",
+        btn2Text: "Become a Distributor",
       },
     },
   ];
 
-  // Clean up any old duplicate section names
+  // Clean up any old duplicate or deprecated section names
   await prisma.section.deleteMany({
-    where: { pageId: homePage.id, type: "HeroSliderSection" },
+    where: { pageId: homePage.id, type: { in: ["HeroSliderSection", "TestimonialsSection", "DistributorBanner"] } },
   });
 
   for (const s of homeSections) {

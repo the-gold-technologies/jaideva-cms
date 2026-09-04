@@ -46,7 +46,7 @@ export function MultiBrandSolutionsSection({
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
   const [data, setData] = useState<MultiBrandSolutionsData>(
-    DEFAULT_SOLUTIONS_DATA
+    DEFAULT_SOLUTIONS_DATA,
   );
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({});
 
@@ -55,21 +55,24 @@ export function MultiBrandSolutionsSection({
       const steps = Array.isArray(initialData.steps)
         ? initialData.steps
         : Array.isArray(initialData.processSteps)
-        ? initialData.processSteps.map((s: any, i: number) => ({
-            num: s.num || String(i + 1),
-            name: s.name || s.step || "",
-            desc: s.desc || "",
-            icon: s.icon || "",
-          }))
-        : [];
+          ? initialData.processSteps.map((s: any, i: number) => ({
+              num: s.num || String(i + 1),
+              name: s.name || s.step || "",
+              desc: s.desc || "",
+              icon: s.icon || "",
+            }))
+          : [];
 
       setData({
         badge: initialData.badge || initialData.tag || "",
         title: initialData.title || initialData.heading || "",
-        titleHighlight: initialData.titleHighlight || initialData.highlight || "",
+        titleHighlight:
+          initialData.titleHighlight || initialData.highlight || "",
         paragraph1:
           initialData.paragraph1 ||
-          (initialData.description ? initialData.description.split("\n\n")[0] : "") ||
+          (initialData.description
+            ? initialData.description.split("\n\n")[0]
+            : "") ||
           "",
         paragraph2:
           initialData.paragraph2 ||
@@ -134,7 +137,7 @@ export function MultiBrandSolutionsSection({
   const handleStepChange = (
     idx: number,
     field: keyof SolutionStep,
-    value: string
+    value: string,
   ) => {
     const updated = [...data.steps];
     updated[idx] = { ...updated[idx], [field]: value };

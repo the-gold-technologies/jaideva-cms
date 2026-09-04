@@ -320,6 +320,47 @@ let mockPages: any[] = [
             },
           ],
         }
+      },
+      {
+        id: "sec-5",
+        pageId: "page-home",
+        type: "BrandClosingBannerSection",
+        order: 7,
+        content: {
+          badge: "JAI DEVA OIL CO.",
+          title: "YOUR TRUSTED PARTNER IN INDUSTRIAL & AUTOMOTIVE LUBRICATION",
+          description: "With 18+ years of industry experience, a diverse multi-brand portfolio and a customer-focused approach, Jai Deva Oil Co. continues to provide dependable lubrication products and solutions for industries, machinery and automotive applications.",
+          highlights: [
+            "Quality Products",
+            "Multiple Brands",
+            "Reliable Supply",
+            "Customer-Focused Service",
+          ],
+          btnLabel: "PARTNER WITH JAI DEVA OIL CO.",
+          btnUrl: "/contact-us",
+        }
+      },
+      {
+        id: "sec-6",
+        pageId: "page-home",
+        type: "LocateDistributorSection",
+        order: 8,
+        content: {
+          heading: "FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION",
+          subheading: "Looking for the Right Lubrication Solution?",
+          paragraph1: "Every machine and application has different lubrication requirements. Our team can help you identify suitable products based on your equipment, application and operating conditions.",
+          paragraph2: "Whether you require Hydraulic Oil, Gear Oil, Engine Oil, Industrial Grease, Cutting Oil or other specialty lubricants, Jai Deva Oil Co. is ready to assist.",
+          primaryBtnLabel: "Send Your Enquiry",
+          secondaryBtnLabel: "Talk to Our Team",
+          contactTitle: "JAI DEVA OIL CO.",
+          companyName: "Jai Deva Oil Co.",
+          address: "Industrial Area & Distribution Hub, India",
+          phone: "+91 98765 43210",
+          workingHours: "Working Hours: Mon - Sat: 9:00 AM - 6:30 PM",
+          email: "sales@jaidevaoil.com",
+          btn1Text: "Send Enquiry",
+          btn2Text: "Become a Distributor",
+        }
       }
     ]
   },

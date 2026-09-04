@@ -9,8 +9,7 @@ import { MultiBrandSolutionsSection } from "./components/MultiBrandSolutionsSect
 import { IndustriesWeServeSection } from "./components/IndustriesWeServeSection";
 import { TrustedClientsSection } from "./components/TrustedClientsSection";
 import { WhyJaiDevaSection } from "./components/WhyJaiDevaSection";
-import { TestimonialsSection } from "./components/TestimonialsSection";
-import { DistributorBannerSection } from "./components/DistributorBannerSection";
+import { BrandClosingBannerSection } from "./components/BrandClosingBannerSection";
 import { LocateDistributorSection } from "./components/LocateDistributorSection";
 
 export default function HomePageEditor() {
@@ -44,27 +43,16 @@ export default function HomePageEditor() {
         initialData={homeData?.ProductsServicesSection}
       />
       <MultiBrandSolutionsSection
-        initialData={
-          homeData?.MultiBrandSolutionsSection ||
-          homeData?.MultiBrandSolutions
-        }
+        initialData={homeData?.MultiBrandSolutionsSection}
       />
       <IndustriesWeServeSection
-        initialData={
-          homeData?.IndustriesWeServeSection ||
-          homeData?.IndustriesWeServe
-        }
+        initialData={homeData?.IndustriesWeServeSection}
       />
+      <WhyJaiDevaSection initialData={homeData?.WhyJaiDevaSection} />
       <TrustedClientsSection initialData={homeData?.TrustedClientsSection} />
-      <WhyJaiDevaSection
-        initialData={
-          homeData?.WhyJaiDevaSection ||
-          homeData?.WhyJaiDeva ||
-          homeData?.TestimonialsSection
-        }
+      <BrandClosingBannerSection
+        initialData={homeData?.BrandClosingBannerSection}
       />
-      <TestimonialsSection initialData={homeData?.TestimonialsSection} />
-      <DistributorBannerSection initialData={homeData?.DistributorBanner} />
       <LocateDistributorSection
         initialData={homeData?.LocateDistributorSection}
       />

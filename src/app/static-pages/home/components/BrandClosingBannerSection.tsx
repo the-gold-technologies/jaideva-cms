@@ -1,40 +1,32 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Plus, Trash2, ChevronDown, Factory } from "lucide-react";
+import { Plus, Trash2, Tag, ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
 import { SaveButton } from "@/components/SaveButton";
 
-export interface IndustryItem {
-  id?: string;
-  name: string;
-  icon?: string;
-}
-
-export interface IndustriesWeServeData {
+export interface BrandClosingBannerData {
+  badge: string;
   title: string;
-  subtitle: string;
-  leadText: string;
   description: string;
+  highlights: string[];
   btnLabel: string;
   btnUrl: string;
-  industries: IndustryItem[];
 }
 
-export const DEFAULT_INDUSTRIES_DATA: IndustriesWeServeData = {
+export const DEFAULT_BRAND_CLOSING_BANNER: BrandClosingBannerData = {
+  badge: "",
   title: "",
-  subtitle: "",
-  leadText: "",
   description: "",
+  highlights: [],
   btnLabel: "",
   btnUrl: "",
-  industries: [],
 };
 
-export function IndustriesWeServeSection({
+export function BrandClosingBannerSection({
   initialData,
 }: {
   initialData?: any;
@@ -42,59 +34,63 @@ export function IndustriesWeServeSection({
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [data, setData] = useState<IndustriesWeServeData>(
-    DEFAULT_INDUSTRIES_DATA,
+  const [data, setData] = useState<BrandClosingBannerData>(
+    DEFAULT_BRAND_CLOSING_BANNER
   );
 
   useEffect(() => {
     if (initialData) {
-      const list: IndustryItem[] = Array.isArray(initialData.industries)
-        ? initialData.industries.map((item: any, i: number) =>
-            typeof item === "string"
-              ? { id: `ind-${i}`, name: item, icon: "Factory" }
-              : {
-                  id: item.id || `ind-${i}`,
-                  name: item.name || "",
-                  icon: item.icon || "Factory",
-                },
+      const rawHighlights =
+        initialData.highlights ||
+        initialData.features ||
+        initialData.bullets ||
+        (typeof initialData.taglineHighlights === "string"
+          ? initialData.taglineHighlights.split("|").map((s: string) => s.trim())
+          : []);
+
+      const highlightsList: string[] = Array.isArray(rawHighlights)
+        ? rawHighlights.map((item: any) =>
+            typeof item === "string" ? item : item.text || item.title || ""
           )
         : [];
 
       setData({
+        badge: initialData.badge || initialData.tag || "",
         title: initialData.title || initialData.heading || "",
-        subtitle: initialData.subtitle || "",
-        leadText: initialData.leadText || initialData.introText || "",
-        description: initialData.description || "",
-        btnLabel: initialData.btnLabel || initialData.buttonText || "",
-        btnUrl: initialData.btnUrl || initialData.buttonLink || "",
-        industries: list,
+        description: initialData.description || initialData.summaryText || "",
+        highlights: highlightsList,
+        btnLabel:
+          initialData.btnLabel ||
+          initialData.buttonText ||
+          initialData.btnText ||
+          "",
+        btnUrl:
+          initialData.btnUrl ||
+          initialData.buttonLink ||
+          initialData.btnLink ||
+          "",
       });
     }
   }, [initialData]);
 
-  const handleAddIndustry = () => {
-    const newItem: IndustryItem = {
-      id: `ind-${Date.now()}`,
-      name: "",
-      icon: "Factory",
-    };
+  const handleAddHighlight = () => {
     setData((prev) => ({
       ...prev,
-      industries: [...prev.industries, newItem],
+      highlights: [...prev.highlights, ""],
     }));
-    toast.success("New industry added");
+    toast.success("New feature tag added");
   };
 
-  const handleRemoveIndustry = (idx: number) => {
-    const updated = data.industries.filter((_, i) => i !== idx);
-    setData((prev) => ({ ...prev, industries: updated }));
-    toast.success("Industry removed");
+  const handleRemoveHighlight = (idx: number) => {
+    const updated = data.highlights.filter((_, i) => i !== idx);
+    setData((prev) => ({ ...prev, highlights: updated }));
+    toast.success("Feature tag removed");
   };
 
-  const handleIndustryChange = (idx: number, value: string) => {
-    const updated = [...data.industries];
-    updated[idx] = { ...updated[idx], name: value };
-    setData((prev) => ({ ...prev, industries: updated }));
+  const handleHighlightChange = (idx: number, value: string) => {
+    const updated = [...data.highlights];
+    updated[idx] = value;
+    setData((prev) => ({ ...prev, highlights: updated }));
   };
 
   const handleSave = async () => {
@@ -102,20 +98,22 @@ export function IndustriesWeServeSection({
     setSaved(false);
     try {
       const payload = {
+        badge: data.badge,
         title: data.title,
-        subtitle: data.subtitle,
-        leadText: data.leadText,
         description: data.description,
+        highlights: data.highlights,
         btnLabel: data.btnLabel,
         btnUrl: data.btnUrl,
-        industries: data.industries,
+        // Backward-compatibility
+        buttonText: data.btnLabel,
+        buttonLink: data.btnUrl,
       };
 
       const res = await fetch("/api/home", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          section: "IndustriesWeServeSection",
+          section: "BrandClosingBannerSection",
           content: payload,
         }),
       });
@@ -123,13 +121,13 @@ export function IndustriesWeServeSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Industries We Serve section saved successfully!");
+        toast.success("Brand Closing Banner saved successfully!");
         setTimeout(() => setSaved(false), 3000);
       } else {
         toast.error(json.error || "Failed to save");
       }
     } catch {
-      toast.error("Error saving Industries We Serve section");
+      toast.error("Error saving Brand Closing Banner");
     } finally {
       setLoading(false);
     }
@@ -139,9 +137,9 @@ export function IndustriesWeServeSection({
     <section>
       <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
         <SectionHeader
-          title="Industries We Serve Section"
-          description="Manage the industries grid cards (Steel, Cement, Power, etc.), lead text, description, and CTA button."
-          badge={`${data.industries.length} Industr${data.industries.length === 1 ? "y" : "ies"}`}
+          title="Partner Closing Banner (CTA)"
+          description="Manage the prominent call-to-action banner (badge, main headline, description, 4 highlight pills, and partner CTA button)."
+          badge={`${data.highlights.length} Tag${data.highlights.length === 1 ? "" : "s"}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
@@ -153,45 +151,32 @@ export function IndustriesWeServeSection({
         >
           <div className="overflow-hidden">
             <div className="flex flex-col gap-6 pt-4">
-              {/* Titles */}
+              {/* Badge & Title */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <InputField
-                  label="Section Title"
+                  label="Top Badge / Tag"
+                  value={data.badge}
+                  onChange={(e) =>
+                    setData((prev) => ({ ...prev, badge: e.target.value }))
+                  }
+                  placeholder="JAI DEVA OIL CO."
+                />
+
+                <InputField
+                  label="Headline (Uppercase Title)"
                   value={data.title}
                   onChange={(e) =>
                     setData((prev) => ({ ...prev, title: e.target.value }))
                   }
-                  placeholder="INDUSTRIES WE SERVE"
-                  helperText="Main uppercase heading"
-                />
-
-                <InputField
-                  label="Section Subtitle (Orange Tagline)"
-                  value={data.subtitle}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, subtitle: e.target.value }))
-                  }
-                  placeholder="Lubrication Solutions for Diverse Industries"
-                  helperText="Highlighted subtitle"
+                  placeholder="YOUR TRUSTED PARTNER IN INDUSTRIAL & AUTOMOTIVE LUBRICATION"
                 />
               </div>
 
-              {/* Lead Text & Paragraph */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {/* Description Paragraph */}
+              <div className="grid grid-cols-1 gap-5">
                 <TextAreaField
-                  label="Lead Intro Text"
-                  rows={2}
-                  value={data.leadText}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, leadText: e.target.value }))
-                  }
-                  placeholder="Our extensive lubricant portfolio serves the requirements of various industries, including:"
-                  helperText="Short sentence before the grid cards"
-                />
-
-                <TextAreaField
-                  label="Description (Bottom Paragraph)"
-                  rows={2}
+                  label="Description Paragraph"
+                  rows={3}
                   value={data.description}
                   onChange={(e) =>
                     setData((prev) => ({
@@ -199,8 +184,7 @@ export function IndustriesWeServeSection({
                       description: e.target.value,
                     }))
                   }
-                  placeholder="We provide lubrication products for industrial machinery..."
-                  helperText="Paragraph displayed below the grid cards"
+                  placeholder="With 18+ years of industry experience, a diverse multi-brand portfolio..."
                 />
               </div>
 
@@ -212,7 +196,7 @@ export function IndustriesWeServeSection({
                   onChange={(e) =>
                     setData((prev) => ({ ...prev, btnLabel: e.target.value }))
                   }
-                  placeholder="Explore Industries"
+                  placeholder="PARTNER WITH JAI DEVA OIL CO."
                 />
 
                 <InputField
@@ -221,47 +205,46 @@ export function IndustriesWeServeSection({
                   onChange={(e) =>
                     setData((prev) => ({ ...prev, btnUrl: e.target.value }))
                   }
-                  placeholder="#industries or /products"
-                  helperText="Destination link for the action button"
+                  placeholder="/contact-us or #contact"
                 />
               </div>
 
-              {/* Industries Grid Editor */}
+              {/* Highlights / Badges List */}
               <div className="border-t border-gray-100 pt-5">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
-                    <Factory className="w-4 h-4 text-[#C86218]" />
-                    Industry Cards ({data.industries.length})
+                    <Tag className="w-4 h-4 text-[#C86218]" />
+                    Feature Highlight Pills ({data.highlights.length})
                   </span>
                   <button
                     type="button"
-                    onClick={handleAddIndustry}
+                    onClick={handleAddHighlight}
                     className="px-4 py-2 rounded-full border border-dashed border-gray-300 hover:border-[#0C356A] text-xs font-bold text-gray-700 hover:text-[#0C356A] flex items-center gap-1.5 transition-all cursor-pointer bg-white shadow-xs"
                   >
                     <Plus className="w-3.5 h-3.5 text-[#C86218]" />
-                    Add Industry
+                    Add Tag
                   </button>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                  {data.industries.map((ind, idx) => (
+                  {data.highlights.map((tag, idx) => (
                     <div
-                      key={ind.id || `ind-${idx}`}
+                      key={idx}
                       className="bg-gray-50 border border-gray-200 rounded-xl p-3 flex items-center justify-between gap-2 shadow-2xs hover:border-[#C86218] transition-colors"
                     >
                       <input
                         type="text"
-                        value={ind.name}
+                        value={tag}
                         onChange={(e) =>
-                          handleIndustryChange(idx, e.target.value)
+                          handleHighlightChange(idx, e.target.value)
                         }
-                        placeholder={`Industry #${idx + 1}`}
+                        placeholder={`Tag #${idx + 1}`}
                         className="bg-white border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs font-bold text-[#0C356A] w-full focus:outline-none focus:ring-1 focus:ring-[#0C356A]"
                       />
                       <button
                         type="button"
-                        onClick={() => handleRemoveIndustry(idx)}
-                        title="Delete Industry"
+                        onClick={() => handleRemoveHighlight(idx)}
+                        title="Delete Tag"
                         className="p-1 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors cursor-pointer shrink-0"
                       >
                         <Trash2 className="w-4 h-4" />
