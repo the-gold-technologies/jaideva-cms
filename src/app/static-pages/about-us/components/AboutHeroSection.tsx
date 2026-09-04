@@ -18,7 +18,7 @@ export interface AboutHeroData {
 export const DEFAULT_HERO_DATA: AboutHeroData = {
   image: "/About-HPCL.jpg",
   bannerImage: "/About-HPCL.jpg",
-  altText: "About MAHALAXMI ENTERPRISES Banner",
+  altText: "About JAI DEVA OIL CO. Banner",
 };
 
 export function AboutHeroSection({ initialData }: { initialData?: any }) {
@@ -30,7 +30,7 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
     DEFAULT_HERO_DATA.image || "/About-HPCL.jpg",
   ]);
   const [altText, setAltText] = useState(
-    DEFAULT_HERO_DATA.altText || "About MAHALAXMI ENTERPRISES Banner"
+    DEFAULT_HERO_DATA.altText || "About JAI DEVA OIL CO. Banner"
   );
 
   useEffect(() => {

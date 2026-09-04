@@ -29,16 +29,16 @@ export default function ProfileSettingsPage() {
         const res = await fetch("/api/profile");
         const json = await res.json();
         if (json.success && json.data) {
-          setName(json.data.name || session?.user?.name || "Mahalaxmi Admin");
-          setEmail(json.data.email || session?.user?.email || "admin@mahalaxmi.com");
+          setName(json.data.name || session?.user?.name || "Jai Deva Admin");
+          setEmail(json.data.email || session?.user?.email || "admin@jaideva.com");
         } else if (session?.user) {
-          setName(session.user.name || "Mahalaxmi Admin");
-          setEmail(session.user.email || "admin@mahalaxmi.com");
+          setName(session.user.name || "Jai Deva Admin");
+          setEmail(session.user.email || "admin@jaideva.com");
         }
       } catch (err) {
         if (session?.user) {
-          setName(session.user.name || "Mahalaxmi Admin");
-          setEmail(session.user.email || "admin@mahalaxmi.com");
+          setName(session.user.name || "Jai Deva Admin");
+          setEmail(session.user.email || "admin@jaideva.com");
         }
       } finally {
         setIsFetching(false);
@@ -150,8 +150,8 @@ export default function ProfileSettingsPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                placeholder="e.g. Mahalaxmi Admin"
-                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#002B5C] transition shadow-2xs"
+                placeholder="e.g. Jai Deva Admin"
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#0C356A] transition shadow-2xs"
               />
             </div>
 
@@ -164,7 +164,7 @@ export default function ProfileSettingsPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="admin@mahalaxmi.com"
+                placeholder="admin@jaideva.com"
                 className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#002B5C] transition shadow-2xs"
               />
             </div>

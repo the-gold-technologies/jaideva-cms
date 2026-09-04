@@ -1,3 +1,3 @@
 export * from "./AboutHeroSection";
-export * from "./AboutMahalaxmiContentSection";
+export * from "./AboutJaiDevaContentSection";
 export * from "./LubesHeadquarterSection";

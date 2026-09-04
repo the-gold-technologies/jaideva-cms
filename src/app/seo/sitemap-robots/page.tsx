@@ -17,7 +17,7 @@ import toast from "react-hot-toast";
 export default function SitemapRobotsPage() {
   const [sitemapEnabled, setSitemapEnabled] = useState(true);
   const [robotsTxt, setRobotsTxt] = useState(
-    "User-agent: *\nAllow: /\n\nSitemap: https://mahalaxmilubricants.com/sitemap.xml",
+    "User-agent: *\nAllow: /\n\nSitemap: https://jaidevaoil.com/sitemap.xml",
   );
   const [customSitemapFileName, setCustomSitemapFileName] = useState("");
   const [sitemapCustomContent, setSitemapCustomContent] = useState("");

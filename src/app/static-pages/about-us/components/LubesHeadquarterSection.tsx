@@ -17,15 +17,14 @@ export interface LubesHeadquarterData {
 }
 
 export const DEFAULT_HQ_DATA: LubesHeadquarterData = {
-  title: "MAHALAXMI ENTERPRISES",
-  badge: "AUTHORIZED INDUSTRIAL LUBRICANTS DISTRIBUTOR (ILD)",
-  proprietor: "Neha Goyal",
-  servingRegion:
-    "Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh",
+  title: "JAI DEVA OIL CO.",
+  badge: "MULTI-BRAND INDUSTRIAL & AUTOMOTIVE LUBRICANTS DISTRIBUTOR",
+  proprietor: "Mr. Mayank Goyal",
+  servingRegion: "Industrial Belts & Nationwide Distribution Hubs, India",
   establishment:
-    "Est. 2023 | 100+ Industrial Clients & Government Department Supplier",
+    "Est. 2008 | 18+ Years Experience | Leading Wholesaler & Trader",
   phone: "+91 98765 43210",
-  email: "sales@mahalaxmienterprises.com",
+  email: "sales@jaidevaoil.com",
 };
 
 export function LubesHeadquarterSection({
@@ -107,8 +106,8 @@ export function LubesHeadquarterSection({
   return (
     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
       <SectionHeader
-        title="3. Industrial Lubes Headquarters & Regional ILD Info"
-        description="Manage company branding, ILD badge, proprietor, serving region, track record, and direct contact details."
+        title="3. Distribution Headquarters & Contact Info"
+        description="Manage company branding, badge, mentor/proprietor, serving region, track record, and contact details."
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />
@@ -125,36 +124,36 @@ export function LubesHeadquarterSection({
                 label="Company / Enterprise Name"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="e.g. MAHALAXMI ENTERPRISES"
+                placeholder="e.g. JAI DEVA OIL CO."
               />
               <InputField
-                label="ILD Badge / Designation"
+                label="Designation / Subtitle Badge"
                 value={badge}
                 onChange={(e) => setBadge(e.target.value)}
-                placeholder="e.g. AUTHORIZED INDUSTRIAL LUBRICANTS DISTRIBUTOR (ILD)"
+                placeholder="e.g. MULTI-BRAND INDUSTRIAL & AUTOMOTIVE LUBRICANTS DISTRIBUTOR"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <InputField
-                label="Proprietor Name"
+                label="Mentor / Proprietor Name"
                 value={proprietor}
                 onChange={(e) => setProprietor(e.target.value)}
-                placeholder="e.g. Neha Goyal"
+                placeholder="e.g. Mr. Mayank Goyal"
               />
               <InputField
                 label="Serving Region"
                 value={servingRegion}
                 onChange={(e) => setServingRegion(e.target.value)}
-                placeholder="e.g. Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh"
+                placeholder="e.g. Industrial Belts & Nationwide Distribution Hubs, India"
               />
             </div>
 
             <InputField
-              label="Establishment & Clientele Milestone"
+              label="Establishment & Track Record Milestone"
               value={establishment}
               onChange={(e) => setEstablishment(e.target.value)}
-              placeholder="e.g. Est. 2023 | 100+ Industrial Clients & Government Department Supplier"
+              placeholder="e.g. Est. 2008 | 18+ Years Experience | Leading Wholesaler & Trader"
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -168,7 +167,7 @@ export function LubesHeadquarterSection({
                 label="Contact Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="e.g. sales@mahalaxmienterprises.com"
+                placeholder="e.g. sales@jaidevaoil.com"
               />
             </div>
 

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import {
   AboutHeroSection,
-  AboutMahalaxmiContentSection,
+  AboutJaiDevaContentSection,
   LubesHeadquarterSection,
 } from "./components";
 
@@ -30,12 +30,14 @@ export default function AboutUsPageEditor() {
     <section className="flex flex-col gap-8 pb-12">
       <PageHeader
         title="About Us Page Content"
-        description="Manage the live sections of your About Us page including Hero Banner, About Mahalaxmi Enterprises, Why Choose Us cards, and Headquarters info."
+        description="Manage the live sections of your About Us page including Hero Banner, About Jai Deva Oil Co. Story, Why Choose Us pillars, and Distribution Headquarters info."
       />
 
       <AboutHeroSection initialData={aboutData?.AboutHero} />
-      <AboutMahalaxmiContentSection
-        initialData={aboutData?.AboutMahalaxmiContent}
+      <AboutJaiDevaContentSection
+        initialData={
+          aboutData?.AboutJaiDevaContent || aboutData?.AboutMahalaxmiContent
+        }
       />
       <LubesHeadquarterSection
         initialData={aboutData?.LubesHeadquarterSection}

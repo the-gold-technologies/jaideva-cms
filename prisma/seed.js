@@ -473,17 +473,26 @@ async function main() {
   // 5. About Us Page & Sections
   const aboutPage = await prisma.page.upsert({
     where: { slug: "about-us" },
-    update: {},
+    update: {
+      description: "Learn more about Jai Deva Oil Co., our mentor Mr. Mayank Goyal, and our multi-brand lubricant distribution network.",
+      metaTitle: "About Us | Jai Deva Oil Co. - Multi-Brand Lubricant Distributor",
+      metaDescription: "Established in 2008, Jai Deva Oil Co. is a leading wholesaler, distributor, and trader of industrial and automotive lubricants across India.",
+    },
     create: {
       title: "About Us",
       slug: "about-us",
       type: "static",
       visibility: "published",
       isStatic: true,
-      description: "Learn more about Mahalaxmi Enterprises and our authorized HPCL Lubricants partnership.",
-      metaTitle: "About Us | Mahalaxmi Enterprises Authorized HP Lubricants",
-      metaDescription: "Discover our journey as an Authorized Industrial Lubricants Division (ILD) delivering cutting-edge HPCL lubricants across India.",
+      description: "Learn more about Jai Deva Oil Co., our mentor Mr. Mayank Goyal, and our multi-brand lubricant distribution network.",
+      metaTitle: "About Us | Jai Deva Oil Co. - Multi-Brand Lubricant Distributor",
+      metaDescription: "Established in 2008, Jai Deva Oil Co. is a leading wholesaler, distributor, and trader of industrial and automotive lubricants across India.",
     },
+  });
+
+  // Clean up any old Mahalaxmi section
+  await prisma.section.deleteMany({
+    where: { pageId: aboutPage.id, type: "AboutMahalaxmiContent" },
   });
 
   const aboutSections = [
@@ -493,71 +502,71 @@ async function main() {
       content: {
         bannerImage: "https://res.cloudinary.com/dpa93copz/image/upload/v1787736239/mahalaxmi/about/About-HPCL.jpg",
         image: "https://res.cloudinary.com/dpa93copz/image/upload/v1787736239/mahalaxmi/about/About-HPCL.jpg",
-        altText: "About MAHALAXMI ENTERPRISES Banner",
-        title: "About MAHALAXMI ENTERPRISES"
+        altText: "About JAI DEVA OIL CO. Banner",
+        title: "About JAI DEVA OIL CO."
       }
     },
     {
-      type: "AboutMahalaxmiContent",
+      type: "AboutJaiDevaContent",
       order: 1,
       content: {
-      "title": "ABOUT MAHALAXMI ENTERPRISES",
-      "subtitle": "Neha Goyal – Proprietor, Mahalaxmi Enterprises",
-      "paragraphs": [
-            "Neha Goyal is the Proprietor of Mahalaxmi Enterprises, an authorized Industrial Lubricants Distributor (ILD) for HP Lubricants, serving the Baghpat region. With over a decade of experience in the lubricants industry, she has developed extensive expertise in providing reliable lubrication solutions across a wide range of industrial applications.",
-            "Since establishing Mahalaxmi Enterprises in 2023, she has been committed to delivering high-quality HP Lubricants, backed by technical knowledge, prompt service, and a customer-centric approach. Under her leadership, the company has earned the trust of more than 100 industrial customers and has successfully supplied lubricants to various government departments.",
-            "Her focus on long-term relationships, product reliability, and consistent service has positioned Mahalaxmi Enterprises as a dependable partner for industries seeking efficient and cost-effective lubrication solutions. With a vision to continuously expand the company's reach and service capabilities, Neha Goyal remains dedicated to helping customers enhance equipment performance, improve operational efficiency, and reduce maintenance costs through the right lubrication practices."
-      ],
-      "hpclOverview": {
-            "title": "About Hindustan Petroleum Corporation Limited (HPCL)",
-            "description": "HPCL is a Maharatna Central Public Sector Enterprise (CPSE) with a formidable market presence in refining and marketing petroleum products. HP Lubricants is India's largest lube marketer, offering 350+ grades of lubricants, specialties, and greases.",
-            "bullets": [
-                  "Over 350+ premium industrial & automotive lubricant grades",
-                  "State-of-the-art R&D facilities with international OEM approvals",
-                  "Extensive countrywide supply chain network & rapid delivery"
-            ]
-      },
-      "whyChooseTitle": "WHY CHOOSE MAHALAXMI ENTERPRISES",
-      "whyChooseSubtitle": "Delivering Quality. Building Trust.",
-      "whyChooseItems": [
-            {
-                  "title": "Industrial Lube Distributor",
-                  "description": "Catering over 100 plus Industries."
-            },
-            {
-                  "title": "Wide Product Portfolio",
-                  "description": "Complete lubrication and industrial maintenance solutions under one roof."
-            },
-            {
-                  "title": "Technical Expertise",
-                  "description": "Professional guidance for selecting the right products for every application."
-            },
-            {
-                  "title": "Reliable Supply",
-                  "description": "Consistent product availability with timely delivery."
-            },
-            {
-                  "title": "Quality Assurance",
-                  "description": "Only genuine, high-performance industrial products."
-            },
-            {
-                  "title": "Customer-Centric Support",
-                  "description": "Dedicated service to ensure long-term customer satisfaction."
-            }
-      ]
-}
+        title: "ABOUT JAI DEVA OIL CO.",
+        mainTitle: "ABOUT JAI DEVA OIL CO.",
+        subtitle: "Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co.",
+        mentorSubHeader: "Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.",
+        proprietorSubHeader: "Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.",
+        paragraphs: [
+          "Established in the year 2008, Jai Deva Oil Co. is the leading prominent Wholesaler, Distributor, and Trader of Lubricants Oil, Engine Oil, Automotive Grease, Hydraulic Oil, Cutting Oil, Gear Oil, Rust Preventive Oil and much more. Made by making use of finest quality inputs altogether with superior machinery, these are very much-admired and recommended. Also, these are tested carefully before getting delivered at the end of our customers. To add, their effectiveness, these are enormously popular. Accessible with us in a plethora of sizes and packing, these could be purchased from us at most affordable costs.",
+          "Our team of professionals keeps a check on clients' rising necessities and therefore aids us in meeting the same in certain period of time. Owing to our quality centric approach, we have been highly proficient to meet the desires of clients all over the marketplace. Also, we have with us a team of skilled and dexterous professionals who own years of expertise in this business realm.",
+          "We are headed by our mentor Mr. Mayank Goyal, who has enormous knowledge and experience of the field. Owing to his balanced business plans and policies, we have attained a noteworthy position in the industry."
+        ],
+        whyChooseTitle: "WHY CHOOSE JAI DEVA OIL CO.",
+        whyChooseSubtitle: "Delivering Quality Lubricants. Building Trust Since 2008.",
+        whyChooseItems: [
+          {
+            icon: "Building2",
+            title: "Multi-Brand Distributor",
+            description: "Catering to diverse industrial and automotive sectors nationwide."
+          },
+          {
+            icon: "Boxes",
+            title: "Wide Product Range",
+            description: "Industrial oils, automotive lubricants, greases, and specialty fluids."
+          },
+          {
+            icon: "Wrench",
+            title: "Technical Expertise",
+            description: "Professional guidance for choosing the optimal grade and viscosity."
+          },
+          {
+            icon: "Truck",
+            title: "Reliable & Swift Supply",
+            description: "Consistent inventory availability with prompt delivery logistics."
+          },
+          {
+            icon: "ShieldCheck",
+            title: "Quality-Focused Approach",
+            description: "100% genuine lubricants tested for premium equipment performance."
+          },
+          {
+            icon: "Headphones",
+            title: "Customer-Centric Service",
+            description: "Dedicated support team ensuring long-term customer satisfaction."
+          }
+        ]
+      }
     },
     {
       type: "LubesHeadquarterSection",
       order: 2,
       content: {
-        title: "MAHALAXMI ENTERPRISES",
-        badge: "AUTHORIZED INDUSTRIAL LUBRICANTS DISTRIBUTOR (ILD)",
-        proprietor: "Neha Goyal",
-        servingRegion: "Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh",
-        establishment: "Est. 2023 | 100+ Industrial Clients & Government Department Supplier",
+        title: "JAI DEVA OIL CO.",
+        badge: "MULTI-BRAND INDUSTRIAL & AUTOMOTIVE LUBRICANTS DISTRIBUTOR",
+        proprietor: "Mr. Mayank Goyal",
+        servingRegion: "Industrial Belts & Nationwide Distribution Hubs, India",
+        establishment: "Est. 2008 | 18+ Years Experience | Leading Wholesaler & Trader",
         phone: "+91 98765 43210",
-        email: "sales@mahalaxmienterprises.com"
+        email: "sales@jaidevaoil.com"
       }
     }
   ];

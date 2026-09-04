@@ -374,15 +374,15 @@ let mockPages: any[] = [
     type: "static",
     visibility: "published",
     isStatic: true,
-    description: "Learn more about Mahalaxmi Enterprises and our authorized HPCL Lubricants partnership.",
-    metaTitle: "About Us | Mahalaxmi Enterprises Authorized HP Lubricants",
-    metaDescription: "Discover our journey as an Authorized Industrial Lubricants Division (ILD) delivering cutting-edge HPCL lubricants across India.",
-    targetKeywords: "about mahalaxmi enterprises, hp lubricants distributor profile",
-    canonicalUrl: "https://mahalaxmilubricants.com/about-us",
+    description: "Learn more about Jai Deva Oil Co., our mentor Mr. Mayank Goyal, and our multi-brand lubricant distribution network.",
+    metaTitle: "About Us | Jai Deva Oil Co. - Multi-Brand Lubricant Distributor",
+    metaDescription: "Established in 2008, Jai Deva Oil Co. is a leading wholesaler, distributor, and trader of industrial and automotive lubricants across India.",
+    targetKeywords: "about jai deva oil co, multi-brand lubricants distributor, lubricants wholesaler trader",
+    canonicalUrl: "https://jaidevaoil.com/about-us",
     noIndex: false,
     featuredImage: "",
-    ogTitle: "About Us - Mahalaxmi Enterprises",
-    ogDescription: "About HP Lubricants Division",
+    ogTitle: "About Us - Jai Deva Oil Co.",
+    ogDescription: "Multi-Brand Industrial & Automotive Lubricant Distributor",
     ogImage: "",
     headingOptions: {},
     createdAt: new Date(),
@@ -395,22 +395,30 @@ let mockPages: any[] = [
         order: 0,
         content: {
           image: "/About-HPCL.jpg",
-          altText: "About MAHALAXMI ENTERPRISES Banner",
+          altText: "About JAI DEVA OIL CO. Banner",
         }
       },
       {
         id: "sec-a2",
         pageId: "page-about",
-        type: "AboutMahalaxmiContent",
+        type: "AboutJaiDevaContent",
         order: 1,
         content: {
-          badge: "ABOUT MAHALAXMI ENTERPRISES",
-          title: "MAHALAXMI ENTERPRISES",
-          subtitle: "Authorized Industrial Lubricants Distributor - Hindustan Petroleum Corporation Limited (HPCL)",
-          p1: "Mahalaxmi Enterprises is an Authorized Industrial Lubricants Distributor for Hindustan Petroleum Corporation Limited (HPCL), one of India's leading energy and lubricant brands. We specialize in supplying high-performance industrial lubricants, greases, and specialty oils to diverse industries, commercial enterprises, and infrastructure projects across the region.",
-          p2: "Under the leadership of Neha Goyal, Mahalaxmi Enterprises has earned a reputation for reliability, product authenticity, and customer-first service. Our direct association with HPCL ensures that our clients receive 100% genuine lubricants manufactured to the highest global and Indian standards (IS / DIN / ISO / API).",
-          features: [
-            { icon: "Layers", title: "Full Product Range", description: "Complete lubrication and industrial maintenance solutions under one roof." },
+          title: "ABOUT JAI DEVA OIL CO.",
+          mainTitle: "ABOUT JAI DEVA OIL CO.",
+          subtitle: "Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co.",
+          mentorSubHeader: "Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.",
+          proprietorSubHeader: "Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.",
+          paragraphs: [
+            "Established in the year 2008, Jai Deva Oil Co. is the leading prominent Wholesaler, Distributor, and Trader of Lubricants Oil, Engine Oil, Automotive Grease, Hydraulic Oil, Cutting Oil, Gear Oil, Rust Preventive Oil and much more. Made by making use of finest quality inputs altogether with superior machinery, these are very much-admired and recommended. Also, these are tested carefully before getting delivered at the end of our customers. To add, their effectiveness, these are enormously popular. Accessible with us in a plethora of sizes and packing, these could be purchased from us at most affordable costs.",
+            "Our team of professionals keeps a check on clients' rising necessities and therefore aids us in meeting the same in certain period of time. Owing to our quality centric approach, we have been highly proficient to meet the desires of clients all over the marketplace. Also, we have with us a team of skilled and dexterous professionals who own years of expertise in this business realm.",
+            "We are headed by our mentor Mr. Mayank Goyal, who has enormous knowledge and experience of the field. Owing to his balanced business plans and policies, we have attained a noteworthy position in the industry."
+          ],
+          whyChooseTitle: "WHY CHOOSE JAI DEVA OIL CO.",
+          whyChooseSubtitle: "Delivering Quality Lubricants. Building Trust Since 2008.",
+          whyChooseItems: [
+            { icon: "Building2", title: "Multi-Brand Distributor", description: "Catering to diverse industrial and automotive sectors nationwide." },
+            { icon: "Boxes", title: "Wide Product Range", description: "Industrial oils, automotive lubricants, greases, and specialty fluids." },
             { icon: "Wrench", title: "Technical Expertise", description: "Professional guidance for selecting the right products for every application." },
             { icon: "Truck", title: "Reliable Supply", description: "Consistent product availability with timely delivery." },
             { icon: "ShieldCheck", title: "Quality Assurance", description: "Only genuine, high-performance industrial products." },
@@ -424,13 +432,13 @@ let mockPages: any[] = [
         type: "LubesHeadquarterSection",
         order: 2,
         content: {
-          title: "MAHALAXMI ENTERPRISES",
-          badge: "AUTHORIZED INDUSTRIAL LUBRICANTS DISTRIBUTOR (ILD)",
-          proprietor: "Neha Goyal",
-          servingRegion: "Baghpat Region & Surrounding Industrial Belts, Uttar Pradesh",
-          establishment: "Est. 2023 | 100+ Industrial Clients & Government Department Supplier",
+          title: "JAI DEVA OIL CO.",
+          badge: "MULTI-BRAND INDUSTRIAL & AUTOMOTIVE LUBRICANTS DISTRIBUTOR",
+          proprietor: "Mr. Mayank Goyal",
+          servingRegion: "Industrial Belts & Nationwide Distribution Hubs, India",
+          establishment: "Est. 2008 | 18+ Years Experience | Leading Wholesaler & Trader",
           phone: "+91 98765 43210",
-          email: "sales@mahalaxmienterprises.com"
+          email: "sales@jaidevaoil.com"
         }
       }
     ]
