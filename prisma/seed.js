@@ -185,7 +185,7 @@ async function main() {
             id: "engine-oil",
             slug: "engine-oil",
             name: "Engine Oil",
-            link: "/products/engine-oil",
+            link: "/products/hp-lubricants#subcat-0",
             img: "https://www.hplubricants.in/sites/default/files/automotive-1.png",
             hoverImg:
               "https://www.hplubricants.in/sites/default/files/automotive-2.png",
@@ -194,7 +194,7 @@ async function main() {
             id: "hydraulic-oil",
             slug: "hydraulic-oil",
             name: "Hydraulic Oil",
-            link: "/products/hydraulic-oil",
+            link: "/products/hp-lubricants#subcat-2",
             img: "https://www.hplubricants.in/sites/default/files/industrial-1.png",
             hoverImg:
               "https://www.hplubricants.in/sites/default/files/industrial-2.png",
@@ -203,7 +203,7 @@ async function main() {
             id: "gear-oil",
             slug: "gear-oil",
             name: "Gear Oil",
-            link: "/products/gear-oil",
+            link: "/products/hp-lubricants#subcat-1",
             img: "https://www.hplubricants.in/sites/default/files/specialities-1.png",
             hoverImg:
               "https://www.hplubricants.in/sites/default/files/specialities-2.png",
@@ -212,7 +212,7 @@ async function main() {
             id: "industrial-grease",
             slug: "industrial-grease",
             name: "Industrial Grease",
-            link: "/products/industrial-grease",
+            link: "/products/hp-lubricants#subcat-3",
             img: "https://www.hplubricants.in/sites/default/files/greases-1.png",
             hoverImg:
               "https://www.hplubricants.in/sites/default/files/greases-2.png",
@@ -221,7 +221,7 @@ async function main() {
             id: "cutting-oil",
             slug: "cutting-oil",
             name: "Cutting Oil",
-            link: "/products/cutting-oil",
+            link: "/products/motul-tech#subcat-0",
             img: "https://www.hplubricants.in/sites/default/files/specialities-1.png",
             hoverImg:
               "https://www.hplubricants.in/sites/default/files/specialities-2.png",
@@ -230,7 +230,7 @@ async function main() {
             id: "rust-preventive-oil",
             slug: "rust-preventive-oil",
             name: "Rust Preventive Oil",
-            link: "/products/rust-preventive-oil",
+            link: "/products/tw-chemin#subcat-2",
             img: "https://www.hplubricants.in/sites/default/files/greases-1.png",
             hoverImg:
               "https://www.hplubricants.in/sites/default/files/greases-2.png",
