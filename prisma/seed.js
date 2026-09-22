@@ -376,9 +376,9 @@ async function main() {
           },
           {
             id: "tw-chemie",
-            name: "TW Chemie",
+            name: "ITW Chemin",
             category: "Specialty Chemicals & Cleaners",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727090/mahalaxmi/clients/iwjyvy3p4tm4pfjwoqp9.jpg",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790062503/jaideva/uploads/xbtwkgclihw6x3antjmq.jpg",
           },
           {
             id: "filtermist",
