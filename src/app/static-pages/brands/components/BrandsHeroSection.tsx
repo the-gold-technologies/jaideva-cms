@@ -9,8 +9,18 @@ import { ImageUploadField } from "@/components/ImageUploadField";
 import { SaveButton } from "@/components/SaveButton";
 import { uploadFiles } from "@/lib/uploadHelpers";
 
-export function BrandsHeroSection({ initialData }: { initialData?: any }) {
-  const [isOpen, setIsOpen] = useState(false);
+export function BrandsHeroSection({
+  initialData,
+  isOpen: controlledIsOpen,
+  onToggle,
+}: {
+  initialData?: any;
+  isOpen?: boolean;
+  onToggle?: () => void;
+}) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -50,14 +60,12 @@ export function BrandsHeroSection({ initialData }: { initialData?: any }) {
 
       const payload = {
         badge: badge.trim(),
-        eyebrowBadge: badge.trim(),
         heading: heading.trim(),
         description: description.trim(),
         ctaPrimaryText: ctaPrimaryText.trim(),
         ctaPrimaryUrl: ctaPrimaryUrl.trim(),
         ctaSecondaryText: ctaSecondaryText.trim(),
         bannerImage: bannerImageUrl,
-        image: bannerImageUrl,
       };
 
       const res = await fetch("/api/brands", {
@@ -89,7 +97,7 @@ export function BrandsHeroSection({ initialData }: { initialData?: any }) {
         description="Manage headline, authority badge, introduction narrative, CTA buttons, and background banner image."
         badge={images[0] ? "Image Set" : "No Image"}
         isOpen={isOpen}
-        onToggle={() => setIsOpen(!isOpen)}
+        onToggle={handleToggle}
       />
 
       <div

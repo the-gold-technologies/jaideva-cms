@@ -12,8 +12,19 @@ interface StatItem {
   label: string;
 }
 
-export function BrandsStatsBandSection({ initialData }: { initialData?: any }) {
-  const [isOpen, setIsOpen] = useState(false);
+export function BrandsStatsBandSection({
+  initialData,
+  isOpen: controlledIsOpen,
+  onToggle,
+}: {
+  initialData?: any;
+  isOpen?: boolean;
+  onToggle?: () => void;
+}) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -28,7 +39,11 @@ export function BrandsStatsBandSection({ initialData }: { initialData?: any }) {
     }
   }, [initialData]);
 
-  const handleStatChange = (index: number, field: keyof StatItem, val: string) => {
+  const handleStatChange = (
+    index: number,
+    field: keyof StatItem,
+    val: string,
+  ) => {
     const updated = [...stats];
     updated[index] = { ...updated[index], [field]: val };
     setStats(updated);
@@ -80,7 +95,7 @@ export function BrandsStatsBandSection({ initialData }: { initialData?: any }) {
         description="Configure high-impact metrics (CAGR, growth, headcount) displayed across the stat ribbon."
         badge={`${stats.length} Metrics`}
         isOpen={isOpen}
-        onToggle={() => setIsOpen(!isOpen)}
+        onToggle={handleToggle}
       />
 
       <div
@@ -131,13 +146,17 @@ export function BrandsStatsBandSection({ initialData }: { initialData?: any }) {
                     <InputField
                       label="Metric Value"
                       value={stat.value}
-                      onChange={(e) => handleStatChange(index, "value", e.target.value)}
+                      onChange={(e) =>
+                        handleStatChange(index, "value", e.target.value)
+                      }
                       placeholder="e.g. 91% or 1.9X"
                     />
                     <InputField
                       label="Metric Label"
                       value={stat.label}
-                      onChange={(e) => handleStatChange(index, "label", e.target.value)}
+                      onChange={(e) =>
+                        handleStatChange(index, "label", e.target.value)
+                      }
                       placeholder="e.g. Growth in 3 Years"
                     />
                   </div>

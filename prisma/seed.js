@@ -835,13 +835,10 @@ async function main() {
       order: 0,
       content: {
         badge: "Authorized Multi-Brand Distribution Partner",
-        eyebrowBadge: "Authorized Multi-Brand Distribution Partner",
         heading: "Brands That Power Every Industrial Move.",
         description:
           "Jai Deva Oil Co. brings together the world’s most trusted lubricant manufacturers, application engineering expertise, and dependable regional stock for automotive, manufacturing, and heavy infrastructure plants.",
         bannerImage:
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
-        image:
           "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
         ctaPrimaryText: "Explore Brand Portfolio",
         ctaPrimaryUrl: "#brand-showcase",
@@ -974,13 +971,10 @@ async function main() {
       type: "BrandsCtaSection",
       order: 4,
       content: {
-        eyebrowBadge: "Certified Lubrication Engineering Advisory",
         badge: "Certified Lubrication Engineering Advisory",
         heading: "Need an Engine Oil Recommendation or Brand Consultation?",
         description:
           "Our lubrication engineers map OEM engine viscosities (0W-20, 5W-30, 15W-40), industrial gear grades, and drain intervals to maximize your equipment life.",
-        bgImage:
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
         image:
           "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
         buttonText: "Request Engine Oil Quote",
@@ -1011,6 +1005,463 @@ async function main() {
     }
   }
   console.log("✓ Brands page & sections ready.");
+
+  // 5c. Industries Page & Sections
+  const industriesPage = await prisma.page.upsert({
+    where: { slug: "industries" },
+    update: {
+      title: "Industries",
+      description:
+        "Industrial lubrication solutions and application engineering for steel mills, cement plants, power generation, automotive stamping, and manufacturing.",
+      metaTitle:
+        "Industrial Lubricants & Plant Engineering | Jai Deva Oil Co.",
+      metaDescription:
+        "Explore refinery-certified industrial oils, hydraulic fluids, and synthetic gear oils designed to reduce machine wear and operating costs across manufacturing sectors.",
+    },
+    create: {
+      title: "Industries",
+      slug: "industries",
+      type: "static",
+      visibility: "published",
+      isStatic: true,
+      description:
+        "Industrial lubrication solutions and application engineering for steel mills, cement plants, power generation, automotive stamping, and manufacturing.",
+      metaTitle:
+        "Industrial Lubricants & Plant Engineering | Jai Deva Oil Co.",
+      metaDescription:
+        "Explore refinery-certified industrial oils, hydraulic fluids, and synthetic gear oils designed to reduce machine wear and operating costs across manufacturing sectors.",
+    },
+  });
+
+  const industriesSections = [
+    // 0. Hero & Metrics Band
+    {
+      type: "IndustriesHero",
+      order: 0,
+      content: {
+        badge: "Jai Deva Oil Co. • Less You Burn, the More You Earn",
+        heading: "Industrial Lubricants Engineered For Peak Efficiency.",
+        description:
+          "Refinery-certified multi-brand oils, greases, and fluids tailored to minimize friction, extend machinery life, and cut your plant // operating costs.",
+        bannerImage:
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+        ctaPrimaryText: "Explore Industries",
+        ctaPrimaryUrl: "#sector-stage",
+        ctaSecondaryText: "Request Plant Quote",
+        stats: [
+          {
+            value: "11+ Sectors",
+            label: "Heavy to Precision Plants"
+          },
+          {
+            value: "100% Genuine",
+            label: "Refinery Batch CoAs"
+          },
+          {
+            value: "24–48h",
+            label: "Emergency Plant Dispatch"
+          },
+          {
+            value: "Up to 35%",
+            label: "Lubrication TCO Savings",
+            highlight: true
+          }
+        ]
+      },
+    },
+    // 1. Sector Lubrication Stages
+    {
+      type: "IndustryStageSection",
+      order: 1,
+      content: {
+        eyebrow: "Interactive Sector Explorer",
+        heading: "Engineered Sector Formulations",
+        description: "Jai Deva Oil Co. delivers on its promise: \"Less You Burn, the More You Earn\"",
+        selectorHint: "Select a sector to explore",
+        promiseLabel: "The Jai Deva Promise",
+        productBadge: "Refinery Certified",
+        recommendedLabel: "Recommended Industrial Formulation",
+        oemPrefix: "OEM Compliance:",
+        buttonText: "Request Spec Sheet & Quote",
+        sectors: [
+          {
+            id: "steel",
+            name: "Steel & Metallurgy",
+            shortName: "Steel & Metals",
+            icon: "Factory",
+            plantImage:
+              "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80",
+            oilImage:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+            headline: "Extreme-Heat & Shock-Load Protection",
+            promise: "Resists 650°C radiant heat & eliminates bearing seizure",
+            operatingCondition: "Temps up to 650°C • Extreme Shock Load • Heavy Mill Scale",
+            equipment: [
+              "Continuous Casters (Concast)",
+              "Hot & Cold Rolling Mills",
+              "Heavy Reduction Drives"
+            ],
+            recommendedProduct: {
+              name: "HP Parthan EP 320 / 460 Heavy Industrial Gear Oil",
+              grade: "ISO VG 320 / 460",
+              oemMatch: "Flender, David Brown & Danieli Compliant",
+              highlight: "FVA 54 Micropitting certified with high demulsibility against cooling spray water"
+            }
+          },
+          {
+            id: "cement",
+            name: "Cement & Mining",
+            shortName: "Cement & Mining",
+            icon: "Building2",
+            plantImage:
+              "https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=1200&q=80",
+            oilImage:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+            headline: "Abrasive Clinker Dust & Kiln Heat Resistance",
+            promise: "Prevents girth gear pitting and cuts relubrication cycles",
+            operatingCondition: "Kiln Drive 220°C • Fine Clinker Abrasives • High Vibration",
+            equipment: [
+              "Kiln Girth Gears & Pinions",
+              "Ball Mills & VRMs",
+              "Primary Jaw Crushers"
+            ],
+            recommendedProduct: {
+              name: "Synthetic Asphaltic Open Gear Compound 1000",
+              grade: "ISO VG 1000 / Sprayable",
+              oemMatch: "FLSmidth & Thyssenkrupp Approved",
+              highlight: "Resilient heavy hydrodynamic cushion protecting gear teeth under 100+ ton loads"
+            }
+          },
+          {
+            id: "power",
+            name: "Power Generation & Turbines",
+            shortName: "Power & Turbines",
+            icon: "Zap",
+            plantImage:
+              "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80",
+            oilImage:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+            headline: "Varnish-Free Ultra-Clean Turbine Fluids",
+            promise: "20,000+ hour oxidation life with zero servo valve sticking",
+            operatingCondition: "Continuous 24/7 Run • Steam Condensation • High Thermal Stress",
+            equipment: [
+              "Gas & Supercritical Turbines",
+              "EHV Transformers",
+              "Boiler Feed Pumps"
+            ],
+            recommendedProduct: {
+              name: "Non-Zinc Ashless Premium Turbine Oil",
+              grade: "ISO VG 32 / 46 (Group II / III)",
+              oemMatch: "GE GEK 32568, Siemens TLV 9013",
+              highlight: "Ultra-low MPC Delta E varnish rating guaranteeing rapid electro-hydraulic response"
+            }
+          },
+          {
+            id: "automotive",
+            name: "Automotive & Logistics",
+            shortName: "Automotive & Fleets",
+            icon: "Car",
+            plantImage:
+              "https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80",
+            oilImage:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+            headline: "Heavy Fleet Efficiency & Press Hydraulics",
+            promise: "Maximizes fleet km/L fuel savings and extends oil drains to 80k km",
+            operatingCondition: "BS-VI DPF Aftertreatment • 250 Bar Stamping Cycle • Highway Hauls",
+            equipment: [
+              "Commercial Fleet HCVs",
+              "Stamping Presses",
+              "Heavy Axles & Differentials"
+            ],
+            recommendedProduct: {
+              name: "Kixx HDX API CK-4 15W-40 Low-SAPS Engine Oil",
+              grade: "API CK-4 / CJ-4",
+              oemMatch: "Cummins CES 20086, Volvo VDS-4.5, MB 228.31",
+              highlight: "Protects particulate filters against ash buildup while lowering fuel burn"
+            }
+          },
+          {
+            id: "cnc",
+            name: "Precision CNC & Engineering",
+            shortName: "CNC & Machining",
+            icon: "Wrench",
+            plantImage:
+              "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80",
+            oilImage:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+            headline: "Bio-Stable Coolants & Anti-Chatter Waylubes",
+            promise: "Extends tool life by 30% and eliminates slideway stick-slip",
+            operatingCondition: "30,000 RPM Spindles • Micro-Tolerances • High Cutting Heat",
+            equipment: [
+              "Multi-Axis VMC/HMC Centers",
+              "High-Speed Tool Spindles",
+              "Precision Slideways"
+            ],
+            recommendedProduct: {
+              name: "Bio-Stable Soluble Coolant + Waylube 68",
+              grade: "Semi-Synthetic + ISO VG 68",
+              oemMatch: "DIN 51502 CGLP, Fives Cincinnati P-47",
+              highlight: "Long sump life without odor, separating cleanly from tramp oils"
+            }
+          },
+          {
+            id: "food",
+            name: "Food & Pharmaceuticals (H1)",
+            shortName: "Food & Cleanroom",
+            icon: "UtensilsCrossed",
+            plantImage:
+              "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=80",
+            oilImage:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+            headline: "100% Non-Toxic NSF H1 Certified Lubricants",
+            promise: "Guarantees food safety compliance and resists caustic steam washdowns",
+            operatingCondition: "Incidental Food Contact • Daily Chemical Washdown • Sub-Zero Freezers",
+            equipment: [
+              "Rotary Bottling Carousels",
+              "Tablet Punch Presses",
+              "Packaging Lines"
+            ],
+            recommendedProduct: {
+              name: "NSF H1 Synthetic Food-Grade Gear Oil & Grease",
+              grade: "ISO VG 220 / NLGI 2",
+              oemMatch: "FDA 21 CFR 178.3570, Halal & Kosher",
+              highlight: "Odorless, colorless, and immune to wash-off during CIP sanitation cycles"
+            }
+          },
+          {
+            id: "textile",
+            name: "Textile & Looms",
+            shortName: "Textile & Looms",
+            icon: "Shirt",
+            plantImage:
+              "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=1200&q=80",
+            oilImage:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+            headline: "Zero-Staining Scourable Needle Oils & Chain Fluids",
+            promise: "Prevents fabric oil spots and resists carbonization in 240°C stenter ovens",
+            operatingCondition: "1,200 Picks/min • 240°C Stenter Heat • High Lint Atmosphere",
+            equipment: [
+              "Knitting Needles & Sinkers",
+              "Air-Jet Looms",
+              "Stenter Drying Frames"
+            ],
+            recommendedProduct: {
+              name: "Washable Scourable Needle Oil + Synthetic Chain 220",
+              grade: "ISO VG 22 / ISO VG 220",
+              oemMatch: "Mayer & Cie, Terrot & Monforts Specs",
+              highlight: "100% washable in standard scouring baths, leaving no spot stains"
+            }
+          }
+        ]
+      },
+    },
+    // 2. Less You Burn Impact
+    {
+      type: "LessYouBurnImpactSection",
+      order: 2,
+      content: {
+        badge: "The Jai Deva Operating Standard",
+        heading: "\"Less You Burn, The More You Earn\"",
+        subtitle:
+          "Lubrication isn't just an operating expense—it's your plant's frontline protection against friction, thermal breakdown, and multimillion-rupee machinery failures.",
+        buttonText: "Request Plant TCO Audit",
+        pillars: [
+          {
+            metric: "-15°C to -22°C",
+            title: "Reduced Sump Operating Heat",
+            desc: "High-VI synthetic base stocks cut internal fluid shear and mechanical friction across heavy reduction gearboxes.",
+            icon: "ThermometerSnowflake"
+          },
+          {
+            metric: "2x to 3x Longer",
+            title: "Extended Oil Drain Intervals",
+            desc: "Superior thermal oxidation resistance prevents viscosity breakdown, doubling working hours between oil changes.",
+            icon: "Clock"
+          },
+          {
+            metric: "Up to 35%",
+            title: "Lower Plant Lubrication TCO",
+            desc: "Less lubricant consumed, zero sludge valve sticking, and eliminated unplanned catastrophic equipment downtime.",
+            icon: "TrendingDown"
+          }
+        ]
+      },
+    },
+    // 3. Machinery Feature Section
+    {
+      type: "MachineryFeatureSection",
+      order: 3,
+      content: {
+        eyebrow: "Machinery-Specific Lubrication",
+        heading: "Critical Plant Machinery Systems",
+        description:
+          "Tailored viscosity grades and chemical additive packages designed for specific equipment stress points.",
+        protectionLabel: "Machinery Protection Profile",
+        formulationsLabel: "Equivalent Industrial Formulations:",
+        buttonText: "Request Spec Sheet & Quote",
+        systems: [
+          {
+            id: "gearboxes",
+            icon: "Cog",
+            title: "Heavy Industrial Gearboxes",
+            spec: "ISO VG 150 to 680 • FVA 54 Certified",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+            desc: "Formulated with sulfur-phosphorus EP chemistry to eliminate gear tooth micropitting in continuous planetary and helical drives.",
+            oilHighlight: "HP Parthan EP / Mobilgear 600 XP / Omala S2 G",
+            benefits: [
+              "Zero micropitting under extreme shock loads",
+              "Superior demulsibility against mill water ingress",
+              "Flender, David Brown & Danieli approved"
+            ]
+          },
+          {
+            id: "hydraulics",
+            icon: "Gauge",
+            title: "High-Pressure Hydraulic Systems",
+            spec: "ISO VG 32, 46, 68 • DIN 51524 HLP/HVLP",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+            desc: "Engineered for high-flow proportional servo valves with ultra-rapid air release and sub-3-micron filterability.",
+            oilHighlight: "HP Enklo / Mobil DTE 10 Excel / Tellus S2 MX",
+            benefits: [
+              "Thermal shear stability under continuous 250 bar",
+              "Zero sticky sludge or servo valve hang-ups",
+              "Denison HF-0, Eaton Vickers & Rexroth certified"
+            ]
+          },
+          {
+            id: "turbines",
+            icon: "Wind",
+            title: "Turbines & Rotary Compressors",
+            spec: "Non-Zinc Ashless • 20,000+ Hour Drain",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+            desc: "Ashless non-zinc formulation delivering extreme oxidation resistance and zero lacquer formation across high-speed rotating shafts.",
+            oilHighlight: "HP Turbinol / Mobil DTE 700 / Rarus 427",
+            benefits: [
+              "Rapid water separation under steam condensates",
+              "Ultra-low MPC Delta E varnish prevention",
+              "GE, Siemens & Atlas Copco grade compliant"
+            ]
+          },
+          {
+            id: "bearings",
+            icon: "Disc",
+            title: "Heavy Bearings & Open Girth Gears",
+            spec: "NLGI 1, 2, 3 • High-Temp Synthetic Base",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+            desc: "Heavy calcium sulfonate and polyurea greases with solid MoS2 for kiln hoods, vibrating screens, and heavy crusher bearings.",
+            oilHighlight: "Molygraph Ultra / Mobilith SHC / Gadus S2",
+            benefits: [
+              "Drop point exceeding 280°C for extreme heat",
+              "Resists heavy water spray and abrasive dust",
+              "Extreme 4-ball weld load exceeding 400 kgf"
+            ]
+          }
+        ]
+      },
+    },
+    // 4. Plant Process Section
+    {
+      type: "PlantProcessSection",
+      order: 4,
+      content: {
+        eyebrow: "Lifecycle Engineering Support",
+        heading: "Our Plant Lubrication Journey",
+        description:
+          "A proven four-stage engineering process ensuring zero unplanned equipment downtime.",
+        buttonText: "Book Plant Audit",
+        steps: [
+          {
+            step: "01",
+            title: "On-Site Oil Sampling",
+            tagline: "Field Inspection",
+            icon: "TestTube2",
+            desc: "Our lubrication engineers draw hot operating oil samples from critical gearboxes and hydraulic sumps."
+          },
+          {
+            step: "02",
+            title: "Lab Spectroscopic Testing",
+            tagline: "Predictive Analytics",
+            icon: "FileCheck2",
+            desc: "Testing for wear metals (Fe, Cu, Al), moisture ppm, acid number (TAN), and remaining useful life (RUL)."
+          },
+          {
+            step: "03",
+            title: "Plant SKU Consolidation",
+            tagline: "35% Inventory Reduction",
+            icon: "Boxes",
+            desc: "Auditing plant manuals to streamline dozens of grease and oil grades into 8–10 high-performance multi-grades."
+          },
+          {
+            step: "04",
+            title: "Emergency Drum Dispatch",
+            tagline: "Zero Line Stoppage",
+            icon: "Truck",
+            desc: "24–48h emergency barrel (210L) reserves across ISO VG 32 to 680 to prevent catastrophic line shutdowns."
+          }
+        ]
+      },
+    },
+    // 5. Industries Consultation CTA
+    {
+      type: "IndustriesConsultationCTA",
+      order: 5,
+      content: {
+        badge: "Zero-Cost Technical Assessment",
+        heading: "Optimize Your Plant's Lubrication Performance Today",
+        description:
+          "Whether you need urgent barrel dispatch, cross-referencing for an imported machine, or a full plant SKU consolidation audit, our lubrication specialists are ready to support your facility.",
+        formTitle: "Request Sector Specification",
+        formSubtitle: "Select your primary operating vertical to launch a tailored technical enquiry:",
+        dropdownLabel: "Industry / Machinery Application:",
+        buttonText: "Get Technical Recommendation & Pricing",
+        phoneText: "Or visit our contact page for direct depot locations",
+        phoneNumber: "",
+        trustIndicators: [
+          { icon: "Clock", text: "24-Hour Quotation Turnaround" },
+          { icon: "ShieldCheck", text: "100% Genuine Batch CoAs" },
+          { icon: "Headphones", text: "Dedicated Plant Support" }
+        ],
+        sectorOptions: [
+          "Steel & Hot Rolling Mills",
+          "Cement & Heavy Mining",
+          "Power Generation & Turbines",
+          "Automotive & Component Stamping",
+          "Food & Beverage NSF H1 Safe",
+          "Pharmaceuticals & Cleanrooms",
+          "Textile High-Speed Spinning",
+          "Plastics & Injection Molding",
+          "Paper Machine Circulating Systems",
+          "General Precision CNC Machining"
+        ]
+      },
+    }
+  ];
+
+  for (const s of industriesSections) {
+    const existing = await prisma.section.findFirst({
+      where: { pageId: industriesPage.id, type: s.type },
+    });
+    if (existing) {
+      await prisma.section.update({
+        where: { id: existing.id },
+        data: { content: s.content },
+      });
+    } else {
+      await prisma.section.create({
+        data: {
+          pageId: industriesPage.id,
+          type: s.type,
+          content: s.content,
+          order: s.order,
+        },
+      });
+    }
+  }
+  console.log("✓ Industries page & sections ready.");
 
   // 6. Contact Us Page & Sections
   const contactPage = await prisma.page.upsert({

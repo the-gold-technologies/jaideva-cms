@@ -27,8 +27,18 @@ const ICON_OPTIONS = [
   "Award",
 ];
 
-export function BrandsPillarsSection({ initialData }: { initialData?: any }) {
-  const [isOpen, setIsOpen] = useState(false);
+export function BrandsPillarsSection({
+  initialData,
+  isOpen: controlledIsOpen,
+  onToggle,
+}: {
+  initialData?: any;
+  isOpen?: boolean;
+  onToggle?: () => void;
+}) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -140,7 +150,7 @@ export function BrandsPillarsSection({ initialData }: { initialData?: any }) {
         description="Edit the core distribution pillars, side visual card, and refinery assurance certificate badge."
         badge={`${pillars.length} Pillars`}
         isOpen={isOpen}
-        onToggle={() => setIsOpen(!isOpen)}
+        onToggle={handleToggle}
       />
 
       <div

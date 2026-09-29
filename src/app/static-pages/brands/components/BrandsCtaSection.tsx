@@ -9,8 +9,18 @@ import { ImageUploadField } from "@/components/ImageUploadField";
 import { SaveButton } from "@/components/SaveButton";
 import { uploadFiles } from "@/lib/uploadHelpers";
 
-export function BrandsCtaSection({ initialData }: { initialData?: any }) {
-  const [isOpen, setIsOpen] = useState(false);
+export function BrandsCtaSection({
+  initialData,
+  isOpen: controlledIsOpen,
+  onToggle,
+}: {
+  initialData?: any;
+  isOpen?: boolean;
+  onToggle?: () => void;
+}) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -49,14 +59,12 @@ export function BrandsCtaSection({ initialData }: { initialData?: any }) {
       }
 
       const payload = {
-        eyebrowBadge: eyebrowBadge.trim(),
         badge: eyebrowBadge.trim(),
         heading: heading.trim(),
         description: description.trim(),
         buttonText: buttonText.trim(),
         phoneText: phoneText.trim(),
         phoneNumber: phoneNumber.trim(),
-        bgImage: bgImageUrl,
         image: bgImageUrl,
       };
 
@@ -89,7 +97,7 @@ export function BrandsCtaSection({ initialData }: { initialData?: any }) {
         description="Configure the call-to-action banner shown at the bottom of the Brands page."
         badge={images[0] ? "Background Set" : "No Background"}
         isOpen={isOpen}
-        onToggle={() => setIsOpen(!isOpen)}
+        onToggle={handleToggle}
       />
 
       <div

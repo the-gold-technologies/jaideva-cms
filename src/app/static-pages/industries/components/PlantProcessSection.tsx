@@ -2,22 +2,30 @@
 
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { Plus, Trash2, Layers } from "lucide-react";
+import { Plus, Trash2, Milestone } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
 import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
 import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
 
-interface CategoryItem {
-  name: string;
-  description: string;
-  image: string;
-  badge: string;
+interface ProcessStepItem {
+  step: string;
+  title: string;
+  tagline: string;
+  icon: string;
+  desc: string;
 }
 
-export function BrandsProductCategoriesSection({
+const ICON_OPTIONS = [
+  "TestTube2",
+  "FileCheck2",
+  "Boxes",
+  "Truck",
+  "ShieldCheck",
+  "Cog",
+];
+
+export function PlantProcessSection({
   initialData,
   isOpen: controlledIsOpen,
   onToggle,
@@ -27,17 +35,17 @@ export function BrandsProductCategoriesSection({
   onToggle?: () => void;
 }) {
   const [internalOpen, setInternalOpen] = useState(false);
-  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  const isOpen =
+    controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
+
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
   const [eyebrow, setEyebrow] = useState("");
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
-
-  const [categories, setCategories] = useState<CategoryItem[]>([]);
-  const [categoryImages, setCategoryImages] = useState<Record<number, (File | string | null)[]>>({});
+  const [steps, setSteps] = useState<ProcessStepItem[]>([]);
 
   useEffect(() => {
     if (initialData) {
@@ -45,101 +53,61 @@ export function BrandsProductCategoriesSection({
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.description) setDescription(initialData.description);
 
-      const loadedCats = initialData.categories || initialData.items;
-      if (Array.isArray(loadedCats)) {
-        setCategories(loadedCats);
-        const imgMap: Record<number, (File | string | null)[]> = {};
-        loadedCats.forEach((c: CategoryItem, i: number) => {
-          if (c.image) imgMap[i] = [c.image];
-        });
-        setCategoryImages(imgMap);
+      const loadedSteps = initialData.steps || initialData.items;
+      if (Array.isArray(loadedSteps)) {
+        setSteps(loadedSteps);
       }
     }
   }, [initialData]);
 
-  const handleCategoryChange = (
+  const handleStepChange = (
     index: number,
-    field: keyof CategoryItem,
-    val: string
+    field: keyof ProcessStepItem,
+    val: string,
   ) => {
-    const updated = [...categories];
+    const updated = [...steps];
     updated[index] = { ...updated[index], [field]: val };
-    setCategories(updated);
+    setSteps(updated);
   };
 
-  const handleImageChange = (
-    index: number,
-    newImgs: (File | string | null)[]
-  ) => {
-    setCategoryImages((prev) => ({ ...prev, [index]: newImgs }));
-  };
-
-  const handleAddCategory = () => {
-    const newIdx = categories.length;
-    setCategories([
-      ...categories,
+  const handleAddStep = () => {
+    const nextNum = (steps.length + 1).toString().padStart(2, "0");
+    setSteps([
+      ...steps,
       {
-        name: "",
-        description: "",
-        image: "",
-        badge: "",
+        step: nextNum,
+        title: "",
+        tagline: "",
+        icon: "TestTube2",
+        desc: "",
       },
     ]);
-    setCategoryImages((prev) => ({ ...prev, [newIdx]: [""] }));
   };
 
-  const handleRemoveCategory = (index: number) => {
-    if (categories.length <= 1) {
-      toast.error("At least one product category is required.");
+  const handleRemoveStep = (index: number) => {
+    if (steps.length <= 1) {
+      toast.error("At least one workflow step is required.");
       return;
     }
-    setCategories(categories.filter((_, idx) => idx !== index));
-    const newImgMap: Record<number, (File | string | null)[]> = {};
-    let cursor = 0;
-    categories.forEach((_, i) => {
-      if (i !== index) {
-        if (categoryImages[i]) newImgMap[cursor] = categoryImages[i];
-        cursor++;
-      }
-    });
-    setCategoryImages(newImgMap);
+    setSteps(steps.filter((_, idx) => idx !== index));
   };
 
   const handleSave = async () => {
     setLoading(true);
     setSaved(false);
     try {
-      const updatedCategories = await Promise.all(
-        categories.map(async (cat, idx) => {
-          const imgs = (categoryImages[idx] || []).filter(
-            (im): im is File | string => !!im
-          );
-          let finalImg = cat.image || "";
-          if (imgs.length > 0) {
-            const [uploaded] = await uploadFiles(imgs);
-            if (uploaded) finalImg = uploaded;
-          }
-          return {
-            name: cat.name.trim(),
-            description: cat.description.trim(),
-            badge: cat.badge.trim(),
-            image: finalImg,
-          };
-        })
-      );
-
       const payload = {
         eyebrow: eyebrow.trim(),
         heading: heading.trim(),
         description: description.trim(),
-        categories: updatedCategories,
+        steps,
       };
 
-      const res = await fetch("/api/brands", {
+      const res = await fetch("/api/industries", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          section: "BrandsProductCategoriesSection",
+          section: "PlantProcessSection",
           content: payload,
         }),
       });
@@ -147,14 +115,13 @@ export function BrandsProductCategoriesSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        setCategories(updatedCategories);
-        toast.success("Product Categories saved successfully");
+        toast.success("Plant Lubrication Workflow saved successfully");
         setTimeout(() => setSaved(false), 3000);
       } else {
         toast.error(json.error || "Failed to save");
       }
     } catch {
-      toast.error("Error saving Categories section");
+      toast.error("Error saving Process section");
     } finally {
       setLoading(false);
     }
@@ -163,9 +130,9 @@ export function BrandsProductCategoriesSection({
   return (
     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 flex flex-col gap-6 transition-all">
       <SectionHeader
-        title="4. Product Categories Spectrum"
-        description="Configure product spectrum categories with custom imagery, specifications badge, and description."
-        badge={`${categories.length} Categories`}
+        title="5. Plant Lubrication Management Cycle"
+        description="Configure the connected 01-04 workflow timeline (sampling, lab testing, SKU consolidation, emergency dispatch)."
+        badge={`${steps.length} Steps`}
         isOpen={isOpen}
         onToggle={handleToggle}
       />
@@ -182,13 +149,13 @@ export function BrandsProductCategoriesSection({
                 label="Eyebrow Subtitle"
                 value={eyebrow}
                 onChange={(e) => setEyebrow(e.target.value)}
-                placeholder="COMPREHENSIVE FLUID SPECTRUM"
+                placeholder="01-04 ENGINEERING WORKFLOW"
               />
               <InputField
                 label="Section Heading"
                 value={heading}
                 onChange={(e) => setHeading(e.target.value)}
-                placeholder="Lubrication Solutions for Every Industrial & Automotive Sector"
+                placeholder="The Plant Lubrication Management Cycle"
               />
             </div>
 
@@ -197,86 +164,101 @@ export function BrandsProductCategoriesSection({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={2}
-              placeholder="From ultra-pure turbine fluids to heavy-duty earthmover diesel oils..."
+              placeholder="From oil sampling to bulk barrel dispatch, our certified engineers..."
             />
 
-            {/* Dynamic Category Cards (2 in a row) */}
+            {/* Dynamic Step Cards (2 in a row) */}
             <div className="pt-4 border-t border-gray-100 flex flex-col gap-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-[#0C356A]">
-                  <Layers className="w-4 h-4 text-[#C86218]" />
+                  <Milestone className="w-4 h-4 text-[#C86218]" />
                   <label className="text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    Category Cards ({categories.length})
+                    Workflow Step Cards ({steps.length})
                   </label>
                 </div>
                 <button
                   type="button"
-                  onClick={handleAddCategory}
+                  onClick={handleAddStep}
                   className="inline-flex items-center gap-1 text-xs font-bold text-[#C86218] hover:text-[#0C356A] transition-colors cursor-pointer"
                 >
-                  <Plus className="w-4 h-4" /> Add Category
+                  <Plus className="w-4 h-4" /> Add Step
                 </button>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {categories.map((cat, index) => (
+                {steps.map((st, index) => (
                   <div
                     key={index}
                     className="p-5 bg-gray-50/80 rounded-2xl border border-gray-200/70 flex flex-col gap-3 relative group"
                   >
                     <div className="flex items-center justify-between">
                       <span className="w-7 h-7 rounded-full bg-[#0C356A] text-white text-xs font-black flex items-center justify-center shrink-0">
-                        {index + 1}
+                        {st.step || index + 1}
                       </span>
                       <button
                         type="button"
-                        onClick={() => handleRemoveCategory(index)}
+                        onClick={() => handleRemoveStep(index)}
                         className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-white rounded-lg transition-all cursor-pointer"
-                        title="Remove Category"
+                        title="Remove Step"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-3 gap-3">
                       <InputField
-                        label="Category Name"
-                        value={cat.name}
+                        label="Step Number"
+                        value={st.step}
                         onChange={(e) =>
-                          handleCategoryChange(index, "name", e.target.value)
+                          handleStepChange(index, "step", e.target.value)
                         }
-                        placeholder="Automotive & Engine Oils"
+                        placeholder="01"
                       />
                       <InputField
-                        label="Badge / Standard Tag"
-                        value={cat.badge}
+                        label="Tagline / Badge"
+                        value={st.tagline}
                         onChange={(e) =>
-                          handleCategoryChange(index, "badge", e.target.value)
+                          handleStepChange(index, "tagline", e.target.value)
                         }
-                        placeholder="e.g. API CK-4 / SN Plus"
+                        placeholder="Field Inspection"
                       />
+                      <div className="flex flex-col gap-1">
+                        <label className="text-xs font-semibold text-gray-600">
+                          Icon
+                        </label>
+                        <select
+                          value={st.icon}
+                          onChange={(e) =>
+                            handleStepChange(index, "icon", e.target.value)
+                          }
+                          className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0C356A]/20"
+                        >
+                          {ICON_OPTIONS.map((ic) => (
+                            <option key={ic} value={ic}>
+                              {ic}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
+
+                    <InputField
+                      label="Step Title"
+                      value={st.title}
+                      onChange={(e) =>
+                        handleStepChange(index, "title", e.target.value)
+                      }
+                      placeholder="On-Site Oil Sampling"
+                    />
 
                     <TextAreaField
                       label="Description"
-                      value={cat.description}
+                      value={st.desc}
                       onChange={(e) =>
-                        handleCategoryChange(
-                          index,
-                          "description",
-                          e.target.value
-                        )
+                        handleStepChange(index, "desc", e.target.value)
                       }
                       rows={2}
-                      placeholder="Brief overview of fluids in this spectrum..."
-                    />
-
-                    <ImageUploadField
-                      label="Category Thumbnail / Fluid Image"
-                      images={categoryImages[index] || (cat.image ? [cat.image] : [""])}
-                      onImagesChange={(imgs) => handleImageChange(index, imgs)}
-                      maxImages={1}
-                      tooltip="Upload product or barrel representation photo."
+                      placeholder="Our lubrication engineers draw hot operating oil samples..."
                     />
                   </div>
                 ))}
