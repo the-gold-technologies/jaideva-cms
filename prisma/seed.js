@@ -30,11 +30,11 @@ async function main() {
       siteTitle:
         "Jai Deva Oil Co. | Multi-Brand Industrial & Automotive Lubricant Distributor",
       siteDescription:
-        "Established in 2008, Jai Deva Oil Co. is a trusted Authorized Distributor of Industrial & Automotive Lubricants, offering quality lubrication products from leading brands.",
-      phone: "+91 98765 43210",
-      email: "sales@jaidevaoil.com",
-      address: "Industrial Area & Regional Distribution Hub, India",
-      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1788504772/jaideva/logo/jaideva-main-logo.png",
+        "Established in 2007, Jai Deva Oil Co. is a trusted Authorized Distributor of Industrial & Automotive Lubricants, offering quality lubrication products from leading brands.",
+      phone: "+91 98120 22340",
+      email: "sales@jaideva.com",
+      address: "Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India",
+      logo: "/jaideva-logo.png",
       socialLinks: {
         facebook: "https://facebook.com",
         youtube: "https://youtube.com",
@@ -49,11 +49,11 @@ async function main() {
       siteTitle:
         "Jai Deva Oil Co. | Multi-Brand Industrial & Automotive Lubricant Distributor",
       siteDescription:
-        "Established in 2008, Jai Deva Oil Co. is a trusted Authorized Distributor of Industrial & Automotive Lubricants, offering quality lubrication products from leading brands.",
-      phone: "+91 98765 43210",
-      email: "sales@jaidevaoil.com",
-      address: "Industrial Area & Regional Distribution Hub, India",
-      logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1788504772/jaideva/logo/jaideva-main-logo.png",
+        "Established in 2007, Jai Deva Oil Co. is a trusted Authorized Distributor of Industrial & Automotive Lubricants, offering quality lubrication products from leading brands.",
+      phone: "+91 98120 22340",
+      email: "sales@jaideva.com",
+      address: "Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India",
+      logo: "/jaideva-logo.png",
       socialLinks: {
         facebook: "https://facebook.com",
         youtube: "https://youtube.com",
@@ -107,7 +107,7 @@ async function main() {
     update: {
       title: "Home",
       description:
-        "Established in 2008, Jai Deva Oil Co. is a trusted Multi-Brand Distributor of Industrial & Automotive Lubricants.",
+        "Established in 2007, Jai Deva Oil Co. is a trusted Multi-Brand Distributor of Industrial & Automotive Lubricants.",
       metaTitle:
         "Jai Deva Oil Co. | Multi-Brand Industrial & Automotive Lubricant Distributor",
       metaDescription:
@@ -120,7 +120,7 @@ async function main() {
       visibility: "published",
       isStatic: true,
       description:
-        "Established in 2008, Jai Deva Oil Co. is a trusted Multi-Brand Distributor of Industrial & Automotive Lubricants.",
+        "Established in 2007, Jai Deva Oil Co. is a trusted Multi-Brand Distributor of Industrial & Automotive Lubricants.",
       metaTitle:
         "Jai Deva Oil Co. | Multi-Brand Industrial & Automotive Lubricant Distributor",
       metaDescription:
@@ -130,48 +130,26 @@ async function main() {
 
   const homeSections = [
     {
-      type: "HeroSlider",
+      type: "HomeHero",
       order: 0,
       content: {
-        slides: [
-          {
-            id: 1,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726300/mahalaxmi/banners/xra1pg306ketpuq4ab3k.png",
-            link: "/products",
-            title: "JAI DEVA OIL CO. - Multi-Brand Lubricant Distributor",
-          },
-          {
-            id: 2,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726301/mahalaxmi/banners/zgo69n1kol3nyentztgn.jpg",
-            link: "/products",
-            title:
-              "Reliable Lubrication Solutions for Every Industry & Application",
-          },
-          {
-            id: 3,
-            img: "https://res.cloudinary.com/dpa93copz/image/upload/v1787726307/mahalaxmi/banners/iqfigsf6tkyolkuhbztq.jpg",
-            link: "/products",
-            title: "Established 2008 - Quality Products from Leading Brands",
-          },
-        ],
-      },
-    },
-    {
-      type: "AboutSection",
-      order: 1,
-      content: {
-        title: "MULTI-BRAND LUBRICANT SOLUTIONS",
-        subtitle1: "Multi-Brand Industrial & Automotive Lubricant Distributor",
-        subtitle2:
-          "Reliable Lubrication Solutions for Every Industry & Application",
-        paragraph1:
-          "Established in 2008, Jai Deva Oil Co. is a trusted Authorized Distributors of Industrial & Automotive Lubricants, offering a comprehensive range of quality lubrication products from leading brands.",
-        paragraph2:
-          "From Engine Oil, Hydraulic Oil and Gear Oil to Automotive Grease, Cutting Oil, Rust Preventive Oil and Specialty Lubricants, we provide reliable lubrication solutions for diverse industrial, automotive and machinery applications.",
+        badge: "MULTI-BRAND LUBRICANT SOLUTIONS",
+        heading: "Reliable lubrication for every industry and application.",
+        description:
+          "Jai Deva Oil Co. is a trusted multi-brand industrial and automotive lubricant distributor, helping businesses choose quality products from leading brands with confidence.",
         primaryBtnLabel: "Explore Products",
-        primaryBtnUrl: "/products",
-        secondaryBtnLabel: "Contact Us",
-        secondaryBtnUrl: "/contact-us",
+        primaryBtnUrl: "#products",
+        secondaryBtnLabel: "Become a Partner",
+        secondaryBtnUrl: "#contact",
+        points: [
+          "Engine, hydraulic and gear oils",
+          "Grease and specialty lubricants",
+          "Reliable supply and guidance",
+        ],
+        bgImage:
+          "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=2200&q=85",
+        productImage:
+          "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
       },
     },
     {
@@ -308,87 +286,65 @@ async function main() {
       order: 5,
       content: {
         title: "OUR BRANDS",
-        subtitle: "Leading Brands. Reliable Lubrication.",
-        description:
-          "We offer products across multiple lubricant and industrial solution brands, helping customers find suitable products for their specific applications.",
-        industriesTitle: "INDUSTRIES WE SERVE",
-        industriesSubtitle: "Lubrication Solutions for Diverse Industries",
-        industriesDescription:
-          "Our extensive lubricant portfolio serves the requirements of various industries, including: Steel | Cement | Power | Textile | Paper | Manufacturing | Engineering | Automotive. We provide lubrication products for industrial machinery, hydraulic systems, gears, bearings, engines, metalworking equipment and other critical applications.",
-        industries: [
-          "Steel",
-          "Cement",
-          "Power",
-          "Textile",
-          "Paper",
-          "Manufacturing",
-          "Engineering",
-          "Automotive",
-        ],
+        subtitle: "Leading Brands for Reliable Lubrication Solutions",
+        description: "Leading Brands for Reliable Lubrication Solutions",
         clients: [
           {
             id: "hp-lubricants",
             name: "HP Lubricants",
-            category: "Industrial & Automotive Lubricants",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727090/mahalaxmi/clients/iwjyvy3p4tm4pfjwoqp9.jpg",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672222/jaideva/brands/hp-lubricants.png",
           },
           {
-            id: "valvoline",
-            name: "Valvoline",
-            category: "Automotive & Heavy-Duty Fluids",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727091/mahalaxmi/clients/x6erp0glqa6qkzgogs8l.jpg",
-          },
-          {
-            id: "gs-caltex",
-            name: "GS Caltex",
-            category: "High-Performance Lubricants",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727092/mahalaxmi/clients/d7vj33wjvr5ectr839ku.jpg",
-          },
-          {
-            id: "idemitsu",
-            name: "Idemitsu",
-            category: "Japanese Precision Lubrication",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727094/mahalaxmi/clients/wzer7j4ztww2jqvkmvf0.jpg",
-          },
-          {
-            id: "molygraph",
-            name: "Molygraph",
-            category: "Specialty Lubricants & Greases",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727090/mahalaxmi/clients/iwjyvy3p4tm4pfjwoqp9.jpg",
+            id: "caltex",
+            name: "Caltex",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672216/jaideva/brands/caltex.svg",
           },
           {
             id: "motultech",
             name: "MotulTech",
-            category: "Industrial Fluids & Metalworking",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727091/mahalaxmi/clients/x6erp0glqa6qkzgogs8l.jpg",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672226/jaideva/brands/motultech.png",
           },
           {
-            id: "deep-pneumatics",
-            name: "Deep Pneumatics",
-            category: "Compressed Air & Industrial Fluids",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727092/mahalaxmi/clients/d7vj33wjvr5ectr839ku.jpg",
+            id: "itw-chemin",
+            name: "ITW Chemin",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672224/jaideva/brands/itw-chemin.png",
+          },
+          {
+            id: "valvoline",
+            name: "Valvoline",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672228/jaideva/brands/valvoline.png",
           },
           {
             id: "lubricon",
             name: "Lubricon",
-            category: "Specialized Industrial Lubricants",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727094/mahalaxmi/clients/wzer7j4ztww2jqvkmvf0.jpg",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672225/jaideva/brands/lubricon.png",
           },
           {
-            id: "tw-chemie",
-            name: "ITW Chemin",
-            category: "Specialty Chemicals & Cleaners",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790062503/jaideva/uploads/xbtwkgclihw6x3antjmq.jpg",
+            id: "molygraph",
+            name: "Molygraph",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672225/jaideva/brands/molygraph.png",
+          },
+          {
+            id: "gs-caltex",
+            name: "GS Caltex",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672221/jaideva/brands/gs-caltex.png",
+          },
+          {
+            id: "idemitsu",
+            name: "Idemitsu",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672223/jaideva/brands/idemitsu.png",
+          },
+          {
+            id: "deep-pneumatics",
+            name: "Deep Pneumatics",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672218/jaideva/brands/deep-pneumatics.png",
           },
           {
             id: "filtermist",
             name: "Filtermist",
-            category: "Oil Mist Extraction & Air Filtration",
-            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1787727091/mahalaxmi/clients/x6erp0glqa6qkzgogs8l.jpg",
+            logo: "https://res.cloudinary.com/dpa93copz/image/upload/v1790672219/jaideva/brands/filtermist.svg",
           },
         ],
-        buttonText: "View All Brands",
-        buttonLink: "/about-us",
       },
     },
     {
@@ -396,11 +352,11 @@ async function main() {
       order: 6,
       content: {
         title: "WHY JAI DEVA OIL CO.?",
-        subtitle: "Your Trusted Lubrication Partner Since 2008",
+        subtitle: "Your Trusted Lubrication Partner Since 2007",
         points: [
           {
             title: "18+ Years of Experience",
-            desc: "Strong industry experience in lubricant distribution and trading since 2008.",
+            desc: "Strong industry experience in lubricant distribution and trading since 2007.",
             icon: "Calendar",
           },
           {
@@ -453,22 +409,14 @@ async function main() {
       type: "LocateDistributorSection",
       order: 8,
       content: {
-        heading: "FIND THE RIGHT LUBRICANT FOR YOUR APPLICATION",
-        subheading: "Looking for the Right Lubrication Solution?",
-        paragraph1:
-          "Every machine and application has different lubrication requirements. Our team can help you identify suitable products based on your equipment, application and operating conditions.",
-        paragraph2:
-          "Whether you require Hydraulic Oil, Gear Oil, Engine Oil, Industrial Grease, Cutting Oil or other specialty lubricants, Jai Deva Oil Co. is ready to assist.",
-        primaryBtnLabel: "Send Your Enquiry",
-        secondaryBtnLabel: "Talk to Our Team",
-        contactTitle: "JAI DEVA OIL CO.",
         companyName: "Jai Deva Oil Co.",
+        logo: "/jaideva-logo.png",
         address: "Industrial Area & Distribution Hub, India",
         phone: "+91 98765 43210",
         workingHours: "Working Hours: Mon - Sat: 9:00 AM - 6:30 PM",
         email: "sales@jaidevaoil.com",
-        btn1Text: "Send Enquiry",
-        btn2Text: "Become a Distributor",
+        btn1Text: "SEND ENQUIRY",
+        btn2Text: "BECOME A DISTRIBUTOR",
       },
     },
   ];
@@ -478,7 +426,7 @@ async function main() {
     where: {
       pageId: homePage.id,
       type: {
-        in: ["HeroSliderSection", "TestimonialsSection", "DistributorBanner"],
+        in: ["HeroSlider", "HeroSliderSection", "AboutSection", "TestimonialsSection", "DistributorBanner"],
       },
     },
   });
@@ -514,7 +462,7 @@ async function main() {
       metaTitle:
         "About Us | Jai Deva Oil Co. - Multi-Brand Lubricant Distributor",
       metaDescription:
-        "Established in 2008, Jai Deva Oil Co. is a leading wholesaler, distributor, and trader of industrial and automotive lubricants across India.",
+        "Established in 2007, Jai Deva Oil Co. is a leading wholesaler, distributor, and trader of industrial and automotive lubricants across India.",
     },
     create: {
       title: "About Us",
@@ -527,13 +475,13 @@ async function main() {
       metaTitle:
         "About Us | Jai Deva Oil Co. - Multi-Brand Lubricant Distributor",
       metaDescription:
-        "Established in 2008, Jai Deva Oil Co. is a leading wholesaler, distributor, and trader of industrial and automotive lubricants across India.",
+        "Established in 2007, Jai Deva Oil Co. is a leading wholesaler, distributor, and trader of industrial and automotive lubricants across India.",
     },
   });
 
-  // Clean up any old Mahalaxmi section
+  // Clean up any old Jai Deva section
   await prisma.section.deleteMany({
-    where: { pageId: aboutPage.id, type: "AboutMahalaxmiContent" },
+    where: { pageId: aboutPage.id, type: "AboutJai DevaContent" },
   });
 
   const aboutSections = [
@@ -559,13 +507,13 @@ async function main() {
         mentorSubHeader: "Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.",
         proprietorSubHeader: "Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.",
         paragraphs: [
-          "Established in the year 2008, Jai Deva Oil Co. is the leading prominent Wholesaler, Distributor, and Trader of Lubricants Oil, Engine Oil, Automotive Grease, Hydraulic Oil, Cutting Oil, Gear Oil, Rust Preventive Oil and much more. Made by making use of finest quality inputs altogether with superior machinery, these are very much-admired and recommended. Also, these are tested carefully before getting delivered at the end of our customers. To add, their effectiveness, these are enormously popular. Accessible with us in a plethora of sizes and packing, these could be purchased from us at most affordable costs.",
+          "Established in the year 2007, Jai Deva Oil Co. is the leading prominent Wholesaler, Distributor, and Trader of Lubricants Oil, Engine Oil, Automotive Grease, Hydraulic Oil, Cutting Oil, Gear Oil, Rust Preventive Oil and much more. Made by making use of finest quality inputs altogether with superior machinery, these are very much-admired and recommended. Also, these are tested carefully before getting delivered at the end of our customers. To add, their effectiveness, these are enormously popular. Accessible with us in a plethora of sizes and packing, these could be purchased from us at most affordable costs.",
           "Our team of professionals keeps a check on clients' rising necessities and therefore aids us in meeting the same in certain period of time. Owing to our quality centric approach, we have been highly proficient to meet the desires of clients all over the marketplace. Also, we have with us a team of skilled and dexterous professionals who own years of expertise in this business realm.",
           "We are headed by our mentor Mr. Mayank Goyal, who has enormous knowledge and experience of the field. Owing to his balanced business plans and policies, we have attained a noteworthy position in the industry.",
         ],
         whyChooseTitle: "WHY CHOOSE JAI DEVA OIL CO.",
         whyChooseSubtitle:
-          "Delivering Quality Lubricants. Building Trust Since 2008.",
+          "Delivering Quality Lubricants. Building Trust Since 2007.",
         whyChooseItems: [
           {
             icon: "Building2",
@@ -615,7 +563,7 @@ async function main() {
         proprietor: "Mr. Mayank Goyal",
         servingRegion: "Industrial Belts & Nationwide Distribution Hubs, India",
         establishment:
-          "Est. 2008 | 18+ Years Experience | Leading Wholesaler & Trader",
+          "Est. 2007 | 18+ Years Experience | Leading Wholesaler & Trader",
         phone: "+91 98765 43210",
         email: "sales@jaidevaoil.com",
       },
@@ -771,7 +719,7 @@ async function main() {
       content: {
         image:
           "https://res.cloudinary.com/dpa93copz/image/upload/v1787737913/mahalaxmi/events/events-banner.jpg",
-        altText: "MAHALAXMI ENTERPRISES Events & Activities Gallery Banner",
+        altText: "JAI DEVA OIL CO. Events & Activities Gallery Banner",
       },
     },
     {
@@ -780,7 +728,7 @@ async function main() {
       content: {
         title: "EVENTS",
         introText:
-          "Mahalaxmi Enterprises actively engages with their stakeholders by frequently hosting meetings and events with them. This includes meeting business partners, strategic partners, distributors, OEMs, agencies, mechanics, and industrial clients.",
+          "Jai Deva Oil Co. actively engages with their stakeholders by frequently hosting meetings and events with them. This includes meeting business partners, strategic partners, distributors, OEMs, agencies, mechanics, and industrial clients.",
       },
     },
     {
@@ -811,15 +759,15 @@ async function main() {
           },
           {
             id: 4,
-            title: "Excon 2017 Mahalaxmi Enterprises Stall Sideview",
+            title: "Excon 2017 Jai Deva Oil Co. Stall Sideview",
             image: "https://www.hplubricants.in/sites/default/files/b4.jpg",
-            altText: "Excon 2017 Mahalaxmi Enterprises Stall Sideview",
+            altText: "Excon 2017 Jai Deva Oil Co. Stall Sideview",
           },
           {
             id: 5,
-            title: "Excon 2017 Mahalaxmi Enterprises Stall",
+            title: "Excon 2017 Jai Deva Oil Co. Stall",
             image: "https://www.hplubricants.in/sites/default/files/b3.jpg",
-            altText: "Excon 2017 Mahalaxmi Enterprises Stall",
+            altText: "Excon 2017 Jai Deva Oil Co. Stall",
           },
           {
             id: 6,
@@ -895,15 +843,15 @@ async function main() {
           },
           {
             id: 18,
-            title: "Mahalaxmi Enterprises ConMac 2017 Showcase",
+            title: "Jai Deva Oil Co. ConMac 2017 Showcase",
             image: "https://www.hplubricants.in/sites/default/files/8.jpg",
-            altText: "Mahalaxmi Enterprises ConMac 2017 Showcase",
+            altText: "Jai Deva Oil Co. ConMac 2017 Showcase",
           },
           {
             id: 19,
-            title: "Mahalaxmi Enterprises ConMac 2017",
+            title: "Jai Deva Oil Co. ConMac 2017",
             image: "https://www.hplubricants.in/sites/default/files/7.jpg",
-            altText: "Mahalaxmi Enterprises ConMac 2017",
+            altText: "Jai Deva Oil Co. ConMac 2017",
           },
           {
             id: 20,
@@ -986,7 +934,7 @@ async function main() {
       shortDesc:
         "High performance hydraulic, compressor, turbine, transformer, gear, film, and machinery lubricants.",
       fullDesc:
-        "Discover MAHALAXMI ENTERPRISES' industrial oils tailored for hydraulic systems, gearboxes, compressors, sugar mills, and more. Trusted for quality, innovation, and reliability.",
+        "Discover JAI DEVA OIL CO.' industrial oils tailored for hydraulic systems, gearboxes, compressors, sugar mills, and more. Trusted for quality, innovation, and reliability.",
       coverImage:
         "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Compressor-Oils.png",
       isFeatured: true,
@@ -998,7 +946,7 @@ async function main() {
       shortDesc:
         "Extreme pressure lithium, complex, wheel bearing, and specialty temperature resistant greases.",
       fullDesc:
-        "MAHALAXMI ENTERPRISES supplies premium industrial greases formulated for heavy machinery bearings, steel mills, and high temperature applications.",
+        "JAI DEVA OIL CO. supplies premium industrial greases formulated for heavy machinery bearings, steel mills, and high temperature applications.",
       coverImage:
         "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Industrial-Greases.png",
       isFeatured: true,
@@ -1010,7 +958,7 @@ async function main() {
       shortDesc:
         "High-quality automotive, agricultural, passenger car, and engine oils.",
       fullDesc:
-        "Explore MAHALAXMI ENTERPRISES' range of automotive, agricultural, and commercial engine oils offering superior quality and performance for all your vehicles.",
+        "Explore JAI DEVA OIL CO.' range of automotive, agricultural, and commercial engine oils offering superior quality and performance for all your vehicles.",
       coverImage:
         "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Automotive-Oils.png",
       isFeatured: true,
@@ -2468,7 +2416,7 @@ async function main() {
       content: {
         image:
           "https://res.cloudinary.com/dpa93copz/image/upload/v1787738185/mahalaxmi/blogs/blogs-banner.jpg",
-        altText: "Blogs - Mahalaxmi Enterprises HP Lubricants",
+        altText: "Blogs - Jai Deva Oil Co. HP Lubricants",
       },
     },
     {
@@ -2690,7 +2638,7 @@ async function main() {
             ],
             bulletPoints: [
               "API Standards (CK-4 / CI-4 Plus): Look for API donut marks. API CK-4 and CJ-4 low-SAPS oils are mandatory for modern BS-VI engines equipped with DPF and SCR systems, while API CI-4 Plus is ideal for BS-IV fleets.",
-              "OEM Approvals: Top lubricants distributed by MAHALAXMI ENTERPRISES carry OEM approvals from major vehicle manufacturers (Tata Motors, Ashok Leyland, Mahindra, Cummins), giving extra assurance of performance.",
+              "OEM Approvals: Top lubricants distributed by JAI DEVA OIL CO. carry OEM approvals from major vehicle manufacturers (Tata Motors, Ashok Leyland, Mahindra, Cummins), giving extra assurance of performance.",
             ],
           },
           {
@@ -2727,12 +2675,12 @@ async function main() {
           {
             heading: "8. Cost vs. Performance",
             paragraphs: [
-              "Weigh short-term lubricant costs against long-term fuel efficiency, reduced maintenance, and engine overhaul prevention. Investing in high-grade lubricants from MAHALAXMI ENTERPRISES saves significant operating costs over time.",
+              "Weigh short-term lubricant costs against long-term fuel efficiency, reduced maintenance, and engine overhaul prevention. Investing in high-grade lubricants from JAI DEVA OIL CO. saves significant operating costs over time.",
             ],
           },
         ],
         conclusion:
-          "Selecting the right Diesel Engine Oil requires balancing vehicle manufacturer specifications, climate conditions, duty cycles, and budget. Choosing HP MILCY series diesel lubricants from Mahalaxmi Enterprises ensures maximum engine protection, extended drain intervals, and optimal fuel economy for your commercial fleet or personal vehicle.",
+          "Selecting the right Diesel Engine Oil requires balancing vehicle manufacturer specifications, climate conditions, duty cycles, and budget. Choosing HP MILCY series diesel lubricants from Jai Deva Oil Co. ensures maximum engine protection, extended drain intervals, and optimal fuel economy for your commercial fleet or personal vehicle.",
         recommendedProducts: [
           "HP MILCY TURBO ULTIMA 10W-40",
           "HP MILCY POWER 15W-40",
@@ -2798,7 +2746,7 @@ async function main() {
           },
         ],
         conclusion:
-          "Trust the HP MILCY 15W-40 series from Mahalaxmi Enterprises for exceptional engine cleanliness, reduced oil consumption, and long-term machinery protection.",
+          "Trust the HP MILCY 15W-40 series from Jai Deva Oil Co. for exceptional engine cleanliness, reduced oil consumption, and long-term machinery protection.",
         recommendedProducts: [
           "HP MILCY TURBO STAR 15W-40",
           "HP MILCY SUPER 15W-40",
@@ -2898,14 +2846,14 @@ async function main() {
           },
           {
             heading:
-              "3. Advanced Lubrication Technology by MAHALAXMI ENTERPRISES",
+              "3. Advanced Lubrication Technology by JAI DEVA OIL CO.",
             paragraphs: [
               "HP RACER 4T oils are blended with premium Group II base stocks and synthetic additives. They deliver exceptional thermal stability, preventing oil breakdown when idling in dense Indian city traffic.",
             ],
           },
         ],
         conclusion:
-          "Keep your motorcycle engine smooth, responsive, and long-lasting with HP RACER 4T series motorcycle oils supplied by Mahalaxmi Enterprises.",
+          "Keep your motorcycle engine smooth, responsive, and long-lasting with HP RACER 4T series motorcycle oils supplied by Jai Deva Oil Co..",
         recommendedProducts: [
           "HP RACER 4T 20W-40",
           "HP RACER 4T SYNTH 10W-30",
@@ -2973,14 +2921,14 @@ async function main() {
       category: "Bike Oils",
       publishDate: "February 08, 2026",
       readTime: "6 min read",
-      author: "Mahalaxmi Two-Wheeler Lube Advisory",
+      author: "Jai Deva Two-Wheeler Lube Advisory",
       excerpt:
         "Discover why HP RACER 4T series is the top choice for two-wheelers, delivering wet clutch friction control, reduced oil consumption, and lower maintenance costs.",
       coverImage:
         "https://www.hplubricants.in/sites/default/files/The-best-engine-oil-for-your-bike-thumb.jpg",
       content: {
         intro:
-          "Choosing the right engine oil for your bike is crucial for maintaining performance, efficiency, and engine longevity. MAHALAXMI ENTERPRISES' Two Wheeler Engine Oil range is engineered to meet the stringent demands of modern motorcycles, commuters, and scooters across Indian road conditions.",
+          "Choosing the right engine oil for your bike is crucial for maintaining performance, efficiency, and engine longevity. JAI DEVA OIL CO.' Two Wheeler Engine Oil range is engineered to meet the stringent demands of modern motorcycles, commuters, and scooters across Indian road conditions.",
         sections: [
           {
             heading: "1. Enhanced Engine Durability",
@@ -3008,7 +2956,7 @@ async function main() {
           },
         ],
         conclusion:
-          "Experience an unparalleled biking experience with HP RACER 4T motorcycle lubricants from Mahalaxmi Enterprises.",
+          "Experience an unparalleled biking experience with HP RACER 4T motorcycle lubricants from Jai Deva Oil Co..",
         recommendedProducts: [
           "HP RACER 4T 20W-40",
           "HP RACER 4T SYNTH 10W-30",
@@ -3116,7 +3064,7 @@ async function main() {
 
   console.log("=========================================");
   console.log("Database seeded successfully with 100% website data!");
-  console.log("Admin Login: admin@mahalaxmi.com / Admin@123");
+  console.log("Admin Login: admin@jaideva.com / Admin@123");
   console.log("=========================================");
 }
 

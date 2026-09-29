@@ -20,7 +20,7 @@ import { SaveButton } from "@/components/SaveButton";
 export interface ClientItem {
   id: string;
   name: string;
-  category: string;
+  category?: string;
   logo: string;
 }
 
@@ -241,8 +241,7 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
     const newItem: ClientItem = {
       id: newId,
       name: "New Partner / Client",
-      category: "Industrial Enterprise",
-      logo: "",
+            logo: "",
     };
     setData((prev) => ({
       ...prev,
@@ -408,9 +407,7 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
                             <span className="text-xs font-bold text-[#0B0F29] uppercase tracking-wide truncate">
                               {client.name || `Client #${idx + 1}`}
                             </span>
-                            <span className="text-[11px] text-[#C86218] font-semibold truncate">
-                              {client.category || "Client Category"}
-                            </span>
+                            
                           </div>
                         </div>
 
@@ -445,28 +442,14 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
                         }`}
                       >
                         <div className="overflow-hidden flex flex-col gap-4">
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <InputField
-                              label="Client / Enterprise Name"
-                              value={client.name}
-                              onChange={(e) =>
-                                handleClientChange(idx, "name", e.target.value)
-                              }
-                              placeholder="e.g. Haldiram's / THDC Khurja"
-                            />
-                            <InputField
-                              label="Industry / Category"
-                              value={client.category}
-                              onChange={(e) =>
-                                handleClientChange(
-                                  idx,
-                                  "category",
-                                  e.target.value
-                                )
-                              }
-                              placeholder="e.g. Food Processing Giant / Armed Forces"
-                            />
-                          </div>
+                          <InputField
+                            label="Client / Enterprise Name"
+                            value={client.name}
+                            onChange={(e) =>
+                              handleClientChange(idx, "name", e.target.value)
+                            }
+                            placeholder="e.g. Caltex / HP Lubricants / MotulTech"
+                          />
 
                           <LogoDropzone
                             label="Client Brand Logo"

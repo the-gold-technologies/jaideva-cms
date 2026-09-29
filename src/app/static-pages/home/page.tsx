@@ -2,13 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import { PageHeader } from "@/components/PageHeader";
-import { HeroSliderSection } from "./components/HeroSliderSection";
-import { AboutSection } from "./components/AboutSection";
+import { HomeHeroSection } from "./components/HomeHeroSection";
 import { ProductsServicesSection } from "./components/ProductsServicesSection";
 import { MultiBrandSolutionsSection } from "./components/MultiBrandSolutionsSection";
 import { IndustriesWeServeSection } from "./components/IndustriesWeServeSection";
-import { TrustedClientsSection } from "./components/TrustedClientsSection";
 import { WhyJaiDevaSection } from "./components/WhyJaiDevaSection";
+import { TrustedClientsSection } from "./components/TrustedClientsSection";
 import { BrandClosingBannerSection } from "./components/BrandClosingBannerSection";
 import { LocateDistributorSection } from "./components/LocateDistributorSection";
 
@@ -34,25 +33,39 @@ export default function HomePageEditor() {
     <section className="flex flex-col gap-8 pb-12">
       <PageHeader
         title="Home Page Content"
-        description="Manage the layout sections of your homepage. Expand any section to edit its details."
+        description="Manage the live layout sections of your homepage. Edit fields below to update the website immediately."
       />
 
-      <HeroSliderSection initialData={homeData?.HeroSlider} />
-      <AboutSection initialData={homeData?.AboutSection} />
+      {/* 1. Homepage Hero (Live Website Centerpiece) */}
+      <HomeHeroSection initialData={homeData?.HomeHero} />
+
+      {/* 2. Our Product Range */}
       <ProductsServicesSection
         initialData={homeData?.ProductsServicesSection}
       />
+
+      {/* 3. Multi-Brand Lubricant Solutions */}
       <MultiBrandSolutionsSection
         initialData={homeData?.MultiBrandSolutionsSection}
       />
+
+      {/* 4. Industries We Serve */}
       <IndustriesWeServeSection
         initialData={homeData?.IndustriesWeServeSection}
       />
+
+      {/* 5. Why Jai Deva Oil Co.? */}
       <WhyJaiDevaSection initialData={homeData?.WhyJaiDevaSection} />
+
+      {/* 6. Trusted Clients & Brands Marquee */}
       <TrustedClientsSection initialData={homeData?.TrustedClientsSection} />
+
+      {/* 7. Brand Summary Closing Banner */}
       <BrandClosingBannerSection
         initialData={homeData?.BrandClosingBannerSection}
       />
+
+      {/* 8. Locate Distributor & Direct Enquiry Contact */}
       <LocateDistributorSection
         initialData={homeData?.LocateDistributorSection}
       />
