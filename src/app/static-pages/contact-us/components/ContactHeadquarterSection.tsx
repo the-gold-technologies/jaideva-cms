@@ -28,7 +28,7 @@ export function ContactHeadquarterSection({
   initialData,
   onSave,
 }: ContactHeadquarterSectionProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [companyName, setCompanyName] = useState("Jai Deva Oil Co.");
   const [badge, setBadge] = useState("Authorized HP Lubricants Distributor");
   const [description, setDescription] = useState(

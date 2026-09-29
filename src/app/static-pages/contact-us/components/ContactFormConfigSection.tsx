@@ -23,7 +23,7 @@ export function ContactFormConfigSection({
   initialData,
   onSave,
 }: ContactFormConfigSectionProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [badge, setBadge] = useState("Online Request");
   const [title, setTitle] = useState("Send an Enquiry");
   const [subtitle, setSubtitle] = useState(

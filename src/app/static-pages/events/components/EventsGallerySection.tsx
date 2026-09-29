@@ -29,7 +29,7 @@ export function EventsGallerySection({
   initialData,
   onSave,
 }: EventsGallerySectionProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);

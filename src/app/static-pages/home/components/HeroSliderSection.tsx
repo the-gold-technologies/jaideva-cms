@@ -10,7 +10,7 @@ import { uploadFiles } from "@/lib/uploadHelpers";
 export const DEFAULT_HERO_IMAGES: string[] = [];
 
 export function HeroSliderSection({ initialData }: { initialData?: any }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
   const [images, setImages] =

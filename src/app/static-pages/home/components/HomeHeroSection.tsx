@@ -48,7 +48,7 @@ export function HomeHeroSection({
 }: {
   initialData?: any;
 }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
   const [formData, setFormData] = useState<HomeHeroData>(DEFAULT_HOME_HERO_DATA);

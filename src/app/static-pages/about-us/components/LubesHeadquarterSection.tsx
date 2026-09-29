@@ -32,7 +32,7 @@ export function LubesHeadquarterSection({
 }: {
   initialData?: LubesHeadquarterData;
 }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 

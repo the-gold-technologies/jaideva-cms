@@ -24,7 +24,7 @@ export function ContactHeroSection({
   initialData,
   onSave,
 }: ContactHeroSectionProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState("Contact Us");
   const [subtitle, setSubtitle] = useState("");
   const [images, setImages] = useState<(File | string | null)[]>([]);

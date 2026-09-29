@@ -33,7 +33,8 @@ async function main() {
         "Established in 2007, Jai Deva Oil Co. is a trusted Authorized Distributor of Industrial & Automotive Lubricants, offering quality lubrication products from leading brands.",
       phone: "+91 98120 22340",
       email: "sales@jaideva.com",
-      address: "Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India",
+      address:
+        "Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India",
       logo: "/jaideva-logo.png",
       socialLinks: {
         facebook: "https://facebook.com",
@@ -52,7 +53,8 @@ async function main() {
         "Established in 2007, Jai Deva Oil Co. is a trusted Authorized Distributor of Industrial & Automotive Lubricants, offering quality lubrication products from leading brands.",
       phone: "+91 98120 22340",
       email: "sales@jaideva.com",
-      address: "Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India",
+      address:
+        "Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India",
       logo: "/jaideva-logo.png",
       socialLinks: {
         facebook: "https://facebook.com",
@@ -149,7 +151,7 @@ async function main() {
         bgImage:
           "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=2200&q=85",
         productImage:
-          "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
       },
     },
     {
@@ -426,7 +428,13 @@ async function main() {
     where: {
       pageId: homePage.id,
       type: {
-        in: ["HeroSlider", "HeroSliderSection", "AboutSection", "TestimonialsSection", "DistributorBanner"],
+        in: [
+          "HeroSlider",
+          "HeroSliderSection",
+          "AboutSection",
+          "TestimonialsSection",
+          "DistributorBanner",
+        ],
       },
     },
   });
@@ -484,93 +492,294 @@ async function main() {
     where: { pageId: aboutPage.id, type: "AboutJai DevaContent" },
   });
 
+  // Delete LubesHeadquarterSection if it still exists (no longer used on frontend)
+  await prisma.section.deleteMany({
+    where: { pageId: aboutPage.id, type: "LubesHeadquarterSection" },
+  });
+
   const aboutSections = [
+    // 0. Hero
     {
       type: "AboutHero",
       order: 0,
       content: {
+        heading: "BUILT ON TRUST SINCE 2007",
+        tagline: "Less You Burn, the More You Earn",
+        description:
+          "Jai Deva Oil Co. is a multi-brand industrial and automotive lubricant distributor. We source, stock, and supply genuine oils, greases, and specialty fluids for plants, fleets, and workshops — with quality checks and dependable regional delivery.",
         bannerImage:
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1787736239/mahalaxmi/about/About-HPCL.jpg",
-        image:
-          "https://res.cloudinary.com/dpa93copz/image/upload/v1787736239/mahalaxmi/about/About-HPCL.jpg",
-        altText: "About JAI DEVA OIL CO. Banner",
-        title: "About JAI DEVA OIL CO.",
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+        altText: "Jai Deva Oil Co. lubricant warehouse and supply",
       },
     },
+    // 1. Story & Mentor Narrative
     {
       type: "AboutJaiDevaContent",
       order: 1,
       content: {
-        title: "ABOUT JAI DEVA OIL CO.",
-        mainTitle: "ABOUT JAI DEVA OIL CO.",
+        title: "About Jai Deva Oil Co.",
+        mainTitle: "About Jai Deva Oil Co.",
+        mentorSubHeader: "Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co.",
+        proprietorSubHeader: "Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co.",
         subtitle: "Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co.",
-        mentorSubHeader: "Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.",
-        proprietorSubHeader: "Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.",
         paragraphs: [
-          "Established in the year 2007, Jai Deva Oil Co. is the leading prominent Wholesaler, Distributor, and Trader of Lubricants Oil, Engine Oil, Automotive Grease, Hydraulic Oil, Cutting Oil, Gear Oil, Rust Preventive Oil and much more. Made by making use of finest quality inputs altogether with superior machinery, these are very much-admired and recommended. Also, these are tested carefully before getting delivered at the end of our customers. To add, their effectiveness, these are enormously popular. Accessible with us in a plethora of sizes and packing, these could be purchased from us at most affordable costs.",
-          "Our team of professionals keeps a check on clients' rising necessities and therefore aids us in meeting the same in certain period of time. Owing to our quality centric approach, we have been highly proficient to meet the desires of clients all over the marketplace. Also, we have with us a team of skilled and dexterous professionals who own years of expertise in this business realm.",
-          "We are headed by our mentor Mr. Mayank Goyal, who has enormous knowledge and experience of the field. Owing to his balanced business plans and policies, we have attained a noteworthy position in the industry.",
+          "Established in the year 2007, Jai Deva Oil Co. is a leading and prominent wholesaler, distributor, and trader of lubricant oil, engine oil, automotive grease, hydraulic oil, cutting oil, gear oil, rust preventive oil and much more. Made using the finest quality inputs alongside superior machinery, our products are highly admired and recommended, and each is tested carefully before delivery to our customers.",
+          "Our team of professionals keeps a close watch on clients' evolving requirements, helping us meet them within a defined period of time. Owing to our quality-centric approach, we have been highly proficient in meeting the needs of clients across the marketplace, backed by a team of skilled and dexterous professionals with years of expertise in this business.",
+          "We are headed by our mentor Mr. Mayank Goyal, who brings extensive knowledge and experience to the field. Owing to his balanced business plans and policies, we have attained a noteworthy position in the industry.",
         ],
-        whyChooseTitle: "WHY CHOOSE JAI DEVA OIL CO.",
-        whyChooseSubtitle:
-          "Delivering Quality Lubricants. Building Trust Since 2007.",
-        whyChooseItems: [
+      },
+    },
+    // 2. Team Structure
+    {
+      type: "OurTeamStructureSection",
+      order: 2,
+      content: {
+        heading: "Our Team Structure",
+        description:
+          "A synchronized workforce of <strong>62+ lubricant specialists</strong>, relationship managers, and logistics crew driving dependable supply across India.",
+        cards: [
           {
-            icon: "Building2",
-            title: "Multi-Brand Distributor",
-            description:
-              "Catering to diverse industrial and automotive sectors nationwide.",
+            step: 1,
+            title: "Industrial Sales",
+            total: "27 Members",
+            icon: "Factory",
+            roles: [
+              { count: "20", label: "Field Sales Officers" },
+              { count: "7", label: "CRM (Backend)" },
+            ],
           },
           {
-            icon: "Boxes",
-            title: "Wide Product Range",
-            description:
-              "Industrial oils, automotive lubricants, greases, and specialty fluids.",
+            step: 2,
+            title: "Digital Leads",
+            total: "4 Members",
+            icon: "Globe2",
+            roles: [{ count: "4", label: "CRM (Backend)" }],
+            tagline: "Indiamart & SEO",
           },
           {
-            icon: "Wrench",
-            title: "Technical Expertise",
-            description:
-              "Professional guidance for choosing the optimal grade and viscosity.",
+            step: 3,
+            title: "Automotive Sales",
+            total: "8 Members",
+            icon: "Bike",
+            roles: [
+              { count: "5", label: "Field Sales Officers" },
+              { count: "2", label: "CRM (Backend)" },
+              { count: "1", label: "Team Leader" },
+            ],
           },
           {
-            icon: "Truck",
-            title: "Reliable & Swift Supply",
-            description:
-              "Consistent inventory availability with prompt delivery logistics.",
-          },
-          {
-            icon: "ShieldCheck",
-            title: "Quality-Focused Approach",
-            description:
-              "100% genuine lubricants tested for premium equipment performance.",
-          },
-          {
-            icon: "Headphones",
-            title: "Customer-Centric Service",
-            description:
-              "Dedicated support team ensuring long-term customer satisfaction.",
+            step: 4,
+            title: "Operations & Support",
+            total: "23+ Members",
+            icon: "Cog",
+            roles: [
+              { count: "4", label: "Accounts Team" },
+              { count: "3", label: "Warehouse Manager" },
+              { count: "16+", label: "Drivers & Staff" },
+            ],
           },
         ],
       },
     },
+    // 3. Journey Timeline
     {
-      type: "LubesHeadquarterSection",
-      order: 2,
+      type: "OurJourneySection",
+      order: 3,
       content: {
-        title: "JAI DEVA OIL CO.",
-        badge: "MULTI-BRAND INDUSTRIAL & AUTOMOTIVE LUBRICANTS DISTRIBUTOR",
-        proprietor: "Mr. Mayank Goyal",
-        servingRegion: "Industrial Belts & Nationwide Distribution Hubs, India",
-        establishment:
-          "Est. 2007 | 18+ Years Experience | Leading Wholesaler & Trader",
-        phone: "+91 98765 43210",
-        email: "sales@jaidevaoil.com",
+        eyebrow: "Our Journey",
+        heading: "Building Trust Since 2007",
+        intro:
+          "Every milestone below reflects a step in how we grew from a single trading desk into a multi-brand lubricant distribution partner.",
+        milestones: [
+          {
+            year: "2007",
+            icon: "Calendar",
+            title: "Company Founded",
+            description:
+              "Jai Deva Oil Co. begins trading lubricants, laying the foundation for long-term partnerships built on trust.",
+          },
+          {
+            year: "2012",
+            icon: "Layers",
+            title: "Multi-Brand Portfolio",
+            description:
+              "We broaden our range to include industrial and automotive lubrication brands, giving customers more choice under one roof.",
+          },
+          {
+            year: "2016",
+            icon: "Boxes",
+            title: "Distribution Network Grows",
+            description:
+              "Our warehousing and logistics footprint expands, so customers across sectors can rely on consistent supply.",
+          },
+          {
+            year: "2021",
+            icon: "ShieldCheck",
+            title: "Quality-First Standards",
+            description:
+              "We strengthen sourcing and storage practices to meet stricter industry quality and handling standards.",
+          },
+          {
+            year: "Today",
+            icon: "Users",
+            title: "A Trusted Industry Partner",
+            description:
+              "We keep growing alongside our customers, offering industry-focused lubrication solutions and dependable service.",
+          },
+        ],
+      },
+    },
+    // 4. Why Choose Jai Deva Oil Co.
+    {
+      type: "AboutWhyChooseSection",
+      order: 4,
+      content: {
+        title: "Why Choose Jai Deva Oil Co.?",
+        subtitle: "Dependable multi-brand lubricant supply, proven since 2007.",
+        items: [
+          {
+            icon: "Boxes",
+            title: "Multi-Brand Portfolio",
+            description:
+              "HP, Castrol, Shell, Gulf, Servo, Motul – all under one roof for industrial & automotive needs.",
+          },
+          {
+            icon: "Layers",
+            title: "Wide Product Range",
+            description:
+              "Industrial oils, automotive lubricants, greases, hydraulic fluids, and specialty products.",
+          },
+          {
+            icon: "ShieldCheck",
+            title: "Quality-First Sourcing",
+            description:
+              "100% genuine lubricants with factory test certificates, viscosity verification, and sealed-batch integrity.",
+          },
+          {
+            icon: "Truck",
+            title: "Reliable Pan-India Supply",
+            description:
+              "Consistent inventory with prompt delivery across 40+ cities and industrial clusters.",
+          },
+          {
+            icon: "Users",
+            title: "Dedicated Account Team",
+            description:
+              "Experienced CRM and field officers ensure long-term customer satisfaction.",
+          },
+          {
+            icon: "Calendar",
+            title: "18+ Years of Trust",
+            description:
+              "Operating since 2007 with a proven track record of quality service and industry expertise.",
+          },
+        ],
+        whyChooseTitle: "Why Choose Jai Deva Oil Co.?",
+        whyChooseSubtitle: "Dependable multi-brand lubricant supply, proven since 2007.",
+        whyChooseItems: [
+          {
+            icon: "Boxes",
+            title: "Multi-Brand Portfolio",
+            description:
+              "HP, Castrol, Shell, Gulf, Servo, Motul – all under one roof for industrial & automotive needs.",
+          },
+          {
+            icon: "Layers",
+            title: "Wide Product Range",
+            description:
+              "Industrial oils, automotive lubricants, greases, hydraulic fluids, and specialty products.",
+          },
+          {
+            icon: "ShieldCheck",
+            title: "Quality-First Sourcing",
+            description:
+              "100% genuine lubricants with factory test certificates, viscosity verification, and sealed-batch integrity.",
+          },
+          {
+            icon: "Truck",
+            title: "Reliable Pan-India Supply",
+            description:
+              "Consistent inventory with prompt delivery across 40+ cities and industrial clusters.",
+          },
+          {
+            icon: "Users",
+            title: "Dedicated Account Team",
+            description:
+              "Experienced CRM and field officers ensure long-term customer satisfaction.",
+          },
+          {
+            icon: "Calendar",
+            title: "18+ Years of Trust",
+            description:
+              "Operating since 2007 with a proven track record of quality service and industry expertise.",
+          },
+        ],
+      },
+    },
+    // 4. Facilities / Image Gallery
+    {
+      type: "AboutImageGallerySection",
+      order: 5,
+      content: {
+        eyebrow: "Infrastructure & Operations",
+        heading: "Our Facilities & Operational Hubs",
+        description:
+          "Take a visual tour inside Jai Deva Oil Co.'s modern logistics infrastructure, warehousing depots, and quality-controlled product staging centers.",
+        stockBadge: "Over 500+ SKUs Stocked & Ready for Dispatch",
+        bannerEyebrow: "Pan-India Supply Reliability",
+        bannerHeading:
+          "Equipped for Bulk Industrial Deliveries & Emergency Plant Stoppages",
+        bannerDescription:
+          "Whether you need a single 210-liter barrel of turbine oil or recurring monthly tanker dispatches of ISO VG 68 hydraulic oil, our infrastructure ensures consistent stock, factory test reports, and prompt handling.",
+        bannerButtonText: "Schedule a Supply Consultation",
+        facilities: [
+          {
+            id: "depot",
+            title: "Central Logistics & Drum Staging Depot",
+            subtitle: "High-Capacity Heavy Lubricant Storage",
+            category: "Warehousing & Inventory",
+            desc: "Covered, temperature-regulated depot equipped for high-density storage of 210L barrels, 20L pails, and IBC intermediate bulk containers.",
+            badges: ["Batch Segregation", "Spill Containment System"],
+            image: "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+            icon: "Warehouse",
+          },
+          {
+            id: "hq",
+            title: "Corporate Operations & Account Advisory",
+            subtitle: "Central Commercial & Customer Coordination",
+            category: "Corporate Facility",
+            desc: "Our business operations desk coordinating customer procurement, supplier relations, invoicing, and pan-India industrial contracts.",
+            badges: ["Dedicated Account Managers", "Real-Time Order Tracking"],
+            image:
+              "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1000&q=80",
+            icon: "Building2",
+          },
+          {
+            id: "inspection",
+            title: "Quality Verification & Spec Assurance Desk",
+            subtitle: "Laboratory & Viscosity Verification",
+            category: "Quality Control",
+            desc: "Verification protocols ensuring every supplied barrel matches OEM specifications, viscosity standards, and valid refinery test certificates.",
+            badges: ["OEM Specification Checks", "Sealed Batch Integrity"],
+            image: "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+            icon: "ShieldCheck",
+          },
+          {
+            id: "fleet",
+            title: "Regional Dispatch & Transit Network",
+            subtitle: "Rapid Pan-India Manufacturing Supply",
+            category: "Distribution Logistics",
+            desc: "Logistics infrastructure ensuring on-schedule delivery across manufacturing clusters, power plants, and automotive workshops in 40+ cities.",
+            badges: ["Fast Dispatch Routes", "Zero In-Transit Contamination"],
+            image: "https://res.cloudinary.com/dpa93copz/image/upload/v1790675167/jaideva/about/oil-fleet-logistics.jpg",
+            icon: "Truck",
+          },
+        ],
       },
     },
   ];
 
-  for (const s of aboutSections) {
+    for (const s of aboutSections) {
     const existing = await prisma.section.findFirst({
       where: { pageId: aboutPage.id, type: s.type },
     });
@@ -2845,8 +3054,7 @@ async function main() {
             ],
           },
           {
-            heading:
-              "3. Advanced Lubrication Technology by JAI DEVA OIL CO.",
+            heading: "3. Advanced Lubrication Technology by JAI DEVA OIL CO.",
             paragraphs: [
               "HP RACER 4T oils are blended with premium Group II base stocks and synthetic additives. They deliver exceptional thermal stability, preventing oil breakdown when idling in dense Indian city traffic.",
             ],

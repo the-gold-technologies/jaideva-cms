@@ -5,7 +5,10 @@ import { PageHeader } from "@/components/PageHeader";
 import {
   AboutHeroSection,
   AboutJaiDevaContentSection,
-  LubesHeadquarterSection,
+  OurTeamStructureSection,
+  OurJourneySection,
+  AboutWhyChooseSection,
+  AboutImageGallerySection,
 } from "./components";
 
 export default function AboutUsPageEditor() {
@@ -26,20 +29,46 @@ export default function AboutUsPageEditor() {
     loadAboutData();
   }, []);
 
+  const whyChooseData =
+    aboutData?.AboutWhyChooseSection ||
+    (aboutData?.AboutJaiDevaContent
+      ? {
+          title:
+            aboutData.AboutJaiDevaContent.whyChooseTitle ||
+            aboutData.AboutJaiDevaContent.title,
+          subtitle:
+            aboutData.AboutJaiDevaContent.whyChooseSubtitle ||
+            aboutData.AboutJaiDevaContent.subtitle,
+          items:
+            aboutData.AboutJaiDevaContent.whyChooseItems ||
+            aboutData.AboutJaiDevaContent.items,
+        }
+      : null);
+
   return (
     <section className="flex flex-col gap-8 pb-12">
       <PageHeader
         title="About Us Page Content"
-        description="Manage the live sections of your About Us page including Hero Banner, About Jai Deva Oil Co. Story, Why Choose Us pillars, and Distribution Headquarters info."
+        description="Manage all live sections of the About Us page: Hero Banner, Company Story, Team Structure, Journey Timeline, Why Choose Us, and Facilities Gallery."
       />
 
+      {/* 1. Hero */}
       <AboutHeroSection initialData={aboutData?.AboutHero} />
-      <AboutJaiDevaContentSection
-        initialData={aboutData?.AboutJaiDevaContent}
-      />
-      <LubesHeadquarterSection
-        initialData={aboutData?.LubesHeadquarterSection}
-      />
+
+      {/* 2. Story & Mentor */}
+      <AboutJaiDevaContentSection initialData={aboutData?.AboutJaiDevaContent} />
+
+      {/* 3. Team Structure */}
+      <OurTeamStructureSection initialData={aboutData?.OurTeamStructureSection} />
+
+      {/* 4. Journey Timeline */}
+      <OurJourneySection initialData={aboutData?.OurJourneySection} />
+
+      {/* 5. Why Choose Jai Deva Oil Co. */}
+      <AboutWhyChooseSection initialData={whyChooseData} />
+
+      {/* 6. Facilities & Logistics Gallery */}
+      <AboutImageGallerySection initialData={aboutData?.AboutImageGallerySection} />
     </section>
   );
 }

@@ -21,7 +21,7 @@ export function EventsContentSection({
   initialData,
   onSave,
 }: EventsContentSectionProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState("EVENTS");
   const [introText, setIntroText] = useState(
     "Jai Deva Oil Co. actively engages with their stakeholders by frequently hosting meetings and events with them. This includes meeting business partners, strategic partners, distributors, OEMs, agencies, mechanics, and industrial clients."

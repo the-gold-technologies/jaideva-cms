@@ -22,7 +22,7 @@ export function BlogsHeroSection({
   initialData,
   onSave,
 }: BlogsHeroSectionProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [images, setImages] = useState<(File | string | null)[]>([]);
   const [altText, setAltText] = useState("");
   const [loading, setLoading] = useState(false);

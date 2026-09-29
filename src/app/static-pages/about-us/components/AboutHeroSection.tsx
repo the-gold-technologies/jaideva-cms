@@ -4,44 +4,39 @@ import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { SectionHeader } from "@/components/SectionHeader";
 import { InputField } from "@/components/InputField";
+import { TextAreaField } from "@/components/TextAreaField";
 import { ImageUploadField } from "@/components/ImageUploadField";
 import { SaveButton } from "@/components/SaveButton";
 import { uploadFiles } from "@/lib/uploadHelpers";
 
 export interface AboutHeroData {
-  image?: string;
+  heading?: string;
+  tagline?: string;
+  description?: string;
   bannerImage?: string;
   altText?: string;
-  alt?: string;
 }
 
-export const DEFAULT_HERO_DATA: AboutHeroData = {
-  image: "/About-HPCL.jpg",
-  bannerImage: "/About-HPCL.jpg",
-  altText: "About JAI DEVA OIL CO. Banner",
-};
-
 export function AboutHeroSection({ initialData }: { initialData?: any }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [images, setImages] = useState<(File | string | null)[]>([
-    DEFAULT_HERO_DATA.image || "/About-HPCL.jpg",
-  ]);
-  const [altText, setAltText] = useState(
-    DEFAULT_HERO_DATA.altText || "About JAI DEVA OIL CO. Banner"
-  );
+  const [images, setImages] = useState<(File | string | null)[]>([""]);
+  const [heading, setHeading] = useState("");
+  const [tagline, setTagline] = useState("");
+  const [description, setDescription] = useState("");
+  const [altText, setAltText] = useState("");
 
   useEffect(() => {
     if (initialData) {
-      const heroImg = initialData.image || initialData.bannerImage;
-      if (heroImg) {
-        setImages([heroImg]);
-      }
-      if (initialData.altText || initialData.alt) {
-        setAltText(initialData.altText || initialData.alt);
-      }
+      const heroImg = initialData.bannerImage || initialData.image;
+      if (heroImg) setImages([heroImg]);
+      if (initialData.heading) setHeading(initialData.heading);
+      if (initialData.tagline) setTagline(initialData.tagline);
+      if (initialData.description) setDescription(initialData.description);
+      if (initialData.altText || initialData.alt)
+        setAltText(initialData.altText || initialData.alt || "");
     }
   }, [initialData]);
 
@@ -49,34 +44,28 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
     setLoading(true);
     setSaved(false);
     try {
-      const validImages = images.filter(
-        (img): img is File | string => !!img
-      );
-
+      const validImages = images.filter((img): img is File | string => !!img);
       if (validImages.length === 0) {
         toast.error("Please upload a hero banner image.");
         setLoading(false);
         return;
       }
 
-      // 1. Upload file if newly selected
       const [uploadedUrl] = await uploadFiles(validImages);
-      const finalImageUrl = uploadedUrl || "/About-HPCL.jpg";
+      const finalImageUrl = uploadedUrl || "";
 
-      const payload = {
-        image: finalImageUrl,
+      const payload: AboutHeroData = {
+        heading: heading.trim(),
+        tagline: tagline.trim(),
+        description: description.trim(),
         bannerImage: finalImageUrl,
         altText: altText.trim(),
       };
 
-      // 2. Save to /api/about-us
       const res = await fetch("/api/about-us", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          section: "AboutHero",
-          content: payload,
-        }),
+        body: JSON.stringify({ section: "AboutHero", content: payload }),
       });
 
       const json = await res.json();
@@ -100,8 +89,8 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
   return (
     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
       <SectionHeader
-        title="1. Hero Banner (About-HPCL Hero)"
-        description="Upload banner graphic and manage accessibility alt text for the About Us hero."
+        title="1. Hero Banner"
+        description="Set the main heading, tagline, description text, and banner image for the About Us hero section."
         badge={`${validCount} Banner`}
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -114,19 +103,44 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
       >
         <div className="overflow-hidden">
           <div className="flex flex-col gap-6 pt-4">
+            {/* Text fields */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <InputField
+                label="Heading (Main Title)"
+                value={heading}
+                onChange={(e) => setHeading(e.target.value)}
+                placeholder="e.g. Jai Deva Oil Co."
+              />
+              <InputField
+                label="Tagline (Sub-heading)"
+                value={tagline}
+                onChange={(e) => setTagline(e.target.value)}
+                placeholder="e.g. Mr. Mayank Goyal – Mentor & Proprietor"
+              />
+            </div>
+
+            <TextAreaField
+              label="Description Paragraph"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={3}
+              placeholder="Brief intro shown below the tagline in the hero banner…"
+            />
+
+            {/* Image Upload */}
             <ImageUploadField
               label="Hero Banner Image"
               images={images}
               onImagesChange={setImages}
               maxImages={1}
-              tooltip="Upload banner image (recommended resolution 1920x715px or 21:9 aspect ratio)."
+              tooltip="Upload banner image (recommended: 1920×715px or 21:9 aspect ratio)."
             />
 
             <InputField
               label="Image Alt Text (SEO & Accessibility)"
               value={altText}
               onChange={(e) => setAltText(e.target.value)}
-              placeholder="e.g. About JAI DEVA OIL CO. Banner"
+              placeholder="e.g. About Jai Deva Oil Co. lubricant warehouse"
             />
 
             <div className="pt-4 border-t border-gray-100">
