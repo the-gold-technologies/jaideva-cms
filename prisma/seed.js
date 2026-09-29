@@ -801,6 +801,217 @@ async function main() {
   }
   console.log("✓ About Us page & sections ready.");
 
+  // 5b. Brands Page & Sections
+  const brandsPage = await prisma.page.upsert({
+    where: { slug: "brands" },
+    update: {
+      title: "Brands",
+      description:
+        "Authorized Multi-Brand Distribution Partner for HP, Castrol, Shell, Gulf, Motul, and world-class lubrication manufacturers.",
+      metaTitle:
+        "Multi-Brand Lubricants Portfolio | Jai Deva Oil Co.",
+      metaDescription:
+        "Explore Jai Deva Oil Co.'s authorized multi-brand lubricant portfolio covering industrial oils, automotive fluids, bulk barrels, and specialty greases.",
+    },
+    create: {
+      title: "Brands",
+      slug: "brands",
+      type: "static",
+      visibility: "published",
+      isStatic: true,
+      description:
+        "Authorized Multi-Brand Distribution Partner for HP, Castrol, Shell, Gulf, Motul, and world-class lubrication manufacturers.",
+      metaTitle:
+        "Multi-Brand Lubricants Portfolio | Jai Deva Oil Co.",
+      metaDescription:
+        "Explore Jai Deva Oil Co.'s authorized multi-brand lubricant portfolio covering industrial oils, automotive fluids, bulk barrels, and specialty greases.",
+    },
+  });
+
+  const brandsSections = [
+    // 0. Hero
+    {
+      type: "BrandsHero",
+      order: 0,
+      content: {
+        badge: "Authorized Multi-Brand Distribution Partner",
+        eyebrowBadge: "Authorized Multi-Brand Distribution Partner",
+        heading: "Brands That Power Every Industrial Move.",
+        description:
+          "Jai Deva Oil Co. brings together the world’s most trusted lubricant manufacturers, application engineering expertise, and dependable regional stock for automotive, manufacturing, and heavy infrastructure plants.",
+        bannerImage:
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+        image:
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+        ctaPrimaryText: "Explore Brand Portfolio",
+        ctaPrimaryUrl: "#brand-showcase",
+        ctaSecondaryText: "Consult a Specialist",
+      },
+    },
+    // 1. Stats Band
+    {
+      type: "BrandsStatsBand",
+      order: 1,
+      content: {
+        stats: [
+          { value: "91%", label: "Growth in 3 Years" },
+          { value: "24%", label: "CAGR (FY 22-23 to FY 25-26)" },
+          { value: "1.9X", label: "Turnover in 3 Years" },
+          { value: "60+", label: "Employee Strength" },
+        ],
+      },
+    },
+    // 2. Pillars
+    {
+      type: "BrandsPillarsSection",
+      order: 2,
+      content: {
+        eyebrow: "WHY PARTNER WITH JAI DEVA OIL CO.",
+        heading: "Engineered Sourcing. Zero Compromise on Fluid Quality.",
+        description:
+          "We bridge international lubricant formulation science with ground-level plant reliability, ensuring right oil, right machinery, and zero unplanned downtime.",
+        image:
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+        sideImage:
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+        verifiedBadge: "Authorized Refinery Stocks",
+        guaranteeTitle: "REFINERY STOCK GUARANTEE",
+        guaranteeTag: "ISO VG 32 to 680",
+        guaranteeHeadline: "Direct Factory-Sealed Distribution",
+        guaranteeDesc:
+          "Over 10,000+ barrels and lubricants buffered for prompt industrial dispatch across India.",
+        pillars: [
+          {
+            title: "Refinery-Direct Authenticity",
+            description:
+              "Every barrel, pail, and carton is sourced through authorized refinery channels with verified batch test reports and tamper-proof seals.",
+            icon: "Factory",
+          },
+          {
+            title: "Application-Matched Formulations",
+            description:
+              "Our lubrication specialists map the exact OEM specification, viscosity index, and operating temperature to eliminate equipment wear.",
+            icon: "Wrench",
+          },
+          {
+            title: "Buffer Stock & Fast Road Logistics",
+            description:
+              "We maintain multi-brand buffer stock across major viscosity grades, eliminating factory shutdown risks and delivery delays.",
+            icon: "Truck",
+          },
+          {
+            title: "Total Quality Assurance",
+            description:
+              "From sealed storage segregation to oil condition monitoring advisory, we help plants achieve optimal oil drain intervals and machinery health.",
+            icon: "ShieldCheck",
+          },
+        ],
+      },
+    },
+    // 3. Product Categories Spectrum
+    {
+      type: "BrandsProductCategoriesSection",
+      order: 3,
+      content: {
+        eyebrow: "COMPREHENSIVE FLUID SPECTRUM",
+        heading: "Lubrication Solutions for Every Industrial & Automotive Sector",
+        description:
+          "From ultra-pure turbine fluids to heavy-duty earthmover diesel oils, explore our distribution categories designed for high-performance operations.",
+        categories: [
+          {
+            name: "Automotive & Engine Oils",
+            description:
+              "Synthetic 5W-30, 15W-40 diesel fluids, multi-grade gear lubricants, and coolants.",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+            badge: "API CK-4 / SN Plus",
+          },
+          {
+            name: "Industrial Gear & Hydraulic Oils",
+            description:
+              "ISO VG 32 to 680 heavy anti-wear hydraulic, turbine, and industrial circulating oils.",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+            badge: "DIN 51524 / ISO 11158",
+          },
+          {
+            name: "Refinery Barrels & Bulk Supply",
+            description:
+              "Factory-sealed 210L drums and bulk road tankers for continuous plant consumption.",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+            badge: "210L Drums & Tankers",
+          },
+          {
+            name: "Precision Engine Lubrication",
+            description:
+              "High thermal stability engine oils engineered for severe load and extended drain life.",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+            badge: "Extended Drain Interval",
+          },
+          {
+            name: "High-Temp Greases & Pastes",
+            description:
+              "Lithium complex, polyurea, and synthetic extreme-pressure greases for bearings & kilns.",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+            badge: "NLGI 00 to 3 / EP Pastes",
+          },
+          {
+            name: "Metalworking & CNC Coolants",
+            description:
+              "Bio-stable water-soluble cutting emulsions, grinding fluids, and rust preventives.",
+            image:
+              "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+            badge: "Chlorine-Free Emulsions",
+          },
+        ],
+      },
+    },
+    // 4. CTA
+    {
+      type: "BrandsCtaSection",
+      order: 4,
+      content: {
+        eyebrowBadge: "Certified Lubrication Engineering Advisory",
+        badge: "Certified Lubrication Engineering Advisory",
+        heading: "Need an Engine Oil Recommendation or Brand Consultation?",
+        description:
+          "Our lubrication engineers map OEM engine viscosities (0W-20, 5W-30, 15W-40), industrial gear grades, and drain intervals to maximize your equipment life.",
+        bgImage:
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+        image:
+          "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+        buttonText: "Request Engine Oil Quote",
+        phoneText: "Direct Dispatch Desk",
+        phoneNumber: "+91 98111 23456",
+      },
+    },
+  ];
+
+  for (const s of brandsSections) {
+    const existing = await prisma.section.findFirst({
+      where: { pageId: brandsPage.id, type: s.type },
+    });
+    if (existing) {
+      await prisma.section.update({
+        where: { id: existing.id },
+        data: { content: s.content },
+      });
+    } else {
+      await prisma.section.create({
+        data: {
+          pageId: brandsPage.id,
+          type: s.type,
+          content: s.content,
+          order: s.order,
+        },
+      });
+    }
+  }
+  console.log("✓ Brands page & sections ready.");
+
   // 6. Contact Us Page & Sections
   const contactPage = await prisma.page.upsert({
     where: { slug: "contact-us" },

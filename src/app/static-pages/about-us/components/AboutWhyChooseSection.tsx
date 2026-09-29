@@ -38,8 +38,8 @@ export function AboutWhyChooseSection({ initialData }: { initialData?: any }) {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [title, setTitle] = useState("Why Choose Jai Deva Oil Co.?");
-  const [subtitle, setSubtitle] = useState("Dependable multi-brand lubricant supply, proven since 2007.");
+  const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
   const [items, setItems] = useState<WhyChooseItem[]>([]);
 
   useEffect(() => {

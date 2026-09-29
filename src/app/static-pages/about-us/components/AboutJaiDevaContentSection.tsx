@@ -13,10 +13,8 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [mainTitle, setMainTitle] = useState("About Jai Deva Oil Co.");
-  const [mentorSubHeader, setMentorSubHeader] = useState(
-    "Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co."
-  );
+  const [mainTitle, setMainTitle] = useState("");
+  const [mentorSubHeader, setMentorSubHeader] = useState("");
   const [paragraphsText, setParagraphsText] = useState("");
 
   useEffect(() => {

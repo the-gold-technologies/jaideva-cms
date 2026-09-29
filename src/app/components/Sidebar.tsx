@@ -45,6 +45,7 @@ const sidebarLinks: SidebarLink[] = [
     sublinks: [
       { title: "Home", href: "/static-pages/home" },
       { title: "About Us", href: "/static-pages/about-us" },
+      { title: "Brands", href: "/static-pages/brands" },
       { title: "Products", href: "/static-pages/products" },
       { title: "Events", href: "/static-pages/events" },
       { title: "Blogs", href: "/static-pages/blogs" },
