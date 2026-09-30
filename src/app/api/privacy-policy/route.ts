@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
-const PRIVACY_SLUG = "privacy-policy";
+const PRIVACY_SLUG = 'privacy-policy';
 
 const DEFAULT_PRIVACY_DATA = {
-  title: "Privacy Policy",
-  lastUpdated: "August 2026",
+  title: 'Privacy Policy',
+  lastUpdated: 'August 2026',
   content: `
     <p>Welcome to <strong>Jai Deva Oil Co.</strong> ("we", "our", or "us"). We are an Authorized Industrial Lubricants Division (ILD) master distributor for <strong>Hindustan Petroleum Corporation Limited (HPCL)</strong>.</p>
     <p>We are committed to protecting and respecting your personal privacy. This Privacy Policy explains how we collect, use, store, and safeguard your personal information when you visit our website or interact with our enquiry, dealership, and quotation forms.</p>
@@ -52,15 +52,14 @@ export async function GET() {
         success: true,
         data: DEFAULT_PRIVACY_DATA,
         seo: {
-          title: "Privacy Policy | Jai Deva Oil Co.",
-          metaTitle: "Privacy Policy | Jai Deva Oil Co.",
+          title: 'Privacy Policy | Jai Deva Oil Co.',
+          metaTitle: 'Privacy Policy | Jai Deva Oil Co.',
           metaDescription:
-            "Read the Privacy Policy of Jai Deva Oil Co., authorized Industrial Lubricants Division (ILD) for HPCL lubricants and greases.",
-          targetKeywords:
-            "Privacy Policy, Jai Deva Oil Co., HP Lubricants data protection",
-          canonicalUrl: "/privacy-policy",
+            'Read the Privacy Policy of Jai Deva Oil Co., authorized Industrial Lubricants Division (ILD) for HPCL lubricants and greases.',
+          targetKeywords: 'Privacy Policy, Jai Deva Oil Co., HP Lubricants data protection',
+          canonicalUrl: '/privacy-policy',
           noIndex: false,
-          headingOptions: { heroHeadingTag: "h1" },
+          headingOptions: { heroHeadingTag: 'h1' },
         },
       });
     }
@@ -71,9 +70,7 @@ export async function GET() {
     }
 
     const policyContent =
-      sectionsMap["PrivacyPolicyContent"] ||
-      sectionsMap["content"] ||
-      DEFAULT_PRIVACY_DATA;
+      sectionsMap['PrivacyPolicyContent'] || sectionsMap['content'] || DEFAULT_PRIVACY_DATA;
 
     const seo = {
       title: page.metaTitle || page.title,
@@ -92,11 +89,8 @@ export async function GET() {
       seo,
     });
   } catch (error) {
-    console.error("Error fetching privacy-policy:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 },
-    );
+    console.error('Error fetching privacy-policy:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -107,26 +101,26 @@ export async function PUT(request: Request) {
     const page = await prisma.page.upsert({
       where: { slug: PRIVACY_SLUG },
       create: {
-        title: body.title || "Privacy Policy",
+        title: body.title || 'Privacy Policy',
         slug: PRIVACY_SLUG,
-        type: "legal",
-        visibility: "published",
+        type: 'legal',
+        visibility: 'published',
         order: 50,
       },
       update: {
-        title: body.title || "Privacy Policy",
+        title: body.title || 'Privacy Policy',
       },
     });
 
     const contentData = {
-      title: body.title || "Privacy Policy",
-      lastUpdated: body.lastUpdated || "August 2026",
-      content: body.content || "",
+      title: body.title || 'Privacy Policy',
+      lastUpdated: body.lastUpdated || 'August 2026',
+      content: body.content || '',
       isPublished: body.isPublished ?? true,
     };
 
     const existingSection = await prisma.section.findFirst({
-      where: { pageId: page.id, type: "PrivacyPolicyContent" },
+      where: { pageId: page.id, type: 'PrivacyPolicyContent' },
     });
 
     if (existingSection) {
@@ -138,7 +132,7 @@ export async function PUT(request: Request) {
       await prisma.section.create({
         data: {
           pageId: page.id,
-          type: "PrivacyPolicyContent",
+          type: 'PrivacyPolicyContent',
           content: contentData as any,
           order: 0,
         },
@@ -147,10 +141,7 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({ success: true, data: contentData });
   } catch (error) {
-    console.error("Error saving privacy-policy:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 },
-    );
+    console.error('Error saving privacy-policy:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 interface HeadquarterData {
   companyName?: string;
@@ -24,26 +24,17 @@ interface ContactHeadquarterSectionProps {
   onSave?: (data: HeadquarterData) => Promise<boolean | void>;
 }
 
-export function ContactHeadquarterSection({
-  initialData,
-  onSave,
-}: ContactHeadquarterSectionProps) {
+export function ContactHeadquarterSection({ initialData, onSave }: ContactHeadquarterSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [companyName, setCompanyName] = useState("Jai Deva Oil Co.");
-  const [badge, setBadge] = useState("Authorized HP Lubricants Distributor");
-  const [description, setDescription] = useState(
-    "Connect with our team for bulk HP Lubricants supply, dealership opportunities, technical data sheets, and custom quotes."
-  );
-  const [proprietor, setProprietor] = useState("Neha Goyal");
-  const [address, setAddress] = useState(
-    "HPCL Petrol Pump, Ground & First Floor, Kh No- 487/0048, Aggarwal Mandi Tatiri, Tatiri, Agarwal Mandi, Baghpat, Uttar Pradesh - 250601"
-  );
-  const [phone, setPhone] = useState("+91 88007 78032");
-  const [email, setEmail] = useState("sales@jaidevaoil.com");
-  const [whatsapp, setWhatsapp] = useState("+91 88007 78032");
-  const [workingHours, setWorkingHours] = useState(
-    "Monday to Saturday: 9:00 AM – 6:00 PM"
-  );
+  const [companyName, setCompanyName] = useState('');
+  const [badge, setBadge] = useState('');
+  const [description, setDescription] = useState('');
+  const [proprietor, setProprietor] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [workingHours, setWorkingHours] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -80,23 +71,23 @@ export function ContactHeadquarterSection({
       if (onSave) {
         await onSave(payload);
       } else {
-        const res = await fetch("/api/contact-us", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch('/api/contact-us', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            section: "ContactHeadquarter",
+            section: 'ContactHeadquarter',
             content: payload,
           }),
         });
         const json = await res.json();
         if (json.success) {
-          toast.success("Headquarter contact details updated successfully!");
+          toast.success('Headquarter contact details updated successfully!');
         } else {
-          toast.error(json.error || "Failed to update headquarter details");
+          toast.error(json.error || 'Failed to update headquarter details');
         }
       }
     } catch {
-      toast.error("Network error saving headquarter details");
+      toast.error('Network error saving headquarter details');
     } finally {
       setLoading(false);
     }
@@ -114,7 +105,7 @@ export function ContactHeadquarterSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -185,7 +176,7 @@ export function ContactHeadquarterSection({
               label="Operating & Working Hours"
               value={workingHours}
               onChange={(e) => setWorkingHours(e.target.value)}
-              placeholder="Monday to Saturday: 9:00 AM – 6:00 PM"
+              placeholder="Monday to Saturday: 10:00 AM – 6:00 PM"
             />
 
             <div className="pt-4 border-t border-gray-100">

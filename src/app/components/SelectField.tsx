@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React from "react";
-import { ChevronDown } from "lucide-react";
+import React from 'react';
+import { ChevronDown } from 'lucide-react';
 
 interface SelectFieldProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
@@ -12,8 +12,8 @@ interface SelectFieldProps extends React.SelectHTMLAttributes<HTMLSelectElement>
 
 export const SelectField: React.FC<SelectFieldProps> = ({
   label,
-  containerClassName = "",
-  className = "",
+  containerClassName = '',
+  className = '',
   icon,
   options,
   ...props
@@ -27,12 +27,10 @@ export const SelectField: React.FC<SelectFieldProps> = ({
       )}
       <div className="relative w-full">
         {icon && (
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-            {icon}
-          </div>
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">{icon}</div>
         )}
         <select
-          className={`w-full ${icon ? "pl-12" : "px-5"} pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-[#C86218]/20 focus:border-[#C86218] outline-none transition-all appearance-none cursor-pointer text-gray-800 ${className}`}
+          className={`w-full ${icon ? 'pl-12' : 'px-5'} pr-10 py-3.5 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:ring-[#C86218]/20 focus:border-[#C86218] outline-none transition-all appearance-none cursor-pointer text-gray-800 ${className}`}
           {...props}
         >
           {options.map((opt) => (

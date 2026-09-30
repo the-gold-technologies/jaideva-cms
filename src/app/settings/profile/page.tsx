@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
-import toast from "react-hot-toast";
-import { PageHeader } from "@/components/PageHeader";
-import { SaveButton } from "@/components/SaveButton";
-import { User, Lock, Eye, EyeOff, ShieldCheck } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import toast from 'react-hot-toast';
+import { PageHeader } from '@/components/PageHeader';
+import { SaveButton } from '@/components/SaveButton';
+import { User, Lock, Eye, EyeOff, ShieldCheck } from 'lucide-react';
 
 export default function ProfileSettingsPage() {
   const { data: session, update } = useSession();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -26,19 +26,19 @@ export default function ProfileSettingsPage() {
   useEffect(() => {
     async function loadProfile() {
       try {
-        const res = await fetch("/api/profile");
+        const res = await fetch('/api/profile');
         const json = await res.json();
         if (json.success && json.data) {
-          setName(json.data.name || session?.user?.name || "Jai Deva Admin");
-          setEmail(json.data.email || session?.user?.email || "admin@jaideva.com");
+          setName(json.data.name || session?.user?.name || 'Jai Deva Admin');
+          setEmail(json.data.email || session?.user?.email || 'admin@jaideva.com');
         } else if (session?.user) {
-          setName(session.user.name || "Jai Deva Admin");
-          setEmail(session.user.email || "admin@jaideva.com");
+          setName(session.user.name || 'Jai Deva Admin');
+          setEmail(session.user.email || 'admin@jaideva.com');
         }
       } catch (err) {
         if (session?.user) {
-          setName(session.user.name || "Jai Deva Admin");
-          setEmail(session.user.email || "admin@jaideva.com");
+          setName(session.user.name || 'Jai Deva Admin');
+          setEmail(session.user.email || 'admin@jaideva.com');
         }
       } finally {
         setIsFetching(false);
@@ -52,27 +52,27 @@ export default function ProfileSettingsPage() {
 
     if (newPassword) {
       if (!currentPassword) {
-        toast.error("Please enter your current password to set a new password");
+        toast.error('Please enter your current password to set a new password');
         return;
       }
       if (newPassword.length < 6) {
-        toast.error("New password must be at least 6 characters long");
+        toast.error('New password must be at least 6 characters long');
         return;
       }
       if (newPassword !== confirmPassword) {
-        toast.error("New password and confirm password do not match");
+        toast.error('New password and confirm password do not match');
         return;
       }
     }
 
     setLoading(true);
     setSaved(false);
-    const tid = toast.loading("Updating profile...");
+    const tid = toast.loading('Updating profile...');
 
     try {
-      const res = await fetch("/api/profile", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/profile', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name,
           email,
@@ -84,19 +84,19 @@ export default function ProfileSettingsPage() {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success(json.message || "Profile updated successfully!", { id: tid });
-        setCurrentPassword("");
-        setNewPassword("");
-        setConfirmPassword("");
+        toast.success(json.message || 'Profile updated successfully!', { id: tid });
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
         if (update) {
           await update({ name, email });
         }
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to update profile", { id: tid });
+        toast.error(json.error || 'Failed to update profile', { id: tid });
       }
     } catch (err: any) {
-      toast.error(err?.message || "Network error updating profile", { id: tid });
+      toast.error(err?.message || 'Network error updating profile', { id: tid });
     } finally {
       setLoading(false);
     }
@@ -105,9 +105,7 @@ export default function ProfileSettingsPage() {
   if (isFetching) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
-        <div className="animate-pulse text-gray-400 font-medium">
-          Loading profile details...
-        </div>
+        <div className="animate-pulse text-gray-400 font-medium">Loading profile details...</div>
       </div>
     );
   }
@@ -131,9 +129,7 @@ export default function ProfileSettingsPage() {
               <User className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-[#0B0F29]">
-                1. Administrator Information
-              </h2>
+              <h2 className="text-lg font-bold text-[#0B0F29]">1. Administrator Information</h2>
               <p className="text-xs text-slate-400">
                 Primary contact details for this administrator account.
               </p>
@@ -178,9 +174,7 @@ export default function ProfileSettingsPage() {
               <Lock className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-[#0B0F29]">
-                2. Change Password
-              </h2>
+              <h2 className="text-lg font-bold text-[#0B0F29]">2. Change Password</h2>
               <p className="text-xs text-slate-400">
                 Update your login password. Leave blank if you do not want to change it.
               </p>
@@ -194,7 +188,7 @@ export default function ProfileSettingsPage() {
             </label>
             <div className="relative">
               <input
-                type={showCurrentPassword ? "text" : "password"}
+                type={showCurrentPassword ? 'text' : 'password'}
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
                 placeholder="Leave blank to keep unchanged"
@@ -205,11 +199,7 @@ export default function ProfileSettingsPage() {
                 onClick={() => setShowCurrentPassword(!showCurrentPassword)}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
               >
-                {showCurrentPassword ? (
-                  <EyeOff className="w-4 h-4" />
-                ) : (
-                  <Eye className="w-4 h-4" />
-                )}
+                {showCurrentPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
           </div>
@@ -222,7 +212,7 @@ export default function ProfileSettingsPage() {
               </label>
               <div className="relative">
                 <input
-                  type={showNewPassword ? "text" : "password"}
+                  type={showNewPassword ? 'text' : 'password'}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
                   placeholder="At least 6 characters"
@@ -233,11 +223,7 @@ export default function ProfileSettingsPage() {
                   onClick={() => setShowNewPassword(!showNewPassword)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
                 >
-                  {showNewPassword ? (
-                    <EyeOff className="w-4 h-4" />
-                  ) : (
-                    <Eye className="w-4 h-4" />
-                  )}
+                  {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
             </div>
@@ -248,7 +234,7 @@ export default function ProfileSettingsPage() {
               </label>
               <div className="relative">
                 <input
-                  type={showConfirmPassword ? "text" : "password"}
+                  type={showConfirmPassword ? 'text' : 'password'}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Repeat new password"

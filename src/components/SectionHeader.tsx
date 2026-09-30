@@ -1,1 +1,1 @@
-export * from "@/app/components/SectionHeader";
+export * from '@/app/components/SectionHeader';

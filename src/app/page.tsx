@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { AdminHeader } from "@/app/components/AdminHeader";
-import { OverviewStats } from "@/app/components/OverviewStats";
-import { PageStructure } from "@/app/components/PageStructure";
-import { RecentEnquiries } from "@/app/components/RecentEnquiries";
-import { AdminRightSidebar } from "@/app/components/AdminRightSidebar";
+import { useState, useEffect } from 'react';
+import { AdminHeader } from '@/app/components/AdminHeader';
+import { OverviewStats } from '@/app/components/OverviewStats';
+import { PageStructure } from '@/app/components/PageStructure';
+import { RecentEnquiries } from '@/app/components/RecentEnquiries';
+import { AdminRightSidebar } from '@/app/components/AdminRightSidebar';
 
 export default function Home() {
   const [stats, setStats] = useState<any>(null);
@@ -14,13 +14,13 @@ export default function Home() {
   useEffect(() => {
     async function fetchDashboardData() {
       try {
-        const res = await fetch("/api/dashboard/stats");
+        const res = await fetch('/api/dashboard/stats');
         const json = await res.json();
         if (json.success) {
           setStats(json.data);
         }
       } catch (error) {
-        console.error("Failed to fetch dashboard data:", error);
+        console.error('Failed to fetch dashboard data:', error);
       } finally {
         setLoading(false);
       }

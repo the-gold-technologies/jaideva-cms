@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Plus,
   Trash2,
@@ -11,12 +11,12 @@ import {
   RefreshCw,
   MessageSquareQuote,
   User,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+} from 'lucide-react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface TestimonialItem {
   id: number | string;
@@ -37,15 +37,15 @@ export interface TestimonialsData {
 export const DEFAULT_TESTIMONIALS: TestimonialItem[] = [];
 
 export const DEFAULT_TESTIMONIALS_DATA: TestimonialsData = {
-  title: "",
-  description: "",
+  title: '',
+  description: '',
   testimonials: [],
 };
 
 function AvatarImageDropzone({
   value,
   onChange,
-  label = "Customer Profile Image",
+  label = 'Customer Profile Image',
 }: {
   value: string;
   onChange: (url: string) => void;
@@ -56,30 +56,30 @@ function AvatarImageDropzone({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const uploadFile = async (file: File) => {
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please upload an image file (PNG, JPG, WebP)");
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file (PNG, JPG, WebP)');
       return;
     }
 
     setIsUploading(true);
     try {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append('file', file);
 
-      const res = await fetch("/api/upload", {
-        method: "POST",
+      const res = await fetch('/api/upload', {
+        method: 'POST',
         body: formData,
       });
 
       const data = await res.json();
       if (data.success && data.url) {
         onChange(data.url);
-        toast.success("Profile photo uploaded");
+        toast.success('Profile photo uploaded');
       } else {
-        toast.error(data.error || "Failed to upload image");
+        toast.error(data.error || 'Failed to upload image');
       }
     } catch {
-      toast.error("Error uploading image");
+      toast.error('Error uploading image');
     } finally {
       setIsUploading(false);
     }
@@ -87,9 +87,7 @@ function AvatarImageDropzone({
 
   return (
     <div className="flex flex-col gap-1.5 w-full">
-      <label className="text-xs font-semibold text-slate-700 tracking-wide">
-        {label}
-      </label>
+      <label className="text-xs font-semibold text-slate-700 tracking-wide">{label}</label>
 
       <input
         type="file"
@@ -97,7 +95,7 @@ function AvatarImageDropzone({
         onChange={(e) => {
           if (e.target.files && e.target.files[0]) {
             uploadFile(e.target.files[0]);
-            e.target.value = "";
+            e.target.value = '';
           }
         }}
         accept="image/png, image/jpeg, image/jpg, image/webp"
@@ -115,17 +113,15 @@ function AvatarImageDropzone({
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src =
-                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80";
+                    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80';
                 }}
               />
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-xs font-bold text-gray-900 truncate">
-                {value.split("/").pop() || "Avatar Image"}
+                {value.split('/').pop() || 'Avatar Image'}
               </span>
-              <span className="text-[11px] text-emerald-600 font-medium">
-                ✓ Photo uploaded
-              </span>
+              <span className="text-[11px] text-emerald-600 font-medium">✓ Photo uploaded</span>
             </div>
           </div>
 
@@ -145,7 +141,7 @@ function AvatarImageDropzone({
             </button>
             <button
               type="button"
-              onClick={() => onChange("")}
+              onClick={() => onChange('')}
               disabled={isUploading}
               className="p-1 text-gray-400 hover:text-red-600 hover:bg-orange-50 rounded-lg transition-colors cursor-pointer"
               title="Remove image"
@@ -174,8 +170,8 @@ function AvatarImageDropzone({
           onClick={() => fileInputRef.current?.click()}
           className={`w-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-4 transition-all cursor-pointer group ${
             isDragging
-              ? "border-[#C86218] bg-orange-50/50 scale-[0.99]"
-              : "border-gray-300 bg-gray-50/60 hover:bg-gray-50 hover:border-gray-400"
+              ? 'border-[#C86218] bg-orange-50/50 scale-[0.99]'
+              : 'border-gray-300 bg-gray-50/60 hover:bg-gray-50 hover:border-gray-400'
           }`}
         >
           {isUploading ? (
@@ -204,21 +200,20 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
   const [saved, setSaved] = useState(false);
   const [data, setData] = useState<TestimonialsData>(DEFAULT_TESTIMONIALS_DATA);
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({
-    "1": true,
+    '1': true,
   });
 
   useEffect(() => {
     if (initialData) {
-      const list =
-        Array.isArray(initialData.testimonials)
-          ? initialData.testimonials
-          : Array.isArray(initialData)
+      const list = Array.isArray(initialData.testimonials)
+        ? initialData.testimonials
+        : Array.isArray(initialData)
           ? initialData
           : [];
 
       setData({
-        title: initialData.title || "",
-        description: initialData.description || "",
+        title: initialData.title || '',
+        description: initialData.description || '',
         testimonials: list,
       });
 
@@ -242,38 +237,33 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
     const newId = Date.now();
     const newItem: TestimonialItem = {
       id: newId,
-      name: "New Client Name",
-      role: "Manager",
-      org: "Enterprise Ltd",
-      location: "New Delhi",
-      quote:
-        "Jai Deva Oil Co. delivers unmatched quality and swift support.",
-      image: "/hp-testimonial-3.png",
+      name: 'New Client Name',
+      role: 'Manager',
+      org: 'Enterprise Ltd',
+      location: 'New Delhi',
+      quote: 'Jai Deva Oil Co. delivers unmatched quality and swift support.',
+      image: '/hp-testimonial-3.png',
     };
     setData((prev) => ({
       ...prev,
       testimonials: [...prev.testimonials, newItem],
     }));
     setExpandedIds((prev) => ({ ...prev, [String(newId)]: true }));
-    toast.success("New testimonial added");
+    toast.success('New testimonial added');
   };
 
   const handleRemoveTestimonial = (idx: number, e: React.MouseEvent) => {
     e.stopPropagation();
     if (data.testimonials.length <= 1) {
-      toast.error("You must have at least 1 testimonial.");
+      toast.error('You must have at least 1 testimonial.');
       return;
     }
     const updated = data.testimonials.filter((_, i) => i !== idx);
     setData((prev) => ({ ...prev, testimonials: updated }));
-    toast.success("Testimonial removed");
+    toast.success('Testimonial removed');
   };
 
-  const handleItemChange = (
-    idx: number,
-    field: keyof TestimonialItem,
-    value: string | number
-  ) => {
+  const handleItemChange = (idx: number, field: keyof TestimonialItem, value: string | number) => {
     const updated = [...data.testimonials];
     updated[idx] = { ...updated[idx], [field]: value };
     setData((prev) => ({ ...prev, testimonials: updated }));
@@ -283,11 +273,11 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
     setLoading(true);
     setSaved(false);
     try {
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "TestimonialsSection",
+          section: 'TestimonialsSection',
           content: data,
         }),
       });
@@ -295,13 +285,13 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Testimonials section saved successfully!");
+        toast.success('Testimonials section saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving testimonials");
+      toast.error('Error saving testimonials');
     } finally {
       setLoading(false);
     }
@@ -313,16 +303,14 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
         <SectionHeader
           title="Customer Testimonials Carousel"
           description="Manage prominent client reviews, ratings, corporate quotes, and client avatars on the homepage."
-          badge={`${data.testimonials.length} Review${
-            data.testimonials.length === 1 ? "" : "s"
-          }`}
+          badge={`${data.testimonials.length} Review${data.testimonials.length === 1 ? '' : 's'}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">
@@ -332,9 +320,7 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                 <InputField
                   label="Section Title"
                   value={data.title}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, title: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, title: e.target.value }))}
                   placeholder="Our Prominent Customers"
                   helperText="Main heading for the testimonials section"
                 />
@@ -404,7 +390,7 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
                                   (e.target as HTMLImageElement).src =
-                                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80";
+                                    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80';
                                 }}
                               />
                             </div>
@@ -419,7 +405,8 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                               {t.name || `Client #${idx + 1}`}
                             </span>
                             <span className="text-[11px] text-gray-500 truncate">
-                              {t.role} • <span className="text-[#C86218] font-semibold">{t.org}</span>
+                              {t.role} •{' '}
+                              <span className="text-[#C86218] font-semibold">{t.org}</span>
                             </span>
                           </div>
                         </div>
@@ -438,7 +425,7 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                           )}
                           <div
                             className={`p-1.5 rounded-lg text-gray-500 hover:bg-gray-200/70 transition-transform duration-200 ${
-                              isItemExpanded ? "rotate-180" : ""
+                              isItemExpanded ? 'rotate-180' : ''
                             }`}
                           >
                             <ChevronDown className="w-4 h-4" />
@@ -450,8 +437,8 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                       <div
                         className={`grid transition-all duration-200 ease-in-out border-t border-gray-200/60 ${
                           isItemExpanded
-                            ? "grid-rows-[1fr] opacity-100 p-5 bg-white"
-                            : "grid-rows-[0fr] opacity-0"
+                            ? 'grid-rows-[1fr] opacity-100 p-5 bg-white'
+                            : 'grid-rows-[0fr] opacity-0'
                         }`}
                       >
                         <div className="overflow-hidden flex flex-col gap-4">
@@ -460,17 +447,13 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                             <InputField
                               label="Client Name"
                               value={t.name}
-                              onChange={(e) =>
-                                handleItemChange(idx, "name", e.target.value)
-                              }
+                              onChange={(e) => handleItemChange(idx, 'name', e.target.value)}
                               placeholder="e.g. Sanjay Aggarwal"
                             />
                             <InputField
                               label="Designation / Role"
                               value={t.role}
-                              onChange={(e) =>
-                                handleItemChange(idx, "role", e.target.value)
-                              }
+                              onChange={(e) => handleItemChange(idx, 'role', e.target.value)}
                               placeholder="e.g. Retailer / MECHANIC"
                             />
                           </div>
@@ -480,21 +463,13 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                             <InputField
                               label="Company / Firm / Organization"
                               value={t.org}
-                              onChange={(e) =>
-                                handleItemChange(idx, "org", e.target.value)
-                              }
+                              onChange={(e) => handleItemChange(idx, 'org', e.target.value)}
                               placeholder="e.g. Aggarwal Auto Enterprises"
                             />
                             <InputField
                               label="City / Market Location"
                               value={t.location}
-                              onChange={(e) =>
-                                handleItemChange(
-                                  idx,
-                                  "location",
-                                  e.target.value
-                                )
-                              }
+                              onChange={(e) => handleItemChange(idx, 'location', e.target.value)}
                               placeholder="e.g. Chandrapur - Maharashtra"
                             />
                           </div>
@@ -503,9 +478,7 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                           <AvatarImageDropzone
                             label="Client Avatar / Photo"
                             value={t.image}
-                            onChange={(url) =>
-                              handleItemChange(idx, "image", url)
-                            }
+                            onChange={(url) => handleItemChange(idx, 'image', url)}
                           />
 
                           {/* Quote */}
@@ -513,9 +486,7 @@ export function TestimonialsSection({ initialData }: { initialData?: any }) {
                             label="Customer Quote / Review"
                             rows={3}
                             value={t.quote}
-                            onChange={(e) =>
-                              handleItemChange(idx, "quote", e.target.value)
-                            }
+                            onChange={(e) => handleItemChange(idx, 'quote', e.target.value)}
                             placeholder="Milcy has given great performance with longer durability..."
                             helperText="Quote displayed inside testimonial speech card"
                           />

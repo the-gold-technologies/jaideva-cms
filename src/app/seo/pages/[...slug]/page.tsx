@@ -1,36 +1,36 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { PageHeader } from "@/components/PageHeader";
-import { SaveButton } from "@/components/SaveButton";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import Link from "next/link";
-import { ArrowLeft, Search, Upload, HelpCircle } from "lucide-react";
-import toast from "react-hot-toast";
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import { PageHeader } from '@/components/PageHeader';
+import { SaveButton } from '@/components/SaveButton';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import Link from 'next/link';
+import { ArrowLeft, Search, Upload, HelpCircle } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function PageSpecificSEODetail() {
   const params = useParams();
   const router = useRouter();
   const slugParam = params?.slug;
-  const slug = Array.isArray(slugParam) ? slugParam.join("/") : slugParam || "";
+  const slug = Array.isArray(slugParam) ? slugParam.join('/') : slugParam || '';
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const schemaInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
-    title: "",
-    slug: "",
-    metaTitle: "",
-    metaDescription: "",
-    targetKeywords: "",
-    canonicalUrl: "",
+    title: '',
+    slug: '',
+    metaTitle: '',
+    metaDescription: '',
+    targetKeywords: '',
+    canonicalUrl: '',
     noIndex: false,
-    schema: "",
+    schema: '',
     headingOptions: {
-      heroHeadingTag: "h1",
+      heroHeadingTag: 'h1',
     } as any,
   });
 
@@ -45,25 +45,24 @@ export default function PageSpecificSEODetail() {
           setFormData({
             title: page.title || slug.charAt(0).toUpperCase() + slug.slice(1),
             slug: page.slug || slug,
-            metaTitle: page.metaTitle || "",
-            metaDescription: page.metaDescription || "",
-            targetKeywords: page.targetKeywords || "",
-            canonicalUrl: page.canonicalUrl || "",
+            metaTitle: page.metaTitle || '',
+            metaDescription: page.metaDescription || '',
+            targetKeywords: page.targetKeywords || '',
+            canonicalUrl: page.canonicalUrl || '',
             noIndex: page.noIndex || false,
             schema:
-              typeof page.schema === "string"
+              typeof page.schema === 'string'
                 ? page.schema
                 : page.schema
                   ? JSON.stringify(page.schema, null, 2)
-                  : "",
+                  : '',
             headingOptions:
-              typeof page.headingOptions === "object" &&
-              page.headingOptions !== null
+              typeof page.headingOptions === 'object' && page.headingOptions !== null
                 ? {
-                    heroHeadingTag: "h1",
+                    heroHeadingTag: 'h1',
                     ...page.headingOptions,
                   }
-                : { heroHeadingTag: "h1" },
+                : { heroHeadingTag: 'h1' },
           });
         } else {
           // If not in DB yet, populate default
@@ -71,12 +70,12 @@ export default function PageSpecificSEODetail() {
             ...prev,
             title: slug.charAt(0).toUpperCase() + slug.slice(1),
             slug: slug,
-            canonicalUrl: `https://jaidevaoil.com/${slug === "home" ? "" : slug}`,
+            canonicalUrl: `https://jaidevaoil.com/${slug === 'home' ? '' : slug}`,
           }));
         }
       } catch (error) {
-        console.error("Error fetching page SEO:", error);
-        toast.error("Failed to load page SEO data.");
+        console.error('Error fetching page SEO:', error);
+        toast.error('Failed to load page SEO data.');
       } finally {
         setIsLoading(false);
       }
@@ -86,7 +85,7 @@ export default function PageSpecificSEODetail() {
 
   const handleSave = async () => {
     setIsSaving(true);
-    const tid = toast.loading("Saving page SEO...");
+    const tid = toast.loading('Saving page SEO...');
     try {
       let parsedSchema = formData.schema;
       if (formData.schema.trim()) {
@@ -98,8 +97,8 @@ export default function PageSpecificSEODetail() {
       }
 
       const res = await fetch(`/api/seo/pages/${slug}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           seo: {
             metaTitle: formData.metaTitle,
@@ -115,13 +114,13 @@ export default function PageSpecificSEODetail() {
 
       const json = await res.json();
       if (json.success) {
-        toast.success("Page SEO updated successfully!", { id: tid });
+        toast.success('Page SEO updated successfully!', { id: tid });
       } else {
-        toast.error(json.error || "Failed to update page SEO.", { id: tid });
+        toast.error(json.error || 'Failed to update page SEO.', { id: tid });
       }
     } catch (error) {
-      console.error("Error saving page SEO:", error);
-      toast.error("Network error while saving.", { id: tid });
+      console.error('Error saving page SEO:', error);
+      toast.error('Network error while saving.', { id: tid });
     } finally {
       setIsSaving(false);
     }
@@ -140,13 +139,13 @@ export default function PageSpecificSEODetail() {
           ...prev,
           schema: JSON.stringify(parsed, null, 2),
         }));
-        toast.success("Schema JSON imported successfully!");
+        toast.success('Schema JSON imported successfully!');
       } catch {
-        toast.error("Invalid JSON file format");
+        toast.error('Invalid JSON file format');
       }
     };
     reader.readAsText(file);
-    if (schemaInputRef.current) schemaInputRef.current.value = "";
+    if (schemaInputRef.current) schemaInputRef.current.value = '';
   };
 
   if (isLoading) {
@@ -190,17 +189,13 @@ export default function PageSpecificSEODetail() {
             <div className="p-2.5 bg-blue-50 text-[#002B5C] rounded-2xl">
               <Search className="w-5 h-5" />
             </div>
-            <h2 className="text-xl font-bold text-[#0B1528]">
-              Search Engine Meta
-            </h2>
+            <h2 className="text-xl font-bold text-[#0B1528]">Search Engine Meta</h2>
           </div>
 
           <InputField
             label="Meta Title (Browser Tab)"
             value={formData.metaTitle}
-            onChange={(e) =>
-              setFormData({ ...formData, metaTitle: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, metaTitle: e.target.value })}
             placeholder="e.g. Products & Industrial Oils | Jai Deva Oil Co."
             tooltip="Page-specific title. Overrides the default site title to improve search relevance for this page."
           />
@@ -208,9 +203,7 @@ export default function PageSpecificSEODetail() {
           <TextAreaField
             label="Meta Description"
             value={formData.metaDescription}
-            onChange={(e) =>
-              setFormData({ ...formData, metaDescription: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, metaDescription: e.target.value })}
             placeholder="A compelling summary for search result snippets (keep under 160 chars)."
             rows={4}
             tooltip="A brief summary of this specific page's content. Search engines use this for the result snippet."
@@ -220,18 +213,14 @@ export default function PageSpecificSEODetail() {
             <InputField
               label="Target Keywords"
               value={formData.targetKeywords}
-              onChange={(e) =>
-                setFormData({ ...formData, targetKeywords: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, targetKeywords: e.target.value })}
               placeholder="e.g. industrial lubricants, hp oil distributor, greases"
               tooltip="Comma-separated keywords or phrases you want this specific page to rank for."
             />
             <InputField
               label="Canonical URL"
               value={formData.canonicalUrl}
-              onChange={(e) =>
-                setFormData({ ...formData, canonicalUrl: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, canonicalUrl: e.target.value })}
               placeholder="https://jaidevaoil.com/products"
               tooltip="The preferred URL for this page. Helps prevent duplicate content issues."
             />
@@ -245,9 +234,8 @@ export default function PageSpecificSEODetail() {
                 <div className="group relative flex items-center">
                   <HelpCircle className="w-3.5 h-3.5 cursor-help text-gray-300 hover:text-[#C86218] transition-colors" />
                   <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max max-w-[280px] px-4 py-3 bg-white text-gray-900 text-[11px] font-medium rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-100 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-50 normal-case tracking-normal text-center leading-relaxed backdrop-blur-sm">
-                    JSON-LD structured data schema markup for this specific
-                    page. Do not include &lt;script&gt; tags, just the raw JSON
-                    object.
+                    JSON-LD structured data schema markup for this specific page. Do not include
+                    &lt;script&gt; tags, just the raw JSON object.
                     <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-white"></div>
                   </div>
                 </div>
@@ -272,9 +260,7 @@ export default function PageSpecificSEODetail() {
             </div>
             <textarea
               value={formData.schema}
-              onChange={(e) =>
-                setFormData({ ...formData, schema: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, schema: e.target.value })}
               placeholder='e.g. { "@context": "https://schema.org", "@type": "Product", ... }'
               rows={8}
               className="w-full font-mono text-xs px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:outline-none focus:border-[#002B5C] focus:ring-1 focus:ring-[#002B5C] outline-none transition-all text-gray-800"
@@ -287,7 +273,7 @@ export default function PageSpecificSEODetail() {
               Hero Headline Tag (SEO)
             </span>
             <select
-              value={formData.headingOptions?.heroHeadingTag || "h1"}
+              value={formData.headingOptions?.heroHeadingTag || 'h1'}
               onChange={(e) =>
                 setFormData({
                   ...formData,
@@ -323,13 +309,11 @@ export default function PageSpecificSEODetail() {
                 type="checkbox"
                 className="sr-only peer"
                 checked={!formData.noIndex}
-                onChange={(e) =>
-                  setFormData({ ...formData, noIndex: !e.target.checked })
-                }
+                onChange={(e) => setFormData({ ...formData, noIndex: !e.target.checked })}
               />
               <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
               <span className="ml-3 text-sm font-bold text-gray-700">
-                {formData.noIndex ? "No-Index" : "Index"}
+                {formData.noIndex ? 'No-Index' : 'Index'}
               </span>
             </label>
           </div>

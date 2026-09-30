@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Share2, Award, Copyright } from "lucide-react";
-import toast from "react-hot-toast";
-import { PageHeader } from "@/components/PageHeader";
-import { InputField } from "@/components/InputField";
-import { SaveButton } from "@/components/SaveButton";
-import { ImagePickerField } from "@/components/ImagePickerField";
+import React, { useState, useEffect } from 'react';
+import { Share2, Award, Copyright } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { PageHeader } from '@/components/PageHeader';
+import { InputField } from '@/components/InputField';
+import { SaveButton } from '@/components/SaveButton';
+import { ImagePickerField } from '@/components/ImagePickerField';
 
 export default function FooterSocialMediaCMSPage() {
   const [loadingSocial, setLoadingSocial] = useState(false);
@@ -16,22 +16,22 @@ export default function FooterSocialMediaCMSPage() {
   const [savedBadges, setSavedBadges] = useState(false);
 
   // Social Links
-  const [facebook, setFacebook] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [instagram, setInstagram] = useState("");
-  const [youtube, setYoutube] = useState("");
-  const [twitter, setTwitter] = useState("");
+  const [facebook, setFacebook] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [instagram, setInstagram] = useState('');
+  const [youtube, setYoutube] = useState('');
+  const [twitter, setTwitter] = useState('');
 
   // Footer Partner Badges & Copyright
-  const [hpclBadge, setHpclBadge] = useState("");
-  const [indiaGovBadge, setIndiaGovBadge] = useState("");
-  const [globalCompactBadge, setGlobalCompactBadge] = useState("");
-  const [copyrightText, setCopyrightText] = useState("");
+  const [hpclBadge, setHpclBadge] = useState('');
+  const [indiaGovBadge, setIndiaGovBadge] = useState('');
+  const [globalCompactBadge, setGlobalCompactBadge] = useState('');
+  const [copyrightText, setCopyrightText] = useState('');
 
   useEffect(() => {
     async function loadConfig() {
       try {
-        const res = await fetch("/api/seo");
+        const res = await fetch('/api/seo');
         const json = await res.json();
         if (json.success && json.data?.socialLinks) {
           const s = json.data.socialLinks;
@@ -46,14 +46,14 @@ export default function FooterSocialMediaCMSPage() {
           if (s.copyrightText) setCopyrightText(s.copyrightText);
         }
       } catch (err) {
-        console.error("Failed to load footer & social config:", err);
+        console.error('Failed to load footer & social config:', err);
       }
     }
     loadConfig();
   }, []);
 
   const saveConfig = async (updatedFields: Record<string, any>) => {
-    const getRes = await fetch("/api/seo");
+    const getRes = await fetch('/api/seo');
     const currentJson = await getRes.json();
     const currentSocials = currentJson.data?.socialLinks || {};
 
@@ -73,9 +73,9 @@ export default function FooterSocialMediaCMSPage() {
       },
     };
 
-    const res = await fetch("/api/seo", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/seo', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
     return await res.json();
@@ -94,13 +94,13 @@ export default function FooterSocialMediaCMSPage() {
       });
       if (json.success) {
         setSavedSocial(true);
-        toast.success("Social media profiles updated successfully!");
+        toast.success('Social media profiles updated successfully!');
         setTimeout(() => setSavedSocial(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch (err: any) {
-      toast.error(err?.message || "Failed to save");
+      toast.error(err?.message || 'Failed to save');
     } finally {
       setLoadingSocial(false);
     }
@@ -118,13 +118,13 @@ export default function FooterSocialMediaCMSPage() {
       });
       if (json.success) {
         setSavedBadges(true);
-        toast.success("Footer partner badges & copyright updated successfully!");
+        toast.success('Footer partner badges & copyright updated successfully!');
         setTimeout(() => setSavedBadges(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch (err: any) {
-      toast.error(err?.message || "Failed to save");
+      toast.error(err?.message || 'Failed to save');
     } finally {
       setLoadingBadges(false);
     }
@@ -147,7 +147,9 @@ export default function FooterSocialMediaCMSPage() {
             </div>
             <div>
               <h3 className="font-bold text-slate-900 text-lg">1. Social Media Profiles</h3>
-              <p className="text-xs text-slate-500">Corporate channel URLs appearing in the website footer and navigation</p>
+              <p className="text-xs text-slate-500">
+                Corporate channel URLs appearing in the website footer and navigation
+              </p>
             </div>
           </div>
 
@@ -205,8 +207,12 @@ export default function FooterSocialMediaCMSPage() {
               <Award size={20} />
             </div>
             <div>
-              <h3 className="font-bold text-slate-900 text-lg">2. Footer Partner Badges &amp; Copyright</h3>
-              <p className="text-xs text-slate-500">Upload official accreditation badges and configure the footer copyright notice</p>
+              <h3 className="font-bold text-slate-900 text-lg">
+                2. Footer Partner Badges &amp; Copyright
+              </h3>
+              <p className="text-xs text-slate-500">
+                Upload official accreditation badges and configure the footer copyright notice
+              </p>
             </div>
           </div>
 

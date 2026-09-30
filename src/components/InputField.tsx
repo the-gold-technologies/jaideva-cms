@@ -1,1 +1,1 @@
-export * from "@/app/components/InputField";
+export * from '@/app/components/InputField';

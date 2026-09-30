@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import bcrypt from "bcryptjs";
-import { auth } from "@/auth";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import bcrypt from 'bcryptjs';
+import { auth } from '@/auth';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
@@ -11,7 +11,7 @@ export async function GET() {
     const sessionEmail = session?.user?.email;
 
     const user = await prisma.user.findFirst({
-      where: sessionEmail ? { email: sessionEmail } : { role: "admin" },
+      where: sessionEmail ? { email: sessionEmail } : { role: 'admin' },
       select: {
         id: true,
         name: true,
@@ -26,20 +26,17 @@ export async function GET() {
       return NextResponse.json({
         success: true,
         data: {
-          name: "Jai Deva Admin",
-          email: "admin@jaidevaoil.com",
-          role: "admin",
+          name: 'Jai Deva Admin',
+          email: 'admin@jaidevaoil.com',
+          role: 'admin',
         },
       });
     }
 
     return NextResponse.json({ success: true, data: user });
   } catch (error: any) {
-    console.error("Error fetching profile:", error);
-    return NextResponse.json(
-      { success: false, error: "Failed to load profile" },
-      { status: 500 }
-    );
+    console.error('Error fetching profile:', error);
+    return NextResponse.json({ success: false, error: 'Failed to load profile' }, { status: 500 });
   }
 }
 
@@ -60,12 +57,12 @@ export async function PUT(request: Request) {
       user = await prisma.user.findUnique({ where: { email } });
     }
     if (!user) {
-      user = await prisma.user.findFirst({ where: { role: "admin" } });
+      user = await prisma.user.findFirst({ where: { role: 'admin' } });
     }
 
     if (!user) {
       return NextResponse.json(
-        { success: false, error: "Admin user record not found" },
+        { success: false, error: 'Admin user record not found' },
         { status: 404 }
       );
     }
@@ -84,7 +81,7 @@ export async function PUT(request: Request) {
       });
       if (existing && existing.id !== user.id) {
         return NextResponse.json(
-          { success: false, error: "This email address is already in use by another user" },
+          { success: false, error: 'This email address is already in use by another user' },
           { status: 400 }
         );
       }
@@ -97,14 +94,14 @@ export async function PUT(request: Request) {
 
       if (trimmedNewPassword.length < 6) {
         return NextResponse.json(
-          { success: false, error: "New password must be at least 6 characters long" },
+          { success: false, error: 'New password must be at least 6 characters long' },
           { status: 400 }
         );
       }
 
       if (!currentPassword) {
         return NextResponse.json(
-          { success: false, error: "Please enter your current password to authorize this change" },
+          { success: false, error: 'Please enter your current password to authorize this change' },
           { status: 400 }
         );
       }
@@ -112,9 +109,9 @@ export async function PUT(request: Request) {
       // Verify current password against hashed database password
       if (user.password) {
         const isMatch = await bcrypt.compare(currentPassword, user.password);
-        if (!isMatch && currentPassword !== "Admin@123") {
+        if (!isMatch && currentPassword !== 'Admin@123') {
           return NextResponse.json(
-            { success: false, error: "Current password is incorrect" },
+            { success: false, error: 'Current password is incorrect' },
             { status: 400 }
           );
         }
@@ -137,12 +134,12 @@ export async function PUT(request: Request) {
     return NextResponse.json({
       success: true,
       data: updatedUser,
-      message: "Profile and credentials updated successfully",
+      message: 'Profile and credentials updated successfully',
     });
   } catch (error: any) {
-    console.error("Error updating profile:", error);
+    console.error('Error updating profile:', error);
     return NextResponse.json(
-      { success: false, error: error?.message || "Internal Server Error" },
+      { success: false, error: error?.message || 'Internal Server Error' },
       { status: 500 }
     );
   }

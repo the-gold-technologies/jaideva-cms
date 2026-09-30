@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { ChevronRight } from "lucide-react";
-import toast from "react-hot-toast";
+import React, { useState, useEffect } from 'react';
+import { ChevronRight } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 interface NavLinkItem {
   id?: string;
@@ -17,39 +17,39 @@ interface NavLinkItem {
 
 const DEFAULT_DISPLAY_LINKS: NavLinkItem[] = [
   {
-    label: "Home",
-    url: "/",
-    type: "Main Link",
+    label: 'Home',
+    url: '/',
+    type: 'Main Link',
     isStatic: true,
   },
   {
-    label: "About Us",
-    url: "/about-us",
-    type: "Main Link",
+    label: 'About Us',
+    url: '/about-us',
+    type: 'Main Link',
     isStatic: true,
   },
   {
-    label: "Products & Services",
-    url: "/products",
-    type: "Main Link",
+    label: 'Products & Services',
+    url: '/products',
+    type: 'Main Link',
     isStatic: true,
   },
   {
-    label: "Events & Gallery",
-    url: "/events",
-    type: "Main Link",
+    label: 'Events & Gallery',
+    url: '/events',
+    type: 'Main Link',
     isStatic: true,
   },
   {
-    label: "Blogs",
-    url: "/blogs",
-    type: "Main Link",
+    label: 'Blogs',
+    url: '/blogs',
+    type: 'Main Link',
     isStatic: true,
   },
   {
-    label: "Contact Us",
-    url: "/contact-us",
-    type: "Main Link",
+    label: 'Contact Us',
+    url: '/contact-us',
+    type: 'Main Link',
     isStatic: true,
   },
 ];
@@ -61,7 +61,7 @@ export default function MenuLinksPage() {
   useEffect(() => {
     async function loadNavLinks() {
       try {
-        const res = await fetch("/api/nav-links");
+        const res = await fetch('/api/nav-links');
         const json = await res.json();
         if (json.success && Array.isArray(json.data) && json.data.length > 0) {
           const seen = new Set<string>();
@@ -74,8 +74,8 @@ export default function MenuLinksPage() {
           setLinks(unique);
         }
       } catch (err) {
-        console.error("Failed to load navigation links:", err);
-        toast.error("Failed to load navigation links");
+        console.error('Failed to load navigation links:', err);
+        toast.error('Failed to load navigation links');
       } finally {
         setLoading(false);
       }
@@ -122,13 +122,9 @@ export default function MenuLinksPage() {
               </thead>
               <tbody className="divide-y divide-slate-50/80">
                 {links.map((link, idx) => {
-                  const isDropdown =
-                    link.type?.toLowerCase().includes("dropdown") || false;
+                  const isDropdown = link.type?.toLowerCase().includes('dropdown') || false;
                   return (
-                    <tr
-                      key={link.id || idx}
-                      className="hover:bg-slate-50/60 transition-colors"
-                    >
+                    <tr key={link.id || idx} className="hover:bg-slate-50/60 transition-colors">
                       {/* Order Column */}
                       <td className="py-5 px-6 text-sm font-semibold text-slate-600 whitespace-nowrap">
                         {idx + 1}

@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Plus, Trash2, ChevronDown, Factory } from "lucide-react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Factory } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface IndustryItem {
   id?: string;
@@ -25,48 +25,42 @@ export interface IndustriesWeServeData {
 }
 
 export const DEFAULT_INDUSTRIES_DATA: IndustriesWeServeData = {
-  title: "",
-  subtitle: "",
-  leadText: "",
-  description: "",
-  btnLabel: "",
-  btnUrl: "",
+  title: '',
+  subtitle: '',
+  leadText: '',
+  description: '',
+  btnLabel: '',
+  btnUrl: '',
   industries: [],
 };
 
-export function IndustriesWeServeSection({
-  initialData,
-}: {
-  initialData?: any;
-}) {
+export function IndustriesWeServeSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [data, setData] = useState<IndustriesWeServeData>(
-    DEFAULT_INDUSTRIES_DATA,
-  );
+  const [data, setData] = useState<IndustriesWeServeData>(DEFAULT_INDUSTRIES_DATA);
 
   useEffect(() => {
     if (initialData) {
       const list: IndustryItem[] = Array.isArray(initialData.industries)
         ? initialData.industries.map((item: any, i: number) =>
-            typeof item === "string"
-              ? { id: `ind-${i}`, name: item, icon: "Factory" }
+            typeof item === 'string'
+              ? { id: `ind-${i}`, name: item, icon: 'Factory' }
               : {
                   id: item.id || `ind-${i}`,
-                  name: item.name || "",
-                  icon: item.icon || "Factory",
-                },
+                  name: item.name || '',
+                  icon: item.icon || 'Factory',
+                }
           )
         : [];
 
       setData({
-        title: initialData.title || initialData.heading || "",
-        subtitle: initialData.subtitle || "",
-        leadText: initialData.leadText || initialData.introText || "",
-        description: initialData.description || "",
-        btnLabel: initialData.btnLabel || initialData.buttonText || "",
-        btnUrl: initialData.btnUrl || initialData.buttonLink || "",
+        title: initialData.title || '',
+        subtitle: initialData.subtitle || '',
+        leadText: initialData.leadText || '',
+        description: initialData.description || '',
+        btnLabel: initialData.btnLabel || '',
+        btnUrl: initialData.btnUrl || '',
         industries: list,
       });
     }
@@ -75,20 +69,20 @@ export function IndustriesWeServeSection({
   const handleAddIndustry = () => {
     const newItem: IndustryItem = {
       id: `ind-${Date.now()}`,
-      name: "",
-      icon: "Factory",
+      name: '',
+      icon: 'Factory',
     };
     setData((prev) => ({
       ...prev,
       industries: [...prev.industries, newItem],
     }));
-    toast.success("New industry added");
+    toast.success('New industry added');
   };
 
   const handleRemoveIndustry = (idx: number) => {
     const updated = data.industries.filter((_, i) => i !== idx);
     setData((prev) => ({ ...prev, industries: updated }));
-    toast.success("Industry removed");
+    toast.success('Industry removed');
   };
 
   const handleIndustryChange = (idx: number, value: string) => {
@@ -111,11 +105,11 @@ export function IndustriesWeServeSection({
         industries: data.industries,
       };
 
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "IndustriesWeServeSection",
+          section: 'IndustriesWeServeSection',
           content: payload,
         }),
       });
@@ -123,13 +117,13 @@ export function IndustriesWeServeSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Industries We Serve section saved successfully!");
+        toast.success('Industries We Serve section saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Industries We Serve section");
+      toast.error('Error saving Industries We Serve section');
     } finally {
       setLoading(false);
     }
@@ -141,14 +135,14 @@ export function IndustriesWeServeSection({
         <SectionHeader
           title="Industries We Serve Section"
           description="Manage the industries grid cards (Steel, Cement, Power, etc.), lead text, description, and CTA button."
-          badge={`${data.industries.length} Industr${data.industries.length === 1 ? "y" : "ies"}`}
+          badge={`${data.industries.length} Industr${data.industries.length === 1 ? 'y' : 'ies'}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">
@@ -158,9 +152,7 @@ export function IndustriesWeServeSection({
                 <InputField
                   label="Section Title"
                   value={data.title}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, title: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, title: e.target.value }))}
                   placeholder="INDUSTRIES WE SERVE"
                   helperText="Main uppercase heading"
                 />
@@ -168,9 +160,7 @@ export function IndustriesWeServeSection({
                 <InputField
                   label="Section Subtitle (Orange Tagline)"
                   value={data.subtitle}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, subtitle: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, subtitle: e.target.value }))}
                   placeholder="Lubrication Solutions for Diverse Industries"
                   helperText="Highlighted subtitle"
                 />
@@ -182,9 +172,7 @@ export function IndustriesWeServeSection({
                   label="Lead Intro Text"
                   rows={2}
                   value={data.leadText}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, leadText: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, leadText: e.target.value }))}
                   placeholder="Our extensive lubricant portfolio serves the requirements of various industries, including:"
                   helperText="Short sentence before the grid cards"
                 />
@@ -209,18 +197,14 @@ export function IndustriesWeServeSection({
                 <InputField
                   label="CTA Button Label"
                   value={data.btnLabel}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, btnLabel: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, btnLabel: e.target.value }))}
                   placeholder="Explore Industries"
                 />
 
                 <InputField
                   label="CTA Button URL"
                   value={data.btnUrl}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, btnUrl: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, btnUrl: e.target.value }))}
                   placeholder="#industries or /products"
                   helperText="Destination link for the action button"
                 />
@@ -252,9 +236,7 @@ export function IndustriesWeServeSection({
                       <input
                         type="text"
                         value={ind.name}
-                        onChange={(e) =>
-                          handleIndustryChange(idx, e.target.value)
-                        }
+                        onChange={(e) => handleIndustryChange(idx, e.target.value)}
                         placeholder={`Industry #${idx + 1}`}
                         className="bg-white border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs font-bold text-[#0C356A] w-full focus:outline-none focus:ring-1 focus:ring-[#0C356A]"
                       />

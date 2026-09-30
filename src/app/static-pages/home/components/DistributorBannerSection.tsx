@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface DistributorBannerData {
   buttonText: string;
@@ -12,33 +12,21 @@ export interface DistributorBannerData {
 }
 
 export const DEFAULT_DISTRIBUTOR_BANNER: DistributorBannerData = {
-  buttonText: "",
-  enquirySubject: "",
+  buttonText: '',
+  enquirySubject: '',
 };
 
-export function DistributorBannerSection({
-  initialData,
-}: {
-  initialData?: any;
-}) {
+export function DistributorBannerSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [formData, setFormData] = useState<DistributorBannerData>(
-    DEFAULT_DISTRIBUTOR_BANNER
-  );
+  const [formData, setFormData] = useState<DistributorBannerData>(DEFAULT_DISTRIBUTOR_BANNER);
 
   useEffect(() => {
     if (initialData) {
       setFormData({
-        buttonText:
-          initialData.buttonText ||
-          initialData.btnLabel ||
-          initialData.title ||
-          "",
-        enquirySubject:
-          initialData.enquirySubject ||
-          "",
+        buttonText: initialData.buttonText || '',
+        enquirySubject: initialData.enquirySubject || '',
       });
     }
   }, [initialData]);
@@ -50,16 +38,13 @@ export function DistributorBannerSection({
       const payload = {
         buttonText: formData.buttonText,
         enquirySubject: formData.enquirySubject,
-        // Backward-compatible fields
-        btnLabel: formData.buttonText,
-        title: formData.buttonText,
       };
 
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "DistributorBanner",
+          section: 'DistributorBanner',
           content: payload,
         }),
       });
@@ -67,13 +52,13 @@ export function DistributorBannerSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Distributor banner saved successfully!");
+        toast.success('Distributor banner saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving distributor banner");
+      toast.error('Error saving distributor banner');
     } finally {
       setLoading(false);
     }
@@ -91,7 +76,7 @@ export function DistributorBannerSection({
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">

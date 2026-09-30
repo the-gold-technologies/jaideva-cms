@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 interface ContactFormData {
   badge?: string;
@@ -19,17 +19,14 @@ interface ContactFormConfigSectionProps {
   onSave?: (data: ContactFormData) => Promise<boolean | void>;
 }
 
-export function ContactFormConfigSection({
-  initialData,
-  onSave,
-}: ContactFormConfigSectionProps) {
+export function ContactFormConfigSection({ initialData, onSave }: ContactFormConfigSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [badge, setBadge] = useState("Online Request");
-  const [title, setTitle] = useState("Send an Enquiry");
+  const [badge, setBadge] = useState('');
+  const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState(
-    "Please fill in your details and our team will get back to you with pricing & availability."
+    'Please fill in your details and our team will get back to you with pricing & availability.'
   );
-  const [buttonText, setButtonText] = useState("Submit Enquiry");
+  const [buttonText, setButtonText] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -56,23 +53,23 @@ export function ContactFormConfigSection({
       if (onSave) {
         await onSave(payload);
       } else {
-        const res = await fetch("/api/contact-us", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch('/api/contact-us', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            section: "ContactForm",
+            section: 'ContactForm',
             content: payload,
           }),
         });
         const json = await res.json();
         if (json.success) {
-          toast.success("Enquiry Form configuration updated successfully!");
+          toast.success('Enquiry Form configuration updated successfully!');
         } else {
-          toast.error(json.error || "Failed to update form settings");
+          toast.error(json.error || 'Failed to update form settings');
         }
       }
     } catch {
-      toast.error("Network error saving form settings");
+      toast.error('Network error saving form settings');
     } finally {
       setLoading(false);
     }
@@ -90,7 +87,7 @@ export function ContactFormConfigSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">

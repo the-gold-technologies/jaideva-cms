@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Plus, Edit2, Trash2, X, Tags, Sparkles, Check } from "lucide-react";
-import toast from "react-hot-toast";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import { Edit2, Trash2, X, Tags } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface BlogCategory {
   id: string;
@@ -31,20 +31,20 @@ export function BlogCategoryModal({
   const [submitting, setSubmitting] = useState(false);
 
   const [editingCat, setEditingCat] = useState<BlogCategory | null>(null);
-  const [name, setName] = useState("");
-  const [slug, setSlug] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState('');
+  const [slug, setSlug] = useState('');
+  const [description, setDescription] = useState('');
 
   const fetchCategories = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/blogs/categories");
+      const res = await fetch('/api/blogs/categories');
       const json = await res.json();
       if (json.success && json.data) {
         setCategories(json.data);
       }
     } catch {
-      toast.error("Failed to load categories");
+      toast.error('Failed to load categories');
     } finally {
       setLoading(false);
     }
@@ -59,9 +59,9 @@ export function BlogCategoryModal({
 
   const resetForm = () => {
     setEditingCat(null);
-    setName("");
-    setSlug("");
-    setDescription("");
+    setName('');
+    setSlug('');
+    setDescription('');
   };
 
   const handleNameChange = (val: string) => {
@@ -70,8 +70,8 @@ export function BlogCategoryModal({
       setSlug(
         val
           .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-+|-+$/g, "")
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '')
       );
     }
   };
@@ -80,13 +80,13 @@ export function BlogCategoryModal({
     setEditingCat(cat);
     setName(cat.name);
     setSlug(cat.slug);
-    setDescription(cat.description || "");
+    setDescription(cat.description || '');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !slug.trim()) {
-      toast.error("Category name and slug are required");
+      toast.error('Category name and slug are required');
       return;
     }
 
@@ -98,56 +98,53 @@ export function BlogCategoryModal({
         description: description.trim(),
       };
 
-      const url = "/api/blogs/categories";
-      const method = editingCat ? "PUT" : "POST";
+      const url = '/api/blogs/categories';
+      const method = editingCat ? 'PUT' : 'POST';
       const body = editingCat
         ? JSON.stringify({ ...payload, id: editingCat.id })
         : JSON.stringify(payload);
 
       const res = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         body,
       });
 
       const json = await res.json();
       if (json.success) {
         toast.success(
-          editingCat
-            ? "Category updated successfully!"
-            : "Category created successfully!"
+          editingCat ? 'Category updated successfully!' : 'Category created successfully!'
         );
         resetForm();
         fetchCategories();
         if (onCategoriesUpdated) onCategoriesUpdated();
       } else {
-        toast.error(json.error || "Failed to save category");
+        toast.error(json.error || 'Failed to save category');
       }
     } catch {
-      toast.error("Network error saving category");
+      toast.error('Network error saving category');
     } finally {
       setSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string, catName: string) => {
-    if (!confirm(`Are you sure you want to delete category "${catName}"?`))
-      return;
+    if (!confirm(`Are you sure you want to delete category "${catName}"?`)) return;
 
     try {
       const res = await fetch(`/api/blogs/categories?id=${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Category deleted successfully");
+        toast.success('Category deleted successfully');
         fetchCategories();
         if (onCategoriesUpdated) onCategoriesUpdated();
       } else {
-        toast.error(json.error || "Failed to delete category");
+        toast.error(json.error || 'Failed to delete category');
       }
     } catch {
-      toast.error("Network error deleting category");
+      toast.error('Network error deleting category');
     }
   };
 
@@ -163,9 +160,7 @@ export function BlogCategoryModal({
               <Tags className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-900">
-                Manage Blog Categories
-              </h3>
+              <h3 className="text-base font-bold text-gray-900">Manage Blog Categories</h3>
               <p className="text-xs text-gray-400 font-medium">
                 Create and organize categories for educational lubrication articles.
               </p>
@@ -190,7 +185,7 @@ export function BlogCategoryModal({
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-gray-800 uppercase tracking-wider flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-[#C86218]" />
-                {editingCat ? `Edit: ${editingCat.name}` : "Add New Blog Category"}
+                {editingCat ? `Edit: ${editingCat.name}` : 'Add New Blog Category'}
               </span>
               {editingCat && (
                 <button
@@ -231,7 +226,7 @@ export function BlogCategoryModal({
             <div className="pt-2">
               <SaveButton
                 loading={submitting}
-                label={editingCat ? "Update Category" : "Add Category"}
+                label={editingCat ? 'Update Category' : 'Add Category'}
                 className="w-full py-3 text-xs font-bold shadow-sm hover:shadow-md"
               />
             </div>
@@ -262,11 +257,9 @@ export function BlogCategoryModal({
                   >
                     <div className="flex flex-col gap-1 min-w-0">
                       <div className="flex items-center gap-2">
-                        <h4 className="text-xs font-bold text-gray-900 truncate">
-                          {cat.name}
-                        </h4>
+                        <h4 className="text-xs font-bold text-gray-900 truncate">{cat.name}</h4>
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-50 text-[#C86218] shrink-0">
-                          {cat.count ?? 0} {cat.count === 1 ? "article" : "articles"}
+                          {cat.count ?? 0} {cat.count === 1 ? 'article' : 'articles'}
                         </span>
                       </div>
                       <span className="text-[11px] font-mono text-gray-400 truncate">

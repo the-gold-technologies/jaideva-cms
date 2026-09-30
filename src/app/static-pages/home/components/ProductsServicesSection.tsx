@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Plus,
   Trash2,
@@ -11,11 +11,11 @@ import {
   RefreshCw,
   Layers,
   Image as ImageIcon,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { SaveButton } from "@/components/SaveButton";
+} from 'lucide-react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface ProductServiceItem {
   id: string;
@@ -36,10 +36,10 @@ export interface ProductsServicesData {
 }
 
 export const DEFAULT_PRODUCTS_SERVICES: ProductsServicesData = {
-  title: "",
-  subtitle: "",
-  btnLabel: "",
-  btnUrl: "",
+  title: '',
+  subtitle: '',
+  btnLabel: '',
+  btnUrl: '',
   items: [],
 };
 
@@ -59,30 +59,30 @@ function CircularImageDropzone({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const uploadFile = async (file: File) => {
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please upload an image file (PNG, JPG, WebP)");
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file (PNG, JPG, WebP)');
       return;
     }
 
     setIsUploading(true);
     try {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append('file', file);
 
-      const res = await fetch("/api/upload", {
-        method: "POST",
+      const res = await fetch('/api/upload', {
+        method: 'POST',
         body: formData,
       });
 
       const data = await res.json();
       if (data.success && data.url) {
         onChange(data.url);
-        toast.success("Image uploaded successfully");
+        toast.success('Image uploaded successfully');
       } else {
-        toast.error(data.error || "Failed to upload image");
+        toast.error(data.error || 'Failed to upload image');
       }
     } catch {
-      toast.error("Error uploading image");
+      toast.error('Error uploading image');
     } finally {
       setIsUploading(false);
     }
@@ -109,12 +109,8 @@ function CircularImageDropzone({
   return (
     <div className="flex flex-col gap-1.5 w-full">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-semibold text-slate-700 tracking-wide">
-          {label}
-        </label>
-        <span className="text-[11px] text-gray-400 font-medium">
-          {sublabel}
-        </span>
+        <label className="text-xs font-semibold text-slate-700 tracking-wide">{label}</label>
+        <span className="text-[11px] text-gray-400 font-medium">{sublabel}</span>
       </div>
 
       <input
@@ -123,7 +119,7 @@ function CircularImageDropzone({
         onChange={(e) => {
           if (e.target.files && e.target.files[0]) {
             uploadFile(e.target.files[0]);
-            e.target.value = "";
+            e.target.value = '';
           }
         }}
         accept="image/png, image/jpeg, image/jpg, image/webp"
@@ -141,17 +137,15 @@ function CircularImageDropzone({
                 className="w-full h-full object-contain"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src =
-                    "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=300&q=80";
+                    'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=300&q=80';
                 }}
               />
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-xs font-bold text-gray-900 truncate">
-                {value.split("/").pop() || "Image"}
+                {value.split('/').pop() || 'Image'}
               </span>
-              <span className="text-[11px] text-emerald-600 font-medium">
-                ✓ Image loaded
-              </span>
+              <span className="text-[11px] text-emerald-600 font-medium">✓ Image loaded</span>
             </div>
           </div>
 
@@ -171,7 +165,7 @@ function CircularImageDropzone({
             </button>
             <button
               type="button"
-              onClick={() => onChange("")}
+              onClick={() => onChange('')}
               disabled={isUploading}
               className="p-1 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
               title="Remove image"
@@ -188,24 +182,20 @@ function CircularImageDropzone({
           onClick={() => fileInputRef.current?.click()}
           className={`w-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-4 transition-all cursor-pointer group ${
             isDragging
-              ? "border-[#0C356A] bg-blue-50/50 scale-[0.99]"
-              : "border-gray-300 bg-gray-50/60 hover:bg-gray-50 hover:border-gray-400"
+              ? 'border-[#0C356A] bg-blue-50/50 scale-[0.99]'
+              : 'border-gray-300 bg-gray-50/60 hover:bg-gray-50 hover:border-gray-400'
           }`}
         >
           {isUploading ? (
             <div className="flex flex-col items-center gap-1.5">
               <Loader2 className="w-5 h-5 text-[#0C356A] animate-spin" />
-              <span className="text-xs font-medium text-gray-600">
-                Uploading...
-              </span>
+              <span className="text-xs font-medium text-gray-600">Uploading...</span>
             </div>
           ) : (
             <div className="flex items-center gap-2">
               <CloudUpload className="w-4 h-4 text-gray-500 group-hover:text-[#0C356A] transition-colors" />
               <span className="text-xs font-bold text-gray-700">
-                <span className="text-[#0C356A] hover:underline mr-1">
-                  Upload
-                </span>
+                <span className="text-[#0C356A] hover:underline mr-1">Upload</span>
                 or drag & drop
               </span>
             </div>
@@ -216,42 +206,24 @@ function CircularImageDropzone({
   );
 }
 
-export function ProductsServicesSection({
-  initialData,
-}: {
-  initialData?: any;
-}) {
+export function ProductsServicesSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [data, setData] = useState<ProductsServicesData>(
-    DEFAULT_PRODUCTS_SERVICES,
-  );
+  const [data, setData] = useState<ProductsServicesData>(DEFAULT_PRODUCTS_SERVICES);
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({
-    "engine-oil": true,
+    'engine-oil': true,
   });
 
   useEffect(() => {
     if (initialData) {
-      const items =
-        Array.isArray(initialData.items) && initialData.items.length > 0
-          ? initialData.items
-          : DEFAULT_PRODUCTS_SERVICES.items;
+      const items = Array.isArray(initialData.items) ? initialData.items : [];
 
       setData({
-        title: initialData.title || DEFAULT_PRODUCTS_SERVICES.title,
-        subtitle:
-          initialData.subtitle ||
-          initialData.description ||
-          DEFAULT_PRODUCTS_SERVICES.subtitle,
-        btnLabel:
-          initialData.btnLabel ||
-          initialData.buttonText ||
-          DEFAULT_PRODUCTS_SERVICES.btnLabel,
-        btnUrl:
-          initialData.btnUrl ||
-          initialData.buttonLink ||
-          DEFAULT_PRODUCTS_SERVICES.btnUrl,
+        title: initialData.title || '',
+        subtitle: initialData.subtitle || '',
+        btnLabel: initialData.btnLabel || '',
+        btnUrl: initialData.btnUrl || '',
         items,
       });
 
@@ -276,35 +248,31 @@ export function ProductsServicesSection({
     const newItem: ProductServiceItem = {
       id: newId,
       slug: newId,
-      name: "New Product Category",
+      name: 'New Product Category',
       link: `/products/${newId}`,
-      img: "",
-      hoverImg: "",
+      img: '',
+      hoverImg: '',
     };
     setData((prev) => ({
       ...prev,
       items: [...prev.items, newItem],
     }));
     setExpandedIds((prev) => ({ ...prev, [newId]: true }));
-    toast.success("New product category item added");
+    toast.success('New product category item added');
   };
 
   const handleRemoveItem = (idx: number, e: React.MouseEvent) => {
     e.stopPropagation();
     if (data.items.length <= 1) {
-      toast.error("You must have at least 1 category item.");
+      toast.error('You must have at least 1 category item.');
       return;
     }
     const updated = data.items.filter((_, i) => i !== idx);
     setData((prev) => ({ ...prev, items: updated }));
-    toast.success("Category item removed");
+    toast.success('Category item removed');
   };
 
-  const handleItemChange = (
-    idx: number,
-    field: keyof ProductServiceItem,
-    value: string,
-  ) => {
+  const handleItemChange = (idx: number, field: keyof ProductServiceItem, value: string) => {
     const updated = [...data.items];
     updated[idx] = { ...updated[idx], [field]: value };
     setData((prev) => ({ ...prev, items: updated }));
@@ -317,18 +285,18 @@ export function ProductsServicesSection({
       const payload = {
         title: data.title,
         subtitle: data.subtitle,
-        btnLabel: data.btnLabel || "View All Products",
-        btnUrl: data.btnUrl || "/products",
-        buttonText: data.btnLabel || "View All Products",
-        buttonLink: data.btnUrl || "/products",
+        btnLabel: data.btnLabel || 'View All Products',
+        btnUrl: data.btnUrl || '/products',
+        buttonText: data.btnLabel || 'View All Products',
+        buttonLink: data.btnUrl || '/products',
         items: data.items,
       };
 
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "ProductsServicesSection",
+          section: 'ProductsServicesSection',
           content: payload,
         }),
       });
@@ -336,13 +304,13 @@ export function ProductsServicesSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Products & Services section saved successfully!");
+        toast.success('Products & Services section saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Products & Services section");
+      toast.error('Error saving Products & Services section');
     } finally {
       setLoading(false);
     }
@@ -354,14 +322,14 @@ export function ProductsServicesSection({
         <SectionHeader
           title="Products & Services Section"
           description="Manage the circular category icons, hover states, titles, and link routes on the homepage."
-          badge={`${data.items.length} Category Icon${data.items.length === 1 ? "" : "s"}`}
+          badge={`${data.items.length} Category Icon${data.items.length === 1 ? '' : 's'}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">
@@ -371,16 +339,14 @@ export function ProductsServicesSection({
                 <InputField
                   label="Section Title"
                   value={data.title}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, title: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, title: e.target.value }))}
                   placeholder="OUR PRODUCT RANGE"
                   helperText="Main uppercase heading"
                 />
 
                 <InputField
                   label="Section Subtitle"
-                  value={data.subtitle || ""}
+                  value={data.subtitle || ''}
                   onChange={(e) =>
                     setData((prev) => ({
                       ...prev,
@@ -469,7 +435,7 @@ export function ProductsServicesSection({
                           )}
                           <div
                             className={`p-1.5 rounded-lg text-gray-500 hover:bg-gray-200/70 transition-transform duration-200 ${
-                              isItemExpanded ? "rotate-180" : ""
+                              isItemExpanded ? 'rotate-180' : ''
                             }`}
                           >
                             <ChevronDown className="w-4 h-4" />
@@ -481,8 +447,8 @@ export function ProductsServicesSection({
                       <div
                         className={`grid transition-all duration-200 ease-in-out border-t border-gray-200/60 ${
                           isItemExpanded
-                            ? "grid-rows-[1fr] opacity-100 p-5 bg-white"
-                            : "grid-rows-[0fr] opacity-0"
+                            ? 'grid-rows-[1fr] opacity-100 p-5 bg-white'
+                            : 'grid-rows-[0fr] opacity-0'
                         }`}
                       >
                         <div className="overflow-hidden flex flex-col gap-4">
@@ -491,19 +457,13 @@ export function ProductsServicesSection({
                             <InputField
                               label="Category Name"
                               value={item.name}
-                              onChange={(e) =>
-                                handleItemChange(idx, "name", e.target.value)
-                              }
+                              onChange={(e) => handleItemChange(idx, 'name', e.target.value)}
                               placeholder="e.g. Engine Oil"
                             />
                             <InputField
                               label="Destination Link"
-                              value={
-                                item.link || `/products/${item.slug || item.id}`
-                              }
-                              onChange={(e) =>
-                                handleItemChange(idx, "link", e.target.value)
-                              }
+                              value={item.link || `/products/${item.slug || item.id}`}
+                              onChange={(e) => handleItemChange(idx, 'link', e.target.value)}
                               placeholder="e.g. /products/engine-oil"
                             />
                           </div>
@@ -514,18 +474,14 @@ export function ProductsServicesSection({
                               label="Default Circular Icon (Idle State)"
                               sublabel="PNG with transparent background"
                               value={item.img}
-                              onChange={(url) =>
-                                handleItemChange(idx, "img", url)
-                              }
+                              onChange={(url) => handleItemChange(idx, 'img', url)}
                             />
 
                             <CircularImageDropzone
                               label="Hover Circular Icon (Hover State)"
                               sublabel="PNG with transparent background"
                               value={item.hoverImg}
-                              onChange={(url) =>
-                                handleItemChange(idx, "hoverImg", url)
-                              }
+                              onChange={(url) => handleItemChange(idx, 'hoverImg', url)}
                             />
                           </div>
                         </div>
@@ -543,19 +499,15 @@ export function ProductsServicesSection({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <InputField
                     label="Button Label"
-                    value={data.btnLabel || "View All Products"}
-                    onChange={(e) =>
-                      setData((prev) => ({ ...prev, btnLabel: e.target.value }))
-                    }
+                    value={data.btnLabel || 'View All Products'}
+                    onChange={(e) => setData((prev) => ({ ...prev, btnLabel: e.target.value }))}
                     placeholder="View All Products"
                   />
 
                   <InputField
                     label="Button Destination URL"
-                    value={data.btnUrl || "/products"}
-                    onChange={(e) =>
-                      setData((prev) => ({ ...prev, btnUrl: e.target.value }))
-                    }
+                    value={data.btnUrl || '/products'}
+                    onChange={(e) => setData((prev) => ({ ...prev, btnUrl: e.target.value }))}
                     placeholder="/products"
                     helperText="Target link for the bottom action button"
                   />

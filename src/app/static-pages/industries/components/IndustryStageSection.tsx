@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Plus, Trash2, Factory } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Plus, Trash2, Factory } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 interface SectorStageCMSItem {
   id: string;
@@ -28,15 +28,15 @@ interface SectorStageCMSItem {
 }
 
 const ICON_OPTIONS = [
-  "Factory",
-  "Building2",
-  "Zap",
-  "Car",
-  "UtensilsCrossed",
-  "Shirt",
-  "FileText",
-  "Wrench",
-  "Cog",
+  'Factory',
+  'Building2',
+  'Zap',
+  'Car',
+  'UtensilsCrossed',
+  'Shirt',
+  'FileText',
+  'Wrench',
+  'Cog',
 ];
 
 export function IndustryStageSection({
@@ -51,19 +51,19 @@ export function IndustryStageSection({
   const [internalOpen, setInternalOpen] = useState(false);
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
-  
+
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [eyebrow, setEyebrow] = useState("");
-  const [heading, setHeading] = useState("");
-  const [description, setDescription] = useState("");
-  const [selectorHint, setSelectorHint] = useState("");
-  const [promiseLabel, setPromiseLabel] = useState("");
-  const [productBadge, setProductBadge] = useState("");
-  const [recommendedLabel, setRecommendedLabel] = useState("");
-  const [oemPrefix, setOemPrefix] = useState("");
-  const [buttonText, setButtonText] = useState("");
+  const [eyebrow, setEyebrow] = useState('');
+  const [heading, setHeading] = useState('');
+  const [description, setDescription] = useState('');
+  const [selectorHint, setSelectorHint] = useState('');
+  const [promiseLabel, setPromiseLabel] = useState('');
+  const [productBadge, setProductBadge] = useState('');
+  const [recommendedLabel, setRecommendedLabel] = useState('');
+  const [oemPrefix, setOemPrefix] = useState('');
+  const [buttonText, setButtonText] = useState('');
 
   const [sectors, setSectors] = useState<SectorStageCMSItem[]>([]);
   const [sectorImages, setSectorImages] = useState<Record<number, (File | string | null)[]>>({});
@@ -80,25 +80,25 @@ export function IndustryStageSection({
       if (initialData.oemPrefix) setOemPrefix(initialData.oemPrefix);
       if (initialData.buttonText) setButtonText(initialData.buttonText);
 
-      const loadedSectors = initialData.sectors || initialData.items;
+      const loadedSectors = initialData.sectors;
       if (Array.isArray(loadedSectors)) {
         const formatted: SectorStageCMSItem[] = loadedSectors.map((s: any) => ({
-          id: s.id || "",
-          name: s.name || "",
-          shortName: s.shortName || "",
-          icon: typeof s.icon === "string" ? s.icon : "Factory",
-          plantImage: s.plantImage || s.image || "",
-          oilImage: s.oilImage || "",
-          headline: s.headline || "",
-          promise: s.promise || "",
-          operatingCondition: s.operatingCondition || "",
+          id: s.id || '',
+          name: s.name || '',
+          shortName: s.shortName || '',
+          icon: typeof s.icon === 'string' ? s.icon : 'Factory',
+          plantImage: s.plantImage || '',
+          oilImage: s.oilImage || '',
+          headline: s.headline || '',
+          promise: s.promise || '',
+          operatingCondition: s.operatingCondition || '',
           equipmentText: Array.isArray(s.equipment)
-            ? s.equipment.join(", ")
-            : s.equipmentText || "",
-          productName: s.recommendedProduct?.name || s.productName || "",
-          productGrade: s.recommendedProduct?.grade || s.productGrade || "",
-          productOem: s.recommendedProduct?.oemMatch || s.productOem || "",
-          productHighlight: s.recommendedProduct?.highlight || s.productHighlight || "",
+            ? s.equipment.join(', ')
+            : s.equipmentText || '',
+          productName: s.recommendedProduct?.name || s.productName || '',
+          productGrade: s.recommendedProduct?.grade || s.productGrade || '',
+          productOem: s.recommendedProduct?.oemMatch || s.productOem || '',
+          productHighlight: s.recommendedProduct?.highlight || s.productHighlight || '',
         }));
 
         setSectors(formatted);
@@ -111,20 +111,13 @@ export function IndustryStageSection({
     }
   }, [initialData]);
 
-  const handleSectorChange = (
-    index: number,
-    field: keyof SectorStageCMSItem,
-    val: string
-  ) => {
+  const handleSectorChange = (index: number, field: keyof SectorStageCMSItem, val: string) => {
     const updated = [...sectors];
     updated[index] = { ...updated[index], [field]: val };
     setSectors(updated);
   };
 
-  const handleImageChange = (
-    index: number,
-    newImgs: (File | string | null)[]
-  ) => {
+  const handleImageChange = (index: number, newImgs: (File | string | null)[]) => {
     setSectorImages((prev) => ({ ...prev, [index]: newImgs }));
   };
 
@@ -134,27 +127,27 @@ export function IndustryStageSection({
       ...sectors,
       {
         id: `sector-${Date.now()}`,
-        name: "",
-        shortName: "",
-        icon: "Factory",
-        plantImage: "",
-        oilImage: "",
-        headline: "",
-        promise: "",
-        operatingCondition: "",
-        equipmentText: "",
-        productName: "",
-        productGrade: "",
-        productOem: "",
-        productHighlight: "",
+        name: '',
+        shortName: '',
+        icon: 'Factory',
+        plantImage: '',
+        oilImage: '',
+        headline: '',
+        promise: '',
+        operatingCondition: '',
+        equipmentText: '',
+        productName: '',
+        productGrade: '',
+        productOem: '',
+        productHighlight: '',
       },
     ]);
-    setSectorImages((prev) => ({ ...prev, [newIdx]: [""] }));
+    setSectorImages((prev) => ({ ...prev, [newIdx]: [''] }));
   };
 
   const handleRemoveSector = (index: number) => {
     if (sectors.length <= 1) {
-      toast.error("At least one industry sector is required.");
+      toast.error('At least one industry sector is required.');
       return;
     }
     setSectors(sectors.filter((_, idx) => idx !== index));
@@ -175,27 +168,25 @@ export function IndustryStageSection({
     try {
       const updatedSectors = await Promise.all(
         sectors.map(async (sec, idx) => {
-          const imgs = (sectorImages[idx] || []).filter(
-            (im): im is File | string => !!im
-          );
-          let finalImg = sec.plantImage || "";
+          const imgs = (sectorImages[idx] || []).filter((im): im is File | string => !!im);
+          let finalImg = sec.plantImage || '';
           if (imgs.length > 0) {
             const [uploaded] = await uploadFiles(imgs);
             if (uploaded) finalImg = uploaded;
           }
 
           const equipmentArray = sec.equipmentText
-            .split(",")
+            .split(',')
             .map((e) => e.trim())
             .filter(Boolean);
 
           return {
-            id: sec.id || sec.name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+            id: sec.id || sec.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
             name: sec.name.trim(),
             shortName: sec.shortName.trim() || sec.name.trim(),
-            icon: sec.icon || "Factory",
+            icon: sec.icon || 'Factory',
             plantImage: finalImg,
-            oilImage: sec.oilImage || "",
+            oilImage: sec.oilImage || '',
             headline: sec.headline.trim(),
             promise: sec.promise.trim(),
             operatingCondition: sec.operatingCondition.trim(),
@@ -214,20 +205,20 @@ export function IndustryStageSection({
         eyebrow: eyebrow.trim(),
         heading: heading.trim(),
         description: description.trim(),
-        selectorHint: selectorHint.trim() || "Select a sector to explore",
-        promiseLabel: promiseLabel.trim() || "The Jai Deva Promise",
-        productBadge: productBadge.trim() || "Refinery Certified",
-        recommendedLabel: recommendedLabel.trim() || "Recommended Industrial Formulation",
-        oemPrefix: oemPrefix.trim() || "OEM Compliance:",
-        buttonText: buttonText.trim() || "Request Spec Sheet & Quote",
+        selectorHint: selectorHint.trim() || 'Select a sector to explore',
+        promiseLabel: promiseLabel.trim() || 'The Jai Deva Promise',
+        productBadge: productBadge.trim() || 'Refinery Certified',
+        recommendedLabel: recommendedLabel.trim() || 'Recommended Industrial Formulation',
+        oemPrefix: oemPrefix.trim() || 'OEM Compliance:',
+        buttonText: buttonText.trim() || 'Request Spec Sheet & Quote',
         sectors: updatedSectors,
       };
 
-      const res = await fetch("/api/industries", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/industries', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "IndustryStageSection",
+          section: 'IndustryStageSection',
           content: payload,
         }),
       });
@@ -235,13 +226,13 @@ export function IndustryStageSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Sector Lubrication Stages saved successfully");
+        toast.success('Sector Lubrication Stages saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Industry Stage section");
+      toast.error('Error saving Industry Stage section');
     } finally {
       setLoading(false);
     }
@@ -259,7 +250,7 @@ export function IndustryStageSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -329,17 +320,13 @@ export function IndustryStageSection({
                       <InputField
                         label="Sector Name"
                         value={sec.name}
-                        onChange={(e) =>
-                          handleSectorChange(index, "name", e.target.value)
-                        }
+                        onChange={(e) => handleSectorChange(index, 'name', e.target.value)}
                         placeholder="Steel & Hot Rolling Mills"
                       />
                       <InputField
                         label="Short Tab Label"
                         value={sec.shortName}
-                        onChange={(e) =>
-                          handleSectorChange(index, "shortName", e.target.value)
-                        }
+                        onChange={(e) => handleSectorChange(index, 'shortName', e.target.value)}
                         placeholder="Steel Mills"
                       />
                     </div>
@@ -349,9 +336,7 @@ export function IndustryStageSection({
                         <label className="text-xs font-semibold text-gray-600">Icon</label>
                         <select
                           value={sec.icon}
-                          onChange={(e) =>
-                            handleSectorChange(index, "icon", e.target.value)
-                          }
+                          onChange={(e) => handleSectorChange(index, 'icon', e.target.value)}
                           className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0C356A]/20"
                         >
                           {ICON_OPTIONS.map((ic) => (
@@ -364,9 +349,7 @@ export function IndustryStageSection({
                       <InputField
                         label="Headline"
                         value={sec.headline}
-                        onChange={(e) =>
-                          handleSectorChange(index, "headline", e.target.value)
-                        }
+                        onChange={(e) => handleSectorChange(index, 'headline', e.target.value)}
                         placeholder="Extreme Shock Loads & Descaling Water Ingress"
                       />
                     </div>
@@ -374,9 +357,7 @@ export function IndustryStageSection({
                     <InputField
                       label="Efficiency Promise (Less You Burn...)"
                       value={sec.promise}
-                      onChange={(e) =>
-                        handleSectorChange(index, "promise", e.target.value)
-                      }
+                      onChange={(e) => handleSectorChange(index, 'promise', e.target.value)}
                       placeholder="e.g. Cuts journal bearing wear by 42%..."
                     />
 
@@ -384,11 +365,7 @@ export function IndustryStageSection({
                       label="Operating Condition & Environment"
                       value={sec.operatingCondition}
                       onChange={(e) =>
-                        handleSectorChange(
-                          index,
-                          "operatingCondition",
-                          e.target.value
-                        )
+                        handleSectorChange(index, 'operatingCondition', e.target.value)
                       }
                       rows={2}
                       placeholder="Describe temperatures, moisture, dust..."
@@ -397,13 +374,7 @@ export function IndustryStageSection({
                     <InputField
                       label="Equipment Handled (Comma-separated)"
                       value={sec.equipmentText}
-                      onChange={(e) =>
-                        handleSectorChange(
-                          index,
-                          "equipmentText",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => handleSectorChange(index, 'equipmentText', e.target.value)}
                       placeholder="Rolling Stands, Chock Bearings, Pinion Gearboxes"
                     />
 
@@ -411,25 +382,13 @@ export function IndustryStageSection({
                       <InputField
                         label="Recommended Product"
                         value={sec.productName}
-                        onChange={(e) =>
-                          handleSectorChange(
-                            index,
-                            "productName",
-                            e.target.value
-                          )
-                        }
+                        onChange={(e) => handleSectorChange(index, 'productName', e.target.value)}
                         placeholder="HP Parthan EP / Mobilgear 600 XP"
                       />
                       <InputField
                         label="Viscosity / Grade"
                         value={sec.productGrade}
-                        onChange={(e) =>
-                          handleSectorChange(
-                            index,
-                            "productGrade",
-                            e.target.value
-                          )
-                        }
+                        onChange={(e) => handleSectorChange(index, 'productGrade', e.target.value)}
                         placeholder="ISO VG 320 / 460"
                       />
                     </div>
@@ -438,20 +397,14 @@ export function IndustryStageSection({
                       <InputField
                         label="OEM / Spec Match"
                         value={sec.productOem}
-                        onChange={(e) =>
-                          handleSectorChange(index, "productOem", e.target.value)
-                        }
+                        onChange={(e) => handleSectorChange(index, 'productOem', e.target.value)}
                         placeholder="DIN 51517-3 (CLP), FVA 54"
                       />
                       <InputField
                         label="Highlight Benefit"
                         value={sec.productHighlight}
                         onChange={(e) =>
-                          handleSectorChange(
-                            index,
-                            "productHighlight",
-                            e.target.value
-                          )
+                          handleSectorChange(index, 'productHighlight', e.target.value)
                         }
                         placeholder="Rapid water demulsibility"
                       />
@@ -460,14 +413,12 @@ export function IndustryStageSection({
                     <InputField
                       label="Spotlight Lubricant Image URL"
                       value={sec.oilImage}
-                      onChange={(e) =>
-                        handleSectorChange(index, "oilImage", e.target.value)
-                      }
+                      onChange={(e) => handleSectorChange(index, 'oilImage', e.target.value)}
                       placeholder="https://res.cloudinary.com/.../industrial-gear-oil.jpg"
                     />
                     <ImageUploadField
                       label="Plant / Factory Photo"
-                      images={sectorImages[index] || (sec.plantImage ? [sec.plantImage] : [""])}
+                      images={sectorImages[index] || (sec.plantImage ? [sec.plantImage] : [''])}
                       onImagesChange={(imgs) => handleImageChange(index, imgs)}
                       maxImages={1}
                       tooltip="Upload high-res factory operating environment photo."

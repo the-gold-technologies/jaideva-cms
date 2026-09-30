@@ -1,10 +1,21 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
-import { Search, Loader2, ChevronLeft, ChevronRight, Mail, Calendar, User, Tag, MessageSquare, Phone, Building, X } from "lucide-react";
-import { InputField } from "@/components/InputField";
-import toast from "react-hot-toast";
+import { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/PageHeader';
+import {
+  Search,
+  Loader2,
+  Mail,
+  Calendar,
+  User,
+  Tag,
+  MessageSquare,
+  Phone,
+  Building,
+  X,
+} from 'lucide-react';
+import { InputField } from '@/components/InputField';
+import toast from 'react-hot-toast';
 
 interface Enquiry {
   id: string;
@@ -23,21 +34,21 @@ interface Enquiry {
 export default function EnquiriesCMSPage() {
   const [enquiries, setEnquiries] = useState<Enquiry[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [activeMessage, setActiveMessage] = useState<Enquiry | null>(null);
 
   const fetchEnquiries = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch("/api/enquiries");
+      const res = await fetch('/api/enquiries');
       const json = await res.json();
       if (json.success) {
         setEnquiries(json.data || []);
       } else {
-        toast.error(json.error || "Failed to fetch enquiries");
+        toast.error(json.error || 'Failed to fetch enquiries');
       }
     } catch {
-      toast.error("Network error");
+      toast.error('Network error');
     } finally {
       setIsLoading(false);
     }
@@ -109,10 +120,7 @@ export default function EnquiriesCMSPage() {
                 </tr>
               ) : (
                 filtered.map((enquiry) => (
-                  <tr
-                    key={enquiry.id}
-                    className="hover:bg-gray-50/50 transition-colors group"
-                  >
+                  <tr key={enquiry.id} className="hover:bg-gray-50/50 transition-colors group">
                     <td className="px-6 py-5 pl-8">
                       <div className="flex flex-col">
                         <span className="font-bold text-gray-900 flex items-center gap-2">
@@ -134,7 +142,7 @@ export default function EnquiriesCMSPage() {
                     <td className="px-6 py-5">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#C86218] text-[11px] font-bold uppercase tracking-wider">
                         <Tag className="w-3 h-3" />
-                        {enquiry.product || enquiry.interestedIn || "General Quote"}
+                        {enquiry.product || enquiry.interestedIn || 'General Quote'}
                       </div>
                       {enquiry.company && (
                         <p className="text-xs text-gray-500 font-semibold mt-1 flex items-center gap-1">
@@ -146,10 +154,10 @@ export default function EnquiriesCMSPage() {
                     <td className="px-6 py-5 text-[13px] text-gray-500 font-medium">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-3.5 h-3.5 text-gray-400" />
-                        {new Date(enquiry.createdAt).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
+                        {new Date(enquiry.createdAt).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
                         })}
                       </div>
                     </td>
@@ -178,11 +186,9 @@ export default function EnquiriesCMSPage() {
           <div className="bg-white w-full max-w-lg rounded-3xl shadow-2xl border border-gray-100 p-8 flex flex-col gap-5">
             <div className="flex items-center justify-between border-b border-gray-100 pb-4">
               <div>
-                <h3 className="font-bold text-lg text-[#0B0F29]">
-                  {activeMessage.name}
-                </h3>
+                <h3 className="font-bold text-lg text-[#0B0F29]">{activeMessage.name}</h3>
                 <p className="text-xs text-gray-400 mt-0.5">
-                  {activeMessage.email} &bull; {activeMessage.phone || "No phone"}
+                  {activeMessage.email} &bull; {activeMessage.phone || 'No phone'}
                 </p>
               </div>
               <button
@@ -200,9 +206,7 @@ export default function EnquiriesCMSPage() {
                   <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
                     Company / Firm
                   </span>
-                  <span className="font-semibold text-gray-800">
-                    {activeMessage.company}
-                  </span>
+                  <span className="font-semibold text-gray-800">{activeMessage.company}</span>
                 </div>
               )}
               {activeMessage.product && (
@@ -210,9 +214,7 @@ export default function EnquiriesCMSPage() {
                   <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
                     Product / Grade
                   </span>
-                  <span className="font-semibold text-gray-800">
-                    {activeMessage.product}
-                  </span>
+                  <span className="font-semibold text-gray-800">{activeMessage.product}</span>
                 </div>
               )}
               <div>
@@ -220,7 +222,7 @@ export default function EnquiriesCMSPage() {
                   Inquiry Message
                 </span>
                 <p className="p-4 rounded-2xl bg-gray-50 border border-gray-100 text-gray-700 leading-relaxed text-sm">
-                  {activeMessage.message || "No custom message provided."}
+                  {activeMessage.message || 'No custom message provided.'}
                 </p>
               </div>
             </div>

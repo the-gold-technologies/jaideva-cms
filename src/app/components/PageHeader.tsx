@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { Plus, Trash2 } from "lucide-react";
+import React, { Dispatch, SetStateAction } from 'react';
+import { Plus, Trash2 } from 'lucide-react';
 
 interface PageHeaderProps {
   title: string;
@@ -71,11 +71,7 @@ export function PageHeader({
               }}
               className="inline-flex items-center gap-2 w-fit px-6 bg-[#0C356A] text-white font-semibold py-3 rounded-full hover:bg-[#C86218] transition-all hover:shadow-[0_0_25px_rgba(200,98,24,0.4)] cursor-pointer text-sm"
             >
-              {action.icon ? (
-                action.icon
-              ) : (
-                <Plus className="-ml-0.5 h-4 w-4" strokeWidth={3} />
-              )}
+              {action.icon ? action.icon : <Plus className="-ml-0.5 h-4 w-4" strokeWidth={3} />}
               {action.label}
             </button>
           </div>

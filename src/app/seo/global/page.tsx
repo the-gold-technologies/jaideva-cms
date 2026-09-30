@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
-import { PageHeader } from "@/components/PageHeader";
-import { SaveButton } from "@/components/SaveButton";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { Globe, Activity, Shield, Upload } from "lucide-react";
-import toast from "react-hot-toast";
+import React, { useState, useEffect, useRef } from 'react';
+import { PageHeader } from '@/components/PageHeader';
+import { SaveButton } from '@/components/SaveButton';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { Globe, Activity, Shield, Upload } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function GlobalSEOPage() {
   const [formData, setFormData] = useState({
-    siteTitle: "",
-    siteDescription: "",
+    siteTitle: '',
+    siteDescription: '',
     favicon: [] as string[],
-    googleAnalyticsId: "",
-    gtmId: "",
-    searchConsoleId: "",
-    customHeaderScripts: "",
-    customFooterScripts: "",
-    schema: "",
-    headingOptions: { heroHeadingTag: "h1", h1: "h1" },
+    googleAnalyticsId: '',
+    gtmId: '',
+    searchConsoleId: '',
+    customHeaderScripts: '',
+    customFooterScripts: '',
+    schema: '',
+    headingOptions: { heroHeadingTag: 'h1', h1: 'h1' },
   });
 
   const [isLoading, setIsLoading] = useState(true);
@@ -30,34 +30,34 @@ export default function GlobalSEOPage() {
   useEffect(() => {
     async function loadSEOData() {
       try {
-        const res = await fetch("/api/seo");
+        const res = await fetch('/api/seo');
         const json = await res.json();
         if (json.success && json.data) {
           const data = json.data;
           setFormData({
-            siteTitle: data.siteTitle || "",
-            siteDescription: data.siteDescription || "",
+            siteTitle: data.siteTitle || '',
+            siteDescription: data.siteDescription || '',
             favicon: data.favicon ? [data.favicon] : [],
-            googleAnalyticsId: data.googleAnalyticsId || "",
-            gtmId: data.gtmId || "",
-            searchConsoleId: data.searchConsoleId || "",
-            customHeaderScripts: data.customHeaderScripts || "",
-            customFooterScripts: data.customFooterScripts || "",
+            googleAnalyticsId: data.googleAnalyticsId || '',
+            gtmId: data.gtmId || '',
+            searchConsoleId: data.searchConsoleId || '',
+            customHeaderScripts: data.customHeaderScripts || '',
+            customFooterScripts: data.customFooterScripts || '',
             schema:
-              typeof data.schema === "string"
+              typeof data.schema === 'string'
                 ? data.schema
                 : data.schema
-                ? JSON.stringify(data.schema, null, 2)
-                : "",
+                  ? JSON.stringify(data.schema, null, 2)
+                  : '',
             headingOptions:
-              typeof data.headingOptions === "object" && data.headingOptions !== null
+              typeof data.headingOptions === 'object' && data.headingOptions !== null
                 ? data.headingOptions
-                : { heroHeadingTag: "h1", h1: "h1" },
+                : { heroHeadingTag: 'h1', h1: 'h1' },
           });
         }
       } catch (error) {
-        console.error("Error loading SEO data:", error);
-        toast.error("Failed to load SEO data");
+        console.error('Error loading SEO data:', error);
+        toast.error('Failed to load SEO data');
       } finally {
         setIsLoading(false);
       }
@@ -67,7 +67,7 @@ export default function GlobalSEOPage() {
 
   const handleSave = async () => {
     setIsSaving(true);
-    const tid = toast.loading("Saving SEO settings...");
+    const tid = toast.loading('Saving SEO settings...');
     try {
       let parsedSchema = formData.schema;
       if (formData.schema.trim()) {
@@ -80,30 +80,28 @@ export default function GlobalSEOPage() {
 
       const payload = {
         ...formData,
-        favicon: formData.favicon.length > 0 ? formData.favicon[0] : "",
+        favicon: formData.favicon.length > 0 ? formData.favicon[0] : '',
         schema: parsedSchema,
       };
 
-      const res = await fetch("/api/seo", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/seo', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
       const json = await res.json();
       if (json.success) {
-        toast.success("Global SEO settings saved successfully!", { id: tid });
+        toast.success('Global SEO settings saved successfully!', { id: tid });
       } else {
         const errMsg =
-          typeof json.error === "string"
-            ? json.error
-            : json.error?.message || "Save failed.";
-        console.error("Global SEO save error details:", json.error);
+          typeof json.error === 'string' ? json.error : json.error?.message || 'Save failed.';
+        console.error('Global SEO save error details:', json.error);
         toast.error(errMsg, { id: tid });
       }
     } catch (error) {
-      console.error("Error saving global SEO:", error);
-      toast.error("Network error.", { id: tid });
+      console.error('Error saving global SEO:', error);
+      toast.error('Network error.', { id: tid });
     } finally {
       setIsSaving(false);
     }
@@ -122,21 +120,19 @@ export default function GlobalSEOPage() {
           ...prev,
           schema: JSON.stringify(parsed, null, 2),
         }));
-        toast.success("Schema JSON imported successfully!");
+        toast.success('Schema JSON imported successfully!');
       } catch {
-        toast.error("Invalid JSON file format");
+        toast.error('Invalid JSON file format');
       }
     };
     reader.readAsText(file);
-    if (schemaInputRef.current) schemaInputRef.current.value = "";
+    if (schemaInputRef.current) schemaInputRef.current.value = '';
   };
 
   if (isLoading) {
     return (
       <div className="flex h-[60vh] items-center justify-center">
-        <div className="animate-pulse text-gray-400 font-medium">
-          Loading SEO settings...
-        </div>
+        <div className="animate-pulse text-gray-400 font-medium">Loading SEO settings...</div>
       </div>
     );
   }
@@ -149,11 +145,7 @@ export default function GlobalSEOPage() {
           description="Manage website-wide meta tags, landing page heading hierarchy, tracking codes, and favicon."
         />
         <div className="mb-2 shrink-0">
-          <SaveButton
-            onClick={handleSave}
-            disabled={isSaving}
-            className="w-auto px-10"
-          />
+          <SaveButton onClick={handleSave} disabled={isSaving} className="w-auto px-10" />
         </div>
       </div>
 
@@ -164,26 +156,20 @@ export default function GlobalSEOPage() {
             <div className="p-2.5 bg-blue-50 text-[#002B5C] rounded-2xl">
               <Globe className="w-5 h-5" />
             </div>
-            <h2 className="text-xl font-bold text-[#0B0F29]">
-              General Identity
-            </h2>
+            <h2 className="text-xl font-bold text-[#0B0F29]">General Identity</h2>
           </div>
 
           <InputField
             label="Default Site Title"
             value={formData.siteTitle}
-            onChange={(e) =>
-              setFormData({ ...formData, siteTitle: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, siteTitle: e.target.value })}
             placeholder="e.g. Jai Deva Oil Co. | Multi-Brand Lubricant Distributor"
             tooltip="The main title of your website. Appears in browser tabs and search results."
           />
           <TextAreaField
             label="Default Site Description"
             value={formData.siteDescription}
-            onChange={(e) =>
-              setFormData({ ...formData, siteDescription: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, siteDescription: e.target.value })}
             placeholder="A short summary of what your site is about."
             rows={3}
             tooltip="A summary of your website (approx. 150-160 characters). Used by search engines for the result snippet."
@@ -195,11 +181,7 @@ export default function GlobalSEOPage() {
               Hero Headline Tag (SEO)
             </label>
             <select
-              value={
-                formData.headingOptions?.heroHeadingTag ||
-                formData.headingOptions?.h1 ||
-                "h1"
-              }
+              value={formData.headingOptions?.heroHeadingTag || formData.headingOptions?.h1 || 'h1'}
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
@@ -212,9 +194,7 @@ export default function GlobalSEOPage() {
               }
               className="w-full bg-white border border-gray-200 rounded-2xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#002B5C] transition shadow-xs cursor-pointer"
             >
-              <option value="h1">
-                H1 (Recommended standard title tag)
-              </option>
+              <option value="h1">H1 (Recommended standard title tag)</option>
               <option value="h2">H2 (Secondary section tag)</option>
               <option value="h3">H3 (Subsection tag)</option>
               <option value="h4">H4 (Minor subsection tag)</option>
@@ -233,7 +213,7 @@ export default function GlobalSEOPage() {
               onImagesChange={(imgs) =>
                 setFormData({
                   ...formData,
-                  favicon: imgs.filter((img): img is string => typeof img === "string"),
+                  favicon: imgs.filter((img): img is string => typeof img === 'string'),
                 })
               }
               maxImages={1}
@@ -248,27 +228,21 @@ export default function GlobalSEOPage() {
             <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-2xl">
               <Activity className="w-5 h-5" />
             </div>
-            <h2 className="text-xl font-bold text-[#0B0F29]">
-              Tracking & Analytics
-            </h2>
+            <h2 className="text-xl font-bold text-[#0B0F29]">Tracking & Analytics</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <InputField
               label="Google Analytics ID"
               value={formData.googleAnalyticsId}
-              onChange={(e) =>
-                setFormData({ ...formData, googleAnalyticsId: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, googleAnalyticsId: e.target.value })}
               placeholder="e.g. G-XXXXXXX"
               tooltip="Your Google Analytics 4 Measurement ID (starts with G-)."
             />
             <InputField
               label="GTM Container ID"
               value={formData.gtmId}
-              onChange={(e) =>
-                setFormData({ ...formData, gtmId: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, gtmId: e.target.value })}
               placeholder="e.g. GTM-XXXXXXX"
               tooltip="Your Google Tag Manager Container ID."
             />
@@ -277,9 +251,7 @@ export default function GlobalSEOPage() {
           <InputField
             label="Search Console Verification ID"
             value={formData.searchConsoleId}
-            onChange={(e) =>
-              setFormData({ ...formData, searchConsoleId: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, searchConsoleId: e.target.value })}
             placeholder="Enter the google-site-verification code"
             tooltip="The verification token from Google Search Console (HTML tag method)."
           />
@@ -292,18 +264,14 @@ export default function GlobalSEOPage() {
           <div className="p-2.5 bg-amber-50 text-amber-600 rounded-2xl">
             <Shield className="w-5 h-5" />
           </div>
-          <h2 className="text-xl font-bold text-[#0B0F29]">
-            Custom Code Injection
-          </h2>
+          <h2 className="text-xl font-bold text-[#0B0F29]">Custom Code Injection</h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <TextAreaField
             label="Custom Header Scripts (<head>)"
             value={formData.customHeaderScripts}
-            onChange={(e) =>
-              setFormData({ ...formData, customHeaderScripts: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, customHeaderScripts: e.target.value })}
             placeholder="Paste your scripts to be injected into the head..."
             rows={5}
             tooltip="HTML or script tags to insert right before </head> on all pages (e.g. Meta Pixel, Heatmaps)."
@@ -311,9 +279,7 @@ export default function GlobalSEOPage() {
           <TextAreaField
             label="Custom Footer Scripts (Before </body>)"
             value={formData.customFooterScripts}
-            onChange={(e) =>
-              setFormData({ ...formData, customFooterScripts: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, customFooterScripts: e.target.value })}
             placeholder="Paste your scripts to be injected before the closing body tag..."
             rows={5}
             tooltip="HTML or script tags to insert right before </body> on all pages (e.g. Live chat widgets)."
@@ -329,9 +295,7 @@ export default function GlobalSEOPage() {
               <Globe className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-[#0B0F29]">
-                Structured Data (JSON-LD)
-              </h2>
+              <h2 className="text-xl font-bold text-[#0B0F29]">Structured Data (JSON-LD)</h2>
               <p className="text-xs text-slate-500 mt-0.5">
                 Site-wide organization schema or custom JSON-LD for rich snippets.
               </p>
@@ -359,9 +323,7 @@ export default function GlobalSEOPage() {
         <TextAreaField
           label="JSON-LD Schema Markup"
           value={formData.schema}
-          onChange={(e) =>
-            setFormData({ ...formData, schema: e.target.value })
-          }
+          onChange={(e) => setFormData({ ...formData, schema: e.target.value })}
           placeholder='{\n  "@context": "https://schema.org",\n  "@type": "LocalBusiness",\n  "name": "Jai Deva Oil Co."\n}'
           rows={6}
           tooltip="Raw JSON-LD markup to provide structured business data to Google."

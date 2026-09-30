@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
+import React, { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/PageHeader';
 import {
   AboutHeroSection,
   AboutJaiDevaContentSection,
@@ -9,7 +9,7 @@ import {
   OurJourneySection,
   AboutWhyChooseSection,
   AboutImageGallerySection,
-} from "./components";
+} from './components';
 
 export default function AboutUsPageEditor() {
   const [aboutData, setAboutData] = useState<any>(null);
@@ -17,13 +17,13 @@ export default function AboutUsPageEditor() {
   useEffect(() => {
     async function loadAboutData() {
       try {
-        const res = await fetch("/api/about-us");
+        const res = await fetch('/api/about-us');
         const json = await res.json();
         if (json.success && json.data) {
           setAboutData(json.data);
         }
       } catch (err) {
-        console.error("Failed to load about us data:", err);
+        console.error('Failed to load about us data:', err);
       }
     }
     loadAboutData();
@@ -34,14 +34,12 @@ export default function AboutUsPageEditor() {
     (aboutData?.AboutJaiDevaContent
       ? {
           title:
-            aboutData.AboutJaiDevaContent.whyChooseTitle ||
-            aboutData.AboutJaiDevaContent.title,
+            aboutData.AboutJaiDevaContent.whyChooseTitle || aboutData.AboutJaiDevaContent.title,
           subtitle:
             aboutData.AboutJaiDevaContent.whyChooseSubtitle ||
             aboutData.AboutJaiDevaContent.subtitle,
           items:
-            aboutData.AboutJaiDevaContent.whyChooseItems ||
-            aboutData.AboutJaiDevaContent.items,
+            aboutData.AboutJaiDevaContent.whyChooseItems || aboutData.AboutJaiDevaContent.items,
         }
       : null);
 

@@ -1,1 +1,1 @@
-export * from "@/app/components/PageStructure";
+export * from '@/app/components/PageStructure';

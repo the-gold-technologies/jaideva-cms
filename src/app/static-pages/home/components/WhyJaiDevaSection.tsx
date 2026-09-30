@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Plus,
   Trash2,
@@ -14,23 +14,23 @@ import {
   Sparkles,
   Award,
   CheckCircle,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+} from 'lucide-react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 const AVAILABLE_ICONS = [
-  { label: "Calendar (Experience)", value: "Calendar" },
-  { label: "Layers (Multi-Brand)", value: "Layers" },
-  { label: "Boxes (Product Range)", value: "Boxes" },
-  { label: "ShieldCheck (Quality)", value: "ShieldCheck" },
-  { label: "Users (Experienced Team)", value: "Users" },
-  { label: "Clock (Reliable Service)", value: "Clock" },
-  { label: "Sparkles (Premium)", value: "Sparkles" },
-  { label: "Award (Certified)", value: "Award" },
-  { label: "CheckCircle (Guaranteed)", value: "CheckCircle" },
+  { label: 'Calendar (Experience)', value: 'Calendar' },
+  { label: 'Layers (Multi-Brand)', value: 'Layers' },
+  { label: 'Boxes (Product Range)', value: 'Boxes' },
+  { label: 'ShieldCheck (Quality)', value: 'ShieldCheck' },
+  { label: 'Users (Experienced Team)', value: 'Users' },
+  { label: 'Clock (Reliable Service)', value: 'Clock' },
+  { label: 'Sparkles (Premium)', value: 'Sparkles' },
+  { label: 'Award (Certified)', value: 'Award' },
+  { label: 'CheckCircle (Guaranteed)', value: 'CheckCircle' },
 ];
 
 export interface WhyPointItem {
@@ -48,8 +48,8 @@ export interface WhyJaiDevaData {
 }
 
 export const DEFAULT_WHY_JAIDEVA_DATA: WhyJaiDevaData = {
-  title: "",
-  subtitle: "",
+  title: '',
+  subtitle: '',
   points: [],
 };
 
@@ -61,25 +61,19 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
 
   useEffect(() => {
     if (initialData) {
-      const rawPoints =
-        initialData.points ||
-        initialData.whyChooseItems ||
-        initialData.items ||
-        [];
+      const rawPoints = Array.isArray(initialData.points) ? initialData.points : [];
 
-      const pointsList: WhyPointItem[] = Array.isArray(rawPoints)
-        ? rawPoints.map((item: any, i: number) => ({
-            id: item.id || `pt-${i}`,
-            title: item.title || "",
-            desc: item.desc || item.description || "",
-            icon: item.icon || "ShieldCheck",
-            color: item.color || "",
-          }))
-        : [];
+      const pointsList: WhyPointItem[] = rawPoints.map((item: any, i: number) => ({
+        id: item.id || `pt-${i}`,
+        title: item.title || '',
+        desc: item.desc || '',
+        icon: item.icon || 'ShieldCheck',
+        color: item.color || '',
+      }));
 
       setData({
-        title: initialData.title || initialData.heading || "",
-        subtitle: initialData.subtitle || "",
+        title: initialData.title || '',
+        subtitle: initialData.subtitle || '',
         points: pointsList,
       });
     }
@@ -88,28 +82,24 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
   const handleAddPoint = () => {
     const newPoint: WhyPointItem = {
       id: `pt-${Date.now()}`,
-      title: "",
-      desc: "",
-      icon: "ShieldCheck",
+      title: '',
+      desc: '',
+      icon: 'ShieldCheck',
     };
     setData((prev) => ({
       ...prev,
       points: [...prev.points, newPoint],
     }));
-    toast.success("New feature point added");
+    toast.success('New feature point added');
   };
 
   const handleRemovePoint = (idx: number) => {
     const updated = data.points.filter((_, i) => i !== idx);
     setData((prev) => ({ ...prev, points: updated }));
-    toast.success("Feature point removed");
+    toast.success('Feature point removed');
   };
 
-  const handlePointChange = (
-    idx: number,
-    field: keyof WhyPointItem,
-    value: string,
-  ) => {
+  const handlePointChange = (idx: number, field: keyof WhyPointItem, value: string) => {
     const updated = [...data.points];
     updated[idx] = { ...updated[idx], [field]: value };
     setData((prev) => ({ ...prev, points: updated }));
@@ -125,11 +115,11 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
         points: data.points,
       };
 
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "WhyJaiDevaSection",
+          section: 'WhyJaiDevaSection',
           content: payload,
         }),
       });
@@ -137,13 +127,13 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Why Jai Deva section saved successfully!");
+        toast.success('Why Jai Deva section saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Why Jai Deva section");
+      toast.error('Error saving Why Jai Deva section');
     } finally {
       setLoading(false);
     }
@@ -155,14 +145,14 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
         <SectionHeader
           title="Why Jai Deva Oil Co. Section"
           description="Manage the 6 value proposition feature cards (18+ Years Experience, Multi-Brand, Reliable Service, etc.)."
-          badge={`${data.points.length} Point${data.points.length === 1 ? "" : "s"}`}
+          badge={`${data.points.length} Point${data.points.length === 1 ? '' : 's'}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">
@@ -172,9 +162,7 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
                 <InputField
                   label="Section Title"
                   value={data.title}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, title: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, title: e.target.value }))}
                   placeholder="WHY JAI DEVA OIL CO.?"
                   helperText="Main uppercase heading"
                 />
@@ -182,9 +170,7 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
                 <InputField
                   label="Section Subtitle (Orange Tagline)"
                   value={data.subtitle}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, subtitle: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, subtitle: e.target.value }))}
                   placeholder="Your Trusted Lubrication Partner Since 2008"
                   helperText="Highlighted subtitle"
                 />
@@ -214,9 +200,7 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
                       className="bg-gray-50/70 border border-gray-200/90 rounded-2xl p-4 flex flex-col gap-3.5 shadow-2xs hover:border-[#C86218] transition-all"
                     >
                       <div className="flex items-center justify-between gap-2 border-b border-gray-200/60 pb-2">
-                        <span className="text-xs font-bold text-[#0C356A]">
-                          Card #{idx + 1}
-                        </span>
+                        <span className="text-xs font-bold text-[#0C356A]">Card #{idx + 1}</span>
                         <button
                           type="button"
                           onClick={() => handleRemovePoint(idx)}
@@ -229,14 +213,10 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
 
                       {/* Icon Selector */}
                       <div className="flex flex-col gap-1">
-                        <label className="text-[11px] font-bold text-gray-600">
-                          Icon
-                        </label>
+                        <label className="text-[11px] font-bold text-gray-600">Icon</label>
                         <select
                           value={pt.icon}
-                          onChange={(e) =>
-                            handlePointChange(idx, "icon", e.target.value)
-                          }
+                          onChange={(e) => handlePointChange(idx, 'icon', e.target.value)}
                           className="bg-white border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#0C356A]"
                         >
                           {AVAILABLE_ICONS.map((ic) => (
@@ -249,15 +229,11 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
 
                       {/* Title */}
                       <div className="flex flex-col gap-1">
-                        <label className="text-[11px] font-bold text-gray-600">
-                          Card Title
-                        </label>
+                        <label className="text-[11px] font-bold text-gray-600">Card Title</label>
                         <input
                           type="text"
                           value={pt.title}
-                          onChange={(e) =>
-                            handlePointChange(idx, "title", e.target.value)
-                          }
+                          onChange={(e) => handlePointChange(idx, 'title', e.target.value)}
                           placeholder="e.g. 18+ Years of Experience"
                           className="bg-white border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs font-bold text-[#0C356A] focus:outline-none focus:ring-1 focus:ring-[#0C356A]"
                         />
@@ -265,15 +241,11 @@ export function WhyJaiDevaSection({ initialData }: { initialData?: any }) {
 
                       {/* Description */}
                       <div className="flex flex-col gap-1">
-                        <label className="text-[11px] font-bold text-gray-600">
-                          Description
-                        </label>
+                        <label className="text-[11px] font-bold text-gray-600">Description</label>
                         <textarea
                           rows={3}
                           value={pt.desc}
-                          onChange={(e) =>
-                            handlePointChange(idx, "desc", e.target.value)
-                          }
+                          onChange={(e) => handlePointChange(idx, 'desc', e.target.value)}
                           placeholder="Short description of this strength..."
                           className="bg-white border border-gray-200 rounded-lg p-2.5 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#0C356A] resize-none"
                         />

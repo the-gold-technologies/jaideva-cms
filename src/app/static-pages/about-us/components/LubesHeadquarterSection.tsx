@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface LubesHeadquarterData {
   title?: string;
@@ -17,49 +17,35 @@ export interface LubesHeadquarterData {
 }
 
 export const DEFAULT_HQ_DATA: LubesHeadquarterData = {
-  title: "JAI DEVA OIL CO.",
-  badge: "MULTI-BRAND INDUSTRIAL & AUTOMOTIVE LUBRICANTS DISTRIBUTOR",
-  proprietor: "Mr. Mayank Goyal",
-  servingRegion: "Industrial Belts & Nationwide Distribution Hubs, India",
-  establishment:
-    "Est. 2008 | 18+ Years Experience | Leading Wholesaler & Trader",
-  phone: "+91 98765 43210",
-  email: "sales@jaidevaoil.com",
+  title: 'JAI DEVA OIL CO.',
+  badge: 'MULTI-BRAND INDUSTRIAL & AUTOMOTIVE LUBRICANTS DISTRIBUTOR',
+  proprietor: 'Mr. Mayank Goyal',
+  servingRegion: 'Industrial Belts & Nationwide Distribution Hubs, India',
+  establishment: 'Est. 2008 | 18+ Years Experience | Leading Wholesaler & Trader',
+  phone: '+91 98765 43210',
+  email: 'sales@jaidevaoil.com',
 };
 
-export function LubesHeadquarterSection({
-  initialData,
-}: {
-  initialData?: LubesHeadquarterData;
-}) {
+export function LubesHeadquarterSection({ initialData }: { initialData?: LubesHeadquarterData }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [title, setTitle] = useState(DEFAULT_HQ_DATA.title || "");
-  const [badge, setBadge] = useState(DEFAULT_HQ_DATA.badge || "");
-  const [proprietor, setProprietor] = useState(
-    DEFAULT_HQ_DATA.proprietor || ""
-  );
-  const [servingRegion, setServingRegion] = useState(
-    DEFAULT_HQ_DATA.servingRegion || ""
-  );
-  const [establishment, setEstablishment] = useState(
-    DEFAULT_HQ_DATA.establishment || ""
-  );
-  const [phone, setPhone] = useState(DEFAULT_HQ_DATA.phone || "");
-  const [email, setEmail] = useState(DEFAULT_HQ_DATA.email || "");
+  const [title, setTitle] = useState('');
+  const [badge, setBadge] = useState('');
+  const [proprietor, setProprietor] = useState('');
+  const [servingRegion, setServingRegion] = useState('');
+  const [establishment, setEstablishment] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     if (initialData) {
       if (initialData.title !== undefined) setTitle(initialData.title);
       if (initialData.badge !== undefined) setBadge(initialData.badge);
-      if (initialData.proprietor !== undefined)
-        setProprietor(initialData.proprietor);
-      if (initialData.servingRegion !== undefined)
-        setServingRegion(initialData.servingRegion);
-      if (initialData.establishment !== undefined)
-        setEstablishment(initialData.establishment);
+      if (initialData.proprietor !== undefined) setProprietor(initialData.proprietor);
+      if (initialData.servingRegion !== undefined) setServingRegion(initialData.servingRegion);
+      if (initialData.establishment !== undefined) setEstablishment(initialData.establishment);
       if (initialData.phone !== undefined) setPhone(initialData.phone);
       if (initialData.email !== undefined) setEmail(initialData.email);
     }
@@ -79,11 +65,11 @@ export function LubesHeadquarterSection({
         email: email.trim(),
       };
 
-      const res = await fetch("/api/about-us", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/about-us', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "LubesHeadquarterSection",
+          section: 'LubesHeadquarterSection',
           content: payload,
         }),
       });
@@ -91,13 +77,13 @@ export function LubesHeadquarterSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Lubes Headquarters section saved successfully");
+        toast.success('Lubes Headquarters section saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Lubes Headquarters section");
+      toast.error('Error saving Lubes Headquarters section');
     } finally {
       setLoading(false);
     }
@@ -114,7 +100,7 @@ export function LubesHeadquarterSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">

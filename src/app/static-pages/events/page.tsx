@@ -1,13 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
-import {
-  EventsHeroSection,
-  EventsContentSection,
-  EventsGallerySection,
-} from "./components";
-import toast from "react-hot-toast";
+import React, { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/PageHeader';
+import { EventsHeroSection, EventsContentSection, EventsGallerySection } from './components';
+import toast from 'react-hot-toast';
 
 export default function EventsCMSPage() {
   const [sections, setSections] = useState<Record<string, any>>({});
@@ -16,13 +12,13 @@ export default function EventsCMSPage() {
   const fetchSections = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/events");
+      const res = await fetch('/api/events');
       const json = await res.json();
       if (json.success && json.data) {
         setSections(json.data);
       }
     } catch {
-      toast.error("Failed to load events page content");
+      toast.error('Failed to load events page content');
     } finally {
       setLoading(false);
     }
@@ -34,9 +30,9 @@ export default function EventsCMSPage() {
 
   const handleSaveSection = async (sectionType: string, content: any) => {
     try {
-      const res = await fetch("/api/events", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/events', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           section: sectionType,
           content,
@@ -44,13 +40,13 @@ export default function EventsCMSPage() {
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Section updated successfully!");
+        toast.success('Section updated successfully!');
         setSections((prev) => ({ ...prev, [sectionType]: content }));
       } else {
-        toast.error(json.error || "Failed to save changes");
+        toast.error(json.error || 'Failed to save changes');
       }
     } catch {
-      toast.error("Network error saving changes");
+      toast.error('Network error saving changes');
     }
   };
 
@@ -70,19 +66,19 @@ export default function EventsCMSPage() {
           {/* Section 1: Hero Banner */}
           <EventsHeroSection
             initialData={sections.EventsHero}
-            onSave={(data) => handleSaveSection("EventsHero", data)}
+            onSave={(data) => handleSaveSection('EventsHero', data)}
           />
 
           {/* Section 2: Heading & Intro Text */}
           <EventsContentSection
             initialData={sections.EventsContent}
-            onSave={(data) => handleSaveSection("EventsContent", data)}
+            onSave={(data) => handleSaveSection('EventsContent', data)}
           />
 
           {/* Section 3: Photo Gallery */}
           <EventsGallerySection
             initialData={sections.EventsGallery}
-            onSave={(data) => handleSaveSection("EventsGallery", data)}
+            onSave={(data) => handleSaveSection('EventsGallery', data)}
           />
         </div>
       )}

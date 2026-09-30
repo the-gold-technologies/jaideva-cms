@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-const EVENTS_SLUG = "events";
+const EVENTS_SLUG = 'events';
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const slug = searchParams.get("slug");
+    const slug = searchParams.get('slug');
 
     if (slug && slug !== EVENTS_SLUG) {
       const event = await prisma.event.findUnique({ where: { slug } });
@@ -45,11 +45,8 @@ export async function GET(request: Request) {
       seo,
     });
   } catch (error) {
-    console.error("Error fetching events:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error fetching events:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -61,10 +58,10 @@ export async function PUT(request: Request) {
     const page = await prisma.page.upsert({
       where: { slug: EVENTS_SLUG },
       create: {
-        title: "Events & Activities",
+        title: 'Events & Activities',
         slug: EVENTS_SLUG,
-        type: "static",
-        visibility: "published",
+        type: 'static',
+        visibility: 'published',
       },
       update: {},
     });
@@ -73,14 +70,20 @@ export async function PUT(request: Request) {
 
     if (body.section && body.content !== undefined) {
       sectionsToSave[body.section] = body.content;
-    } else if (body.sections && typeof body.sections === "object") {
+    } else if (body.sections && typeof body.sections === 'object') {
       sectionsToSave = body.sections;
     } else {
       sectionsToSave = body;
     }
 
     for (const [sectionType, content] of Object.entries(sectionsToSave)) {
-      if (sectionType === "sections" || sectionType === "section" || sectionType === "content" || sectionType === "seo") continue;
+      if (
+        sectionType === 'sections' ||
+        sectionType === 'section' ||
+        sectionType === 'content' ||
+        sectionType === 'seo'
+      )
+        continue;
       const existing = await prisma.section.findFirst({
         where: { pageId: page.id, type: sectionType },
       });
@@ -105,10 +108,7 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error saving events sections:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error saving events sections:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

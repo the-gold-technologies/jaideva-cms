@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { User, Mail, Tag, Calendar, ArrowRight, Loader2 } from "lucide-react";
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { User, Mail, Tag, Calendar, ArrowRight, Loader2 } from 'lucide-react';
 
 interface Enquiry {
   id: string;
@@ -21,13 +21,13 @@ export function RecentEnquiries() {
   useEffect(() => {
     async function fetchRecent() {
       try {
-        const res = await fetch("/api/enquiries?limit=5");
+        const res = await fetch('/api/enquiries?limit=5');
         const json = await res.json();
         if (json.success) {
           setEnquiries(json.data);
         }
       } catch (error) {
-        console.error("Error fetching recent enquiries:", error);
+        console.error('Error fetching recent enquiries:', error);
       } finally {
         setLoading(false);
       }
@@ -69,7 +69,11 @@ export function RecentEnquiries() {
             >
               <div className="flex items-start gap-4">
                 <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 font-bold text-sm shrink-0">
-                  {enquiry.name ? enquiry.name.charAt(0).toUpperCase() : <User className="w-4 h-4" />}
+                  {enquiry.name ? (
+                    enquiry.name.charAt(0).toUpperCase()
+                  ) : (
+                    <User className="w-4 h-4" />
+                  )}
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-[#0C356A] group-hover:text-[#C86218] transition-colors">
@@ -93,9 +97,9 @@ export function RecentEnquiries() {
               <div className="flex items-center gap-4 text-xs font-semibold text-gray-400 pl-14 md:pl-0">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-3.5 h-3.5" />
-                  {new Date(enquiry.createdAt).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
+                  {new Date(enquiry.createdAt).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
                   })}
                 </span>
                 <span className="inline-block h-2 w-2 rounded-full bg-green-500"></span>

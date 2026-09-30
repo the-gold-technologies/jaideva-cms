@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
@@ -11,25 +11,24 @@ export async function GET() {
     if (config?.sitemapCustomContent && config.sitemapEnabled !== false) {
       return new NextResponse(config.sitemapCustomContent, {
         headers: {
-          "Content-Type": "application/xml; charset=utf-8",
-          "Cache-Control": "public, max-age=3600, s-maxage=3600",
+          'Content-Type': 'application/xml; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600, s-maxage=3600',
         },
       });
     }
 
-    const domain =
-      process.env.NEXT_PUBLIC_WEBSITE_URL || "https://jaidevaoil.com";
-    const baseUrl = domain.replace(/\/$/, "");
+    const domain = process.env.NEXT_PUBLIC_WEBSITE_URL || 'https://jaidevaoil.com';
+    const baseUrl = domain.replace(/\/$/, '');
 
     // Static pages
     const staticSlugs: string[] = [
-      "",
-      "/about-us",
-      "/products",
-      "/blogs",
-      "/events",
-      "/contact-us",
-      "/privacy-policy",
+      '',
+      '/about-us',
+      '/products',
+      '/blogs',
+      '/events',
+      '/contact-us',
+      '/privacy-policy',
     ];
 
     // Fetch dynamic products & blogs
@@ -49,10 +48,10 @@ export async function GET() {
     <loc>${baseUrl}${slug}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>${slug === "" ? "1.0" : "0.8"}</priority>
+    <priority>${slug === '' ? '1.0' : '0.8'}</priority>
   </url>`
       )
-      .join("\n");
+      .join('\n');
 
     const productsXml = (products as Array<{ slug: string; updatedAt: Date | null }>)
       .map(
@@ -63,7 +62,7 @@ export async function GET() {
     <priority>0.7</priority>
   </url>`
       )
-      .join("\n");
+      .join('\n');
 
     const blogsXml = (blogs as Array<{ slug: string; updatedAt: Date | null }>)
       .map(
@@ -74,7 +73,7 @@ export async function GET() {
     <priority>0.6</priority>
   </url>`
       )
-      .join("\n");
+      .join('\n');
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -85,12 +84,12 @@ ${blogsXml}
 
     return new NextResponse(xml, {
       headers: {
-        "Content-Type": "application/xml; charset=utf-8",
-        "Cache-Control": "public, max-age=3600, s-maxage=3600",
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600',
       },
     });
   } catch (err) {
-    console.error("Error generating sitemap:", err);
-    return new NextResponse("Error generating sitemap", { status: 500 });
+    console.error('Error generating sitemap:', err);
+    return new NextResponse('Error generating sitemap', { status: 500 });
   }
 }

@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Plus, Trash2, Award } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Plus, Trash2, Award } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 interface ImpactPillarItem {
   metric: string;
@@ -16,13 +16,13 @@ interface ImpactPillarItem {
 }
 
 const ICON_OPTIONS = [
-  "ThermometerSnowflake",
-  "Clock",
-  "TrendingDown",
-  "ShieldCheck",
-  "Award",
-  "Sparkles",
-  "Zap",
+  'ThermometerSnowflake',
+  'Clock',
+  'TrendingDown',
+  'ShieldCheck',
+  'Award',
+  'Sparkles',
+  'Zap',
 ];
 
 export function LessYouBurnImpactSection({
@@ -37,13 +37,13 @@ export function LessYouBurnImpactSection({
   const [internalOpen, setInternalOpen] = useState(false);
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
-  
+
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [badge, setBadge] = useState("");
-  const [heading, setHeading] = useState("");
-  const [subtitle, setSubtitle] = useState("");
+  const [badge, setBadge] = useState('');
+  const [heading, setHeading] = useState('');
+  const [subtitle, setSubtitle] = useState('');
   const [pillars, setPillars] = useState<ImpactPillarItem[]>([]);
 
   useEffect(() => {
@@ -52,18 +52,14 @@ export function LessYouBurnImpactSection({
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.subtitle) setSubtitle(initialData.subtitle);
 
-      const loadedPillars = initialData.pillars || initialData.items;
+      const loadedPillars = initialData.pillars;
       if (Array.isArray(loadedPillars)) {
         setPillars(loadedPillars);
       }
     }
   }, [initialData]);
 
-  const handlePillarChange = (
-    index: number,
-    field: keyof ImpactPillarItem,
-    val: string
-  ) => {
+  const handlePillarChange = (index: number, field: keyof ImpactPillarItem, val: string) => {
     const updated = [...pillars];
     updated[index] = { ...updated[index], [field]: val };
     setPillars(updated);
@@ -73,17 +69,17 @@ export function LessYouBurnImpactSection({
     setPillars([
       ...pillars,
       {
-        metric: "",
-        title: "",
-        desc: "",
-        icon: "TrendingDown",
+        metric: '',
+        title: '',
+        desc: '',
+        icon: 'TrendingDown',
       },
     ]);
   };
 
   const handleRemovePillar = (index: number) => {
     if (pillars.length <= 1) {
-      toast.error("At least one impact metric is required.");
+      toast.error('At least one impact metric is required.');
       return;
     }
     setPillars(pillars.filter((_, idx) => idx !== index));
@@ -100,11 +96,11 @@ export function LessYouBurnImpactSection({
         pillars,
       };
 
-      const res = await fetch("/api/industries", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/industries', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "LessYouBurnImpactSection",
+          section: 'LessYouBurnImpactSection',
           content: payload,
         }),
       });
@@ -112,13 +108,13 @@ export function LessYouBurnImpactSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Impact & Efficiency metrics saved successfully");
+        toast.success('Impact & Efficiency metrics saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Impact section");
+      toast.error('Error saving Impact section');
     } finally {
       setLoading(false);
     }
@@ -136,7 +132,7 @@ export function LessYouBurnImpactSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -206,18 +202,14 @@ export function LessYouBurnImpactSection({
                       <InputField
                         label="Metric Stat"
                         value={pillar.metric}
-                        onChange={(e) =>
-                          handlePillarChange(index, "metric", e.target.value)
-                        }
+                        onChange={(e) => handlePillarChange(index, 'metric', e.target.value)}
                         placeholder="-15°C to -22°C"
                       />
                       <div className="flex flex-col gap-1">
                         <label className="text-xs font-semibold text-gray-600">Icon</label>
                         <select
                           value={pillar.icon}
-                          onChange={(e) =>
-                            handlePillarChange(index, "icon", e.target.value)
-                          }
+                          onChange={(e) => handlePillarChange(index, 'icon', e.target.value)}
                           className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0C356A]/20"
                         >
                           {ICON_OPTIONS.map((ic) => (
@@ -232,18 +224,14 @@ export function LessYouBurnImpactSection({
                     <InputField
                       label="Title"
                       value={pillar.title}
-                      onChange={(e) =>
-                        handlePillarChange(index, "title", e.target.value)
-                      }
+                      onChange={(e) => handlePillarChange(index, 'title', e.target.value)}
                       placeholder="Reduced Sump Operating Heat"
                     />
 
                     <TextAreaField
                       label="Description"
                       value={pillar.desc}
-                      onChange={(e) =>
-                        handlePillarChange(index, "desc", e.target.value)
-                      }
+                      onChange={(e) => handlePillarChange(index, 'desc', e.target.value)}
                       rows={2}
                       placeholder="High-VI synthetic base stocks cut internal fluid shear..."
                     />

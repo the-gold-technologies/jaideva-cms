@@ -1,10 +1,20 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
-import { Search, Loader2, Mail, Calendar, User, Building, MapPin, MessageSquare, Phone, X, ShieldCheck } from "lucide-react";
-import { InputField } from "@/components/InputField";
-import toast from "react-hot-toast";
+import React, { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/PageHeader';
+import {
+  Search,
+  Loader2,
+  Mail,
+  Calendar,
+  User,
+  Building,
+  MapPin,
+  MessageSquare,
+  X,
+} from 'lucide-react';
+import { InputField } from '@/components/InputField';
+import toast from 'react-hot-toast';
 
 interface DistributorApplication {
   id: string;
@@ -25,19 +35,19 @@ interface DistributorApplication {
 export default function DistributorLeadsCMSPage() {
   const [leads, setLeads] = useState<DistributorApplication[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [activeLead, setActiveLead] = useState<DistributorApplication | null>(null);
 
   const fetchLeads = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/distributor-leads");
+      const res = await fetch('/api/distributor-leads');
       const json = await res.json();
       if (json.success) {
         setLeads(json.data || []);
       }
     } catch {
-      toast.error("Failed to load distributor applications");
+      toast.error('Failed to load distributor applications');
     } finally {
       setLoading(false);
     }
@@ -112,10 +122,7 @@ export default function DistributorLeadsCMSPage() {
                 </tr>
               ) : (
                 filtered.map((lead) => (
-                  <tr
-                    key={lead.id}
-                    className="hover:bg-gray-50/50 transition-colors group"
-                  >
+                  <tr key={lead.id} className="hover:bg-gray-50/50 transition-colors group">
                     <td className="px-6 py-5 pl-8">
                       <div className="flex flex-col">
                         <span className="font-bold text-gray-900 flex items-center gap-2">
@@ -139,18 +146,18 @@ export default function DistributorLeadsCMSPage() {
                       </div>
                     </td>
                     <td className="px-6 py-5 text-xs text-gray-600 font-medium">
-                      <div>{lead.annualTurnover || "N/A"}</div>
+                      <div>{lead.annualTurnover || 'N/A'}</div>
                       <div className="text-gray-400 text-[11px]">
-                        {lead.experienceYears || "0"} yrs in business
+                        {lead.experienceYears || '0'} yrs in business
                       </div>
                     </td>
                     <td className="px-6 py-5 text-[13px] text-gray-500 font-medium">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-3.5 h-3.5 text-gray-400" />
-                        {new Date(lead.createdAt).toLocaleDateString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
+                        {new Date(lead.createdAt).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
                         })}
                       </div>
                     </td>
@@ -179,9 +186,7 @@ export default function DistributorLeadsCMSPage() {
           <div className="bg-white w-full max-w-lg rounded-3xl shadow-2xl border border-gray-100 p-8 flex flex-col gap-5">
             <div className="flex items-center justify-between border-b border-gray-100 pb-4">
               <div>
-                <h3 className="font-bold text-lg text-[#0B0F29]">
-                  {activeLead.firmName}
-                </h3>
+                <h3 className="font-bold text-lg text-[#0B0F29]">{activeLead.firmName}</h3>
                 <p className="text-xs text-gray-400 mt-0.5">
                   Applicant: {activeLead.name} &bull; {activeLead.phone}
                 </p>
@@ -209,7 +214,7 @@ export default function DistributorLeadsCMSPage() {
                   Annual Turnover
                 </span>
                 <span className="font-semibold text-gray-800 text-sm">
-                  {activeLead.annualTurnover || "N/A"}
+                  {activeLead.annualTurnover || 'N/A'}
                 </span>
               </div>
               <div>
@@ -217,7 +222,7 @@ export default function DistributorLeadsCMSPage() {
                   Experience
                 </span>
                 <span className="font-semibold text-gray-800 text-sm">
-                  {activeLead.experienceYears || "0"} Years
+                  {activeLead.experienceYears || '0'} Years
                 </span>
               </div>
               <div>
@@ -225,7 +230,7 @@ export default function DistributorLeadsCMSPage() {
                   Existing Lines
                 </span>
                 <span className="font-semibold text-gray-800 text-sm">
-                  {activeLead.existingBusiness || "Lubricant retail"}
+                  {activeLead.existingBusiness || 'Lubricant retail'}
                 </span>
               </div>
             </div>

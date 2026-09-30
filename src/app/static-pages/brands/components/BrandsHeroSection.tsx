@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 export function BrandsHeroSection({
   initialData,
@@ -24,25 +24,24 @@ export function BrandsHeroSection({
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [badge, setBadge] = useState("");
-  const [heading, setHeading] = useState("");
-  const [description, setDescription] = useState("");
-  const [ctaPrimaryText, setCtaPrimaryText] = useState("");
-  const [ctaPrimaryUrl, setCtaPrimaryUrl] = useState("");
-  const [ctaSecondaryText, setCtaSecondaryText] = useState("");
-  const [images, setImages] = useState<(File | string | null)[]>([""]);
+  const [badge, setBadge] = useState('');
+  const [heading, setHeading] = useState('');
+  const [description, setDescription] = useState('');
+  const [ctaPrimaryText, setCtaPrimaryText] = useState('');
+  const [ctaPrimaryUrl, setCtaPrimaryUrl] = useState('');
+  const [ctaSecondaryText, setCtaSecondaryText] = useState('');
+  const [images, setImages] = useState<(File | string | null)[]>(['']);
 
   useEffect(() => {
     if (initialData) {
-      if (initialData.badge || initialData.eyebrowBadge)
-        setBadge(initialData.badge || initialData.eyebrowBadge);
+      if (initialData.badge) setBadge(initialData.badge);
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.description) setDescription(initialData.description);
       if (initialData.ctaPrimaryText) setCtaPrimaryText(initialData.ctaPrimaryText);
       if (initialData.ctaPrimaryUrl) setCtaPrimaryUrl(initialData.ctaPrimaryUrl);
       if (initialData.ctaSecondaryText) setCtaSecondaryText(initialData.ctaSecondaryText);
 
-      const banner = initialData.bannerImage || initialData.image;
+      const banner = initialData.bannerImage;
       if (banner) setImages([banner]);
     }
   }, [initialData]);
@@ -52,10 +51,10 @@ export function BrandsHeroSection({
     setSaved(false);
     try {
       const validImages = images.filter((img): img is File | string => !!img);
-      let bannerImageUrl = "";
+      let bannerImageUrl = '';
       if (validImages.length > 0) {
         const [uploaded] = await uploadFiles(validImages);
-        bannerImageUrl = uploaded || "";
+        bannerImageUrl = uploaded || '';
       }
 
       const payload = {
@@ -68,23 +67,23 @@ export function BrandsHeroSection({
         bannerImage: bannerImageUrl,
       };
 
-      const res = await fetch("/api/brands", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "BrandsHero", content: payload }),
+      const res = await fetch('/api/brands', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: 'BrandsHero', content: payload }),
       });
 
       const json = await res.json();
       if (json.success) {
         setSaved(true);
         if (bannerImageUrl) setImages([bannerImageUrl]);
-        toast.success("Brands Hero Banner saved successfully");
+        toast.success('Brands Hero Banner saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Brands Hero section");
+      toast.error('Error saving Brands Hero section');
     } finally {
       setLoading(false);
     }
@@ -95,14 +94,14 @@ export function BrandsHeroSection({
       <SectionHeader
         title="1. Brands Hero Banner"
         description="Manage headline, authority badge, introduction narrative, CTA buttons, and background banner image."
-        badge={images[0] ? "Image Set" : "No Image"}
+        badge={images[0] ? 'Image Set' : 'No Image'}
         isOpen={isOpen}
         onToggle={handleToggle}
       />
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">

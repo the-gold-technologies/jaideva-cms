@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useMemo } from "react";
-import Link from "next/link";
+import React, { useState, useEffect, useMemo } from 'react';
+import Link from 'next/link';
 import {
   Plus,
   Search,
@@ -13,20 +13,18 @@ import {
   X,
   ExternalLink,
   Award,
-  Layers,
   Sparkles,
   Droplets,
-  ChevronRight,
   ChevronDown,
   RotateCcw,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { PageHeader } from "@/components/PageHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+} from 'lucide-react';
+import toast from 'react-hot-toast';
+import { PageHeader } from '@/components/PageHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 interface Product {
   id: string;
@@ -68,12 +66,11 @@ export default function ProductsCatalogCMSPage() {
 
   // Two-Tier Filter State:
   // 1. Selected Brand
-  const [selectedBrandSlug, setSelectedBrandSlug] = useState<string>("all");
+  const [selectedBrandSlug, setSelectedBrandSlug] = useState<string>('all');
   // 2. Selected Category within that Brand
-  const [selectedCategoryTitle, setSelectedCategoryTitle] =
-    useState<string>("all");
+  const [selectedCategoryTitle, setSelectedCategoryTitle] = useState<string>('all');
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Brand Edit Modal state
   const [isBrandModalOpen, setIsBrandModalOpen] = useState(false);
@@ -81,29 +78,28 @@ export default function ProductsCatalogCMSPage() {
   const [editingBrand, setEditingBrand] = useState<BrandCategory | null>(null);
 
   // Brand Form Fields
-  const [brandName, setBrandName] = useState("");
-  const [brandSlug, setBrandSlug] = useState("");
-  const [brandTagline, setBrandTagline] = useState("");
-  const [brandAbout, setBrandAbout] = useState("");
+  const [brandName, setBrandName] = useState('');
+  const [brandSlug, setBrandSlug] = useState('');
+  const [brandTagline, setBrandTagline] = useState('');
+  const [brandAbout, setBrandAbout] = useState('');
   const [brandImages, setBrandImages] = useState<(File | string | null)[]>([]);
-  const [brandPrimaryCta, setBrandPrimaryCta] = useState("Request a Quote");
-  const [brandSecondaryCta, setBrandSecondaryCta] = useState("Browse range");
-  const [brandFeaturedBadge, setBrandFeaturedBadge] =
-    useState("Featured product");
+  const [brandPrimaryCta, setBrandPrimaryCta] = useState('');
+  const [brandSecondaryCta, setBrandSecondaryCta] = useState('');
+  const [brandFeaturedBadge, setBrandFeaturedBadge] = useState('');
   const [brandOrder, setBrandOrder] = useState<number>(0);
 
   const fetchCatalog = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/products");
+      const res = await fetch('/api/products');
       const json = await res.json();
       if (json.success) {
         setProducts(json.data.products || []);
         setBrands(json.data.categories || []);
       }
     } catch (err) {
-      console.error("Error loading products:", err);
-      toast.error("Failed to load catalog");
+      console.error('Error loading products:', err);
+      toast.error('Failed to load catalog');
     } finally {
       setLoading(false);
     }
@@ -115,14 +111,14 @@ export default function ProductsCatalogCMSPage() {
 
   const openNewBrandModal = () => {
     setEditingBrand(null);
-    setBrandName("");
-    setBrandSlug("");
-    setBrandTagline("");
-    setBrandAbout("");
+    setBrandName('');
+    setBrandSlug('');
+    setBrandTagline('');
+    setBrandAbout('');
     setBrandImages([]);
-    setBrandPrimaryCta("Request a Quote");
-    setBrandSecondaryCta("Browse range");
-    setBrandFeaturedBadge("Featured product");
+    setBrandPrimaryCta('');
+    setBrandSecondaryCta('');
+    setBrandFeaturedBadge('');
     setBrandOrder(brands.length);
     setIsBrandModalOpen(true);
   };
@@ -131,12 +127,12 @@ export default function ProductsCatalogCMSPage() {
     setEditingBrand(brand);
     setBrandName(brand.name);
     setBrandSlug(brand.slug);
-    setBrandTagline(brand.shortDesc || "");
-    setBrandAbout(brand.fullDesc || "");
+    setBrandTagline(brand.shortDesc || '');
+    setBrandAbout(brand.fullDesc || '');
     setBrandImages(brand.coverImage ? [brand.coverImage] : []);
-    setBrandPrimaryCta(brand.primaryCtaText || "Request a Quote");
-    setBrandSecondaryCta(brand.secondaryCtaText || "Browse range");
-    setBrandFeaturedBadge(brand.featuredBadgeText || "Featured product");
+    setBrandPrimaryCta(brand.primaryCtaText || 'Request a Quote');
+    setBrandSecondaryCta(brand.secondaryCtaText || 'Browse range');
+    setBrandFeaturedBadge(brand.featuredBadgeText || 'Featured product');
     setBrandOrder(brand.order ?? 0);
     setIsBrandModalOpen(true);
   };
@@ -147,8 +143,8 @@ export default function ProductsCatalogCMSPage() {
       setBrandSlug(
         val
           .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-+|-+$/g, ""),
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '')
       );
     }
   };
@@ -156,20 +152,18 @@ export default function ProductsCatalogCMSPage() {
   const handleSaveBrand = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!brandName || !brandSlug) {
-      toast.error("Brand name and URL slug are required");
+      toast.error('Brand name and URL slug are required');
       return;
     }
 
     setBrandModalLoading(true);
 
     try {
-      let finalCoverUrl = "";
-      const validImages = brandImages.filter(
-        (img): img is File | string => !!img,
-      );
+      let finalCoverUrl = '';
+      const validImages = brandImages.filter((img): img is File | string => !!img);
       if (validImages.length > 0) {
         const [uploaded] = await uploadFiles(validImages);
-        finalCoverUrl = uploaded || "";
+        finalCoverUrl = uploaded || '';
       }
 
       const payload = {
@@ -178,64 +172,54 @@ export default function ProductsCatalogCMSPage() {
         shortDesc: brandTagline.trim(),
         fullDesc: brandAbout.trim(),
         coverImage: finalCoverUrl,
-        primaryCtaText: brandPrimaryCta.trim() || "Request a Quote",
-        secondaryCtaText: brandSecondaryCta.trim() || "Browse range",
-        featuredBadgeText: brandFeaturedBadge.trim() || "Featured product",
+        primaryCtaText: brandPrimaryCta.trim() || 'Request a Quote',
+        secondaryCtaText: brandSecondaryCta.trim() || 'Browse range',
+        featuredBadgeText: brandFeaturedBadge.trim() || 'Featured product',
         order: Number(brandOrder) || 0,
         isFeatured: true,
       };
 
-      const url = "/api/products/categories";
-      const method = editingBrand ? "PUT" : "POST";
+      const url = '/api/products/categories';
+      const method = editingBrand ? 'PUT' : 'POST';
       const res = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(
-          editingBrand ? { ...payload, id: editingBrand.id } : payload,
-        ),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editingBrand ? { ...payload, id: editingBrand.id } : payload),
       });
 
       const json = await res.json();
       if (json.success) {
-        toast.success(
-          editingBrand
-            ? "Brand updated successfully"
-            : "Brand created successfully",
-        );
+        toast.success(editingBrand ? 'Brand updated successfully' : 'Brand created successfully');
         setIsBrandModalOpen(false);
         fetchCatalog();
       } else {
-        toast.error(json.error || "Failed to save brand");
+        toast.error(json.error || 'Failed to save brand');
       }
     } catch {
-      toast.error("Network error saving brand");
+      toast.error('Network error saving brand');
     } finally {
       setBrandModalLoading(false);
     }
   };
 
   const handleDeleteBrand = async (id: string, name: string) => {
-    if (
-      !confirm(
-        `Are you sure you want to delete brand "${name}" and its associated products?`,
-      )
-    )
+    if (!confirm(`Are you sure you want to delete brand "${name}" and its associated products?`))
       return;
 
     try {
       const res = await fetch(`/api/products/categories?id=${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Brand deleted successfully");
-        if (selectedBrandSlug === id) setSelectedBrandSlug("all");
+        toast.success('Brand deleted successfully');
+        if (selectedBrandSlug === id) setSelectedBrandSlug('all');
         fetchCatalog();
       } else {
-        toast.error(json.error || "Failed to delete brand");
+        toast.error(json.error || 'Failed to delete brand');
       }
     } catch {
-      toast.error("Network error deleting brand");
+      toast.error('Network error deleting brand');
     }
   };
 
@@ -244,30 +228,30 @@ export default function ProductsCatalogCMSPage() {
 
     try {
       const res = await fetch(`/api/products?id=${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Product deleted successfully");
+        toast.success('Product deleted successfully');
         fetchCatalog();
       } else {
-        toast.error(json.error || "Failed to delete product");
+        toast.error(json.error || 'Failed to delete product');
       }
     } catch (err: any) {
-      toast.error(err?.message || "Failed to delete product");
+      toast.error(err?.message || 'Failed to delete product');
     }
   };
 
   // Categories under the currently selected brand (e.g. for HP Lubricants: Engine Oils, Gear Oils, etc.)
   const availableCategoriesForBrand = useMemo(() => {
     const brandProducts =
-      selectedBrandSlug === "all"
+      selectedBrandSlug === 'all'
         ? products
         : products.filter((p) => p.categorySlug === selectedBrandSlug);
 
     const categoryCounts: Record<string, number> = {};
     brandProducts.forEach((p) => {
-      const cat = p.subCategoryTitle?.trim() || "General";
+      const cat = p.subCategoryTitle?.trim() || 'General';
       categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
     });
 
@@ -280,17 +264,16 @@ export default function ProductsCatalogCMSPage() {
   // When changing brand, reset category filter to "all"
   const handleSelectBrand = (slug: string) => {
     setSelectedBrandSlug(slug);
-    setSelectedCategoryTitle("all");
+    setSelectedCategoryTitle('all');
   };
 
   // Filtered products based on Tier 1 (Brand), Tier 2 (Category), and Search Query
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
-      const matchesBrand =
-        selectedBrandSlug === "all" || p.categorySlug === selectedBrandSlug;
+      const matchesBrand = selectedBrandSlug === 'all' || p.categorySlug === selectedBrandSlug;
       const matchesCategory =
-        selectedCategoryTitle === "all" ||
-        (p.subCategoryTitle || "").toLowerCase().trim() ===
+        selectedCategoryTitle === 'all' ||
+        (p.subCategoryTitle || '').toLowerCase().trim() ===
           selectedCategoryTitle.toLowerCase().trim();
       const q = searchQuery.toLowerCase().trim();
       const matchesSearch =
@@ -306,20 +289,17 @@ export default function ProductsCatalogCMSPage() {
   }, [products, selectedBrandSlug, selectedCategoryTitle, searchQuery]);
 
   const activeBrandName =
-    selectedBrandSlug === "all"
-      ? "All Brands"
-      : brands.find((b) => b.slug === selectedBrandSlug)?.name ||
-        selectedBrandSlug;
+    selectedBrandSlug === 'all'
+      ? 'All Brands'
+      : brands.find((b) => b.slug === selectedBrandSlug)?.name || selectedBrandSlug;
 
   const hasActiveFilters =
-    selectedBrandSlug !== "all" ||
-    selectedCategoryTitle !== "all" ||
-    searchQuery.trim() !== "";
+    selectedBrandSlug !== 'all' || selectedCategoryTitle !== 'all' || searchQuery.trim() !== '';
 
   const handleClearFilters = () => {
-    setSelectedBrandSlug("all");
-    setSelectedCategoryTitle("all");
-    setSearchQuery("");
+    setSelectedBrandSlug('all');
+    setSelectedCategoryTitle('all');
+    setSearchQuery('');
   };
 
   return (
@@ -366,9 +346,7 @@ export default function ProductsCatalogCMSPage() {
               >
                 <option value="all">All Brands ({products.length})</option>
                 {brands.map((brand) => {
-                  const count = products.filter(
-                    (p) => p.categorySlug === brand.slug,
-                  ).length;
+                  const count = products.filter((p) => p.categorySlug === brand.slug).length;
                   return (
                     <option key={brand.slug} value={brand.slug}>
                       {brand.name} ({count})
@@ -391,9 +369,7 @@ export default function ProductsCatalogCMSPage() {
                 onChange={(e) => setSelectedCategoryTitle(e.target.value)}
                 className="appearance-none pl-3 pr-8 py-2 rounded-xl border border-gray-200 bg-gray-50 text-[12px] font-semibold text-gray-700 focus:outline-none focus:border-[#C86218] focus:ring-2 focus:ring-[#C86218]/10 cursor-pointer transition-all hover:border-gray-300 min-w-[180px]"
               >
-                <option value="all">
-                  All Categories ({availableCategoriesForBrand.length})
-                </option>
+                <option value="all">All Categories ({availableCategoriesForBrand.length})</option>
                 {availableCategoriesForBrand.map((cat) => (
                   <option key={cat.name} value={cat.name}>
                     {cat.name} ({cat.count})
@@ -424,7 +400,7 @@ export default function ProductsCatalogCMSPage() {
               {searchQuery && (
                 <button
                   type="button"
-                  onClick={() => setSearchQuery("")}
+                  onClick={() => setSearchQuery('')}
                   className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -436,10 +412,8 @@ export default function ProductsCatalogCMSPage() {
           {/* Result count & Clear Filters */}
           <div className="flex items-center gap-3 self-end pb-0.5 ml-auto flex-wrap">
             <span className="text-[11px] font-semibold text-gray-400 whitespace-nowrap">
-              <span className="font-black text-gray-700">
-                {filteredProducts.length}
-              </span>{" "}
-              / {products.length} products
+              <span className="font-black text-gray-700">{filteredProducts.length}</span> /{' '}
+              {products.length} products
             </span>
             {hasActiveFilters && (
               <button
@@ -476,13 +450,11 @@ export default function ProductsCatalogCMSPage() {
             <Package className="w-8 h-8" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-gray-900">
-              No products found
-            </h3>
+            <h3 className="text-base font-bold text-gray-900">No products found</h3>
             <p className="text-xs text-gray-400 mt-1 max-w-sm">
               {searchQuery
                 ? `No products matched "${searchQuery}". Try a different keyword or reset filters.`
-                : "No products exist for this brand & category combination yet."}
+                : 'No products exist for this brand & category combination yet.'}
             </p>
           </div>
           <Link
@@ -496,7 +468,7 @@ export default function ProductsCatalogCMSPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredProducts.map((p) => {
             const packagingRow = p.propertiesTable?.find((r) =>
-              r.property.toLowerCase().includes("packaging"),
+              r.property.toLowerCase().includes('packaging')
             );
 
             return (
@@ -566,7 +538,7 @@ export default function ProductsCatalogCMSPage() {
 
                 <div className="flex items-center justify-between pt-4 mt-4 border-t border-gray-50">
                   <div className="flex items-center gap-2">
-                    {p.pdfUrl && p.pdfUrl !== "#" && (
+                    {p.pdfUrl && p.pdfUrl !== '#' && (
                       <a
                         href={p.pdfUrl}
                         target="_blank"
@@ -623,13 +595,10 @@ export default function ProductsCatalogCMSPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-gray-900">
-                    {editingBrand
-                      ? `Edit Brand: ${editingBrand.name}`
-                      : "Add New Brand Partner"}
+                    {editingBrand ? `Edit Brand: ${editingBrand.name}` : 'Add New Brand Partner'}
                   </h3>
                   <p className="text-xs text-gray-400 font-medium">
-                    Configure brand identity, taglines, hero banner graphics,
-                    and catalog ordering.
+                    Configure brand identity, taglines, hero banner graphics, and catalog ordering.
                   </p>
                 </div>
               </div>
@@ -713,9 +682,7 @@ export default function ProductsCatalogCMSPage() {
                   label="Display Order Index"
                   type="number"
                   value={String(brandOrder)}
-                  onChange={(e) =>
-                    setBrandOrder(parseInt(e.target.value, 10) || 0)
-                  }
+                  onChange={(e) => setBrandOrder(parseInt(e.target.value, 10) || 0)}
                   placeholder="0"
                 />
               </div>
@@ -724,9 +691,7 @@ export default function ProductsCatalogCMSPage() {
                 {editingBrand && (
                   <button
                     type="button"
-                    onClick={() =>
-                      handleDeleteBrand(editingBrand.id, editingBrand.name)
-                    }
+                    onClick={() => handleDeleteBrand(editingBrand.id, editingBrand.name)}
                     className="text-xs font-semibold text-red-600 hover:underline cursor-pointer"
                   >
                     Delete Brand

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Plus, Trash2, TrendingUp } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Plus, Trash2, TrendingUp } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { SaveButton } from '@/components/SaveButton';
 
 interface StatItem {
   value: string;
@@ -22,8 +22,7 @@ export function BrandsStatsBandSection({
   onToggle?: () => void;
 }) {
   const [internalOpen, setInternalOpen] = useState(false);
-  const isOpen =
-    controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -32,30 +31,26 @@ export function BrandsStatsBandSection({
 
   useEffect(() => {
     if (initialData) {
-      const loaded = initialData.stats || initialData.items;
+      const loaded = initialData.stats;
       if (Array.isArray(loaded)) {
         setStats(loaded);
       }
     }
   }, [initialData]);
 
-  const handleStatChange = (
-    index: number,
-    field: keyof StatItem,
-    val: string,
-  ) => {
+  const handleStatChange = (index: number, field: keyof StatItem, val: string) => {
     const updated = [...stats];
     updated[index] = { ...updated[index], [field]: val };
     setStats(updated);
   };
 
   const handleAddStat = () => {
-    setStats([...stats, { value: "", label: "" }]);
+    setStats([...stats, { value: '', label: '' }]);
   };
 
   const handleRemoveStat = (index: number) => {
     if (stats.length <= 1) {
-      toast.error("At least one metric is required.");
+      toast.error('At least one metric is required.');
       return;
     }
     setStats(stats.filter((_, idx) => idx !== index));
@@ -67,22 +62,22 @@ export function BrandsStatsBandSection({
     try {
       const payload = { stats };
 
-      const res = await fetch("/api/brands", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "BrandsStatsBand", content: payload }),
+      const res = await fetch('/api/brands', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: 'BrandsStatsBand', content: payload }),
       });
 
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Scale & Growth Statistics saved successfully");
+        toast.success('Scale & Growth Statistics saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Statistics section");
+      toast.error('Error saving Statistics section');
     } finally {
       setLoading(false);
     }
@@ -100,7 +95,7 @@ export function BrandsStatsBandSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -146,17 +141,13 @@ export function BrandsStatsBandSection({
                     <InputField
                       label="Metric Value"
                       value={stat.value}
-                      onChange={(e) =>
-                        handleStatChange(index, "value", e.target.value)
-                      }
+                      onChange={(e) => handleStatChange(index, 'value', e.target.value)}
                       placeholder="e.g. 91% or 1.9X"
                     />
                     <InputField
                       label="Metric Label"
                       value={stat.label}
-                      onChange={(e) =>
-                        handleStatChange(index, "label", e.target.value)
-                      }
+                      onChange={(e) => handleStatChange(index, 'label', e.target.value)}
                       placeholder="e.g. Growth in 3 Years"
                     />
                   </div>

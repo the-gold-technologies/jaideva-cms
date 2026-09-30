@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 interface EventsContentData {
   title?: string;
@@ -17,15 +17,10 @@ interface EventsContentSectionProps {
   onSave?: (data: EventsContentData) => Promise<boolean | void>;
 }
 
-export function EventsContentSection({
-  initialData,
-  onSave,
-}: EventsContentSectionProps) {
+export function EventsContentSection({ initialData, onSave }: EventsContentSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [title, setTitle] = useState("EVENTS");
-  const [introText, setIntroText] = useState(
-    "Jai Deva Oil Co. actively engages with their stakeholders by frequently hosting meetings and events with them. This includes meeting business partners, strategic partners, distributors, OEMs, agencies, mechanics, and industrial clients."
-  );
+  const [title, setTitle] = useState('');
+  const [introText, setIntroText] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -48,23 +43,23 @@ export function EventsContentSection({
       if (onSave) {
         await onSave(payload);
       } else {
-        const res = await fetch("/api/events", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch('/api/events', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            section: "EventsContent",
+            section: 'EventsContent',
             content: payload,
           }),
         });
         const json = await res.json();
         if (json.success) {
-          toast.success("Events content updated successfully!");
+          toast.success('Events content updated successfully!');
         } else {
-          toast.error(json.error || "Failed to update events content");
+          toast.error(json.error || 'Failed to update events content');
         }
       }
     } catch {
-      toast.error("Network error saving content");
+      toast.error('Network error saving content');
     } finally {
       setLoading(false);
     }
@@ -82,7 +77,7 @@ export function EventsContentSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">

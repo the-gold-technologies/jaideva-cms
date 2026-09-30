@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
+import React, { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/PageHeader';
 import {
   ContactHeroSection,
   ContactHeadquarterSection,
   ContactFormConfigSection,
-} from "./components";
-import toast from "react-hot-toast";
+} from './components';
+import toast from 'react-hot-toast';
 
 export default function ContactUsCMSPage() {
   const [sections, setSections] = useState<Record<string, any>>({});
@@ -16,13 +16,13 @@ export default function ContactUsCMSPage() {
   const fetchContactData = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/contact-us");
+      const res = await fetch('/api/contact-us');
       const json = await res.json();
       if (json.success && json.data) {
         setSections(json.data.sections || {});
       }
     } catch {
-      toast.error("Failed to load contact page content");
+      toast.error('Failed to load contact page content');
     } finally {
       setLoading(false);
     }
@@ -34,9 +34,9 @@ export default function ContactUsCMSPage() {
 
   const handleSaveSection = async (sectionType: string, content: any) => {
     try {
-      const res = await fetch("/api/contact-us", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/contact-us', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           section: sectionType,
           content,
@@ -44,13 +44,13 @@ export default function ContactUsCMSPage() {
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Section updated successfully!");
+        toast.success('Section updated successfully!');
         setSections((prev) => ({ ...prev, [sectionType]: content }));
       } else {
-        toast.error(json.error || "Failed to save changes");
+        toast.error(json.error || 'Failed to save changes');
       }
     } catch {
-      toast.error("Network error saving changes");
+      toast.error('Network error saving changes');
     }
   };
 
@@ -70,19 +70,19 @@ export default function ContactUsCMSPage() {
           {/* Section 1: Hero Banner & Titles */}
           <ContactHeroSection
             initialData={sections.ContactHero}
-            onSave={(data) => handleSaveSection("ContactHero", data)}
+            onSave={(data) => handleSaveSection('ContactHero', data)}
           />
 
           {/* Section 2: Headquarter Contact Details */}
           <ContactHeadquarterSection
             initialData={sections.ContactHeadquarter}
-            onSave={(data) => handleSaveSection("ContactHeadquarter", data)}
+            onSave={(data) => handleSaveSection('ContactHeadquarter', data)}
           />
 
           {/* Section 3: Enquiry Form Card Settings */}
           <ContactFormConfigSection
-            initialData={sections.ContactForm || sections.EnquiryForm}
-            onSave={(data) => handleSaveSection("ContactForm", data)}
+            initialData={sections.ContactForm}
+            onSave={(data) => handleSaveSection('ContactForm', data)}
           />
         </div>
       )}

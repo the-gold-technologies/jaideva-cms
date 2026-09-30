@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { HelpCircle, Link as LinkIcon, X } from "lucide-react";
+import React, { useState, useRef } from 'react';
+import { HelpCircle, Link as LinkIcon, X } from 'lucide-react';
 
 interface TextAreaFieldProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -10,8 +10,8 @@ interface TextAreaFieldProps extends React.TextareaHTMLAttributes<HTMLTextAreaEl
 
 export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   label,
-  containerClassName = "",
-  className = "",
+  containerClassName = '',
+  className = '',
   rows = 4,
   tooltip,
   helperText,
@@ -19,8 +19,8 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [showLinkModal, setShowLinkModal] = useState(false);
-  const [linkUrl, setLinkUrl] = useState("");
-  const [linkText, setLinkText] = useState("");
+  const [linkUrl, setLinkUrl] = useState('');
+  const [linkText, setLinkText] = useState('');
 
   const textareaClass = `w-full px-5 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#C86218] focus:ring-1 focus:ring-[#C86218] outline-none transition-all text-gray-800 ${className}`;
 
@@ -33,8 +33,8 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
     const end = textarea.selectionEnd;
     const selectedText = textarea.value.substring(start, end);
 
-    setLinkText(selectedText || "");
-    setLinkUrl("");
+    setLinkText(selectedText || '');
+    setLinkUrl('');
     setShowLinkModal(true);
   };
 
@@ -47,20 +47,19 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
     const end = textarea.selectionEnd;
     const text = textarea.value;
 
-    const finalLinkText = linkText.trim() || "link";
-    const finalLinkUrl = linkUrl.trim() || "#";
+    const finalLinkText = linkText.trim() || 'link';
+    const finalLinkUrl = linkUrl.trim() || '#';
 
     const linkMarkdown = `[${finalLinkText}](${finalLinkUrl})`;
-    const newValue =
-      text.substring(0, start) + linkMarkdown + text.substring(end);
+    const newValue = text.substring(0, start) + linkMarkdown + text.substring(end);
 
     const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
       HTMLTextAreaElement.prototype,
-      "value",
+      'value'
     )?.set;
     nativeInputValueSetter?.call(textarea, newValue);
 
-    const event = new Event("input", { bubbles: true });
+    const event = new Event('input', { bubbles: true });
     textarea.dispatchEvent(event);
 
     setShowLinkModal(false);
@@ -73,9 +72,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
   };
 
   return (
-    <div
-      className={`flex flex-col gap-1.5 ${containerClassName} px-0.5 relative`}
-    >
+    <div className={`flex flex-col gap-1.5 ${containerClassName} px-0.5 relative`}>
       <div className="flex justify-between items-center w-full pr-4">
         {label && (
           <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4 flex items-center gap-1.5 relative">
@@ -105,12 +102,7 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({
         </button>
       </div>
 
-      <textarea
-        ref={textareaRef}
-        rows={rows}
-        className={textareaClass}
-        {...props}
-      />
+      <textarea ref={textareaRef} rows={rows} className={textareaClass} {...props} />
 
       {/* Styled Inline Link Dialog/Modal */}
       {showLinkModal && (

@@ -1,21 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import {
-  FileText,
-  Plus,
-  Edit2,
-  Trash2,
-  Calendar,
-  Clock,
-  Search,
-  BookOpen,
-  Tags,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { PageHeader } from "@/components/PageHeader";
-import { BlogsHeroSection, BlogCategoryModal } from "./components";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { FileText, Plus, Edit2, Trash2, Calendar, Clock, Search, BookOpen } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { PageHeader } from '@/components/PageHeader';
+import { BlogsHeroSection, BlogCategoryModal } from './components';
 
 interface BlogPost {
   id: string;
@@ -42,16 +32,16 @@ export default function BlogsCMSPage() {
   const [sections, setSections] = useState<Record<string, any>>({});
   const [categories, setCategories] = useState<CategoryItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState("ALL");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
+  const [searchQuery, setSearchQuery] = useState('');
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
 
   const fetchBlogsData = async () => {
     try {
       setLoading(true);
       const [blogsRes, categoriesRes] = await Promise.all([
-        fetch("/api/blogs"),
-        fetch("/api/blogs/categories"),
+        fetch('/api/blogs'),
+        fetch('/api/blogs/categories'),
       ]);
 
       const blogsJson = await blogsRes.json();
@@ -66,7 +56,7 @@ export default function BlogsCMSPage() {
         setCategories(catJson.data);
       }
     } catch {
-      toast.error("Failed to load technical articles");
+      toast.error('Failed to load technical articles');
     } finally {
       setLoading(false);
     }
@@ -81,24 +71,23 @@ export default function BlogsCMSPage() {
 
     try {
       const res = await fetch(`/api/blogs?id=${id}`, {
-        method: "DELETE",
+        method: 'DELETE',
       });
       const json = await res.json();
       if (json.success) {
-        toast.success("Article deleted successfully");
+        toast.success('Article deleted successfully');
         fetchBlogsData();
       } else {
-        toast.error(json.error || "Failed to delete article");
+        toast.error(json.error || 'Failed to delete article');
       }
     } catch {
-      toast.error("Network error deleting article");
+      toast.error('Network error deleting article');
     }
   };
 
   const filteredBlogs = blogs.filter((b) => {
     const matchesCat =
-      selectedCategory === "ALL" ||
-      b.category?.toLowerCase() === selectedCategory.toLowerCase();
+      selectedCategory === 'ALL' || b.category?.toLowerCase() === selectedCategory.toLowerCase();
     const matchesSearch =
       !searchQuery ||
       b.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -133,19 +122,19 @@ export default function BlogsCMSPage() {
             {/* ALL Tab */}
             <button
               type="button"
-              onClick={() => setSelectedCategory("ALL")}
+              onClick={() => setSelectedCategory('ALL')}
               className={`px-5 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
-                selectedCategory === "ALL"
-                  ? "bg-[#C86218] text-white shadow-sm"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                selectedCategory === 'ALL'
+                  ? 'bg-[#C86218] text-white shadow-sm'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
               <span>ALL</span>
               <span
                 className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                  selectedCategory === "ALL"
-                    ? "bg-white/20 text-white"
-                    : "bg-gray-200 text-gray-700"
+                  selectedCategory === 'ALL'
+                    ? 'bg-white/20 text-white'
+                    : 'bg-gray-200 text-gray-700'
                 }`}
               >
                 {blogs.length}
@@ -154,13 +143,10 @@ export default function BlogsCMSPage() {
 
             {/* Dynamic Categories */}
             {categories.map((cat) => {
-              const isSelected =
-                selectedCategory.toLowerCase() === cat.name.toLowerCase();
+              const isSelected = selectedCategory.toLowerCase() === cat.name.toLowerCase();
               const count =
                 cat.count ??
-                blogs.filter(
-                  (b) => b.category?.toLowerCase() === cat.name.toLowerCase()
-                ).length;
+                blogs.filter((b) => b.category?.toLowerCase() === cat.name.toLowerCase()).length;
 
               return (
                 <button
@@ -169,16 +155,14 @@ export default function BlogsCMSPage() {
                   onClick={() => setSelectedCategory(cat.name)}
                   className={`px-5 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
                     isSelected
-                      ? "bg-[#C86218] text-white shadow-sm"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      ? 'bg-[#C86218] text-white shadow-sm'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
                   <span>{cat.name}</span>
                   <span
                     className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      isSelected
-                        ? "bg-white/20 text-white"
-                        : "bg-gray-200 text-gray-700"
+                      isSelected ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-700'
                     }`}
                   >
                     {count}
@@ -287,7 +271,7 @@ export default function BlogsCMSPage() {
 
               <div className="flex items-center justify-between pt-4 mt-4 border-t border-gray-50">
                 <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">
-                  {b.author || "HPCL Division"}
+                  {b.author || 'HPCL Division'}
                 </span>
 
                 <div className="flex items-center gap-1.5">

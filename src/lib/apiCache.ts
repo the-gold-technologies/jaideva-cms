@@ -9,10 +9,10 @@ export async function fetchWithCache<T = any>(
   options?: RequestInit,
   ttl: number = DEFAULT_TTL
 ): Promise<T> {
-  const method = options?.method || "GET";
+  const method = options?.method || 'GET';
 
   // Only cache GET requests
-  if (method !== "GET") {
+  if (method !== 'GET') {
     const res = await fetch(url, options);
     const data = await res.json();
     // Invalidate cache on mutations

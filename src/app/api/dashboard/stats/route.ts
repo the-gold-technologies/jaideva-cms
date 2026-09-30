@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
@@ -25,7 +25,7 @@ export async function GET() {
           sections: true,
         },
         orderBy: {
-          slug: "asc",
+          slug: 'asc',
         },
       });
     } catch {
@@ -37,7 +37,7 @@ export async function GET() {
     try {
       recentEnquiries = await prisma.enquiry.findMany({
         take: 2,
-        orderBy: { createdAt: "desc" },
+        orderBy: { createdAt: 'desc' },
         select: {
           name: true,
           createdAt: true,
@@ -52,7 +52,7 @@ export async function GET() {
     try {
       recentPages = await prisma.page.findMany({
         take: 2,
-        orderBy: { updatedAt: "desc" },
+        orderBy: { updatedAt: 'desc' },
         select: {
           title: true,
           slug: true,
@@ -66,12 +66,12 @@ export async function GET() {
     // Merge and sort activities dynamically
     const activities = [
       ...recentEnquiries.map((e: any) => ({
-        type: "enquiry",
+        type: 'enquiry',
         text: `New enquiry from ${e.name}`,
         time: new Date(e.createdAt).toISOString(),
       })),
       ...recentPages.map((p: any) => ({
-        type: "page",
+        type: 'page',
         text: `Layout "${p.title || p.slug}" updated`,
         time: new Date(p.updatedAt).toISOString(),
       })),
@@ -98,10 +98,7 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error("Dashboard stats error:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Dashboard stats error:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

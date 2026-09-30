@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useRef } from "react";
-import { Plus, Trash2, GripVertical, CheckCircle2 } from "lucide-react";
+import React, { useRef } from 'react';
+import { Plus, Trash2, GripVertical, CheckCircle2 } from 'lucide-react';
 
 interface StringListEditorProps {
   label: string;
@@ -9,19 +9,19 @@ interface StringListEditorProps {
   onChange: (items: string[]) => void;
   placeholder?: string;
   tooltip?: string;
-  accentColor?: "red" | "dark";
+  accentColor?: 'red' | 'dark';
 }
 
 export function StringListEditor({
   label,
   items = [],
   onChange,
-  placeholder = "Add point...",
+  placeholder = 'Add point...',
 }: StringListEditorProps) {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleAdd = () => {
-    onChange([...items, ""]);
+    onChange([...items, '']);
     // Focus the newly added input after render
     setTimeout(() => {
       inputRefs.current[items.length]?.focus();
@@ -33,9 +33,9 @@ export function StringListEditor({
   };
 
   const handleUpdate = (index: number, val: string) => {
-    if (val.includes("\n")) {
+    if (val.includes('\n')) {
       const splitLines = val
-        .split("\n")
+        .split('\n')
         .map((s) => s.trim())
         .filter(Boolean);
       const copy = [...items];
@@ -48,18 +48,15 @@ export function StringListEditor({
     onChange(copy);
   };
 
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-    idx: number,
-  ) => {
-    if (e.key === "Enter") {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, idx: number) => {
+    if (e.key === 'Enter') {
       e.preventDefault();
-      onChange([...items.slice(0, idx + 1), "", ...items.slice(idx + 1)]);
+      onChange([...items.slice(0, idx + 1), '', ...items.slice(idx + 1)]);
       setTimeout(() => {
         inputRefs.current[idx + 1]?.focus();
       }, 50);
     }
-    if (e.key === "Backspace" && items[idx] === "" && items.length > 1) {
+    if (e.key === 'Backspace' && items[idx] === '' && items.length > 1) {
       e.preventDefault();
       onChange(items.filter((_, i) => i !== idx));
       setTimeout(() => {
@@ -116,9 +113,7 @@ export function StringListEditor({
 
               {/* Number badge */}
               <div className="w-5 h-5 mt-0.5 rounded-full flex items-center justify-center shrink-0 bg-[#C86218]/10 text-[#C86218] group-focus-within:bg-[#C86218] group-focus-within:text-white transition-colors">
-                <span className="text-[10px] font-black leading-none">
-                  {idx + 1}
-                </span>
+                <span className="text-[10px] font-black leading-none">{idx + 1}</span>
               </div>
 
               {/* Input — full width, wraps text */}
@@ -156,14 +151,14 @@ export function StringListEditor({
       {/* Footer hint */}
       {items.length > 0 && (
         <p className="text-[10px] text-gray-400 pl-1 leading-snug">
-          Press{" "}
+          Press{' '}
           <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-200 rounded text-[9px] font-mono">
             Enter
-          </kbd>{" "}
-          to add a new line ·{" "}
+          </kbd>{' '}
+          to add a new line ·{' '}
           <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-200 rounded text-[9px] font-mono">
             Backspace
-          </kbd>{" "}
+          </kbd>{' '}
           on empty row to remove
         </p>
       )}

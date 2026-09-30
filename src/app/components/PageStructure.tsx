@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { ArrowRight, Loader2, Layout, BadgeCheck, ShieldAlert, Eye } from "lucide-react";
+import Link from 'next/link';
+import { ArrowRight, Loader2, Layout, BadgeCheck, ShieldAlert, Eye } from 'lucide-react';
 
 interface PageListItem {
   id: string;
@@ -72,7 +72,7 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
             </thead>
             <tbody className="divide-y divide-gray-50">
               {displayedPages.map((page) => {
-                const isPublic = page.visibility === "published" || page.visibility === "public";
+                const isPublic = page.visibility === 'published' || page.visibility === 'public';
                 const editorUrl = `/static-pages/${page.slug}`;
 
                 return (
@@ -93,14 +93,12 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
                       </Link>
                     </td>
                     <td className="py-3.5 font-mono text-xs text-gray-500">
-                      /{page.slug === "home" ? "" : page.slug}
+                      /{page.slug === 'home' ? '' : page.slug}
                     </td>
                     <td className="py-3.5">
                       <span
                         className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
-                          isPublic
-                            ? "bg-green-50 text-green-600"
-                            : "bg-amber-50 text-amber-600"
+                          isPublic ? 'bg-green-50 text-green-600' : 'bg-amber-50 text-amber-600'
                         }`}
                       >
                         {isPublic ? (
@@ -117,7 +115,7 @@ export function PageStructure({ stats, loading }: PageStructureProps) {
                       </span>
                     </td>
                     <td className="py-3.5 font-bold text-gray-800">
-                      {page.sectionsCount} content block{page.sectionsCount === 1 ? "" : "s"}
+                      {page.sectionsCount} content block{page.sectionsCount === 1 ? '' : 's'}
                     </td>
                     <td className="py-3.5 text-right">
                       <Link

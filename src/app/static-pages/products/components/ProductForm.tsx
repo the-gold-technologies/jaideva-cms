@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useMemo } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import React, { useState, useEffect, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import {
   ArrowLeft,
   Package,
@@ -11,22 +11,18 @@ import {
   FileText,
   FlaskConical,
   ShieldCheck,
-  Plus,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { PageHeader } from "@/components/PageHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SelectField } from "@/components/SelectField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import {
-  PropertiesTableEditor,
-  PropertyRow,
-} from "@/components/PropertiesTableEditor";
-import { StringListEditor } from "@/components/StringListEditor";
-import { PdfUploadField } from "@/components/PdfUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+} from 'lucide-react';
+import toast from 'react-hot-toast';
+import { PageHeader } from '@/components/PageHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SelectField } from '@/components/SelectField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { PropertiesTableEditor, PropertyRow } from '@/components/PropertiesTableEditor';
+import { StringListEditor } from '@/components/StringListEditor';
+import { PdfUploadField } from '@/components/PdfUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 interface Category {
   id: string;
@@ -40,94 +36,94 @@ interface ProductFormProps {
 }
 
 const DEFAULT_BENEFITS = [
-  "Superior soot dispersancy preventing oil thickening and sludge formation",
-  "High TBN retention protecting against acidic corrosion from sulfur fuels",
-  "Excellent thermal and shear stability preserving viscosity at high temperatures",
-  "Reduced oil consumption and minimized piston deposit formation",
+  'Superior soot dispersancy preventing oil thickening and sludge formation',
+  'High TBN retention protecting against acidic corrosion from sulfur fuels',
+  'Excellent thermal and shear stability preserving viscosity at high temperatures',
+  'Reduced oil consumption and minimized piston deposit formation',
 ];
 
 const DEFAULT_SPECIAL_FEATURES = [
-  "API CI-4 / SL Certified",
-  "Meets MB 228.3, Volvo VDS-3, Cummins CES 20078",
-  "Compatible with EGR equipped engines",
+  'API CI-4 / SL Certified',
+  'Meets MB 228.3, Volvo VDS-3, Cummins CES 20078',
+  'Compatible with EGR equipped engines',
 ];
 
 const DEFAULT_SPECS_TABLE: PropertyRow[] = [
-  { property: "Kinematic Viscosity @ 100°C, cSt", value: "14.5" },
-  { property: "Viscosity Index", value: "135" },
-  { property: "Flash Point, °C", value: "225" },
+  { property: 'Kinematic Viscosity @ 100°C, cSt', value: '14.5' },
+  { property: 'Viscosity Index', value: '135' },
+  { property: 'Flash Point, °C', value: '225' },
 ];
 
 const BRAND_SUBCATEGORIES: Record<string, string[]> = {
-  "hp-lubricants": [
-    "Engine Oils",
-    "Gear Oils",
-    "Hydraulic Oils",
-    "Greases",
-    "Industrial Oils",
-    "Specialty Products",
+  'hp-lubricants': [
+    'Engine Oils',
+    'Gear Oils',
+    'Hydraulic Oils',
+    'Greases',
+    'Industrial Oils',
+    'Specialty Products',
   ],
   valvoline: [
-    "Automotive Lubricants",
-    "Commercial Vehicle Lubricants",
-    "Industrial Lubricants",
-    "Greases",
-    "Specialty Products",
+    'Automotive Lubricants',
+    'Commercial Vehicle Lubricants',
+    'Industrial Lubricants',
+    'Greases',
+    'Specialty Products',
   ],
-  "gs-caltex": [
-    "Automotive Lubricants",
-    "Industrial Lubricants",
-    "Greases",
-    "Specialty Lubricants",
+  'gs-caltex': [
+    'Automotive Lubricants',
+    'Industrial Lubricants',
+    'Greases',
+    'Specialty Lubricants',
   ],
   idemitsu: [
-    "Automotive Lubricants",
-    "Industrial Lubricants",
-    "Gear Oils",
-    "Hydraulic Oils",
-    "Greases",
-    "Specialty Products",
+    'Automotive Lubricants',
+    'Industrial Lubricants',
+    'Gear Oils',
+    'Hydraulic Oils',
+    'Greases',
+    'Specialty Products',
   ],
-  "molygraph-lubricants": [
-    "Industrial Lubricants",
-    "Specialty Lubricants",
-    "Greases",
-    "Metalworking Fluids",
-    "Assembly & Maintenance Products",
+  'molygraph-lubricants': [
+    'Industrial Lubricants',
+    'Specialty Lubricants',
+    'Greases',
+    'Metalworking Fluids',
+    'Assembly & Maintenance Products',
   ],
-  "motul-tech": [
-    "Metalworking Fluids",
-    "Industrial Lubricants",
-    "Greases",
-    "Specialty Products",
-    "Maintenance Solutions",
+  'motul-tech': [
+    'Metalworking Fluids',
+    'Industrial Lubricants',
+    'Greases',
+    'Specialty Products',
+    'Maintenance Solutions',
   ],
-  "deep-pneumatics": [
-    "Air Compressors",
-    "Pneumatic Products",
-    "Air Treatment Solutions",
-    "Industrial Equipment",
-    "Compressor Lubricants",
+  'deep-pneumatics': [
+    'Air Compressors',
+    'Pneumatic Products',
+    'Air Treatment Solutions',
+    'Industrial Equipment',
+    'Compressor Lubricants',
   ],
   lubricon: [
-    "Engine Oils",
-    "Gear Oils",
-    "Hydraulic Oils",
-    "Greases",
-    "Specialty Lubricants",
-    "Industrial Lubricants",
+    'Engine Oils',
+    'Gear Oils',
+    'Hydraulic Oils',
+    'Greases',
+    'Specialty Lubricants',
+    'Industrial Lubricants',
   ],
-  "tw-chemin": [
-    "Industrial Chemicals",
-    "Lubrication Solutions",
-    "Specialty Chemicals",
-    "Maintenance Products",
+  'tw-chemin': [
+    'Industrial Chemicals',
+    'Lubrication Solutions',
+    'Specialty Chemicals',
+    'Maintenance Products',
   ],
   filtermist: [
-    "Oil Mist Collectors",
-    "Filtration Systems",
-    "Industrial Air Filtration",
-    "Extraction Solutions",
+    'Oil Mist Collectors',
+    'Filtration Systems',
+    'Industrial Air Filtration',
+    'Extraction Solutions',
   ],
 };
 
@@ -138,37 +134,31 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [categories, setCategories] = useState<Category[]>([]);
 
   // Form State
-  const [name, setName] = useState("");
-  const [slug, setSlug] = useState("");
-  const [subtitle, setSubtitle] = useState("");
-  const [categorySlug, setCategorySlug] = useState("hp-lubricants");
-  const [categoryName, setCategoryName] = useState("HP Lubricants");
-  const [subCategoryTitle, setSubCategoryTitle] = useState("");
-  const [containerImages, setContainerImages] = useState<
-    (File | string | null)[]
-  >([]);
-  const [description, setDescription] = useState("");
-  const [applicationAreas, setApplicationAreas] = useState("");
-  const [performanceBenefits, setPerformanceBenefits] =
-    useState<string[]>(DEFAULT_BENEFITS);
-  const [specialFeatures, setSpecialFeatures] = useState<string[]>(
-    DEFAULT_SPECIAL_FEATURES,
-  );
-  const [specsText, setSpecsText] = useState("");
-  const [propertiesTable, setPropertiesTable] =
-    useState<PropertyRow[]>(DEFAULT_SPECS_TABLE);
-  const [pdfUrl, setPdfUrl] = useState("");
-  const [msdsUrl, setMsdsUrl] = useState("");
+  const [name, setName] = useState('');
+  const [slug, setSlug] = useState('');
+  const [subtitle, setSubtitle] = useState('');
+  const [categorySlug, setCategorySlug] = useState('');
+  const [categoryName, setCategoryName] = useState('');
+  const [subCategoryTitle, setSubCategoryTitle] = useState('');
+  const [containerImages, setContainerImages] = useState<(File | string | null)[]>([]);
+  const [description, setDescription] = useState('');
+  const [applicationAreas, setApplicationAreas] = useState('');
+  const [performanceBenefits, setPerformanceBenefits] = useState<string[]>([]);
+  const [specialFeatures, setSpecialFeatures] = useState<string[]>([]);
+  const [specsText, setSpecsText] = useState('');
+  const [propertiesTable, setPropertiesTable] = useState<PropertyRow[]>([]);
+  const [pdfUrl, setPdfUrl] = useState('');
+  const [msdsUrl, setMsdsUrl] = useState('');
   const [isFeatured, setIsFeatured] = useState(false);
 
   const activeCategorySuggestions = useMemo(() => {
     return (
       BRAND_SUBCATEGORIES[categorySlug] || [
-        "Engine Oils",
-        "Gear Oils",
-        "Hydraulic Oils",
-        "Greases",
-        "Specialty Products",
+        'Engine Oils',
+        'Gear Oils',
+        'Hydraulic Oils',
+        'Greases',
+        'Specialty Products',
       ]
     );
   }, [categorySlug]);
@@ -179,7 +169,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
       try {
         setFetching(true);
         // 1. Fetch categories
-        const catRes = await fetch("/api/products/categories");
+        const catRes = await fetch('/api/products/categories');
         const catJson = await catRes.json();
         if (catJson.success && Array.isArray(catJson.data)) {
           setCategories(catJson.data);
@@ -195,38 +185,32 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           const prodJson = await prodRes.json();
           if (prodJson.success && prodJson.data) {
             const p = prodJson.data;
-            setName(p.name || "");
-            setSlug(p.slug || "");
-            setSubtitle(p.subtitle || "");
-            setCategorySlug(p.categorySlug || "hp-lubricants");
-            setCategoryName(p.categoryName || "HP Lubricants");
-            setSubCategoryTitle(p.subCategoryTitle || "");
+            setName(p.name || '');
+            setSlug(p.slug || '');
+            setSubtitle(p.subtitle || '');
+            setCategorySlug(p.categorySlug || 'hp-lubricants');
+            setCategoryName(p.categoryName || 'HP Lubricants');
+            setSubCategoryTitle(p.subCategoryTitle || '');
             setContainerImages(p.containerImage ? [p.containerImage] : []);
-            setDescription(p.description || "");
-            setApplicationAreas(p.applicationAreas || "");
+            setDescription(p.description || '');
+            setApplicationAreas(p.applicationAreas || '');
             setPerformanceBenefits(
-              Array.isArray(p.performanceBenefits)
-                ? p.performanceBenefits
-                : DEFAULT_BENEFITS,
+              Array.isArray(p.performanceBenefits) ? p.performanceBenefits : []
             );
-            setSpecialFeatures(
-              Array.isArray(p.specialFeatures)
-                ? p.specialFeatures
-                : DEFAULT_SPECIAL_FEATURES,
-            );
-            setSpecsText(p.specsText || "");
-            setPropertiesTable(p.propertiesTable || DEFAULT_SPECS_TABLE);
-            setPdfUrl(p.pdfUrl || "");
-            setMsdsUrl(p.msdsUrl || "");
+            setSpecialFeatures(Array.isArray(p.specialFeatures) ? p.specialFeatures : []);
+            setSpecsText(p.specsText || '');
+            setPropertiesTable(Array.isArray(p.propertiesTable) ? p.propertiesTable : []);
+            setPdfUrl(p.pdfUrl || '');
+            setMsdsUrl(p.msdsUrl || '');
             setIsFeatured(!!p.isFeatured);
           } else {
-            toast.error("Product not found");
-            router.push("/static-pages/products");
+            toast.error('Product not found');
+            router.push('/static-pages/products');
           }
         }
       } catch (err) {
-        console.error("Error loading product data:", err);
-        toast.error("Failed to load product");
+        console.error('Error loading product data:', err);
+        toast.error('Failed to load product');
       } finally {
         setFetching(false);
       }
@@ -240,8 +224,8 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
       setSlug(
         val
           .toLowerCase()
-          .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-+|-+$/g, ""),
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '')
       );
     }
   };
@@ -249,20 +233,18 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !slug) {
-      toast.error("Product name and URL slug are required");
+      toast.error('Product name and URL slug are required');
       return;
     }
 
     setLoading(true);
 
     try {
-      let finalContainerImageUrl = "";
-      const validImages = containerImages.filter(
-        (img): img is File | string => !!img,
-      );
+      let finalContainerImageUrl = '';
+      const validImages = containerImages.filter((img): img is File | string => !!img);
       if (validImages.length > 0) {
         const [uploaded] = await uploadFiles(validImages);
-        finalContainerImageUrl = uploaded || "";
+        finalContainerImageUrl = uploaded || '';
       }
 
       const payload = {
@@ -270,15 +252,12 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         slug: slug.trim().toLowerCase(),
         subtitle: subtitle.trim(),
         categorySlug,
-        categoryName:
-          categories.find((c) => c.slug === categorySlug)?.name || categoryName,
+        categoryName: categories.find((c) => c.slug === categorySlug)?.name || categoryName,
         subCategoryTitle: subCategoryTitle.trim(),
         containerImage: finalContainerImageUrl,
         description: description.trim(),
         applicationAreas: applicationAreas.trim(),
-        performanceBenefits: performanceBenefits
-          .map((s) => s.trim())
-          .filter(Boolean),
+        performanceBenefits: performanceBenefits.map((s) => s.trim()).filter(Boolean),
         specialFeatures: specialFeatures.map((s) => s.trim()).filter(Boolean),
         specsText: specsText.trim(),
         propertiesTable,
@@ -287,27 +266,23 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         isFeatured,
       };
 
-      const url = "/api/products";
-      const method = isNew ? "POST" : "PUT";
+      const url = '/api/products';
+      const method = isNew ? 'POST' : 'PUT';
       const res = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(isNew ? payload : { ...payload, id: productId }),
       });
 
       const json = await res.json();
       if (json.success) {
-        toast.success(
-          isNew
-            ? "Product created successfully!"
-            : "Product updated successfully!",
-        );
-        router.push("/static-pages/products");
+        toast.success(isNew ? 'Product created successfully!' : 'Product updated successfully!');
+        router.push('/static-pages/products');
       } else {
-        toast.error(json.error || "Failed to save product");
+        toast.error(json.error || 'Failed to save product');
       }
     } catch {
-      toast.error("Network error saving product");
+      toast.error('Network error saving product');
     } finally {
       setLoading(false);
     }
@@ -335,11 +310,11 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             Back to Products Catalog
           </Link>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-            {isNew ? "Add New Product" : `Edit Product: ${name || "Untitled"}`}
+            {isNew ? 'Add New Product' : `Edit Product: ${name || 'Untitled'}`}
           </h1>
           <p className="text-xs text-gray-400 font-medium">
-            Configure product classification, container graphics, formulation
-            specifications, and technical datasheets.
+            Configure product classification, container graphics, formulation specifications, and
+            technical datasheets.
           </p>
         </div>
 
@@ -350,11 +325,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           >
             Cancel
           </Link>
-          <SaveButton
-            loading={loading}
-            label="Save Changes"
-            className="w-auto px-8"
-          />
+          <SaveButton loading={loading} label="Save Changes" className="w-auto px-8" />
         </div>
       </div>
 
@@ -445,8 +416,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                   </span>
                 </div>
                 <p className="text-[10px] text-gray-400 leading-snug pl-0.5">
-                  Generated automatically from the product name. Cannot be
-                  edited manually.
+                  Generated automatically from the product name. Cannot be edited manually.
                 </p>
               </div>
             </div>
@@ -461,11 +431,8 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                   const match = categories.find((c) => c.slug === val);
                   if (match) {
                     setCategoryName(match.name);
-                    const defaultCat = BRAND_SUBCATEGORIES[val]?.[0] || "";
-                    if (
-                      defaultCat &&
-                      (!subCategoryTitle || subCategoryTitle === "Engine Oils")
-                    ) {
+                    const defaultCat = BRAND_SUBCATEGORIES[val]?.[0] || '';
+                    if (defaultCat && (!subCategoryTitle || subCategoryTitle === 'Engine Oils')) {
                       setSubCategoryTitle(defaultCat);
                       setSubtitle(`${match.name} • ${defaultCat}`);
                     } else {
@@ -480,19 +447,19 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                         label: c.name,
                       }))
                     : [
-                        { value: "hp-lubricants", label: "HP Lubricants" },
-                        { value: "valvoline", label: "Valvoline" },
-                        { value: "gs-caltex", label: "GS Caltex" },
-                        { value: "idemitsu", label: "Idemitsu" },
+                        { value: 'hp-lubricants', label: 'HP Lubricants' },
+                        { value: 'valvoline', label: 'Valvoline' },
+                        { value: 'gs-caltex', label: 'GS Caltex' },
+                        { value: 'idemitsu', label: 'Idemitsu' },
                         {
-                          value: "molygraph-lubricants",
-                          label: "Molygraph Lubricants",
+                          value: 'molygraph-lubricants',
+                          label: 'Molygraph Lubricants',
                         },
-                        { value: "motul-tech", label: "Motul Tech" },
-                        { value: "deep-pneumatics", label: "Deep Pneumatics" },
-                        { value: "lubricon", label: "Lubricon" },
-                        { value: "tw-chemin", label: "TW Chemin" },
-                        { value: "filtermist", label: "Filtermist" },
+                        { value: 'motul-tech', label: 'Motul Tech' },
+                        { value: 'deep-pneumatics', label: 'Deep Pneumatics' },
+                        { value: 'lubricon', label: 'Lubricon' },
+                        { value: 'tw-chemin', label: 'TW Chemin' },
+                        { value: 'filtermist', label: 'Filtermist' },
                       ]
                 }
               />
@@ -507,7 +474,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                       <span className="text-gray-400 italic text-[13px]">
                         {categoryName && subCategoryTitle
                           ? `${categoryName} • ${subCategoryTitle}`
-                          : "auto-generated from brand & category"}
+                          : 'auto-generated from brand & category'}
                       </span>
                     )}
                   </span>
@@ -516,8 +483,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                   </span>
                 </div>
                 <p className="text-[10px] text-gray-400 leading-snug pl-0.5">
-                  Generated from Brand Name + Brand Category. Updates
-                  automatically.
+                  Generated from Brand Name + Brand Category. Updates automatically.
                 </p>
               </div>
             </div>
@@ -525,7 +491,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             {/* Brand Category Selection with Quick Chips */}
             <div className="flex flex-col gap-2.5 p-4 bg-gray-50/70 rounded-2xl border border-gray-100">
               <InputField
-                label={`2. Brand Category Name (under ${categoryName || "Brand"}) *`}
+                label={`2. Brand Category Name (under ${categoryName || 'Brand'}) *`}
                 value={subCategoryTitle}
                 onChange={(e) => {
                   setSubCategoryTitle(e.target.value);
@@ -536,7 +502,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
               />
               <div className="flex flex-wrap items-center gap-1.5 pt-1">
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mr-1">
-                  Quick Pick Category under ${categoryName || "Brand"}:
+                  Quick Pick Category under ${categoryName || 'Brand'}:
                 </span>
                 {activeCategorySuggestions.map((sub) => (
                   <button
@@ -548,8 +514,8 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                     }}
                     className={`text-[11px] px-3 py-1 rounded-full font-semibold transition-all cursor-pointer ${
                       subCategoryTitle === sub
-                        ? "bg-[#C86218] text-white shadow-xs"
-                        : "bg-white border border-gray-200 text-gray-700 hover:border-[#C86218] hover:text-[#C86218]"
+                        ? 'bg-[#C86218] text-white shadow-xs'
+                        : 'bg-white border border-gray-200 text-gray-700 hover:border-[#C86218] hover:text-[#C86218]'
                     }`}
                   >
                     {sub}
@@ -622,10 +588,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
               4. Physico-Chemical Test Specifications
             </h3>
 
-            <PropertiesTableEditor
-              properties={propertiesTable}
-              onChange={setPropertiesTable}
-            />
+            <PropertiesTableEditor properties={propertiesTable} onChange={setPropertiesTable} />
           </div>
         </div>
 
@@ -684,12 +647,9 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                 className="mt-0.5 rounded text-[#C86218] focus:ring-[#C86218] cursor-pointer"
               />
               <div className="flex flex-col">
-                <span className="text-xs font-bold text-gray-800">
-                  Feature on Homepage
-                </span>
+                <span className="text-xs font-bold text-gray-800">Feature on Homepage</span>
                 <span className="text-[11px] text-gray-500 leading-snug">
-                  Displays this lubricant grade in the featured catalog
-                  spotlight.
+                  Displays this lubricant grade in the featured catalog spotlight.
                 </span>
               </div>
             </label>

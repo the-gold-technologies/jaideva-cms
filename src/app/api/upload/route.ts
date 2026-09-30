@@ -1,9 +1,8 @@
-import { NextResponse } from "next/server";
-import { v2 as cloudinary } from "cloudinary";
+import { NextResponse } from 'next/server';
+import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
-  cloud_name:
-    process.env.CLOUDINARY_CLOUD_NAME || process.env.NEXT_CLOUDINARY_CLOUD_NAME,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || process.env.NEXT_CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true,
@@ -12,11 +11,11 @@ cloudinary.config({
 export async function POST(request: Request) {
   try {
     const data = await request.formData();
-    const file: File | null = data.get("file") as unknown as File;
-    const folder = (data.get("folder") as string) || "jaideva/uploads";
+    const file: File | null = data.get('file') as unknown as File;
+    const folder = (data.get('folder') as string) || 'jaideva/uploads';
 
     if (!file) {
-      return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
+      return NextResponse.json({ error: 'No file uploaded' }, { status: 400 });
     }
 
     const bytes = await file.arrayBuffer();
@@ -26,12 +25,12 @@ export async function POST(request: Request) {
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           folder,
-          resource_type: "auto",
+          resource_type: 'auto',
         },
         (error, result) => {
           if (error) reject(error);
           else resolve(result);
-        },
+        }
       );
       uploadStream.end(buffer);
     });
@@ -44,10 +43,10 @@ export async function POST(request: Request) {
       size: file.size,
     });
   } catch (error: any) {
-    console.error("Cloudinary upload error:", error);
+    console.error('Cloudinary upload error:', error);
     return NextResponse.json(
-      { success: false, error: error?.message || "Upload failed" },
-      { status: 500 },
+      { success: false, error: error?.message || 'Upload failed' },
+      { status: 500 }
     );
   }
 }

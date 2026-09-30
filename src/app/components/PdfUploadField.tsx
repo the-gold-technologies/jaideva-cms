@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 import {
   FileText,
   Upload,
@@ -10,8 +10,8 @@ import {
   HelpCircle,
   Link as LinkIcon,
   Check,
-} from "lucide-react";
-import toast from "react-hot-toast";
+} from 'lucide-react';
+import toast from 'react-hot-toast';
 
 interface PdfUploadFieldProps {
   label: string;
@@ -26,24 +26,24 @@ export function PdfUploadField({
   value,
   onChange,
   tooltip,
-  placeholder = "https://.../document.pdf",
+  placeholder = 'https://.../document.pdf',
 }: PdfUploadFieldProps) {
   const [uploading, setUploading] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUrlMode, setIsUrlMode] = useState(false);
-  const [tempUrl, setTempUrl] = useState("");
+  const [tempUrl, setTempUrl] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileUpload = async (file: File) => {
     if (!file) return;
 
-    if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
-      toast.error("Please upload a valid PDF document (.pdf)");
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      toast.error('Please upload a valid PDF document (.pdf)');
       return;
     }
 
     if (file.size > 30 * 1024 * 1024) {
-      toast.error("PDF size should be under 30MB");
+      toast.error('PDF size should be under 30MB');
       return;
     }
 
@@ -52,22 +52,22 @@ export function PdfUploadField({
 
     try {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append('file', file);
 
-      const res = await fetch("/api/upload", {
-        method: "POST",
+      const res = await fetch('/api/upload', {
+        method: 'POST',
         body: formData,
       });
 
       const json = await res.json();
       if (json.success && json.url) {
         onChange(json.url);
-        toast.success("PDF uploaded successfully", { id: toastId });
+        toast.success('PDF uploaded successfully', { id: toastId });
       } else {
-        toast.error(json.error || "Upload failed", { id: toastId });
+        toast.error(json.error || 'Upload failed', { id: toastId });
       }
     } catch {
-      toast.error("Network error during PDF upload", { id: toastId });
+      toast.error('Network error during PDF upload', { id: toastId });
     } finally {
       setUploading(false);
     }
@@ -90,13 +90,13 @@ export function PdfUploadField({
   };
 
   const getCleanFileName = (val: string) => {
-    if (!val) return "";
+    if (!val) return '';
     try {
-      const decoded = decodeURIComponent(val.split("/").pop() || "");
+      const decoded = decodeURIComponent(val.split('/').pop() || '');
       // Remove timestamp prefix if generated
-      return decoded.replace(/^\d+[-_]/, "");
+      return decoded.replace(/^\d+[-_]/, '');
     } catch {
-      return val.split("/").pop() || "Document.pdf";
+      return val.split('/').pop() || 'Document.pdf';
     }
   };
 
@@ -119,12 +119,12 @@ export function PdfUploadField({
             type="button"
             onClick={() => {
               setIsUrlMode(!isUrlMode);
-              setTempUrl("");
+              setTempUrl('');
             }}
             className="text-[11px] font-semibold text-gray-400 hover:text-[#C86218] transition-colors cursor-pointer flex items-center gap-1"
           >
             <LinkIcon className="w-3 h-3" />
-            {isUrlMode ? "Upload File Instead" : "Enter URL"}
+            {isUrlMode ? 'Upload File Instead' : 'Enter URL'}
           </button>
         )}
       </div>
@@ -151,7 +151,7 @@ export function PdfUploadField({
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-xs font-bold text-gray-900 truncate max-w-[170px] sm:max-w-[240px]">
-                {fileName || "Datasheet PDF"}
+                {fileName || 'Datasheet PDF'}
               </span>
               <span className="text-[11px] text-gray-400 font-medium truncate max-w-[170px] sm:max-w-[240px]">
                 PDF Document • Ready for download
@@ -178,7 +178,7 @@ export function PdfUploadField({
             </button>
             <button
               type="button"
-              onClick={() => onChange("")}
+              onClick={() => onChange('')}
               className="p-2 text-gray-400 hover:text-red-600 rounded-xl hover:bg-white transition-colors cursor-pointer"
               title="Remove PDF"
             >
@@ -221,8 +221,8 @@ export function PdfUploadField({
           onClick={() => fileInputRef.current?.click()}
           className={`p-5 rounded-2xl border-2 border-dashed transition-all cursor-pointer flex flex-col items-center justify-center gap-2 text-center group ${
             isDragOver
-              ? "border-[#C86218] bg-orange-50/30"
-              : "border-gray-200 bg-gray-50 hover:bg-gray-100 hover:border-gray-300"
+              ? 'border-[#C86218] bg-orange-50/30'
+              : 'border-gray-200 bg-gray-50 hover:bg-gray-100 hover:border-gray-300'
           }`}
         >
           <div className="w-9 h-9 rounded-xl bg-white text-gray-500 group-hover:text-[#C86218] group-hover:scale-105 border border-gray-100 flex items-center justify-center transition-all shadow-2xs">

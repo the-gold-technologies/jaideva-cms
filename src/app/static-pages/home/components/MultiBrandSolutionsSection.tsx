@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Plus, Trash2, ChevronDown, Layers, ArrowRight } from "lucide-react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, ChevronDown, Layers } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface SolutionStep {
   num: string;
@@ -27,69 +27,35 @@ export interface MultiBrandSolutionsData {
 }
 
 export const DEFAULT_SOLUTIONS_DATA: MultiBrandSolutionsData = {
-  badge: "",
-  title: "",
-  titleHighlight: "",
-  paragraph1: "",
-  paragraph2: "",
-  btnLabel: "",
-  btnUrl: "",
+  badge: '',
+  title: '',
+  titleHighlight: '',
+  paragraph1: '',
+  paragraph2: '',
+  btnLabel: '',
+  btnUrl: '',
   steps: [],
 };
 
-export function MultiBrandSolutionsSection({
-  initialData,
-}: {
-  initialData?: any;
-}) {
+export function MultiBrandSolutionsSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [data, setData] = useState<MultiBrandSolutionsData>(
-    DEFAULT_SOLUTIONS_DATA,
-  );
+  const [data, setData] = useState<MultiBrandSolutionsData>(DEFAULT_SOLUTIONS_DATA);
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (initialData) {
-      const steps = Array.isArray(initialData.steps)
-        ? initialData.steps
-        : Array.isArray(initialData.processSteps)
-          ? initialData.processSteps.map((s: any, i: number) => ({
-              num: s.num || String(i + 1),
-              name: s.name || s.step || "",
-              desc: s.desc || "",
-              icon: s.icon || "",
-            }))
-          : [];
+      const steps = Array.isArray(initialData.steps) ? initialData.steps : [];
 
       setData({
-        badge: initialData.badge || initialData.tag || "",
-        title: initialData.title || initialData.heading || "",
-        titleHighlight:
-          initialData.titleHighlight || initialData.highlight || "",
-        paragraph1:
-          initialData.paragraph1 ||
-          (initialData.description
-            ? initialData.description.split("\n\n")[0]
-            : "") ||
-          "",
-        paragraph2:
-          initialData.paragraph2 ||
-          (initialData.description && initialData.description.includes("\n\n")
-            ? initialData.description.split("\n\n")[1]
-            : "") ||
-          "",
-        btnLabel:
-          initialData.btnLabel ||
-          initialData.buttonText ||
-          initialData.primaryBtnLabel ||
-          "",
-        btnUrl:
-          initialData.btnUrl ||
-          initialData.buttonLink ||
-          initialData.primaryBtnUrl ||
-          "",
+        badge: initialData.badge || '',
+        title: initialData.title || '',
+        titleHighlight: initialData.titleHighlight || '',
+        paragraph1: initialData.paragraph1 || '',
+        paragraph2: initialData.paragraph2 || '',
+        btnLabel: initialData.btnLabel || '',
+        btnUrl: initialData.btnUrl || '',
         steps,
       });
 
@@ -112,9 +78,9 @@ export function MultiBrandSolutionsSection({
     const nextNum = String(data.steps.length + 1);
     const newStep: SolutionStep = {
       num: nextNum,
-      name: "",
-      desc: "",
-      icon: "Search",
+      name: '',
+      desc: '',
+      icon: 'Search',
     };
     setData((prev) => ({
       ...prev,
@@ -124,21 +90,17 @@ export function MultiBrandSolutionsSection({
       ...prev,
       [`step-${data.steps.length}`]: true,
     }));
-    toast.success("New process step added");
+    toast.success('New process step added');
   };
 
   const handleRemoveStep = (idx: number, e: React.MouseEvent) => {
     e.stopPropagation();
     const updated = data.steps.filter((_, i) => i !== idx);
     setData((prev) => ({ ...prev, steps: updated }));
-    toast.success("Process step removed");
+    toast.success('Process step removed');
   };
 
-  const handleStepChange = (
-    idx: number,
-    field: keyof SolutionStep,
-    value: string,
-  ) => {
+  const handleStepChange = (idx: number, field: keyof SolutionStep, value: string) => {
     const updated = [...data.steps];
     updated[idx] = { ...updated[idx], [field]: value };
     setData((prev) => ({ ...prev, steps: updated }));
@@ -159,11 +121,11 @@ export function MultiBrandSolutionsSection({
         steps: data.steps,
       };
 
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "MultiBrandSolutionsSection",
+          section: 'MultiBrandSolutionsSection',
           content: payload,
         }),
       });
@@ -171,13 +133,13 @@ export function MultiBrandSolutionsSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Multi-Brand Solutions section saved successfully!");
+        toast.success('Multi-Brand Solutions section saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Multi-Brand Solutions section");
+      toast.error('Error saving Multi-Brand Solutions section');
     } finally {
       setLoading(false);
     }
@@ -189,14 +151,14 @@ export function MultiBrandSolutionsSection({
         <SectionHeader
           title="Multi-Brand Solutions Section"
           description="Manage the multi-brand partner narrative, orange highlighted headline, and 4-step process timeline cards."
-          badge={`${data.steps.length} Step${data.steps.length === 1 ? "" : "s"}`}
+          badge={`${data.steps.length} Step${data.steps.length === 1 ? '' : 's'}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">
@@ -206,9 +168,7 @@ export function MultiBrandSolutionsSection({
                 <InputField
                   label="Section Badge / Tag"
                   value={data.badge}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, badge: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, badge: e.target.value }))}
                   placeholder="MULTI-BRAND LUBRICANT SOLUTIONS"
                   helperText="Top uppercase badge"
                 />
@@ -216,9 +176,7 @@ export function MultiBrandSolutionsSection({
                 <InputField
                   label="Headline (Main Text)"
                   value={data.title}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, title: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, title: e.target.value }))}
                   placeholder="Multiple Brands."
                   helperText="First part of headline"
                 />
@@ -273,18 +231,14 @@ export function MultiBrandSolutionsSection({
                 <InputField
                   label="CTA Button Label"
                   value={data.btnLabel}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, btnLabel: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, btnLabel: e.target.value }))}
                   placeholder="Explore Our Brands"
                 />
 
                 <InputField
                   label="CTA Button URL"
                   value={data.btnUrl}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, btnUrl: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, btnUrl: e.target.value }))}
                   placeholder="#brands or /about-us"
                   helperText="Destination link for the button"
                 />
@@ -330,7 +284,7 @@ export function MultiBrandSolutionsSection({
                               {step.name || `Step #${idx + 1}`}
                             </span>
                             <span className="text-[11px] text-gray-500 truncate">
-                              {step.desc || "No description set"}
+                              {step.desc || 'No description set'}
                             </span>
                           </div>
                         </div>
@@ -348,7 +302,7 @@ export function MultiBrandSolutionsSection({
                           )}
                           <div
                             className={`p-1.5 rounded-lg text-gray-500 hover:bg-gray-200/70 transition-transform duration-200 ${
-                              isItemExpanded ? "rotate-180" : ""
+                              isItemExpanded ? 'rotate-180' : ''
                             }`}
                           >
                             <ChevronDown className="w-4 h-4" />
@@ -359,8 +313,8 @@ export function MultiBrandSolutionsSection({
                       <div
                         className={`grid transition-all duration-200 ease-in-out border-t border-gray-200/60 ${
                           isItemExpanded
-                            ? "grid-rows-[1fr] opacity-100 p-5 bg-white"
-                            : "grid-rows-[0fr] opacity-0"
+                            ? 'grid-rows-[1fr] opacity-100 p-5 bg-white'
+                            : 'grid-rows-[0fr] opacity-0'
                         }`}
                       >
                         <div className="overflow-hidden flex flex-col gap-4">
@@ -368,17 +322,13 @@ export function MultiBrandSolutionsSection({
                             <InputField
                               label="Step Number / Order"
                               value={step.num}
-                              onChange={(e) =>
-                                handleStepChange(idx, "num", e.target.value)
-                              }
+                              onChange={(e) => handleStepChange(idx, 'num', e.target.value)}
                               placeholder="1"
                             />
                             <InputField
                               label="Step Name"
                               value={step.name}
-                              onChange={(e) =>
-                                handleStepChange(idx, "name", e.target.value)
-                              }
+                              onChange={(e) => handleStepChange(idx, 'name', e.target.value)}
                               placeholder="e.g. Understand"
                             />
                           </div>
@@ -387,9 +337,7 @@ export function MultiBrandSolutionsSection({
                             label="Step Description"
                             rows={2}
                             value={step.desc}
-                            onChange={(e) =>
-                              handleStepChange(idx, "desc", e.target.value)
-                            }
+                            onChange={(e) => handleStepChange(idx, 'desc', e.target.value)}
                             placeholder="Analyze machinery and operating conditions..."
                           />
                         </div>

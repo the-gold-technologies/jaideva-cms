@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Plus, Trash2, Milestone } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Plus, Trash2, Milestone } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 interface ProcessStepItem {
   step: string;
@@ -16,14 +16,7 @@ interface ProcessStepItem {
   desc: string;
 }
 
-const ICON_OPTIONS = [
-  "TestTube2",
-  "FileCheck2",
-  "Boxes",
-  "Truck",
-  "ShieldCheck",
-  "Cog",
-];
+const ICON_OPTIONS = ['TestTube2', 'FileCheck2', 'Boxes', 'Truck', 'ShieldCheck', 'Cog'];
 
 export function PlantProcessSection({
   initialData,
@@ -35,16 +28,15 @@ export function PlantProcessSection({
   onToggle?: () => void;
 }) {
   const [internalOpen, setInternalOpen] = useState(false);
-  const isOpen =
-    controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
 
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [eyebrow, setEyebrow] = useState("");
-  const [heading, setHeading] = useState("");
-  const [description, setDescription] = useState("");
+  const [eyebrow, setEyebrow] = useState('');
+  const [heading, setHeading] = useState('');
+  const [description, setDescription] = useState('');
   const [steps, setSteps] = useState<ProcessStepItem[]>([]);
 
   useEffect(() => {
@@ -53,40 +45,36 @@ export function PlantProcessSection({
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.description) setDescription(initialData.description);
 
-      const loadedSteps = initialData.steps || initialData.items;
+      const loadedSteps = initialData.steps;
       if (Array.isArray(loadedSteps)) {
         setSteps(loadedSteps);
       }
     }
   }, [initialData]);
 
-  const handleStepChange = (
-    index: number,
-    field: keyof ProcessStepItem,
-    val: string,
-  ) => {
+  const handleStepChange = (index: number, field: keyof ProcessStepItem, val: string) => {
     const updated = [...steps];
     updated[index] = { ...updated[index], [field]: val };
     setSteps(updated);
   };
 
   const handleAddStep = () => {
-    const nextNum = (steps.length + 1).toString().padStart(2, "0");
+    const nextNum = (steps.length + 1).toString().padStart(2, '0');
     setSteps([
       ...steps,
       {
         step: nextNum,
-        title: "",
-        tagline: "",
-        icon: "TestTube2",
-        desc: "",
+        title: '',
+        tagline: '',
+        icon: 'TestTube2',
+        desc: '',
       },
     ]);
   };
 
   const handleRemoveStep = (index: number) => {
     if (steps.length <= 1) {
-      toast.error("At least one workflow step is required.");
+      toast.error('At least one workflow step is required.');
       return;
     }
     setSteps(steps.filter((_, idx) => idx !== index));
@@ -103,11 +91,11 @@ export function PlantProcessSection({
         steps,
       };
 
-      const res = await fetch("/api/industries", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/industries', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "PlantProcessSection",
+          section: 'PlantProcessSection',
           content: payload,
         }),
       });
@@ -115,13 +103,13 @@ export function PlantProcessSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Plant Lubrication Workflow saved successfully");
+        toast.success('Plant Lubrication Workflow saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Process section");
+      toast.error('Error saving Process section');
     } finally {
       setLoading(false);
     }
@@ -139,7 +127,7 @@ export function PlantProcessSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -209,28 +197,20 @@ export function PlantProcessSection({
                       <InputField
                         label="Step Number"
                         value={st.step}
-                        onChange={(e) =>
-                          handleStepChange(index, "step", e.target.value)
-                        }
+                        onChange={(e) => handleStepChange(index, 'step', e.target.value)}
                         placeholder="01"
                       />
                       <InputField
                         label="Tagline / Badge"
                         value={st.tagline}
-                        onChange={(e) =>
-                          handleStepChange(index, "tagline", e.target.value)
-                        }
+                        onChange={(e) => handleStepChange(index, 'tagline', e.target.value)}
                         placeholder="Field Inspection"
                       />
                       <div className="flex flex-col gap-1">
-                        <label className="text-xs font-semibold text-gray-600">
-                          Icon
-                        </label>
+                        <label className="text-xs font-semibold text-gray-600">Icon</label>
                         <select
                           value={st.icon}
-                          onChange={(e) =>
-                            handleStepChange(index, "icon", e.target.value)
-                          }
+                          onChange={(e) => handleStepChange(index, 'icon', e.target.value)}
                           className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0C356A]/20"
                         >
                           {ICON_OPTIONS.map((ic) => (
@@ -245,18 +225,14 @@ export function PlantProcessSection({
                     <InputField
                       label="Step Title"
                       value={st.title}
-                      onChange={(e) =>
-                        handleStepChange(index, "title", e.target.value)
-                      }
+                      onChange={(e) => handleStepChange(index, 'title', e.target.value)}
                       placeholder="On-Site Oil Sampling"
                     />
 
                     <TextAreaField
                       label="Description"
                       value={st.desc}
-                      onChange={(e) =>
-                        handleStepChange(index, "desc", e.target.value)
-                      }
+                      onChange={(e) => handleStepChange(index, 'desc', e.target.value)}
                       rows={2}
                       placeholder="Our lubrication engineers draw hot operating oil samples..."
                     />

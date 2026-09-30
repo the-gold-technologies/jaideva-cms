@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
 export async function GET() {
   try {
     const categories = await prisma.productCategory.findMany({
-      orderBy: { order: "asc" },
+      orderBy: { order: 'asc' },
       include: {
         _count: {
           select: { products: true },
@@ -13,22 +13,29 @@ export async function GET() {
     });
     return NextResponse.json({ success: true, data: categories });
   } catch (error) {
-    console.error("Error fetching categories:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error fetching categories:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, slug, shortDesc, fullDesc, coverImage, isFeatured, primaryCtaText, secondaryCtaText, featuredBadgeText } = body;
+    const {
+      name,
+      slug,
+      shortDesc,
+      fullDesc,
+      coverImage,
+      isFeatured,
+      primaryCtaText,
+      secondaryCtaText,
+      featuredBadgeText,
+    } = body;
 
     if (!name || !slug) {
       return NextResponse.json(
-        { success: false, error: "Category name and slug are required" },
+        { success: false, error: 'Category name and slug are required' },
         { status: 400 }
       );
     }
@@ -42,9 +49,9 @@ export async function POST(request: Request) {
         shortDesc: shortDesc || null,
         fullDesc: fullDesc || null,
         coverImage: coverImage || null,
-        primaryCtaText: primaryCtaText || "Request a Quote",
-        secondaryCtaText: secondaryCtaText || "Browse range",
-        featuredBadgeText: featuredBadgeText || "Featured product",
+        primaryCtaText: primaryCtaText || 'Request a Quote',
+        secondaryCtaText: secondaryCtaText || 'Browse range',
+        featuredBadgeText: featuredBadgeText || 'Featured product',
         isFeatured: isFeatured ?? true,
         order: count,
       },
@@ -52,15 +59,15 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, data: created });
   } catch (error: any) {
-    console.error("Error creating category:", error);
-    if (error.code === "P2002") {
+    console.error('Error creating category:', error);
+    if (error.code === 'P2002') {
       return NextResponse.json(
-        { success: false, error: "A category with this slug already exists" },
+        { success: false, error: 'A category with this slug already exists' },
         { status: 409 }
       );
     }
     return NextResponse.json(
-      { success: false, error: error?.message || "Internal Server Error" },
+      { success: false, error: error?.message || 'Internal Server Error' },
       { status: 500 }
     );
   }
@@ -69,11 +76,23 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
   try {
     const body = await request.json();
-    const { id, name, slug, shortDesc, fullDesc, coverImage, isFeatured, order, primaryCtaText, secondaryCtaText, featuredBadgeText } = body;
+    const {
+      id,
+      name,
+      slug,
+      shortDesc,
+      fullDesc,
+      coverImage,
+      isFeatured,
+      order,
+      primaryCtaText,
+      secondaryCtaText,
+      featuredBadgeText,
+    } = body;
 
     if (!id) {
       return NextResponse.json(
-        { success: false, error: "Category ID is required for update" },
+        { success: false, error: 'Category ID is required for update' },
         { status: 400 }
       );
     }
@@ -96,9 +115,9 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({ success: true, data: updated });
   } catch (error: any) {
-    console.error("Error updating category:", error);
+    console.error('Error updating category:', error);
     return NextResponse.json(
-      { success: false, error: error?.message || "Internal Server Error" },
+      { success: false, error: error?.message || 'Internal Server Error' },
       { status: 500 }
     );
   }
@@ -107,11 +126,11 @@ export async function PUT(request: Request) {
 export async function DELETE(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id");
+    const id = searchParams.get('id');
 
     if (!id) {
       return NextResponse.json(
-        { success: false, error: "Category ID is required" },
+        { success: false, error: 'Category ID is required' },
         { status: 400 }
       );
     }
@@ -122,9 +141,9 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
-    console.error("Error deleting category:", error);
+    console.error('Error deleting category:', error);
     return NextResponse.json(
-      { success: false, error: error?.message || "Internal Server Error" },
+      { success: false, error: error?.message || 'Internal Server Error' },
       { status: 500 }
     );
   }

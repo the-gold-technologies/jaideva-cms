@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Plus, Trash2, Layers } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Plus, Trash2, Layers } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 interface CategoryItem {
   name: string;
@@ -32,12 +32,14 @@ export function BrandsProductCategoriesSection({
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [eyebrow, setEyebrow] = useState("");
-  const [heading, setHeading] = useState("");
-  const [description, setDescription] = useState("");
+  const [eyebrow, setEyebrow] = useState('');
+  const [heading, setHeading] = useState('');
+  const [description, setDescription] = useState('');
 
   const [categories, setCategories] = useState<CategoryItem[]>([]);
-  const [categoryImages, setCategoryImages] = useState<Record<number, (File | string | null)[]>>({});
+  const [categoryImages, setCategoryImages] = useState<Record<number, (File | string | null)[]>>(
+    {}
+  );
 
   useEffect(() => {
     if (initialData) {
@@ -45,7 +47,7 @@ export function BrandsProductCategoriesSection({
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.description) setDescription(initialData.description);
 
-      const loadedCats = initialData.categories || initialData.items;
+      const loadedCats = initialData.categories;
       if (Array.isArray(loadedCats)) {
         setCategories(loadedCats);
         const imgMap: Record<number, (File | string | null)[]> = {};
@@ -57,20 +59,13 @@ export function BrandsProductCategoriesSection({
     }
   }, [initialData]);
 
-  const handleCategoryChange = (
-    index: number,
-    field: keyof CategoryItem,
-    val: string
-  ) => {
+  const handleCategoryChange = (index: number, field: keyof CategoryItem, val: string) => {
     const updated = [...categories];
     updated[index] = { ...updated[index], [field]: val };
     setCategories(updated);
   };
 
-  const handleImageChange = (
-    index: number,
-    newImgs: (File | string | null)[]
-  ) => {
+  const handleImageChange = (index: number, newImgs: (File | string | null)[]) => {
     setCategoryImages((prev) => ({ ...prev, [index]: newImgs }));
   };
 
@@ -79,18 +74,18 @@ export function BrandsProductCategoriesSection({
     setCategories([
       ...categories,
       {
-        name: "",
-        description: "",
-        image: "",
-        badge: "",
+        name: '',
+        description: '',
+        image: '',
+        badge: '',
       },
     ]);
-    setCategoryImages((prev) => ({ ...prev, [newIdx]: [""] }));
+    setCategoryImages((prev) => ({ ...prev, [newIdx]: [''] }));
   };
 
   const handleRemoveCategory = (index: number) => {
     if (categories.length <= 1) {
-      toast.error("At least one product category is required.");
+      toast.error('At least one product category is required.');
       return;
     }
     setCategories(categories.filter((_, idx) => idx !== index));
@@ -111,10 +106,8 @@ export function BrandsProductCategoriesSection({
     try {
       const updatedCategories = await Promise.all(
         categories.map(async (cat, idx) => {
-          const imgs = (categoryImages[idx] || []).filter(
-            (im): im is File | string => !!im
-          );
-          let finalImg = cat.image || "";
+          const imgs = (categoryImages[idx] || []).filter((im): im is File | string => !!im);
+          let finalImg = cat.image || '';
           if (imgs.length > 0) {
             const [uploaded] = await uploadFiles(imgs);
             if (uploaded) finalImg = uploaded;
@@ -135,11 +128,11 @@ export function BrandsProductCategoriesSection({
         categories: updatedCategories,
       };
 
-      const res = await fetch("/api/brands", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/brands', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "BrandsProductCategoriesSection",
+          section: 'BrandsProductCategoriesSection',
           content: payload,
         }),
       });
@@ -148,13 +141,13 @@ export function BrandsProductCategoriesSection({
       if (json.success) {
         setSaved(true);
         setCategories(updatedCategories);
-        toast.success("Product Categories saved successfully");
+        toast.success('Product Categories saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Categories section");
+      toast.error('Error saving Categories section');
     } finally {
       setLoading(false);
     }
@@ -172,7 +165,7 @@ export function BrandsProductCategoriesSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -242,17 +235,13 @@ export function BrandsProductCategoriesSection({
                       <InputField
                         label="Category Name"
                         value={cat.name}
-                        onChange={(e) =>
-                          handleCategoryChange(index, "name", e.target.value)
-                        }
+                        onChange={(e) => handleCategoryChange(index, 'name', e.target.value)}
                         placeholder="Automotive & Engine Oils"
                       />
                       <InputField
                         label="Badge / Standard Tag"
                         value={cat.badge}
-                        onChange={(e) =>
-                          handleCategoryChange(index, "badge", e.target.value)
-                        }
+                        onChange={(e) => handleCategoryChange(index, 'badge', e.target.value)}
                         placeholder="e.g. API CK-4 / SN Plus"
                       />
                     </div>
@@ -260,20 +249,14 @@ export function BrandsProductCategoriesSection({
                     <TextAreaField
                       label="Description"
                       value={cat.description}
-                      onChange={(e) =>
-                        handleCategoryChange(
-                          index,
-                          "description",
-                          e.target.value
-                        )
-                      }
+                      onChange={(e) => handleCategoryChange(index, 'description', e.target.value)}
                       rows={2}
                       placeholder="Brief overview of fluids in this spectrum..."
                     />
 
                     <ImageUploadField
                       label="Category Thumbnail / Fluid Image"
-                      images={categoryImages[index] || (cat.image ? [cat.image] : [""])}
+                      images={categoryImages[index] || (cat.image ? [cat.image] : [''])}
                       onImagesChange={(imgs) => handleImageChange(index, imgs)}
                       maxImages={1}
                       tooltip="Upload product or barrel representation photo."

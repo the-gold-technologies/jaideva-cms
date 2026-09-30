@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 export function BrandsCtaSection({
   initialData,
@@ -24,25 +24,24 @@ export function BrandsCtaSection({
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [eyebrowBadge, setEyebrowBadge] = useState("");
-  const [heading, setHeading] = useState("");
-  const [description, setDescription] = useState("");
-  const [buttonText, setButtonText] = useState("");
-  const [phoneText, setPhoneText] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [images, setImages] = useState<(File | string | null)[]>([""]);
+  const [eyebrowBadge, setEyebrowBadge] = useState('');
+  const [heading, setHeading] = useState('');
+  const [description, setDescription] = useState('');
+  const [buttonText, setButtonText] = useState('');
+  const [phoneText, setPhoneText] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [images, setImages] = useState<(File | string | null)[]>(['']);
 
   useEffect(() => {
     if (initialData) {
-      if (initialData.eyebrowBadge || initialData.badge)
-        setEyebrowBadge(initialData.eyebrowBadge || initialData.badge);
+      if (initialData.badge) setEyebrowBadge(initialData.badge);
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.description) setDescription(initialData.description);
       if (initialData.buttonText) setButtonText(initialData.buttonText);
       if (initialData.phoneText) setPhoneText(initialData.phoneText);
       if (initialData.phoneNumber) setPhoneNumber(initialData.phoneNumber);
 
-      const bgImg = initialData.bgImage || initialData.image;
+      const bgImg = initialData.image;
       if (bgImg) setImages([bgImg]);
     }
   }, [initialData]);
@@ -52,10 +51,10 @@ export function BrandsCtaSection({
     setSaved(false);
     try {
       const validImages = images.filter((img): img is File | string => !!img);
-      let bgImageUrl = "";
+      let bgImageUrl = '';
       if (validImages.length > 0) {
         const [uploaded] = await uploadFiles(validImages);
-        bgImageUrl = uploaded || "";
+        bgImageUrl = uploaded || '';
       }
 
       const payload = {
@@ -68,23 +67,23 @@ export function BrandsCtaSection({
         image: bgImageUrl,
       };
 
-      const res = await fetch("/api/brands", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "BrandsCtaSection", content: payload }),
+      const res = await fetch('/api/brands', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: 'BrandsCtaSection', content: payload }),
       });
 
       const json = await res.json();
       if (json.success) {
         setSaved(true);
         if (bgImageUrl) setImages([bgImageUrl]);
-        toast.success("Consultation CTA banner saved successfully");
+        toast.success('Consultation CTA banner saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Consultation CTA section");
+      toast.error('Error saving Consultation CTA section');
     } finally {
       setLoading(false);
     }
@@ -95,14 +94,14 @@ export function BrandsCtaSection({
       <SectionHeader
         title="5. Consultation & Recommendation CTA"
         description="Configure the call-to-action banner shown at the bottom of the Brands page."
-        badge={images[0] ? "Background Set" : "No Background"}
+        badge={images[0] ? 'Background Set' : 'No Background'}
         isOpen={isOpen}
         onToggle={handleToggle}
       />
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">

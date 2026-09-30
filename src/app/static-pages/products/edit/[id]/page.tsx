@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useParams } from "next/navigation";
-import { ProductForm } from "../../components/ProductForm";
+import React from 'react';
+import { useParams } from 'next/navigation';
+import { ProductForm } from '../../components/ProductForm';
 
 export default function EditProductPage() {
   const params = useParams();

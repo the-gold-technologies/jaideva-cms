@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
 export interface EnquiryEmailData {
   name: string;
@@ -30,12 +30,12 @@ export interface DistributorLeadEmailData {
  */
 function getMailTransporter() {
   const host = process.env.SMTP_HOST;
-  const port = parseInt(process.env.SMTP_PORT || "465", 10);
-  const secure = process.env.SMTP_SECURE === "true" || port === 465;
+  const port = parseInt(process.env.SMTP_PORT || '465', 10);
+  const secure = process.env.SMTP_SECURE === 'true' || port === 465;
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
 
-  if (!host || !user || user === "smtp_username_placeholder") {
+  if (!host || !user || user === 'smtp_username_placeholder') {
     return null;
   }
 
@@ -55,18 +55,18 @@ function getFromAddress(): string {
     return process.env.SMTP_FROM;
   }
   if (process.env.SMTP_FROM_EMAIL) {
-    const name = process.env.SMTP_FROM_NAME || "Jai Deva Oil Co.";
+    const name = process.env.SMTP_FROM_NAME || 'Jai Deva Oil Co.';
     return `"${name}" <${process.env.SMTP_FROM_EMAIL}>`;
   }
   if (process.env.SMTP_USER) {
-    const name = process.env.SMTP_FROM_NAME || "Jai Deva Oil Co.";
+    const name = process.env.SMTP_FROM_NAME || 'Jai Deva Oil Co.';
     return `"${name}" <${process.env.SMTP_USER}>`;
   }
   return '"Jai Deva Oil Co." <sales@jaidevaoil.com>';
 }
 
 const BRAND_LOGO_URL =
-  "https://res.cloudinary.com/dpa93copz/image/upload/v1788504772/jaideva/logo/jaideva-main-logo.png";
+  'https://res.cloudinary.com/dpa93copz/image/upload/v1788504772/jaideva/logo/jaideva-main-logo.png';
 
 /**
  * Send an email notification when a new customer enquiry is received.
@@ -74,23 +74,22 @@ const BRAND_LOGO_URL =
 export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
   try {
     const transporter = getMailTransporter();
-    const adminEmail =
-      process.env.ADMIN_NOTIFICATION_EMAIL || "sude8920esh@gmail.com";
+    const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || 'sude8920esh@gmail.com';
     const fromAddress = getFromAddress();
 
     if (!transporter) {
       console.log(
-        "📧 [SMTP Notice] SMTP is not configured or using placeholders. Skipping email dispatch for Enquiry:",
+        '📧 [SMTP Notice] SMTP is not configured or using placeholders. Skipping email dispatch for Enquiry:',
         data.name
       );
-      return { sent: false, reason: "SMTP not configured" };
+      return { sent: false, reason: 'SMTP not configured' };
     }
 
-    const cleanPhone = (data.phone || "").replace(/\s+/g, "");
+    const cleanPhone = (data.phone || '').replace(/\s+/g, '');
     const initials = data.name
-      .split(" ")
+      .split(' ')
       .map((n) => n[0])
-      .join("")
+      .join('')
       .substring(0, 2)
       .toUpperCase();
 
@@ -135,7 +134,7 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
                 <tr>
                   <td width="52" valign="middle" style="padding-right: 14px;">
                     <div style="width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, #0C356A 0%, #C86218 100%); color: #FFFFFF; font-size: 18px; font-weight: 800; line-height: 50px; text-align: center;">
-                      ${initials || "JD"}
+                      ${initials || 'JD'}
                     </div>
                   </td>
                   <td valign="middle">
@@ -160,16 +159,16 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
                           </a>
                         </td>
                         <td width="4%"></td>`
-                      : ""
+                      : ''
                   }
                   ${
-                    data.email && !data.email.includes("noemail@")
-                      ? `<td width="${cleanPhone ? "48%" : "100%"}" align="center">
+                    data.email && !data.email.includes('noemail@')
+                      ? `<td width="${cleanPhone ? '48%' : '100%'}" align="center">
                           <a href="mailto:${data.email}" style="display: block; background-color: #C86218; color: #FFFFFF; text-decoration: none; padding: 12px 16px; border-radius: 12px; font-size: 13px; font-weight: 700; text-align: center;">
                             ✉️ Reply via Email
                           </a>
                         </td>`
-                      : ""
+                      : ''
                   }
                 </tr>
               </table>
@@ -207,7 +206,7 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
                   </td>
                   <td style="padding: 12px 0; font-size: 14px; border-bottom: 1px solid #F1F5F9;">
                     ${
-                      data.email && !data.email.includes("noemail@")
+                      data.email && !data.email.includes('noemail@')
                         ? `<a href="mailto:${data.email}" style="color: #0C356A; text-decoration: underline; font-weight: 600;">${data.email}</a>`
                         : '<span style="color: #94A3B8;">Not Provided</span>'
                     }
@@ -223,7 +222,7 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
                           ${data.company}
                         </td>
                       </tr>`
-                    : ""
+                    : ''
                 }
                 <tr>
                   <td style="padding: 12px 0; font-size: 13px; color: #64748B; font-weight: 600; border-bottom: 1px solid #F1F5F9;">
@@ -231,7 +230,7 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
                   </td>
                   <td style="padding: 12px 0; border-bottom: 1px solid #F1F5F9;">
                     <span style="display: inline-block; background-color: #FFF7ED; color: #C86218; font-size: 13px; font-weight: 800; padding: 4px 10px; border-radius: 6px; border: 1px solid #FFEDD5;">
-                      ${data.product || data.interestedIn || "General Lubricant Requirement"}
+                      ${data.product || data.interestedIn || 'General Lubricant Requirement'}
                     </span>
                   </td>
                 </tr>
@@ -245,7 +244,7 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
                           ${data.budget}
                         </td>
                       </tr>`
-                    : ""
+                    : ''
                 }
               </table>
 
@@ -260,7 +259,7 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
                         &ldquo;${data.message}&rdquo;
                       </p>
                     </div>`
-                  : ""
+                  : ''
               }
 
             </td>
@@ -290,12 +289,12 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
     await transporter.sendMail({
       from: fromAddress,
       to: adminEmail,
-      subject: `🔔 New Enquiry: ${data.name} — ${data.product || data.interestedIn || "Product Quote"}`,
+      subject: `🔔 New Enquiry: ${data.name} — ${data.product || data.interestedIn || 'Product Quote'}`,
       html: htmlContent,
     });
 
     // 2. Customer Confirmation (if valid customer email provided)
-    if (data.email && !data.email.includes("noemail@")) {
+    if (data.email && !data.email.includes('noemail@')) {
       const customerAckHtml = `
 <!DOCTYPE html>
 <html>
@@ -330,7 +329,7 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
                 Thank You for Reaching Out, ${data.name}!
               </h2>
               <p style="margin: 0 0 16px 0; font-size: 14px; color: #475569;">
-                We have successfully received your enquiry regarding <strong>${data.product || data.interestedIn || "our lubricant products"}</strong>.
+                We have successfully received your enquiry regarding <strong>${data.product || data.interestedIn || 'our lubricant products'}</strong>.
               </p>
               <p style="margin: 0 0 24px 0; font-size: 14px; color: #475569;">
                 Our technical sales team is reviewing your requirements and will contact you promptly with product specifications and competitive pricing.
@@ -377,14 +376,12 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
           subject: `Thank you for contacting Jai Deva Oil Co.`,
           html: customerAckHtml,
         })
-        .catch((e) =>
-          console.error("Error sending customer acknowledgement email:", e)
-        );
+        .catch((e) => console.error('Error sending customer acknowledgement email:', e));
     }
 
     return { sent: true };
   } catch (error) {
-    console.error("Error in sendEnquiryNotificationEmail:", error);
+    console.error('Error in sendEnquiryNotificationEmail:', error);
     return { sent: false, error };
   }
 }
@@ -392,28 +389,25 @@ export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
 /**
  * Send an email notification when a new Distribution Leaders / Dealership application is received.
  */
-export async function sendDistributorLeadNotificationEmail(
-  data: DistributorLeadEmailData
-) {
+export async function sendDistributorLeadNotificationEmail(data: DistributorLeadEmailData) {
   try {
     const transporter = getMailTransporter();
-    const adminEmail =
-      process.env.ADMIN_NOTIFICATION_EMAIL || "sude8920esh@gmail.com";
+    const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || 'sude8920esh@gmail.com';
     const fromAddress = getFromAddress();
 
     if (!transporter) {
       console.log(
-        "📧 [SMTP Notice] SMTP is not configured or using placeholders. Skipping email dispatch for Distributor Lead:",
+        '📧 [SMTP Notice] SMTP is not configured or using placeholders. Skipping email dispatch for Distributor Lead:',
         data.firmName
       );
-      return { sent: false, reason: "SMTP not configured" };
+      return { sent: false, reason: 'SMTP not configured' };
     }
 
-    const cleanPhone = (data.phone || "").replace(/\s+/g, "");
+    const cleanPhone = (data.phone || '').replace(/\s+/g, '');
     const initials = data.firmName
-      .split(" ")
+      .split(' ')
       .map((n) => n[0])
-      .join("")
+      .join('')
       .substring(0, 2)
       .toUpperCase();
 
@@ -458,7 +452,7 @@ export async function sendDistributorLeadNotificationEmail(
                 <tr>
                   <td width="52" valign="middle" style="padding-right: 14px;">
                     <div style="width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, #C86218 0%, #0C356A 100%); color: #FFFFFF; font-size: 18px; font-weight: 800; line-height: 50px; text-align: center;">
-                      ${initials || "DL"}
+                      ${initials || 'DL'}
                     </div>
                   </td>
                   <td valign="middle">
@@ -483,16 +477,16 @@ export async function sendDistributorLeadNotificationEmail(
                           </a>
                         </td>
                         <td width="4%"></td>`
-                      : ""
+                      : ''
                   }
                   ${
                     data.email
-                      ? `<td width="${cleanPhone ? "48%" : "100%"}" align="center">
+                      ? `<td width="${cleanPhone ? '48%' : '100%'}" align="center">
                           <a href="mailto:${data.email}" style="display: block; background-color: #C86218; color: #FFFFFF; text-decoration: none; padding: 12px 16px; border-radius: 12px; font-size: 13px; font-weight: 700; text-align: center;">
                             ✉️ Reply via Email
                           </a>
                         </td>`
-                      : ""
+                      : ''
                   }
                 </tr>
               </table>
@@ -541,7 +535,7 @@ export async function sendDistributorLeadNotificationEmail(
                     Target Territory / City:
                   </td>
                   <td style="padding: 12px 0; font-size: 14px; color: #0F172A; font-weight: 700; border-bottom: 1px solid #F1F5F9;">
-                    ${data.city || "Not Specified"}${data.state ? `, ${data.state}` : ""}
+                    ${data.city || 'Not Specified'}${data.state ? `, ${data.state}` : ''}
                   </td>
                 </tr>
                 ${
@@ -554,7 +548,7 @@ export async function sendDistributorLeadNotificationEmail(
                           ${data.existingBusiness}
                         </td>
                       </tr>`
-                    : ""
+                    : ''
                 }
                 ${
                   data.annualTurnover
@@ -566,7 +560,7 @@ export async function sendDistributorLeadNotificationEmail(
                           ${data.annualTurnover}
                         </td>
                       </tr>`
-                    : ""
+                    : ''
                 }
                 ${
                   data.experienceYears
@@ -578,7 +572,7 @@ export async function sendDistributorLeadNotificationEmail(
                           ${data.experienceYears} Years
                         </td>
                       </tr>`
-                    : ""
+                    : ''
                 }
               </table>
 
@@ -593,7 +587,7 @@ export async function sendDistributorLeadNotificationEmail(
                         &ldquo;${data.message}&rdquo;
                       </p>
                     </div>`
-                  : ""
+                  : ''
               }
 
             </td>
@@ -623,7 +617,7 @@ export async function sendDistributorLeadNotificationEmail(
     await transporter.sendMail({
       from: fromAddress,
       to: adminEmail,
-      subject: `🚀 Dealership Application: ${data.firmName} (${data.city || data.state || "India"})`,
+      subject: `🚀 Dealership Application: ${data.firmName} (${data.city || data.state || 'India'})`,
       html: htmlContent,
     });
 
@@ -701,14 +695,12 @@ export async function sendDistributorLeadNotificationEmail(
           subject: `Dealership Application Received: ${data.firmName} (Jai Deva Oil Co.)`,
           html: applicantAckHtml,
         })
-        .catch((e) =>
-          console.error("Error sending applicant acknowledgement email:", e)
-        );
+        .catch((e) => console.error('Error sending applicant acknowledgement email:', e));
     }
 
     return { sent: true };
   } catch (error) {
-    console.error("Error in sendDistributorLeadNotificationEmail:", error);
+    console.error('Error in sendDistributorLeadNotificationEmail:', error);
     return { sent: false, error };
   }
 }

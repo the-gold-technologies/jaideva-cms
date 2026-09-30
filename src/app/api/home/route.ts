@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-const HOME_SLUG = "home";
+const HOME_SLUG = 'home';
 
 export async function GET() {
   try {
@@ -9,7 +9,7 @@ export async function GET() {
       where: { slug: HOME_SLUG },
       include: {
         sections: {
-          orderBy: { order: "asc" },
+          orderBy: { order: 'asc' },
         },
       },
     });
@@ -37,11 +37,8 @@ export async function GET() {
 
     return NextResponse.json({ success: true, data: sectionsMap, seo });
   } catch (error) {
-    console.error("Error fetching home page content:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error fetching home page content:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -51,7 +48,7 @@ export async function PUT(request: Request) {
     const sectionName = body.section || body.sectionType;
     const { content } = body;
 
-    if (!sectionName || typeof sectionName !== "string") {
+    if (!sectionName || typeof sectionName !== 'string') {
       return NextResponse.json(
         { success: false, error: "'section' or 'sectionType' (string) is required" },
         { status: 400 }
@@ -61,10 +58,10 @@ export async function PUT(request: Request) {
     const page = await prisma.page.upsert({
       where: { slug: HOME_SLUG },
       create: {
-        title: "Home",
+        title: 'Home',
         slug: HOME_SLUG,
-        type: "static",
-        visibility: "published",
+        type: 'static',
+        visibility: 'published',
       },
       update: {},
     });
@@ -100,10 +97,7 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error saving home section:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error saving home section:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

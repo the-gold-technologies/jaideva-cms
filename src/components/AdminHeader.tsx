@@ -1,1 +1,1 @@
-export * from "@/app/components/AdminHeader";
+export * from '@/app/components/AdminHeader';

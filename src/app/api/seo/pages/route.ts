@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
@@ -20,11 +20,11 @@ export async function GET() {
         description: true,
         isStatic: true,
       },
-      orderBy: { order: "asc" },
+      orderBy: { order: 'asc' },
     });
 
     const links = await prisma.navLink.findMany({
-      orderBy: { order: "asc" },
+      orderBy: { order: 'asc' },
     });
 
     const mergedData: any[] = [];
@@ -34,23 +34,18 @@ export async function GET() {
     let navIndex = 1;
     for (const link of links) {
       const urlMatchesSlug = (url: string, slug: string) => {
-        if (url === "/" && slug === "home") return true;
-        if (
-          (url === "/products/industrial-oils" || url === "/products") &&
-          slug === "products"
-        )
+        if (url === '/' && slug === 'home') return true;
+        if ((url === '/products/industrial-oils' || url === '/products') && slug === 'products')
           return true;
         return url === `/${slug}`;
       };
 
-      const matchedPage = pages.find((p: any) =>
-        urlMatchesSlug(link.url, p.slug),
-      );
+      const matchedPage = pages.find((p: any) => urlMatchesSlug(link.url, p.slug));
       const targetSlug = matchedPage
         ? matchedPage.slug
-        : link.url === "/"
-          ? "home"
-          : link.url.replace(/^\//, "");
+        : link.url === '/'
+          ? 'home'
+          : link.url.replace(/^\//, '');
 
       const normalizedSlug = targetSlug.toLowerCase().trim();
       if (seenSlugs.has(normalizedSlug)) {
@@ -85,8 +80,8 @@ export async function GET() {
           slug: targetSlug,
           metaTitle: null as string | null,
           metaDescription: null as string | null,
-          type: link.type || "static",
-          visibility: "published",
+          type: link.type || 'static',
+          visibility: 'published',
           parent: link.parent,
           order: assignedOrder,
           description: link.description,
@@ -107,18 +102,15 @@ export async function GET() {
           pageId: page.id,
           title:
             page.title ||
-            page.slug
-              .replace(/-/g, " ")
-              .replace(/\b\w/g, (l: string) => l.toUpperCase()),
+            page.slug.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
           slug: page.slug,
           metaTitle: page.metaTitle,
           metaDescription: page.metaDescription,
-          type: page.type === "standard" ? "Main Link" : page.type,
+          type: page.type === 'standard' ? 'Main Link' : page.type,
           visibility: page.visibility,
-          parent: page.parent || "-",
+          parent: page.parent || '-',
           order: secondaryIndex++,
-          description:
-            page.description || `Configure SEO for ${page.title || page.slug}`,
+          description: page.description || `Configure SEO for ${page.title || page.slug}`,
           navTitle: page.title,
           isStatic: page.isStatic,
           headingOptions: page.headingOptions,
@@ -127,17 +119,15 @@ export async function GET() {
     }
 
     // 3. Automatically inject Dynamic Blog Posts from DB under Blogs parent
-    let blogParentIdx = mergedData.findIndex(
-      (m: any) => m.slug === "blogs" || m.slug === "blog",
-    );
-    let blogParentId = "blogs-seo-parent-id";
+    let blogParentIdx = mergedData.findIndex((m: any) => m.slug === 'blogs' || m.slug === 'blog');
+    let blogParentId = 'blogs-seo-parent-id';
 
     if (blogParentIdx !== -1) {
       blogParentId = mergedData[blogParentIdx].id;
     }
 
     const blogPosts = await prisma.blogPost.findMany({
-      orderBy: { createdAt: "desc" },
+      orderBy: { createdAt: 'desc' },
     });
 
     for (const blog of blogPosts) {
@@ -147,18 +137,18 @@ export async function GET() {
       if (!seenSlugs.has(normalizedBlogSlug)) {
         seenSlugs.add(normalizedBlogSlug);
         const matchedBlogPage = pages.find(
-          (p: any) => p.slug === blogPageSlug || p.slug === blog.slug,
+          (p: any) => p.slug === blogPageSlug || p.slug === blog.slug
         );
 
         mergedData.push({
           id: `blog-post-${blog.id}`,
           pageId: blog.id,
-          title: blog.title || "Untitled Blog",
+          title: blog.title || 'Untitled Blog',
           slug: blogPageSlug,
           metaTitle: matchedBlogPage?.metaTitle || blog.title,
           metaDescription: matchedBlogPage?.metaDescription || blog.excerpt,
-          type: "Blog Article",
-          visibility: blog.isPublished ? "published" : "draft",
+          type: 'Blog Article',
+          visibility: blog.isPublished ? 'published' : 'draft',
           parent: blogParentId,
           order: 0,
           description: `SEO Configuration for blog article: "${blog.title}".`,
@@ -171,10 +161,7 @@ export async function GET() {
 
     return NextResponse.json({ success: true, data: mergedData });
   } catch (error) {
-    console.error("Error fetching pages for SEO:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 },
-    );
+    console.error('Error fetching pages for SEO:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

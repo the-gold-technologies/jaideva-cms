@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { InputField } from "@/components/InputField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { InputField } from '@/components/InputField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 interface EventsHeroData {
   image?: string;
@@ -18,19 +18,16 @@ interface EventsHeroSectionProps {
   onSave?: (data: EventsHeroData) => Promise<boolean | void>;
 }
 
-export function EventsHeroSection({
-  initialData,
-  onSave,
-}: EventsHeroSectionProps) {
+export function EventsHeroSection({ initialData, onSave }: EventsHeroSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [images, setImages] = useState<(File | string | null)[]>([]);
-  const [altText, setAltText] = useState("");
+  const [altText, setAltText] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (initialData) {
       setImages(initialData.image ? [initialData.image] : []);
-      setAltText(initialData.altText || "");
+      setAltText(initialData.altText || '');
     }
   }, [initialData]);
 
@@ -39,11 +36,11 @@ export function EventsHeroSection({
     setLoading(true);
 
     try {
-      let finalImageUrl = "";
+      let finalImageUrl = '';
       const validImages = images.filter((img): img is File | string => !!img);
       if (validImages.length > 0) {
         const [uploaded] = await uploadFiles(validImages);
-        finalImageUrl = uploaded || "";
+        finalImageUrl = uploaded || '';
       }
 
       const payload: EventsHeroData = {
@@ -54,23 +51,23 @@ export function EventsHeroSection({
       if (onSave) {
         await onSave(payload);
       } else {
-        const res = await fetch("/api/events", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch('/api/events', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            section: "EventsHero",
+            section: 'EventsHero',
             content: payload,
           }),
         });
         const json = await res.json();
         if (json.success) {
-          toast.success("Events Hero banner updated successfully!");
+          toast.success('Events Hero banner updated successfully!');
         } else {
-          toast.error(json.error || "Failed to update hero banner");
+          toast.error(json.error || 'Failed to update hero banner');
         }
       }
     } catch {
-      toast.error("Network error saving Hero banner");
+      toast.error('Network error saving Hero banner');
     } finally {
       setLoading(false);
     }
@@ -90,7 +87,7 @@ export function EventsHeroSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">

@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { InputField } from "@/components/InputField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { InputField } from '@/components/InputField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 interface ContactHeroData {
   title?: string;
@@ -20,15 +20,12 @@ interface ContactHeroSectionProps {
   onSave?: (data: ContactHeroData) => Promise<boolean | void>;
 }
 
-export function ContactHeroSection({
-  initialData,
-  onSave,
-}: ContactHeroSectionProps) {
+export function ContactHeroSection({ initialData, onSave }: ContactHeroSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [title, setTitle] = useState("Contact Us");
-  const [subtitle, setSubtitle] = useState("");
+  const [title, setTitle] = useState('');
+  const [subtitle, setSubtitle] = useState('');
   const [images, setImages] = useState<(File | string | null)[]>([]);
-  const [altText, setAltText] = useState("");
+  const [altText, setAltText] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -36,7 +33,7 @@ export function ContactHeroSection({
       if (initialData.title !== undefined) setTitle(initialData.title);
       if (initialData.subtitle !== undefined) setSubtitle(initialData.subtitle);
       setImages(initialData.image ? [initialData.image] : []);
-      setAltText(initialData.altText || "");
+      setAltText(initialData.altText || '');
     }
   }, [initialData]);
 
@@ -45,11 +42,11 @@ export function ContactHeroSection({
     setLoading(true);
 
     try {
-      let finalImageUrl = "";
+      let finalImageUrl = '';
       const validImages = images.filter((img): img is File | string => !!img);
       if (validImages.length > 0) {
         const [uploaded] = await uploadFiles(validImages);
-        finalImageUrl = uploaded || "";
+        finalImageUrl = uploaded || '';
       }
 
       const payload: ContactHeroData = {
@@ -62,23 +59,23 @@ export function ContactHeroSection({
       if (onSave) {
         await onSave(payload);
       } else {
-        const res = await fetch("/api/contact-us", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch('/api/contact-us', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            section: "ContactHero",
+            section: 'ContactHero',
             content: payload,
           }),
         });
         const json = await res.json();
         if (json.success) {
-          toast.success("Contact Hero banner updated successfully!");
+          toast.success('Contact Hero banner updated successfully!');
         } else {
-          toast.error(json.error || "Failed to update hero banner");
+          toast.error(json.error || 'Failed to update hero banner');
         }
       }
     } catch {
-      toast.error("Network error saving Hero banner");
+      toast.error('Network error saving Hero banner');
     } finally {
       setLoading(false);
     }
@@ -98,7 +95,7 @@ export function ContactHeroSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">

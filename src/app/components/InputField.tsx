@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Eye, EyeOff, HelpCircle } from "lucide-react";
+import React, { useState } from 'react';
+import { Eye, EyeOff, HelpCircle } from 'lucide-react';
 
 interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -14,9 +14,9 @@ interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const InputField: React.FC<InputFieldProps> = ({
   label,
-  containerClassName = "",
-  className = "",
-  type = "text",
+  containerClassName = '',
+  className = '',
+  type = 'text',
   icon,
   tooltip,
   helperText,
@@ -25,21 +25,17 @@ export const InputField: React.FC<InputFieldProps> = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const inputClass = `w-full ${
-    icon ? "pl-12" : "px-5"
+    icon ? 'pl-12' : 'px-5'
   } py-3.5 bg-white border border-gray-200 rounded-2xl text-sm focus:ring-2 focus:outline-none focus:border-[#0C356A] focus:ring-1 focus:ring-[#0C356A] outline-none transition-all text-gray-800 ${
-    error ? "border-red-500 focus:border-red-500 focus:ring-red-500" : ""
+    error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''
   } ${className}`;
 
-  const isPassword = type === "password";
-  const currentType = isPassword ? (showPassword ? "text" : "password") : type;
+  const isPassword = type === 'password';
+  const currentType = isPassword ? (showPassword ? 'text' : 'password') : type;
 
   const inputElement = (
     <div className="relative w-full">
-      {icon && (
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-          {icon}
-        </div>
-      )}
+      {icon && <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">{icon}</div>}
       <input className={inputClass} type={currentType} {...props} />
       {isPassword && (
         <button
@@ -48,11 +44,7 @@ export const InputField: React.FC<InputFieldProps> = ({
           className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none cursor-pointer"
           onClick={() => setShowPassword((prev) => !prev)}
         >
-          {showPassword ? (
-            <EyeOff className="w-4 h-4" />
-          ) : (
-            <Eye className="w-4 h-4" />
-          )}
+          {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
         </button>
       )}
     </div>

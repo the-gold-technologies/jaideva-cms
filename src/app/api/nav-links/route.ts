@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
     const links = await prisma.navLink.findMany({
-      orderBy: { order: "asc" },
+      orderBy: { order: 'asc' },
     });
 
     // Deduplicate by normalized label to ensure clean navigation hierarchy without duplicate rows
@@ -22,11 +22,8 @@ export async function GET() {
 
     return NextResponse.json({ success: true, data: uniqueLinks });
   } catch (error) {
-    console.error("Error fetching nav links:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error fetching nav links:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -37,14 +34,14 @@ export async function PUT(request: Request) {
 
     if (!Array.isArray(links)) {
       return NextResponse.json(
-        { success: false, error: "links array is required" },
+        { success: false, error: 'links array is required' },
         { status: 400 }
       );
     }
 
     // 1. Remove deleted links from database
     const incomingIds = links
-      .filter((l: any) => l.id && !l.id.startsWith("nav-"))
+      .filter((l: any) => l.id && !l.id.startsWith('nav-'))
       .map((l: any) => l.id);
 
     await prisma.navLink.deleteMany({
@@ -60,12 +57,12 @@ export async function PUT(request: Request) {
         label: link.label,
         title: link.title || link.label.toUpperCase(),
         url: link.url,
-        type: link.type || "Main Link",
-        parent: link.parent || "-",
+        type: link.type || 'Main Link',
+        parent: link.parent || '-',
         order: i,
       };
 
-      if (link.id && !link.id.startsWith("nav-")) {
+      if (link.id && !link.id.startsWith('nav-')) {
         await prisma.navLink.update({
           where: { id: link.id },
           data: navData,
@@ -79,10 +76,7 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error updating nav links:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error updating nav links:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Loader2 } from "lucide-react";
+import Link from 'next/link';
+import { Loader2 } from 'lucide-react';
 
 interface ActivityItem {
   type: string;
@@ -20,19 +20,19 @@ function getRelativeTime(timeStr: string) {
     const now = new Date();
     const diffMs = now.getTime() - date.getTime();
 
-    if (diffMs < 0) return "Just now";
+    if (diffMs < 0) return 'Just now';
 
     const diffMins = Math.floor(diffMs / 60000);
     const diffHours = Math.floor(diffMins / 60);
     const diffDays = Math.floor(diffHours / 24);
 
-    if (diffMins < 1) return "Just now";
+    if (diffMins < 1) return 'Just now';
     if (diffMins < 60) return `${diffMins}m ago`;
     if (diffHours < 24) return `${diffHours}h ago`;
-    if (diffDays === 1) return "Yesterday";
+    if (diffDays === 1) return 'Yesterday';
     return `${diffDays} days ago`;
   } catch {
-    return "Recent";
+    return 'Recent';
   }
 }
 
@@ -94,20 +94,18 @@ export function AdminRightSidebar({ stats, loading }: AdminRightSidebarProps) {
         ) : (
           <div className="bg-white rounded-2xl p-4 shadow-sm ring-1 ring-gray-50 space-y-4">
             {activities.map((activity, idx) => {
-              const isEnquiry = activity.type === "enquiry";
+              const isEnquiry = activity.type === 'enquiry';
               const relativeTime = getRelativeTime(activity.time);
 
               return (
                 <div key={idx} className="flex items-start gap-3 text-[13px]">
                   <div
                     className={`mt-1.5 h-2 w-2 rounded-full shrink-0 ${
-                      isEnquiry ? "bg-emerald-500 animate-pulse" : "bg-[#C86218]"
+                      isEnquiry ? 'bg-emerald-500 animate-pulse' : 'bg-[#C86218]'
                     }`}
                   ></div>
                   <div className="flex flex-col flex-1 leading-snug">
-                    <span className="font-bold text-[#0C356A]">
-                      {activity.text}
-                    </span>
+                    <span className="font-bold text-[#0C356A]">{activity.text}</span>
                     <span className="text-[11px] text-gray-400 font-semibold mt-0.5">
                       {relativeTime}
                     </span>

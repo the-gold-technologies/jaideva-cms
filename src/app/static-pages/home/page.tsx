@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
-import { HomeHeroSection } from "./components/HomeHeroSection";
-import { ProductsServicesSection } from "./components/ProductsServicesSection";
-import { MultiBrandSolutionsSection } from "./components/MultiBrandSolutionsSection";
-import { IndustriesWeServeSection } from "./components/IndustriesWeServeSection";
-import { WhyJaiDevaSection } from "./components/WhyJaiDevaSection";
-import { TrustedClientsSection } from "./components/TrustedClientsSection";
-import { BrandClosingBannerSection } from "./components/BrandClosingBannerSection";
-import { LocateDistributorSection } from "./components/LocateDistributorSection";
+import React, { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/PageHeader';
+import { HomeHeroSection } from './components/HomeHeroSection';
+import { ProductsServicesSection } from './components/ProductsServicesSection';
+import { MultiBrandSolutionsSection } from './components/MultiBrandSolutionsSection';
+import { IndustriesWeServeSection } from './components/IndustriesWeServeSection';
+import { WhyJaiDevaSection } from './components/WhyJaiDevaSection';
+import { TrustedClientsSection } from './components/TrustedClientsSection';
+import { BrandClosingBannerSection } from './components/BrandClosingBannerSection';
+import { LocateDistributorSection } from './components/LocateDistributorSection';
 
 export default function HomePageEditor() {
   const [homeData, setHomeData] = useState<any>(null);
@@ -17,13 +17,13 @@ export default function HomePageEditor() {
   useEffect(() => {
     async function loadHomeData() {
       try {
-        const res = await fetch("/api/home");
+        const res = await fetch('/api/home');
         const json = await res.json();
         if (json.success && json.data) {
           setHomeData(json.data);
         }
       } catch (err) {
-        console.error("Failed to load home sections:", err);
+        console.error('Failed to load home sections:', err);
       }
     }
     loadHomeData();
@@ -40,19 +40,13 @@ export default function HomePageEditor() {
       <HomeHeroSection initialData={homeData?.HomeHero} />
 
       {/* 2. Our Product Range */}
-      <ProductsServicesSection
-        initialData={homeData?.ProductsServicesSection}
-      />
+      <ProductsServicesSection initialData={homeData?.ProductsServicesSection} />
 
       {/* 3. Multi-Brand Lubricant Solutions */}
-      <MultiBrandSolutionsSection
-        initialData={homeData?.MultiBrandSolutionsSection}
-      />
+      <MultiBrandSolutionsSection initialData={homeData?.MultiBrandSolutionsSection} />
 
       {/* 4. Industries We Serve */}
-      <IndustriesWeServeSection
-        initialData={homeData?.IndustriesWeServeSection}
-      />
+      <IndustriesWeServeSection initialData={homeData?.IndustriesWeServeSection} />
 
       {/* 5. Why Jai Deva Oil Co.? */}
       <WhyJaiDevaSection initialData={homeData?.WhyJaiDevaSection} />
@@ -61,14 +55,10 @@ export default function HomePageEditor() {
       <TrustedClientsSection initialData={homeData?.TrustedClientsSection} />
 
       {/* 7. Brand Summary Closing Banner */}
-      <BrandClosingBannerSection
-        initialData={homeData?.BrandClosingBannerSection}
-      />
+      <BrandClosingBannerSection initialData={homeData?.BrandClosingBannerSection} />
 
       {/* 8. Locate Distributor & Direct Enquiry Contact */}
-      <LocateDistributorSection
-        initialData={homeData?.LocateDistributorSection}
-      />
+      <LocateDistributorSection initialData={homeData?.LocateDistributorSection} />
     </section>
   );
 }

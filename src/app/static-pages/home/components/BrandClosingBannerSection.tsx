@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Plus, Trash2, Tag, ArrowRight } from "lucide-react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Tag } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface BrandClosingBannerData {
   badge: string;
@@ -18,57 +18,35 @@ export interface BrandClosingBannerData {
 }
 
 export const DEFAULT_BRAND_CLOSING_BANNER: BrandClosingBannerData = {
-  badge: "",
-  title: "",
-  description: "",
+  badge: '',
+  title: '',
+  description: '',
   highlights: [],
-  btnLabel: "",
-  btnUrl: "",
+  btnLabel: '',
+  btnUrl: '',
 };
 
-export function BrandClosingBannerSection({
-  initialData,
-}: {
-  initialData?: any;
-}) {
+export function BrandClosingBannerSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [data, setData] = useState<BrandClosingBannerData>(
-    DEFAULT_BRAND_CLOSING_BANNER
-  );
+  const [data, setData] = useState<BrandClosingBannerData>(DEFAULT_BRAND_CLOSING_BANNER);
 
   useEffect(() => {
     if (initialData) {
-      const rawHighlights =
-        initialData.highlights ||
-        initialData.features ||
-        initialData.bullets ||
-        (typeof initialData.taglineHighlights === "string"
-          ? initialData.taglineHighlights.split("|").map((s: string) => s.trim())
-          : []);
-
-      const highlightsList: string[] = Array.isArray(rawHighlights)
-        ? rawHighlights.map((item: any) =>
-            typeof item === "string" ? item : item.text || item.title || ""
+      const highlightsList: string[] = Array.isArray(initialData.highlights)
+        ? initialData.highlights.map((item: any) =>
+            typeof item === 'string' ? item : String(item?.text || item?.title || item || '')
           )
         : [];
 
       setData({
-        badge: initialData.badge || initialData.tag || "",
-        title: initialData.title || initialData.heading || "",
-        description: initialData.description || initialData.summaryText || "",
+        badge: initialData.badge || '',
+        title: initialData.title || '',
+        description: initialData.description || '',
         highlights: highlightsList,
-        btnLabel:
-          initialData.btnLabel ||
-          initialData.buttonText ||
-          initialData.btnText ||
-          "",
-        btnUrl:
-          initialData.btnUrl ||
-          initialData.buttonLink ||
-          initialData.btnLink ||
-          "",
+        btnLabel: initialData.btnLabel || '',
+        btnUrl: initialData.btnUrl || '',
       });
     }
   }, [initialData]);
@@ -76,15 +54,15 @@ export function BrandClosingBannerSection({
   const handleAddHighlight = () => {
     setData((prev) => ({
       ...prev,
-      highlights: [...prev.highlights, ""],
+      highlights: [...prev.highlights, ''],
     }));
-    toast.success("New feature tag added");
+    toast.success('New feature tag added');
   };
 
   const handleRemoveHighlight = (idx: number) => {
     const updated = data.highlights.filter((_, i) => i !== idx);
     setData((prev) => ({ ...prev, highlights: updated }));
-    toast.success("Feature tag removed");
+    toast.success('Feature tag removed');
   };
 
   const handleHighlightChange = (idx: number, value: string) => {
@@ -109,11 +87,11 @@ export function BrandClosingBannerSection({
         buttonLink: data.btnUrl,
       };
 
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "BrandClosingBannerSection",
+          section: 'BrandClosingBannerSection',
           content: payload,
         }),
       });
@@ -121,13 +99,13 @@ export function BrandClosingBannerSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Brand Closing Banner saved successfully!");
+        toast.success('Brand Closing Banner saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Brand Closing Banner");
+      toast.error('Error saving Brand Closing Banner');
     } finally {
       setLoading(false);
     }
@@ -139,14 +117,14 @@ export function BrandClosingBannerSection({
         <SectionHeader
           title="Partner Closing Banner (CTA)"
           description="Manage the prominent call-to-action banner (badge, main headline, description, 4 highlight pills, and partner CTA button)."
-          badge={`${data.highlights.length} Tag${data.highlights.length === 1 ? "" : "s"}`}
+          badge={`${data.highlights.length} Tag${data.highlights.length === 1 ? '' : 's'}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">
@@ -156,18 +134,14 @@ export function BrandClosingBannerSection({
                 <InputField
                   label="Top Badge / Tag"
                   value={data.badge}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, badge: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, badge: e.target.value }))}
                   placeholder="JAI DEVA OIL CO."
                 />
 
                 <InputField
                   label="Headline (Uppercase Title)"
                   value={data.title}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, title: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, title: e.target.value }))}
                   placeholder="YOUR TRUSTED PARTNER IN INDUSTRIAL & AUTOMOTIVE LUBRICATION"
                 />
               </div>
@@ -193,18 +167,14 @@ export function BrandClosingBannerSection({
                 <InputField
                   label="CTA Button Label"
                   value={data.btnLabel}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, btnLabel: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, btnLabel: e.target.value }))}
                   placeholder="PARTNER WITH JAI DEVA OIL CO."
                 />
 
                 <InputField
                   label="CTA Button URL"
                   value={data.btnUrl}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, btnUrl: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, btnUrl: e.target.value }))}
                   placeholder="/contact-us or #contact"
                 />
               </div>
@@ -235,9 +205,7 @@ export function BrandClosingBannerSection({
                       <input
                         type="text"
                         value={tag}
-                        onChange={(e) =>
-                          handleHighlightChange(idx, e.target.value)
-                        }
+                        onChange={(e) => handleHighlightChange(idx, e.target.value)}
                         placeholder={`Tag #${idx + 1}`}
                         className="bg-white border border-gray-200 rounded-lg px-2.5 py-1.5 text-xs font-bold text-[#0C356A] w-full focus:outline-none focus:ring-1 focus:ring-[#0C356A]"
                       />

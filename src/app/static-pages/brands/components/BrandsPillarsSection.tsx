@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Plus, Trash2, ShieldCheck } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Plus, Trash2, ShieldCheck } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 interface PillarItem {
   title: string;
@@ -17,14 +17,14 @@ interface PillarItem {
 }
 
 const ICON_OPTIONS = [
-  "Factory",
-  "Wrench",
-  "Truck",
-  "ShieldCheck",
-  "CheckCircle2",
-  "Boxes",
-  "Layers",
-  "Award",
+  'Factory',
+  'Wrench',
+  'Truck',
+  'ShieldCheck',
+  'CheckCircle2',
+  'Boxes',
+  'Layers',
+  'Award',
 ];
 
 export function BrandsPillarsSection({
@@ -42,17 +42,17 @@ export function BrandsPillarsSection({
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [eyebrow, setEyebrow] = useState("");
-  const [heading, setHeading] = useState("");
-  const [description, setDescription] = useState("");
+  const [eyebrow, setEyebrow] = useState('');
+  const [heading, setHeading] = useState('');
+  const [description, setDescription] = useState('');
 
   // Guarantee Side Card
-  const [images, setImages] = useState<(File | string | null)[]>([""]);
-  const [verifiedBadge, setVerifiedBadge] = useState("");
-  const [guaranteeTitle, setGuaranteeTitle] = useState("");
-  const [guaranteeTag, setGuaranteeTag] = useState("");
-  const [guaranteeHeadline, setGuaranteeHeadline] = useState("");
-  const [guaranteeDesc, setGuaranteeDesc] = useState("");
+  const [images, setImages] = useState<(File | string | null)[]>(['']);
+  const [verifiedBadge, setVerifiedBadge] = useState('');
+  const [guaranteeTitle, setGuaranteeTitle] = useState('');
+  const [guaranteeTag, setGuaranteeTag] = useState('');
+  const [guaranteeHeadline, setGuaranteeHeadline] = useState('');
+  const [guaranteeDesc, setGuaranteeDesc] = useState('');
 
   const [pillars, setPillars] = useState<PillarItem[]>([]);
 
@@ -62,7 +62,7 @@ export function BrandsPillarsSection({
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.description) setDescription(initialData.description);
 
-      const sideImg = initialData.image || initialData.sideImage;
+      const sideImg = initialData.image;
       if (sideImg) setImages([sideImg]);
 
       if (initialData.verifiedBadge) setVerifiedBadge(initialData.verifiedBadge);
@@ -71,7 +71,7 @@ export function BrandsPillarsSection({
       if (initialData.guaranteeHeadline) setGuaranteeHeadline(initialData.guaranteeHeadline);
       if (initialData.guaranteeDesc) setGuaranteeDesc(initialData.guaranteeDesc);
 
-      const loadedPillars = initialData.pillars || initialData.items;
+      const loadedPillars = initialData.pillars;
       if (Array.isArray(loadedPillars)) {
         setPillars(loadedPillars);
       }
@@ -85,12 +85,12 @@ export function BrandsPillarsSection({
   };
 
   const handleAddPillar = () => {
-    setPillars([...pillars, { title: "", description: "", icon: "ShieldCheck" }]);
+    setPillars([...pillars, { title: '', description: '', icon: 'ShieldCheck' }]);
   };
 
   const handleRemovePillar = (index: number) => {
     if (pillars.length <= 1) {
-      toast.error("At least one pillar is required.");
+      toast.error('At least one pillar is required.');
       return;
     }
     setPillars(pillars.filter((_, idx) => idx !== index));
@@ -101,10 +101,10 @@ export function BrandsPillarsSection({
     setSaved(false);
     try {
       const validImages = images.filter((img): img is File | string => !!img);
-      let sideImageUrl = "";
+      let sideImageUrl = '';
       if (validImages.length > 0) {
         const [uploaded] = await uploadFiles(validImages);
-        sideImageUrl = uploaded || "";
+        sideImageUrl = uploaded || '';
       }
 
       const payload = {
@@ -121,23 +121,26 @@ export function BrandsPillarsSection({
         pillars,
       };
 
-      const res = await fetch("/api/brands", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "BrandsPillarsSection", content: payload }),
+      const res = await fetch('/api/brands', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          section: 'BrandsPillarsSection',
+          content: payload,
+        }),
       });
 
       const json = await res.json();
       if (json.success) {
         setSaved(true);
         if (sideImageUrl) setImages([sideImageUrl]);
-        toast.success("Brand Value Pillars saved successfully");
+        toast.success('Brand Value Pillars saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Pillars section");
+      toast.error('Error saving Pillars section');
     } finally {
       setLoading(false);
     }
@@ -155,7 +158,7 @@ export function BrandsPillarsSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -276,14 +279,14 @@ export function BrandsPillarsSection({
                       <InputField
                         label="Pillar Title"
                         value={pillar.title}
-                        onChange={(e) => handlePillarChange(index, "title", e.target.value)}
+                        onChange={(e) => handlePillarChange(index, 'title', e.target.value)}
                         placeholder="Refinery-Direct Authenticity"
                       />
                       <div className="flex flex-col gap-1">
                         <label className="text-xs font-semibold text-gray-600">Icon</label>
                         <select
                           value={pillar.icon}
-                          onChange={(e) => handlePillarChange(index, "icon", e.target.value)}
+                          onChange={(e) => handlePillarChange(index, 'icon', e.target.value)}
                           className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0C356A]/20"
                         >
                           {ICON_OPTIONS.map((ic) => (
@@ -298,7 +301,7 @@ export function BrandsPillarsSection({
                     <TextAreaField
                       label="Description"
                       value={pillar.description}
-                      onChange={(e) => handlePillarChange(index, "description", e.target.value)}
+                      onChange={(e) => handlePillarChange(index, 'description', e.target.value)}
                       rows={2}
                       placeholder="Summary of this pillar..."
                     />

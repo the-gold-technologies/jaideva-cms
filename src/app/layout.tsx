@@ -1,32 +1,32 @@
-import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import "./globals.css";
-import "@/styles/quill-custom.css";
-import { auth } from "@/auth";
-import { SessionProvider } from "next-auth/react";
-import { AdminSidebar } from "@/app/components/Sidebar";
-import { Toaster } from "react-hot-toast";
+import type { Metadata } from 'next';
+import { Inter, Playfair_Display } from 'next/font/google';
+import './globals.css';
+import '@/styles/quill-custom.css';
+import { auth } from '@/auth';
+import { SessionProvider } from 'next-auth/react';
+import { AdminSidebar } from '@/app/components/Sidebar';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  subsets: ['latin'],
+  variable: '--font-inter',
 });
 
 const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
+  subsets: ['latin'],
+  variable: '--font-playfair',
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Jai Deva Oil Co. CMS",
-    template: "%s | Jai Deva Oil Co. CMS",
+    default: 'Jai Deva Oil Co. CMS',
+    template: '%s | Jai Deva Oil Co. CMS',
   },
-  description: "Manage your Jai Deva Oil Co. lubricant catalog, pages, and distributor leads",
+  description: 'Manage your Jai Deva Oil Co. lubricant catalog, pages, and distributor leads',
   icons: {
-    icon: "/jaideva-logo.png",
-    shortcut: "/jaideva-logo.png",
-    apple: "/jaideva-logo.png",
+    icon: '/jaideva-logo.png',
+    shortcut: '/jaideva-logo.png',
+    apple: '/jaideva-logo.png',
   },
 };
 
@@ -59,19 +59,19 @@ export default async function RootLayout({
           position="top-right"
           toastOptions={{
             duration: 4000,
-            style: { fontFamily: "var(--font-inter)", fontSize: "14px" },
+            style: { fontFamily: 'var(--font-inter)', fontSize: '14px' },
             error: {
               style: {
-                background: "#fff0f0",
-                color: "#b91c1c",
-                border: "1px solid #fecaca",
+                background: '#fff0f0',
+                color: '#b91c1c',
+                border: '1px solid #fecaca',
               },
             },
             success: {
               style: {
-                background: "#f0fdf4",
-                color: "#15803d",
-                border: "1px solid #bbf7d0",
+                background: '#f0fdf4',
+                color: '#15803d',
+                border: '1px solid #bbf7d0',
               },
             },
           }}

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import {
   LayoutDashboard,
   Settings,
@@ -13,9 +13,9 @@ import {
   ChevronDown,
   LogOut,
   Globe,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import { signOut } from "next-auth/react";
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { signOut } from 'next-auth/react';
 
 type SidebarLink = {
   title: string;
@@ -27,54 +27,54 @@ type SidebarLink = {
 
 const sidebarLinks: SidebarLink[] = [
   {
-    title: "Dashboard",
-    href: "/",
+    title: 'Dashboard',
+    href: '/',
     icon: LayoutDashboard,
   },
   {
-    title: "Navigation & Links",
+    title: 'Navigation & Links',
     icon: Compass,
     sublinks: [
-      { title: "Menu Links", href: "/navigation/menu-links" },
-      { title: "Footer & Socials", href: "/navigation/social-media" },
+      { title: 'Menu Links', href: '/navigation/menu-links' },
+      { title: 'Footer & Socials', href: '/navigation/social-media' },
     ],
   },
   {
-    title: "Pages",
+    title: 'Pages',
     icon: BookOpen,
     sublinks: [
-      { title: "Home", href: "/static-pages/home" },
-      { title: "About Us", href: "/static-pages/about-us" },
-      { title: "Brands", href: "/static-pages/brands" },
-      { title: "Industries", href: "/static-pages/industries" },
-      { title: "Products", href: "/static-pages/products" },
-      { title: "Events", href: "/static-pages/events" },
-      { title: "Blogs", href: "/static-pages/blogs" },
-      { title: "Contact", href: "/static-pages/contact-us" },
-      { title: "Privacy Policy", href: "/static-pages/privacy-policy" },
+      { title: 'Home', href: '/static-pages/home' },
+      { title: 'About Us', href: '/static-pages/about-us' },
+      { title: 'Brands', href: '/static-pages/brands' },
+      { title: 'Industries', href: '/static-pages/industries' },
+      { title: 'Products', href: '/static-pages/products' },
+      { title: 'Events', href: '/static-pages/events' },
+      { title: 'Blogs', href: '/static-pages/blogs' },
+      { title: 'Contact', href: '/static-pages/contact-us' },
+      { title: 'Privacy Policy', href: '/static-pages/privacy-policy' },
     ],
   },
   {
-    title: "Submissions",
+    title: 'Submissions',
     icon: Layers,
     sublinks: [
-      { title: "Enquiries", href: "/submissions/enquiries" },
-      { title: "Distributor Leads", href: "/submissions/distributor-leads" },
+      { title: 'Enquiries', href: '/submissions/enquiries' },
+      { title: 'Distributor Leads', href: '/submissions/distributor-leads' },
     ],
   },
   {
-    title: "SEO Management",
+    title: 'SEO Management',
     icon: Globe,
     sublinks: [
-      { title: "Global Settings", href: "/seo/global" },
-      { title: "Page Settings", href: "/seo/pages" },
-      { title: "Sitemap & Robots", href: "/seo/sitemap-robots" },
+      { title: 'Global Settings', href: '/seo/global' },
+      { title: 'Page Settings', href: '/seo/pages' },
+      { title: 'Sitemap & Robots', href: '/seo/sitemap-robots' },
     ],
   },
   {
-    title: "Settings",
+    title: 'Settings',
     icon: Settings,
-    sublinks: [{ title: "Profile", href: "/settings/profile" }],
+    sublinks: [{ title: 'Profile', href: '/settings/profile' }],
   },
 ];
 
@@ -83,17 +83,13 @@ export function AdminSidebar() {
 
   const [openGroups, setOpenGroups] = useState<string[]>(() => {
     return sidebarLinks
-      .filter((item) =>
-        item.sublinks?.some((sublink) => pathname.startsWith(sublink.href)),
-      )
+      .filter((item) => item.sublinks?.some((sublink) => pathname.startsWith(sublink.href)))
       .map((item) => item.title);
   });
 
   useEffect(() => {
     const activeGroups = sidebarLinks
-      .filter((item) =>
-        item.sublinks?.some((sublink) => pathname.startsWith(sublink.href)),
-      )
+      .filter((item) => item.sublinks?.some((sublink) => pathname.startsWith(sublink.href)))
       .map((item) => item.title);
 
     setOpenGroups((prev) => {
@@ -109,7 +105,7 @@ export function AdminSidebar() {
 
   const toggleGroup = (title: string) => {
     setOpenGroups((prev) =>
-      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title],
+      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title]
     );
   };
 
@@ -117,10 +113,7 @@ export function AdminSidebar() {
     <div className="flex h-full w-[280px] flex-col bg-[#0a192f] text-white overflow-hidden rounded-l-[2.5rem] border-l border-white/5 shrink-0">
       {/* Logo Area */}
       <div className="flex h-24 items-center px-8">
-        <Link
-          href="/"
-          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-        >
+        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center text-[#0a192f] font-black italic shadow-sm text-lg">
             J
           </div>
@@ -150,8 +143,8 @@ export function AdminSidebar() {
                     </div>
                     <ChevronDown
                       className={cn(
-                        "w-3.5 h-3.5 text-gray-500 transition-transform group-hover:text-gray-300",
-                        isOpen ? "rotate-180" : "",
+                        'w-3.5 h-3.5 text-gray-500 transition-transform group-hover:text-gray-300',
+                        isOpen ? 'rotate-180' : ''
                       )}
                     />
                   </div>
@@ -164,10 +157,10 @@ export function AdminSidebar() {
                             key={subIndex}
                             href={sublink.href}
                             className={cn(
-                              "block px-4 py-2.5 rounded-2xl text-[13px] font-medium transition-all duration-200",
+                              'block px-4 py-2.5 rounded-2xl text-[13px] font-medium transition-all duration-200',
                               isSubActive
-                                ? "bg-[#C86218] text-white shadow-sm shadow-[#C86218]/25 transform scale-[1.02]"
-                                : "text-gray-400 hover:bg-white/5 hover:text-white",
+                                ? 'bg-[#C86218] text-white shadow-sm shadow-[#C86218]/25 transform scale-[1.02]'
+                                : 'text-gray-400 hover:bg-white/5 hover:text-white'
                             )}
                           >
                             {sublink.title}
@@ -185,18 +178,15 @@ export function AdminSidebar() {
                 key={index}
                 href={item.href!}
                 className={cn(
-                  "flex items-center justify-between px-4 py-3 rounded-2xl text-[14px] font-medium transition-all duration-200 mt-2",
+                  'flex items-center justify-between px-4 py-3 rounded-2xl text-[14px] font-medium transition-all duration-200 mt-2',
                   isActive
-                    ? "bg-[#C86218] text-white shadow-sm shadow-[#C86218]/25 transform scale-[1.02]"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white",
+                    ? 'bg-[#C86218] text-white shadow-sm shadow-[#C86218]/25 transform scale-[1.02]'
+                    : 'text-gray-400 hover:bg-white/5 hover:text-white'
                 )}
               >
                 <div className="flex items-center gap-4">
                   <item.icon
-                    className={cn(
-                      "w-5 h-5",
-                      isActive ? "text-white" : "text-gray-400",
-                    )}
+                    className={cn('w-5 h-5', isActive ? 'text-white' : 'text-gray-400')}
                     strokeWidth={isActive ? 2.5 : 2}
                   />
                   {item.title}
@@ -215,7 +205,7 @@ export function AdminSidebar() {
       {/* Logout Button */}
       <div className="px-6 pb-8 border-t border-gray-800 pt-6">
         <button
-          onClick={() => signOut({ callbackUrl: "/login" })}
+          onClick={() => signOut({ callbackUrl: '/login' })}
           className="flex items-center gap-4 w-full px-4 py-3 rounded-2xl text-[14px] font-medium text-gray-400 hover:bg-red-500/10 hover:text-red-500 transition-all duration-200 cursor-pointer"
         >
           <LogOut className="w-5 h-5" />

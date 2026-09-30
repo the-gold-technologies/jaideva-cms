@@ -1,1 +1,1 @@
-export * from "@/app/components/AdminRightSidebar";
+export * from '@/app/components/AdminRightSidebar';

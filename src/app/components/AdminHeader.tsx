@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef } from "react";
-import { Search, FileText, Compass, Settings, Shield, Inbox, X, Package } from "lucide-react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect, useRef } from 'react';
+import { Search, FileText, Compass, Settings, Shield, Inbox, X, Package } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 interface SearchItem {
   title: string;
@@ -13,28 +13,63 @@ interface SearchItem {
 }
 
 const STATIC_SEARCH_ITEMS: SearchItem[] = [
-  { title: "Home Page Editor", category: "Pages", url: "/static-pages/home", icon: FileText },
-  { title: "About Us Editor", category: "Pages", url: "/static-pages/about-us", icon: FileText },
-  { title: "Products Catalog", category: "Pages", url: "/static-pages/products", icon: Package },
-  { title: "Events & Expos Editor", category: "Pages", url: "/static-pages/events", icon: FileText },
-  { title: "Technical Blogs Editor", category: "Pages", url: "/static-pages/blogs", icon: FileText },
-  { title: "Contact & Regional Depots", category: "Pages", url: "/static-pages/contact-us", icon: FileText },
-  { title: "Menu Links Navigation", category: "Navigation", url: "/navigation/menu-links", icon: Compass },
-  { title: "Social Media Navigation", category: "Navigation", url: "/navigation/social-media", icon: Compass },
-  { title: "Global SEO Settings", category: "SEO", url: "/seo/global", icon: Shield },
-  { title: "Page SEO Settings", category: "SEO", url: "/seo/pages", icon: Shield },
-  { title: "Sitemap & Robots.txt", category: "SEO", url: "/seo/sitemap-robots", icon: Shield },
-  { title: "Enquiries Submissions", category: "Submissions", url: "/submissions/enquiries", icon: Inbox },
-  { title: "Distributor Applications", category: "Submissions", url: "/submissions/distributor-leads", icon: Inbox },
-  { title: "Profile Settings", category: "Settings", url: "/settings/profile", icon: Settings },
+  { title: 'Home Page Editor', category: 'Pages', url: '/static-pages/home', icon: FileText },
+  { title: 'About Us Editor', category: 'Pages', url: '/static-pages/about-us', icon: FileText },
+  { title: 'Products Catalog', category: 'Pages', url: '/static-pages/products', icon: Package },
+  {
+    title: 'Events & Expos Editor',
+    category: 'Pages',
+    url: '/static-pages/events',
+    icon: FileText,
+  },
+  {
+    title: 'Technical Blogs Editor',
+    category: 'Pages',
+    url: '/static-pages/blogs',
+    icon: FileText,
+  },
+  {
+    title: 'Contact & Regional Depots',
+    category: 'Pages',
+    url: '/static-pages/contact-us',
+    icon: FileText,
+  },
+  {
+    title: 'Menu Links Navigation',
+    category: 'Navigation',
+    url: '/navigation/menu-links',
+    icon: Compass,
+  },
+  {
+    title: 'Social Media Navigation',
+    category: 'Navigation',
+    url: '/navigation/social-media',
+    icon: Compass,
+  },
+  { title: 'Global SEO Settings', category: 'SEO', url: '/seo/global', icon: Shield },
+  { title: 'Page SEO Settings', category: 'SEO', url: '/seo/pages', icon: Shield },
+  { title: 'Sitemap & Robots.txt', category: 'SEO', url: '/seo/sitemap-robots', icon: Shield },
+  {
+    title: 'Enquiries Submissions',
+    category: 'Submissions',
+    url: '/submissions/enquiries',
+    icon: Inbox,
+  },
+  {
+    title: 'Distributor Applications',
+    category: 'Submissions',
+    url: '/submissions/distributor-leads',
+    icon: Inbox,
+  },
+  { title: 'Profile Settings', category: 'Settings', url: '/settings/profile', icon: Settings },
 ];
 
 export function AdminHeader() {
   const { data: session } = useSession();
-  const userName = session?.user?.name || "Admin";
+  const userName = session?.user?.name || 'Admin';
   const router = useRouter();
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<SearchItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -48,8 +83,7 @@ export function AdminHeader() {
     const query = searchQuery.toLowerCase();
     const filtered = STATIC_SEARCH_ITEMS.filter(
       (item) =>
-        item.title.toLowerCase().includes(query) ||
-        item.category.toLowerCase().includes(query)
+        item.title.toLowerCase().includes(query) || item.category.toLowerCase().includes(query)
     );
     setResults(filtered);
   }, [searchQuery]);
@@ -60,8 +94,8 @@ export function AdminHeader() {
         setIsOpen(false);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   return (
@@ -69,9 +103,7 @@ export function AdminHeader() {
       <header className="flex justify-between items-center w-full">
         <h1 className="text-[28px] font-bold tracking-tight text-[#0C356A] flex items-center gap-2">
           Welcome back <span className="text-[#C86218]">{userName}</span>
-          <span className="text-2xl animate-bounce origin-bottom-right delay-700">
-            👋
-          </span>
+          <span className="text-2xl animate-bounce origin-bottom-right delay-700">👋</span>
         </h1>
 
         <div className="h-10 w-10 rounded-full border-2 border-white shadow-sm overflow-hidden bg-gray-100 flex items-center justify-center">
@@ -101,7 +133,7 @@ export function AdminHeader() {
           {searchQuery && (
             <button
               onClick={() => {
-                setSearchQuery("");
+                setSearchQuery('');
                 setIsOpen(false);
               }}
               className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
@@ -132,9 +164,7 @@ export function AdminHeader() {
                         <item.icon className="w-4 h-4" />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-[13px] font-bold text-gray-800">
-                          {item.title}
-                        </span>
+                        <span className="text-[13px] font-bold text-gray-800">{item.title}</span>
                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
                           {item.category}
                         </span>

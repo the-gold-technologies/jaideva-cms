@@ -1,26 +1,18 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
-import { PageHeader } from "@/components/PageHeader";
-import { SaveButton } from "@/components/SaveButton";
-import {
-  Globe,
-  FileText,
-  CheckCircle2,
-  ExternalLink,
-  Upload,
-  X,
-  FileCode,
-} from "lucide-react";
-import toast from "react-hot-toast";
+import React, { useState, useEffect, useRef } from 'react';
+import { PageHeader } from '@/components/PageHeader';
+import { SaveButton } from '@/components/SaveButton';
+import { Globe, FileText, CheckCircle2, ExternalLink, Upload, X, FileCode } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function SitemapRobotsPage() {
   const [sitemapEnabled, setSitemapEnabled] = useState(true);
   const [robotsTxt, setRobotsTxt] = useState(
-    "User-agent: *\nAllow: /\n\nSitemap: https://jaidevaoil.com/sitemap.xml",
+    'User-agent: *\nAllow: /\n\nSitemap: https://jaidevaoil.com/sitemap.xml'
   );
-  const [customSitemapFileName, setCustomSitemapFileName] = useState("");
-  const [sitemapCustomContent, setSitemapCustomContent] = useState("");
+  const [customSitemapFileName, setCustomSitemapFileName] = useState('');
+  const [sitemapCustomContent, setSitemapCustomContent] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -30,7 +22,7 @@ export default function SitemapRobotsPage() {
   useEffect(() => {
     async function loadConfig() {
       try {
-        const res = await fetch("/api/seo");
+        const res = await fetch('/api/seo');
         const json = await res.json();
         if (json.success && json.data) {
           if (json.data.sitemapEnabled !== undefined) {
@@ -41,12 +33,12 @@ export default function SitemapRobotsPage() {
           }
           if (json.data.sitemapCustomContent) {
             setSitemapCustomContent(json.data.sitemapCustomContent);
-            setCustomSitemapFileName("custom-sitemap.xml");
+            setCustomSitemapFileName('custom-sitemap.xml');
           }
         }
       } catch (err) {
-        console.error("Failed to load sitemap/robots config:", err);
-        toast.error("Failed to load sitemap settings");
+        console.error('Failed to load sitemap/robots config:', err);
+        toast.error('Failed to load sitemap settings');
       } finally {
         setIsLoading(false);
       }
@@ -56,11 +48,11 @@ export default function SitemapRobotsPage() {
 
   const handleSave = async () => {
     setIsSaving(true);
-    const tid = toast.loading("Saving Sitemap & Robots.txt rules...");
+    const tid = toast.loading('Saving Sitemap & Robots.txt rules...');
     try {
-      const res = await fetch("/api/seo", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/seo', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           sitemapEnabled,
           robotsTxt,
@@ -70,15 +62,15 @@ export default function SitemapRobotsPage() {
 
       const json = await res.json();
       if (json.success) {
-        toast.success("Sitemap & Robots.txt settings saved successfully!", {
+        toast.success('Sitemap & Robots.txt settings saved successfully!', {
           id: tid,
         });
       } else {
-        toast.error(json.error || "Failed to save directives", { id: tid });
+        toast.error(json.error || 'Failed to save directives', { id: tid });
       }
     } catch (err: any) {
-      console.error("Error saving sitemap:", err);
-      toast.error(err?.message || "Network error while saving", { id: tid });
+      console.error('Error saving sitemap:', err);
+      toast.error(err?.message || 'Network error while saving', { id: tid });
     } finally {
       setIsSaving(false);
     }
@@ -90,23 +82,23 @@ export default function SitemapRobotsPage() {
     if (!file) return;
 
     if (
-      !file.name.endsWith(".xml") &&
-      file.type !== "text/xml" &&
-      file.type !== "application/xml"
+      !file.name.endsWith('.xml') &&
+      file.type !== 'text/xml' &&
+      file.type !== 'application/xml'
     ) {
-      toast.error("Please upload a valid .XML file");
+      toast.error('Please upload a valid .XML file');
       return;
     }
 
     const reader = new FileReader();
     reader.onload = (evt) => {
-      const text = (evt.target?.result as string) || "";
+      const text = (evt.target?.result as string) || '';
       setSitemapCustomContent(text);
       setCustomSitemapFileName(file.name);
       toast.success(`${file.name} imported successfully!`);
     };
     reader.readAsText(file);
-    if (xmlInputRef.current) xmlInputRef.current.value = "";
+    if (xmlInputRef.current) xmlInputRef.current.value = '';
   };
 
   // Handle TXT robots upload
@@ -116,18 +108,18 @@ export default function SitemapRobotsPage() {
 
     const reader = new FileReader();
     reader.onload = (evt) => {
-      const text = (evt.target?.result as string) || "";
+      const text = (evt.target?.result as string) || '';
       setRobotsTxt(text);
       toast.success(`${file.name} imported into Robots.txt editor!`);
     };
     reader.readAsText(file);
-    if (txtInputRef.current) txtInputRef.current.value = "";
+    if (txtInputRef.current) txtInputRef.current.value = '';
   };
 
   const clearCustomXml = () => {
-    setSitemapCustomContent("");
-    setCustomSitemapFileName("");
-    toast.success("Custom XML sitemap removed, using auto-generated version.");
+    setSitemapCustomContent('');
+    setCustomSitemapFileName('');
+    toast.success('Custom XML sitemap removed, using auto-generated version.');
   };
 
   if (isLoading) {
@@ -142,11 +134,10 @@ export default function SitemapRobotsPage() {
 
   const websiteBaseUrl =
     process.env.NEXT_PUBLIC_WEBSITE_URL ||
-    (typeof window !== "undefined" &&
-    (window.location.hostname === "localhost" ||
-      window.location.hostname === "127.0.0.1")
-      ? "http://localhost:3000"
-      : "https://jaidevaoil.com");
+    (typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:3000'
+      : 'https://jaidevaoil.com');
 
   return (
     <div className="flex flex-col gap-8 max-w-6xl mx-auto pb-24 animate-in fade-in duration-500">
@@ -157,11 +148,7 @@ export default function SitemapRobotsPage() {
           description="Configure search engine crawler visibility, robots rules, and dynamic sitemap options."
         />
         <div className="mb-2 shrink-0">
-          <SaveButton
-            onClick={handleSave}
-            disabled={isSaving}
-            className="w-auto px-10"
-          />
+          <SaveButton onClick={handleSave} disabled={isSaving} className="w-auto px-10" />
         </div>
       </div>
 
@@ -172,8 +159,8 @@ export default function SitemapRobotsPage() {
             LIVE SEO ENDPOINTS
           </span>
           <p className="text-xs text-gray-500 mt-1 font-normal">
-            These are crawled automatically by search bots like Googlebot. Click
-            below to inspect your live files:
+            These are crawled automatically by search bots like Googlebot. Click below to inspect
+            your live files:
           </p>
         </div>
 
@@ -211,13 +198,10 @@ export default function SitemapRobotsPage() {
             <Globe className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-[#0B0F29]">
-              Sitemap Options
-            </h2>
+            <h2 className="text-xl font-bold text-[#0B0F29]">Sitemap Options</h2>
             <p className="text-xs text-slate-400 mt-0.5">
-              A sitemap tells search engines which pages and files you think are
-              important in your site, and provides valuable information about
-              them.
+              A sitemap tells search engines which pages and files you think are important in your
+              site, and provides valuable information about them.
             </p>
           </div>
         </div>
@@ -225,12 +209,9 @@ export default function SitemapRobotsPage() {
         {/* Option 1: Generate sitemap.xml Toggle */}
         <div className="bg-slate-50/70 p-5 rounded-2xl border border-slate-100 flex items-center justify-between gap-4">
           <div>
-            <h3 className="text-sm font-bold text-slate-900">
-              Generate sitemap.xml
-            </h3>
+            <h3 className="text-sm font-bold text-slate-900">Generate sitemap.xml</h3>
             <p className="text-xs text-slate-400 mt-0.5">
-              Automatically compiles static links and published blogs into a
-              sitemap format.
+              Automatically compiles static links and published blogs into a sitemap format.
             </p>
           </div>
 
@@ -248,12 +229,9 @@ export default function SitemapRobotsPage() {
         {/* Option 2: Custom Sitemap XML File Upload */}
         <div className="bg-slate-50/70 p-5 rounded-2xl border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h3 className="text-sm font-bold text-slate-900">
-              Custom Sitemap XML File
-            </h3>
+            <h3 className="text-sm font-bold text-slate-900">Custom Sitemap XML File</h3>
             <p className="text-xs text-slate-400 mt-0.5">
-              Upload a custom XML sitemap to override the automatically
-              generated version.
+              Upload a custom XML sitemap to override the automatically generated version.
             </p>
           </div>
 
@@ -269,9 +247,7 @@ export default function SitemapRobotsPage() {
             {customSitemapFileName ? (
               <div className="flex items-center gap-2 px-3.5 py-2 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-xl text-xs font-semibold">
                 <FileCode className="w-4 h-4 text-emerald-600" />
-                <span className="truncate max-w-[140px]">
-                  {customSitemapFileName}
-                </span>
+                <span className="truncate max-w-[140px]">{customSitemapFileName}</span>
                 <button
                   type="button"
                   onClick={clearCustomXml}
@@ -303,9 +279,7 @@ export default function SitemapRobotsPage() {
               <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-[#0B0F29]">
-                Robots.txt Rules
-              </h2>
+              <h2 className="text-xl font-bold text-[#0B0F29]">Robots.txt Rules</h2>
             </div>
           </div>
 
@@ -329,16 +303,13 @@ export default function SitemapRobotsPage() {
         </div>
 
         <p className="text-xs text-slate-400 -mt-2">
-          Robots.txt file tells search engine crawlers which URLs the crawler
-          can access on your site. This is used mainly to avoid overloading your
-          site with requests.
+          Robots.txt file tells search engine crawlers which URLs the crawler can access on your
+          site. This is used mainly to avoid overloading your site with requests.
         </p>
 
         {/* Textarea Label & Editor */}
         <div className="flex flex-col gap-2">
-          <label className="text-xs font-bold text-slate-700 lowercase">
-            robots.txt rules
-          </label>
+          <label className="text-xs font-bold text-slate-700 lowercase">robots.txt rules</label>
           <textarea
             value={robotsTxt}
             onChange={(e) => setRobotsTxt(e.target.value)}

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
+import React, { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/PageHeader';
 import {
   IndustriesHeroSection,
   IndustryStageSection,
@@ -9,7 +9,7 @@ import {
   MachineryFeatureSection,
   PlantProcessSection,
   IndustriesConsultationCTA,
-} from "./components";
+} from './components';
 
 export default function IndustriesPageEditor() {
   const [industriesData, setIndustriesData] = useState<any>(null);
@@ -22,13 +22,13 @@ export default function IndustriesPageEditor() {
   useEffect(() => {
     async function loadIndustriesData() {
       try {
-        const res = await fetch("/api/industries");
+        const res = await fetch('/api/industries');
         const json = await res.json();
         if (json.success && json.data) {
           setIndustriesData(json.data);
         }
       } catch (err) {
-        console.error("Failed to load industries page data:", err);
+        console.error('Failed to load industries page data:', err);
       }
     }
     loadIndustriesData();
@@ -44,43 +44,43 @@ export default function IndustriesPageEditor() {
       {/* 1. Hero */}
       <IndustriesHeroSection
         initialData={industriesData?.IndustriesHero}
-        isOpen={openSection === "hero"}
-        onToggle={() => toggleSection("hero")}
+        isOpen={openSection === 'hero'}
+        onToggle={() => toggleSection('hero')}
       />
 
       {/* 2. Sector Lubrication Stages */}
       <IndustryStageSection
         initialData={industriesData?.IndustryStageSection}
-        isOpen={openSection === "stage"}
-        onToggle={() => toggleSection("stage")}
+        isOpen={openSection === 'stage'}
+        onToggle={() => toggleSection('stage')}
       />
 
       {/* 3. Less You Burn Impact */}
       <LessYouBurnImpactSection
         initialData={industriesData?.LessYouBurnImpactSection}
-        isOpen={openSection === "impact"}
-        onToggle={() => toggleSection("impact")}
+        isOpen={openSection === 'impact'}
+        onToggle={() => toggleSection('impact')}
       />
 
       {/* 4. Critical Plant Machinery Deep-Dive */}
       <MachineryFeatureSection
         initialData={industriesData?.MachineryFeatureSection}
-        isOpen={openSection === "machinery"}
-        onToggle={() => toggleSection("machinery")}
+        isOpen={openSection === 'machinery'}
+        onToggle={() => toggleSection('machinery')}
       />
 
       {/* 5. 01-04 Workflow */}
       <PlantProcessSection
         initialData={industriesData?.PlantProcessSection}
-        isOpen={openSection === "process"}
-        onToggle={() => toggleSection("process")}
+        isOpen={openSection === 'process'}
+        onToggle={() => toggleSection('process')}
       />
 
       {/* 6. Technical Consultation CTA */}
       <IndustriesConsultationCTA
         initialData={industriesData?.IndustriesConsultationCTA}
-        isOpen={openSection === "cta"}
-        onToggle={() => toggleSection("cta")}
+        isOpen={openSection === 'cta'}
+        onToggle={() => toggleSection('cta')}
       />
     </section>
   );

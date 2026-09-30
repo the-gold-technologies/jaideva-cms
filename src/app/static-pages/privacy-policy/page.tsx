@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
-import { SaveButton } from "@/components/SaveButton";
-import { InputField } from "@/components/InputField";
-import { RichTextEditor } from "@/components/RichTextEditor";
-import { ShieldCheck, FileText, Calendar, Eye, Sparkles } from "lucide-react";
-import toast from "react-hot-toast";
+import React, { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/PageHeader';
+import { SaveButton } from '@/components/SaveButton';
+import { InputField } from '@/components/InputField';
+import { RichTextEditor } from '@/components/RichTextEditor';
+import { ShieldCheck, FileText } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 export default function PrivacyPolicyAdminPage() {
-  const [title, setTitle] = useState("Privacy Policy");
-  const [lastUpdated, setLastUpdated] = useState("August 2026");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [lastUpdated, setLastUpdated] = useState('');
+  const [content, setContent] = useState('');
   const [isPublished, setIsPublished] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -19,18 +19,18 @@ export default function PrivacyPolicyAdminPage() {
   useEffect(() => {
     async function loadPrivacyPolicy() {
       try {
-        const res = await fetch("/api/privacy-policy");
+        const res = await fetch('/api/privacy-policy');
         const json = await res.json();
         if (json.success && json.data) {
           const data = json.data;
-          setTitle(data.title || "Privacy Policy");
-          setLastUpdated(data.lastUpdated || "August 2026");
-          setContent(data.content || "");
+          setTitle(data.title || 'Privacy Policy');
+          setLastUpdated(data.lastUpdated || 'August 2026');
+          setContent(data.content || '');
           setIsPublished(data.isPublished ?? true);
         }
       } catch (err) {
-        console.error("Failed to load privacy policy:", err);
-        toast.error("Failed to load Privacy Policy");
+        console.error('Failed to load privacy policy:', err);
+        toast.error('Failed to load Privacy Policy');
       } finally {
         setIsLoading(false);
       }
@@ -40,11 +40,11 @@ export default function PrivacyPolicyAdminPage() {
 
   const handleSave = async () => {
     setIsSaving(true);
-    const tid = toast.loading("Saving Privacy Policy...");
+    const tid = toast.loading('Saving Privacy Policy...');
     try {
-      const res = await fetch("/api/privacy-policy", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/privacy-policy', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title,
           lastUpdated,
@@ -55,13 +55,13 @@ export default function PrivacyPolicyAdminPage() {
 
       const json = await res.json();
       if (json.success) {
-        toast.success("Privacy Policy saved successfully!", { id: tid });
+        toast.success('Privacy Policy saved successfully!', { id: tid });
       } else {
-        toast.error(json.error || "Failed to save Privacy Policy", { id: tid });
+        toast.error(json.error || 'Failed to save Privacy Policy', { id: tid });
       }
     } catch (err) {
-      console.error("Error saving privacy policy:", err);
-      toast.error("Network error while saving.", { id: tid });
+      console.error('Error saving privacy policy:', err);
+      toast.error('Network error while saving.', { id: tid });
     } finally {
       setIsSaving(false);
     }
@@ -86,11 +86,7 @@ export default function PrivacyPolicyAdminPage() {
           description="Create and customize your legal Privacy Policy statement and terms."
         />
         <div className="mb-2 shrink-0">
-          <SaveButton
-            onClick={handleSave}
-            disabled={isSaving}
-            className="w-auto px-10"
-          />
+          <SaveButton onClick={handleSave} disabled={isSaving} className="w-auto px-10" />
         </div>
       </div>
 
@@ -105,9 +101,7 @@ export default function PrivacyPolicyAdminPage() {
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-[#0B0F29]">
-                  Document Heading & Identity
-                </h2>
+                <h2 className="text-lg font-bold text-[#0B0F29]">Document Heading & Identity</h2>
                 <p className="text-xs text-slate-400">
                   Set the main page header and last updated revision timestamp.
                 </p>
@@ -141,9 +135,7 @@ export default function PrivacyPolicyAdminPage() {
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-[#0B0F29]">
-                    Policy Body Content
-                  </h2>
+                  <h2 className="text-lg font-bold text-[#0B0F29]">Policy Body Content</h2>
                   <p className="text-xs text-slate-400">
                     Use rich formatting, headings, bullet lists, quotes, and image insertion.
                   </p>
@@ -174,12 +166,8 @@ export default function PrivacyPolicyAdminPage() {
 
             <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
               <div className="flex flex-col">
-                <span className="text-xs font-bold text-slate-800">
-                  Published on Website
-                </span>
-                <span className="text-[11px] text-slate-400">
-                  Visible at /privacy-policy
-                </span>
+                <span className="text-xs font-bold text-slate-800">Published on Website</span>
+                <span className="text-[11px] text-slate-400">Visible at /privacy-policy</span>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input

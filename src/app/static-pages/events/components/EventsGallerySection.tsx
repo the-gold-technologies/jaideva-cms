@@ -1,17 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Upload,
-  Trash2,
-  Image as ImageIcon,
-  CloudUpload,
-  FileCheck,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect, useRef } from 'react';
+import { Upload, Trash2, CloudUpload } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 export interface GalleryItem {
   id: number | string;
@@ -25,10 +19,7 @@ interface EventsGallerySectionProps {
   onSave?: (data: { galleryItems: any[] }) => Promise<boolean | void>;
 }
 
-export function EventsGallerySection({
-  initialData,
-  onSave,
-}: EventsGallerySectionProps) {
+export function EventsGallerySection({ initialData, onSave }: EventsGallerySectionProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -43,21 +34,17 @@ export function EventsGallerySection({
 
   const handleFilesSelected = (files: FileList | File[]) => {
     const fileArray = Array.from(files).filter(
-      (file) =>
-        file.type.startsWith("image/") ||
-        file.name.match(/\.(jpg|jpeg|png|webp|avif)$/i)
+      (file) => file.type.startsWith('image/') || file.name.match(/\.(jpg|jpeg|png|webp|avif)$/i)
     );
 
     if (fileArray.length === 0) {
-      toast.error("Please select valid image files");
+      toast.error('Please select valid image files');
       return;
     }
 
     const newItems: GalleryItem[] = fileArray.map((file) => {
       // Clean filename for default title
-      const cleanTitle = file.name
-        .replace(/\.[^/.]+$/, "")
-        .replace(/[-_]+/g, " ");
+      const cleanTitle = file.name.replace(/\.[^/.]+$/, '').replace(/[-_]+/g, ' ');
 
       return {
         id: `temp-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
@@ -68,7 +55,7 @@ export function EventsGallerySection({
     });
 
     setGallery((prev) => [...newItems, ...prev]);
-    toast.success(`Added ${newItems.length} photo${newItems.length > 1 ? "s" : ""} to gallery`);
+    toast.success(`Added ${newItems.length} photo${newItems.length > 1 ? 's' : ''} to gallery`);
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -79,11 +66,7 @@ export function EventsGallerySection({
     }
   };
 
-  const handleUpdateItem = (
-    index: number,
-    field: "title" | "altText",
-    val: string
-  ) => {
+  const handleUpdateItem = (index: number, field: 'title' | 'altText', val: string) => {
     setGallery((prev) => {
       const copy = [...prev];
       copy[index] = { ...copy[index], [field]: val };
@@ -93,12 +76,12 @@ export function EventsGallerySection({
 
   const handleDeleteItem = (index: number) => {
     setGallery((prev) => prev.filter((_, idx) => idx !== index));
-    toast.success("Photo removed from gallery");
+    toast.success('Photo removed from gallery');
   };
 
   const handleSaveAll = async () => {
     if (gallery.length === 0) {
-      toast.error("Gallery is empty");
+      toast.error('Gallery is empty');
       return;
     }
 
@@ -108,7 +91,7 @@ export function EventsGallerySection({
       // 1. Separate items with newly added File objects from existing string URLs
       const fileUploadTasks: { index: number; file: File }[] = [];
       gallery.forEach((item, idx) => {
-        if (typeof item.image !== "string") {
+        if (typeof item.image !== 'string') {
           fileUploadTasks.push({ index: idx, file: item.image as File });
         }
       });
@@ -122,17 +105,17 @@ export function EventsGallerySection({
         fileUploadTasks.forEach((task, i) => {
           updatedGallery[task.index] = {
             ...updatedGallery[task.index],
-            image: uploadedUrls[i] || "",
+            image: uploadedUrls[i] || '',
           };
         });
       }
 
       // Format payload items
       const finalGallery = updatedGallery.map((item, idx) => ({
-        id: typeof item.id === "number" ? item.id : idx + 1,
-        title: (item.title || "Event Photo").trim(),
-        altText: (item.altText || item.title || "Event Photo").trim(),
-        image: typeof item.image === "string" ? item.image : "",
+        id: typeof item.id === 'number' ? item.id : idx + 1,
+        title: (item.title || 'Event Photo').trim(),
+        altText: (item.altText || item.title || 'Event Photo').trim(),
+        image: typeof item.image === 'string' ? item.image : '',
       }));
 
       const payload = { galleryItems: finalGallery };
@@ -140,24 +123,24 @@ export function EventsGallerySection({
       if (onSave) {
         await onSave(payload);
       } else {
-        const res = await fetch("/api/events", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch('/api/events', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            section: "EventsGallery",
+            section: 'EventsGallery',
             content: payload,
           }),
         });
         const json = await res.json();
         if (json.success) {
-          toast.success("Events photo gallery saved successfully!");
+          toast.success('Events photo gallery saved successfully!');
           setGallery(finalGallery);
         } else {
-          toast.error(json.error || "Failed to save gallery");
+          toast.error(json.error || 'Failed to save gallery');
         }
       }
     } catch {
-      toast.error("Network error saving gallery");
+      toast.error('Network error saving gallery');
     } finally {
       setLoading(false);
     }
@@ -175,7 +158,7 @@ export function EventsGallerySection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -203,8 +186,8 @@ export function EventsGallerySection({
               onClick={() => fileInputRef.current?.click()}
               className={`p-8 rounded-3xl border-2 border-dashed transition-all cursor-pointer flex flex-col items-center justify-center gap-3 text-center group ${
                 isDragOver
-                  ? "border-[#C86218] bg-orange-50/40"
-                  : "border-gray-200 bg-gray-50 hover:bg-gray-100 hover:border-gray-300"
+                  ? 'border-[#C86218] bg-orange-50/40'
+                  : 'border-gray-200 bg-gray-50 hover:bg-gray-100 hover:border-gray-300'
               }`}
             >
               <div className="w-12 h-12 rounded-2xl bg-white border border-gray-200 text-[#C86218] flex items-center justify-center group-hover:scale-110 transition-transform shadow-xs">
@@ -215,7 +198,8 @@ export function EventsGallerySection({
                   Click to choose photos or drag & drop images here
                 </p>
                 <p className="text-xs text-gray-400 font-medium">
-                  Supports multiple photos upload (PNG, JPG, WebP) • Photos will appear directly below
+                  Supports multiple photos upload (PNG, JPG, WebP) • Photos will appear directly
+                  below
                 </p>
               </div>
             </div>
@@ -229,11 +213,11 @@ export function EventsGallerySection({
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                 {gallery.map((item, idx) => {
                   const imageSrc =
-                    typeof item.image === "string"
+                    typeof item.image === 'string'
                       ? item.image
                       : URL.createObjectURL(item.image as Blob);
 
-                  const isNewUpload = typeof item.image !== "string";
+                  const isNewUpload = typeof item.image !== 'string';
 
                   return (
                     <div
@@ -268,9 +252,7 @@ export function EventsGallerySection({
                         <input
                           type="text"
                           value={item.title}
-                          onChange={(e) =>
-                            handleUpdateItem(idx, "title", e.target.value)
-                          }
+                          onChange={(e) => handleUpdateItem(idx, 'title', e.target.value)}
                           placeholder="Event Title / Caption"
                           className="w-full px-2.5 py-1.5 text-xs bg-white border border-gray-200 rounded-xl focus:border-[#C86218] focus:outline-none text-gray-800 font-medium"
                         />

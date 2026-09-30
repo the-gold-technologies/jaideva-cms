@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Plus, Trash2, Cog } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Plus, Trash2, Cog } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 interface MachinerySystemItem {
   id: string;
@@ -21,7 +21,7 @@ interface MachinerySystemItem {
   benefitsText: string;
 }
 
-const ICON_OPTIONS = ["Cog", "Gauge", "Wind", "Disc", "Wrench", "Factory"];
+const ICON_OPTIONS = ['Cog', 'Gauge', 'Wind', 'Disc', 'Wrench', 'Factory'];
 
 export function MachineryFeatureSection({
   initialData,
@@ -33,52 +33,45 @@ export function MachineryFeatureSection({
   onToggle?: () => void;
 }) {
   const [internalOpen, setInternalOpen] = useState(false);
-  const isOpen =
-    controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
 
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [eyebrow, setEyebrow] = useState("");
-  const [heading, setHeading] = useState("");
-  const [description, setDescription] = useState("");
-  const [protectionLabel, setProtectionLabel] = useState("");
-  const [formulationsLabel, setFormulationsLabel] = useState("");
-  const [buttonText, setButtonText] = useState("");
+  const [eyebrow, setEyebrow] = useState('');
+  const [heading, setHeading] = useState('');
+  const [description, setDescription] = useState('');
+  const [protectionLabel, setProtectionLabel] = useState('');
+  const [formulationsLabel, setFormulationsLabel] = useState('');
+  const [buttonText, setButtonText] = useState('');
 
   const [systems, setSystems] = useState<MachinerySystemItem[]>([]);
-  const [systemImages, setSystemImages] = useState<
-    Record<number, (File | string | null)[]>
-  >({});
+  const [systemImages, setSystemImages] = useState<Record<number, (File | string | null)[]>>({});
 
   useEffect(() => {
     if (initialData) {
       if (initialData.eyebrow) setEyebrow(initialData.eyebrow);
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.description) setDescription(initialData.description);
-      if (initialData.protectionLabel)
-        setProtectionLabel(initialData.protectionLabel);
-      if (initialData.formulationsLabel)
-        setFormulationsLabel(initialData.formulationsLabel);
+      if (initialData.protectionLabel) setProtectionLabel(initialData.protectionLabel);
+      if (initialData.formulationsLabel) setFormulationsLabel(initialData.formulationsLabel);
       if (initialData.buttonText) setButtonText(initialData.buttonText);
 
-      const loadedSystems = initialData.systems || initialData.items;
+      const loadedSystems = initialData.systems;
       if (Array.isArray(loadedSystems)) {
-        const formatted: MachinerySystemItem[] = loadedSystems.map(
-          (sys: any) => ({
-            id: sys.id || "",
-            icon: typeof sys.icon === "string" ? sys.icon : "Cog",
-            title: sys.title || "",
-            spec: sys.spec || "",
-            image: sys.image || "",
-            desc: sys.desc || "",
-            oilHighlight: sys.oilHighlight || "",
-            benefitsText: Array.isArray(sys.benefits)
-              ? sys.benefits.join("\n")
-              : sys.benefitsText || "",
-          }),
-        );
+        const formatted: MachinerySystemItem[] = loadedSystems.map((sys: any) => ({
+          id: sys.id || '',
+          icon: typeof sys.icon === 'string' ? sys.icon : 'Cog',
+          title: sys.title || '',
+          spec: sys.spec || '',
+          image: sys.image || '',
+          desc: sys.desc || '',
+          oilHighlight: sys.oilHighlight || '',
+          benefitsText: Array.isArray(sys.benefits)
+            ? sys.benefits.join('\n')
+            : sys.benefitsText || '',
+        }));
 
         setSystems(formatted);
         const imgMap: Record<number, (File | string | null)[]> = {};
@@ -90,20 +83,13 @@ export function MachineryFeatureSection({
     }
   }, [initialData]);
 
-  const handleSystemChange = (
-    index: number,
-    field: keyof MachinerySystemItem,
-    val: string,
-  ) => {
+  const handleSystemChange = (index: number, field: keyof MachinerySystemItem, val: string) => {
     const updated = [...systems];
     updated[index] = { ...updated[index], [field]: val };
     setSystems(updated);
   };
 
-  const handleImageChange = (
-    index: number,
-    newImgs: (File | string | null)[],
-  ) => {
+  const handleImageChange = (index: number, newImgs: (File | string | null)[]) => {
     setSystemImages((prev) => ({ ...prev, [index]: newImgs }));
   };
 
@@ -113,21 +99,21 @@ export function MachineryFeatureSection({
       ...systems,
       {
         id: `system-${Date.now()}`,
-        icon: "Cog",
-        title: "",
-        spec: "",
-        image: "",
-        desc: "",
-        oilHighlight: "",
-        benefitsText: "",
+        icon: 'Cog',
+        title: '',
+        spec: '',
+        image: '',
+        desc: '',
+        oilHighlight: '',
+        benefitsText: '',
       },
     ]);
-    setSystemImages((prev) => ({ ...prev, [newIdx]: [""] }));
+    setSystemImages((prev) => ({ ...prev, [newIdx]: [''] }));
   };
 
   const handleRemoveSystem = (index: number) => {
     if (systems.length <= 1) {
-      toast.error("At least one machinery system is required.");
+      toast.error('At least one machinery system is required.');
       return;
     }
     setSystems(systems.filter((_, idx) => idx !== index));
@@ -148,23 +134,21 @@ export function MachineryFeatureSection({
     try {
       const updatedSystems = await Promise.all(
         systems.map(async (sys, idx) => {
-          const imgs = (systemImages[idx] || []).filter(
-            (im): im is File | string => !!im,
-          );
-          let finalImg = sys.image || "";
+          const imgs = (systemImages[idx] || []).filter((im): im is File | string => !!im);
+          let finalImg = sys.image || '';
           if (imgs.length > 0) {
             const [uploaded] = await uploadFiles(imgs);
             if (uploaded) finalImg = uploaded;
           }
 
           const benefitsArray = sys.benefitsText
-            .split("\n")
+            .split('\n')
             .map((b) => b.trim())
             .filter(Boolean);
 
           return {
-            id: sys.id || sys.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-            icon: sys.icon || "Cog",
+            id: sys.id || sys.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+            icon: sys.icon || 'Cog',
             title: sys.title.trim(),
             spec: sys.spec.trim(),
             image: finalImg,
@@ -172,26 +156,24 @@ export function MachineryFeatureSection({
             oilHighlight: sys.oilHighlight.trim(),
             benefits: benefitsArray,
           };
-        }),
+        })
       );
 
       const payload = {
         eyebrow: eyebrow.trim(),
         heading: heading.trim(),
         description: description.trim(),
-        protectionLabel:
-          protectionLabel.trim() || "Machinery Protection Profile",
-        formulationsLabel:
-          formulationsLabel.trim() || "Equivalent Industrial Formulations:",
-        buttonText: buttonText.trim() || "Request Spec Sheet & Quote",
+        protectionLabel: protectionLabel.trim(),
+        formulationsLabel: formulationsLabel.trim(),
+        buttonText: buttonText.trim(),
         systems: updatedSystems,
       };
 
-      const res = await fetch("/api/industries", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/industries', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "MachineryFeatureSection",
+          section: 'MachineryFeatureSection',
           content: payload,
         }),
       });
@@ -199,13 +181,13 @@ export function MachineryFeatureSection({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Critical Plant Machinery section saved successfully");
+        toast.success('Critical Plant Machinery section saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Machinery section");
+      toast.error('Error saving Machinery section');
     } finally {
       setLoading(false);
     }
@@ -223,7 +205,7 @@ export function MachineryFeatureSection({
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -315,20 +297,14 @@ export function MachineryFeatureSection({
                       <InputField
                         label="System Title"
                         value={sys.title}
-                        onChange={(e) =>
-                          handleSystemChange(index, "title", e.target.value)
-                        }
+                        onChange={(e) => handleSystemChange(index, 'title', e.target.value)}
                         placeholder="Heavy Industrial Gearboxes"
                       />
                       <div className="flex flex-col gap-1">
-                        <label className="text-xs font-semibold text-gray-600">
-                          Icon
-                        </label>
+                        <label className="text-xs font-semibold text-gray-600">Icon</label>
                         <select
                           value={sys.icon}
-                          onChange={(e) =>
-                            handleSystemChange(index, "icon", e.target.value)
-                          }
+                          onChange={(e) => handleSystemChange(index, 'icon', e.target.value)}
                           className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0C356A]/20"
                         >
                           {ICON_OPTIONS.map((ic) => (
@@ -344,21 +320,13 @@ export function MachineryFeatureSection({
                       <InputField
                         label="Specifications & Standards"
                         value={sys.spec}
-                        onChange={(e) =>
-                          handleSystemChange(index, "spec", e.target.value)
-                        }
+                        onChange={(e) => handleSystemChange(index, 'spec', e.target.value)}
                         placeholder="ISO VG 150 to 680 • FVA 54 Certified"
                       />
                       <InputField
                         label="Recommended Lubricants"
                         value={sys.oilHighlight}
-                        onChange={(e) =>
-                          handleSystemChange(
-                            index,
-                            "oilHighlight",
-                            e.target.value,
-                          )
-                        }
+                        onChange={(e) => handleSystemChange(index, 'oilHighlight', e.target.value)}
                         placeholder="HP Parthan EP / Mobilgear 600 XP"
                       />
                     </div>
@@ -366,9 +334,7 @@ export function MachineryFeatureSection({
                     <TextAreaField
                       label="Description"
                       value={sys.desc}
-                      onChange={(e) =>
-                        handleSystemChange(index, "desc", e.target.value)
-                      }
+                      onChange={(e) => handleSystemChange(index, 'desc', e.target.value)}
                       rows={2}
                       placeholder="Formulated with sulfur-phosphorus EP chemistry..."
                     />
@@ -376,22 +342,14 @@ export function MachineryFeatureSection({
                     <TextAreaField
                       label="Benefits & Approvals (One per line)"
                       value={sys.benefitsText}
-                      onChange={(e) =>
-                        handleSystemChange(
-                          index,
-                          "benefitsText",
-                          e.target.value,
-                        )
-                      }
+                      onChange={(e) => handleSystemChange(index, 'benefitsText', e.target.value)}
                       rows={3}
                       placeholder="Zero micropitting under extreme shock loads&#10;Superior demulsibility against mill water ingress&#10;Flender, David Brown & Danieli approved"
                     />
 
                     <ImageUploadField
                       label="Equipment Photo"
-                      images={
-                        systemImages[index] || (sys.image ? [sys.image] : [""])
-                      }
+                      images={systemImages[index] || (sys.image ? [sys.image] : [''])}
                       onImagesChange={(imgs) => handleImageChange(index, imgs)}
                       maxImages={1}
                       tooltip="Upload clear machinery or gearbox photo."

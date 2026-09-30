@@ -1,34 +1,31 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { BookOpen } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { BookOpen } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 export function AboutJaiDevaContentSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [mainTitle, setMainTitle] = useState("");
-  const [mentorSubHeader, setMentorSubHeader] = useState("");
-  const [paragraphsText, setParagraphsText] = useState("");
+  const [mainTitle, setMainTitle] = useState('');
+  const [mentorSubHeader, setMentorSubHeader] = useState('');
+  const [paragraphsText, setParagraphsText] = useState('');
 
   useEffect(() => {
     if (initialData) {
-      setMainTitle(initialData.mainTitle || initialData.title || "About Jai Deva Oil Co.");
+      setMainTitle(initialData.mainTitle || 'About Jai Deva Oil Co.');
       setMentorSubHeader(
-        initialData.mentorSubHeader ||
-          initialData.proprietorSubHeader ||
-          initialData.subtitle ||
-          "Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co."
+        initialData.mentorSubHeader || 'Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co.'
       );
       if (Array.isArray(initialData.paragraphs)) {
-        setParagraphsText(initialData.paragraphs.join("\n\n"));
-      } else if (typeof initialData.paragraphs === "string") {
+        setParagraphsText(initialData.paragraphs.join('\n\n'));
+      } else if (typeof initialData.paragraphs === 'string') {
         setParagraphsText(initialData.paragraphs);
       }
     }
@@ -39,7 +36,7 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
     setSaved(false);
     try {
       const paragraphs = paragraphsText
-        .split("\n\n")
+        .split('\n\n')
         .map((p) => p.trim())
         .filter(Boolean);
 
@@ -52,11 +49,11 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
         paragraphs,
       };
 
-      const res = await fetch("/api/about-us", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/about-us', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "AboutJaiDevaContent",
+          section: 'AboutJaiDevaContent',
           content: payload,
         }),
       });
@@ -64,20 +61,20 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("About Jai Deva story & mentor narrative saved successfully");
+        toast.success('About Jai Deva story & mentor narrative saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving about content");
+      toast.error('Error saving about content');
     } finally {
       setLoading(false);
     }
   };
 
   const paragraphCount = paragraphsText
-    .split("\n\n")
+    .split('\n\n')
     .map((p) => p.trim())
     .filter(Boolean).length;
 
@@ -93,7 +90,7 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">

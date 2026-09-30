@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-const BLOGS_SLUG = "blogs";
+const BLOGS_SLUG = 'blogs';
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id");
-    const slug = searchParams.get("slug");
+    const id = searchParams.get('id');
+    const slug = searchParams.get('slug');
 
     if (id) {
       const blog = await prisma.blogPost.findUnique({ where: { id } });
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
     }
 
     if (slug && slug !== BLOGS_SLUG) {
-      const pureSlug = slug.replace(/^blogs\//, "");
+      const pureSlug = slug.replace(/^blogs\//, '');
       const blog = await prisma.blogPost.findUnique({ where: { slug: pureSlug } });
       if (blog) {
         const blogPage = await prisma.page.findUnique({
@@ -54,7 +54,7 @@ export async function GET(request: Request) {
 
     // 1. Fetch blogs list
     const blogs = await prisma.blogPost.findMany({
-      orderBy: { createdAt: "desc" },
+      orderBy: { createdAt: 'desc' },
     });
 
     // 2. Fetch page sections for Blogs Hero
@@ -92,22 +92,31 @@ export async function GET(request: Request) {
       seo,
     });
   } catch (error) {
-    console.error("Error fetching blogs:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error fetching blogs:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { title, slug, category, publishDate, readTime, author, excerpt, coverImage, content, recommendedProducts, isPublished } = body;
+    const {
+      title,
+      slug,
+      category,
+      publishDate,
+      readTime,
+      author,
+      excerpt,
+      coverImage,
+      content,
+      recommendedProducts,
+      isPublished,
+    } = body;
 
     if (!title || !slug) {
       return NextResponse.json(
-        { success: false, error: "Title and slug are required" },
+        { success: false, error: 'Title and slug are required' },
         { status: 400 }
       );
     }
@@ -116,11 +125,11 @@ export async function POST(request: Request) {
       data: {
         title,
         slug,
-        category: category || "Automotive",
-        publishDate: publishDate || new Date().toISOString().split("T")[0],
-        readTime: readTime || "5 min read",
-        author: author || "HPCL Technical Team",
-        excerpt: excerpt || "",
+        category: category || 'Automotive',
+        publishDate: publishDate || new Date().toISOString().split('T')[0],
+        readTime: readTime || '5 min read',
+        author: author || 'HPCL Technical Team',
+        excerpt: excerpt || '',
         coverImage: coverImage || null,
         content: content || {},
         recommendedProducts: recommendedProducts || [],
@@ -130,24 +139,31 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, data: created });
   } catch (error) {
-    console.error("Error creating blog post:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error creating blog post:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
 export async function PUT(request: Request) {
   try {
     const body = await request.json();
-    const { id, title, slug, category, publishDate, readTime, author, excerpt, coverImage, content, recommendedProducts, isPublished } = body;
+    const {
+      id,
+      title,
+      slug,
+      category,
+      publishDate,
+      readTime,
+      author,
+      excerpt,
+      coverImage,
+      content,
+      recommendedProducts,
+      isPublished,
+    } = body;
 
     if (!id) {
-      return NextResponse.json(
-        { success: false, error: "Blog ID is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: 'Blog ID is required' }, { status: 400 });
     }
 
     const updated = await prisma.blogPost.update({
@@ -169,33 +185,24 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({ success: true, data: updated });
   } catch (error) {
-    console.error("Error updating blog post:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error updating blog post:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
 export async function DELETE(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get("id");
+    const id = searchParams.get('id');
 
     if (!id) {
-      return NextResponse.json(
-        { success: false, error: "Blog ID is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: 'Blog ID is required' }, { status: 400 });
     }
 
     await prisma.blogPost.delete({ where: { id } });
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error deleting blog post:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error deleting blog post:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 export function IndustriesConsultationCTA({
   initialData,
@@ -17,50 +17,47 @@ export function IndustriesConsultationCTA({
   onToggle?: () => void;
 }) {
   const [internalOpen, setInternalOpen] = useState(false);
-  const isOpen =
-    controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalOpen;
   const handleToggle = onToggle || (() => setInternalOpen(!internalOpen));
 
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [eyebrowBadge, setEyebrowBadge] = useState("");
-  const [heading, setHeading] = useState("");
-  const [description, setDescription] = useState("");
-  const [formTitle, setFormTitle] = useState("");
-  const [formSubtitle, setFormSubtitle] = useState("");
-  const [dropdownLabel, setDropdownLabel] = useState("");
-  const [buttonText, setButtonText] = useState("");
-  const [phoneText, setPhoneText] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [sectorOptionsText, setSectorOptionsText] = useState("");
-  const [trustIndicatorsText, setTrustIndicatorsText] = useState("");
+  const [eyebrowBadge, setEyebrowBadge] = useState('');
+  const [heading, setHeading] = useState('');
+  const [description, setDescription] = useState('');
+  const [formTitle, setFormTitle] = useState('');
+  const [formSubtitle, setFormSubtitle] = useState('');
+  const [dropdownLabel, setDropdownLabel] = useState('');
+  const [buttonText, setButtonText] = useState('');
+  const [phoneText, setPhoneText] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [sectorOptionsText, setSectorOptionsText] = useState('');
+  const [trustIndicatorsText, setTrustIndicatorsText] = useState('');
 
   useEffect(() => {
     if (initialData) {
-      if (initialData.eyebrowBadge || initialData.badge)
-        setEyebrowBadge(initialData.eyebrowBadge || initialData.badge);
+      if (initialData.badge) setEyebrowBadge(initialData.badge);
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.description) setDescription(initialData.description);
       if (initialData.formTitle) setFormTitle(initialData.formTitle);
       if (initialData.formSubtitle) setFormSubtitle(initialData.formSubtitle);
-      if (initialData.dropdownLabel)
-        setDropdownLabel(initialData.dropdownLabel);
+      if (initialData.dropdownLabel) setDropdownLabel(initialData.dropdownLabel);
       if (initialData.buttonText) setButtonText(initialData.buttonText);
       if (initialData.phoneText) setPhoneText(initialData.phoneText);
       if (initialData.phoneNumber) setPhoneNumber(initialData.phoneNumber);
 
       if (Array.isArray(initialData.sectorOptions)) {
-        setSectorOptionsText(initialData.sectorOptions.join("\n"));
-      } else if (typeof initialData.sectorOptionsText === "string") {
+        setSectorOptionsText(initialData.sectorOptions.join('\n'));
+      } else if (typeof initialData.sectorOptionsText === 'string') {
         setSectorOptionsText(initialData.sectorOptionsText);
       }
 
       if (Array.isArray(initialData.trustIndicators)) {
         setTrustIndicatorsText(
           initialData.trustIndicators
-            .map((t: any) => `${t.icon || "Clock"}: ${t.text || t.label || ""}`)
-            .join("\n"),
+            .map((t: any) => `${t.icon || 'Clock'}: ${t.text || ''}`)
+            .join('\n')
         );
       }
     }
@@ -71,34 +68,32 @@ export function IndustriesConsultationCTA({
     setSaved(false);
     try {
       const sectorOptions = sectorOptionsText
-        .split("\n")
+        .split('\n')
         .map((s) => s.trim())
         .filter(Boolean);
 
       const trustIndicators = trustIndicatorsText
-        .split("\n")
+        .split('\n')
         .map((line) => line.trim())
         .filter(Boolean)
         .map((line) => {
-          if (line.includes(":")) {
-            const [icon, ...rest] = line.split(":");
-            return { icon: icon.trim(), text: rest.join(":").trim() };
+          if (line.includes(':')) {
+            const [icon, ...rest] = line.split(':');
+            return { icon: icon.trim(), text: rest.join(':').trim() };
           }
-          return { icon: "Clock", text: line };
+          return { icon: 'Clock', text: line };
         });
 
       const payload = {
         badge: eyebrowBadge.trim(),
         heading: heading.trim(),
         description: description.trim(),
-        formTitle: formTitle.trim() || "Request Sector Specification",
+        formTitle: formTitle.trim(),
         formSubtitle:
           formSubtitle.trim() ||
-          "Select your primary operating vertical to launch a tailored technical enquiry:",
-        dropdownLabel:
-          dropdownLabel.trim() || "Industry / Machinery Application:",
-        buttonText:
-          buttonText.trim() || "Get Technical Recommendation & Pricing",
+          'Select your primary operating vertical to launch a tailored technical enquiry:',
+        dropdownLabel: dropdownLabel.trim(),
+        buttonText: buttonText.trim(),
         phoneText: phoneText.trim(),
         phoneNumber: phoneNumber.trim(),
         sectorOptions,
@@ -106,23 +101,23 @@ export function IndustriesConsultationCTA({
           trustIndicators.length > 0
             ? trustIndicators
             : [
-                { icon: "Clock", text: "24h Response SLA" },
+                { icon: 'Clock', text: '24h Response SLA' },
                 {
-                  icon: "ShieldCheck",
-                  text: "100% Refinery Direct Drum Supply",
+                  icon: 'ShieldCheck',
+                  text: '100% Refinery Direct Drum Supply',
                 },
                 {
-                  icon: "Headphones",
-                  text: "On-Site Tribology Engineer Available",
+                  icon: 'Headphones',
+                  text: 'On-Site Tribology Engineer Available',
                 },
               ],
       };
 
-      const res = await fetch("/api/industries", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/industries', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "IndustriesConsultationCTA",
+          section: 'IndustriesConsultationCTA',
           content: payload,
         }),
       });
@@ -130,13 +125,13 @@ export function IndustriesConsultationCTA({
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Consultation CTA section saved successfully");
+        toast.success('Consultation CTA section saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving CTA section");
+      toast.error('Error saving CTA section');
     } finally {
       setLoading(false);
     }
@@ -147,14 +142,14 @@ export function IndustriesConsultationCTA({
       <SectionHeader
         title="6. Consultation & Engineering Audit CTA"
         description="Configure the technical advisory callout banner, form titles, trust badges, and direct engineer helpline."
-        badge={phoneNumber ? "Configured" : "Draft"}
+        badge={phoneNumber ? 'Configured' : 'Draft'}
         isOpen={isOpen}
         onToggle={handleToggle}
       />
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">

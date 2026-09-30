@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Plus, Trash2, Award } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Plus, Trash2, Award } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 interface WhyChooseItem {
   icon: string;
@@ -15,22 +15,22 @@ interface WhyChooseItem {
 }
 
 const ICON_OPTIONS = [
-  "Boxes",
-  "Layers",
-  "ShieldCheck",
-  "Truck",
-  "Users",
-  "Calendar",
-  "Clock",
-  "Factory",
-  "Award",
-  "CheckCircle2",
+  'Boxes',
+  'Layers',
+  'ShieldCheck',
+  'Truck',
+  'Users',
+  'Calendar',
+  'Clock',
+  'Factory',
+  'Award',
+  'CheckCircle2',
 ];
 
 const DEFAULT_ITEM: WhyChooseItem = {
-  icon: "Boxes",
-  title: "",
-  description: "",
+  icon: 'Boxes',
+  title: '',
+  description: '',
 };
 
 export function AboutWhyChooseSection({ initialData }: { initialData?: any }) {
@@ -38,19 +38,15 @@ export function AboutWhyChooseSection({ initialData }: { initialData?: any }) {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [title, setTitle] = useState("");
-  const [subtitle, setSubtitle] = useState("");
+  const [title, setTitle] = useState('');
+  const [subtitle, setSubtitle] = useState('');
   const [items, setItems] = useState<WhyChooseItem[]>([]);
 
   useEffect(() => {
     if (initialData) {
-      setTitle(initialData.title || initialData.whyChooseTitle || "Why Choose Jai Deva Oil Co.?");
-      setSubtitle(
-        initialData.subtitle ||
-          initialData.whyChooseSubtitle ||
-          "Dependable multi-brand lubricant supply, proven since 2007."
-      );
-      const rawItems = initialData.items || initialData.whyChooseItems;
+      setTitle(initialData.title || '');
+      setSubtitle(initialData.subtitle || '');
+      const rawItems = initialData.items;
       if (Array.isArray(rawItems) && rawItems.length > 0) {
         setItems(rawItems);
       }
@@ -69,7 +65,7 @@ export function AboutWhyChooseSection({ initialData }: { initialData?: any }) {
 
   const handleRemoveItem = (index: number) => {
     if (items.length <= 1) {
-      toast.error("At least one value pillar is required.");
+      toast.error('At least one value pillar is required.');
       return;
     }
     setItems(items.filter((_, idx) => idx !== index));
@@ -83,16 +79,13 @@ export function AboutWhyChooseSection({ initialData }: { initialData?: any }) {
         title: title.trim(),
         subtitle: subtitle.trim(),
         items,
-        whyChooseTitle: title.trim(),
-        whyChooseSubtitle: subtitle.trim(),
-        whyChooseItems: items,
       };
 
-      const res = await fetch("/api/about-us", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/about-us', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "AboutWhyChooseSection",
+          section: 'AboutWhyChooseSection',
           content: payload,
         }),
       });
@@ -100,13 +93,13 @@ export function AboutWhyChooseSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Why Choose Us section saved successfully");
+        toast.success('Why Choose Us section saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving Why Choose section");
+      toast.error('Error saving Why Choose section');
     } finally {
       setLoading(false);
     }
@@ -124,7 +117,7 @@ export function AboutWhyChooseSection({ initialData }: { initialData?: any }) {
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -187,14 +180,14 @@ export function AboutWhyChooseSection({ initialData }: { initialData?: any }) {
                       <InputField
                         label="Pillar Title"
                         value={item.title}
-                        onChange={(e) => handleItemChange(index, "title", e.target.value)}
+                        onChange={(e) => handleItemChange(index, 'title', e.target.value)}
                         placeholder="e.g. Multi-Brand Portfolio"
                       />
                       <div className="flex flex-col gap-1">
                         <label className="text-xs font-semibold text-gray-600">Icon</label>
                         <select
                           value={item.icon}
-                          onChange={(e) => handleItemChange(index, "icon", e.target.value)}
+                          onChange={(e) => handleItemChange(index, 'icon', e.target.value)}
                           className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0C356A]/20"
                         >
                           {ICON_OPTIONS.map((ic) => (
@@ -209,7 +202,7 @@ export function AboutWhyChooseSection({ initialData }: { initialData?: any }) {
                     <TextAreaField
                       label="Description"
                       value={item.description}
-                      onChange={(e) => handleItemChange(index, "description", e.target.value)}
+                      onChange={(e) => handleItemChange(index, 'description', e.target.value)}
                       rows={2}
                       placeholder="Brief summary of this advantage..."
                     />

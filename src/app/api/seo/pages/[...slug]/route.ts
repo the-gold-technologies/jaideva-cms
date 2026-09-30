@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export async function GET(
   request: Request,
@@ -9,7 +9,7 @@ export async function GET(
 ) {
   try {
     const { slug: rawSlug } = await params;
-    const slug = Array.isArray(rawSlug) ? rawSlug.join("/") : rawSlug;
+    const slug = Array.isArray(rawSlug) ? rawSlug.join('/') : rawSlug;
 
     // Check by exact slug first
     let page = await prisma.page.findUnique({
@@ -33,8 +33,8 @@ export async function GET(
     });
 
     // If not found and starts with blogs/, check blog post or stripped slug
-    if (!page && (slug.startsWith("blogs/") || slug.startsWith("blog/"))) {
-      const pureBlogSlug = slug.replace(/^(blogs|blog)\//, "");
+    if (!page && (slug.startsWith('blogs/') || slug.startsWith('blog/'))) {
+      const pureBlogSlug = slug.replace(/^(blogs|blog)\//, '');
       page = await prisma.page.findUnique({
         where: { slug: pureBlogSlug },
       });
@@ -57,7 +57,7 @@ export async function GET(
               targetKeywords: blogPost.category,
               canonicalUrl: `https://jaidevaoil.com/${slug}`,
               noIndex: false,
-              headingOptions: { heroHeadingTag: "h1" },
+              headingOptions: { heroHeadingTag: 'h1' },
             },
           });
         }
@@ -65,19 +65,13 @@ export async function GET(
     }
 
     if (!page) {
-      return NextResponse.json(
-        { success: false, error: "Page not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ success: false, error: 'Page not found' }, { status: 404 });
     }
 
     return NextResponse.json({ success: true, data: page });
   } catch (error) {
-    console.error("Error fetching page SEO data:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error fetching page SEO data:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -87,16 +81,13 @@ export async function PUT(
 ) {
   try {
     const { slug: rawSlug } = await params;
-    const slug = Array.isArray(rawSlug) ? rawSlug.join("/") : rawSlug;
+    const slug = Array.isArray(rawSlug) ? rawSlug.join('/') : rawSlug;
 
     const body = await request.json();
     const { seo } = body;
 
     if (!seo) {
-      return NextResponse.json(
-        { success: false, error: "SEO data is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ success: false, error: 'SEO data is required' }, { status: 400 });
     }
 
     const updatedPage = await prisma.page.upsert({
@@ -126,18 +117,15 @@ export async function PUT(
         ogTitle: seo.ogTitle,
         ogDescription: seo.ogDescription,
         ogImage: seo.ogImage,
-        headingOptions: seo.headingOptions || { heroHeadingTag: "h1" },
-        visibility: "published",
+        headingOptions: seo.headingOptions || { heroHeadingTag: 'h1' },
+        visibility: 'published',
         schema: seo.schema,
       },
     });
 
     return NextResponse.json({ success: true, data: updatedPage });
   } catch (error) {
-    console.error("Error updating page SEO data:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error updating page SEO data:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

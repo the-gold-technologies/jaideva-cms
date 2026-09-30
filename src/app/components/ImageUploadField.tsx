@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState, useRef } from "react";
-import { CloudUpload, X, HelpCircle, Loader2, Link as LinkIcon, CheckCircle2 } from "lucide-react";
-import toast from "react-hot-toast";
+import React, { useState, useRef } from 'react';
+import { CloudUpload, X, HelpCircle, Loader2, Link as LinkIcon, CheckCircle2 } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 interface ImageUploadFieldProps {
   label?: string;
@@ -15,24 +15,24 @@ interface ImageUploadFieldProps {
 }
 
 export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
-  label = "Image",
+  label = 'Image',
   images: controlledImages,
   onImagesChange,
   maxImages = 1,
-  containerClassName = "",
+  containerClassName = '',
   tooltip,
-  folder = "mahalaxmi/uploads",
+  folder = 'mahalaxmi/uploads',
 }) => {
   const [internalImages, setInternalImages] = useState<(File | string | null)[]>([]);
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadProgressText, setUploadProgressText] = useState("");
+  const [uploadProgressText, setUploadProgressText] = useState('');
   const [showUrlInput, setShowUrlInput] = useState(false);
-  const [manualUrl, setManualUrl] = useState("");
+  const [manualUrl, setManualUrl] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const images = (controlledImages ?? internalImages).filter(
-    (img): img is string | File => Boolean(img)
+  const images = (controlledImages ?? internalImages).filter((img): img is string | File =>
+    Boolean(img)
   );
 
   const handleUpdate = (newImages: (File | string | null)[]) => {
@@ -49,17 +49,17 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
     // Filter valid image files
     const validFiles = files.filter(
       (f) =>
-        f.type.startsWith("image/") ||
-        f.name.endsWith(".ico") ||
-        f.name.endsWith(".svg") ||
-        f.name.endsWith(".png") ||
-        f.name.endsWith(".jpg") ||
-        f.name.endsWith(".jpeg") ||
-        f.name.endsWith(".webp")
+        f.type.startsWith('image/') ||
+        f.name.endsWith('.ico') ||
+        f.name.endsWith('.svg') ||
+        f.name.endsWith('.png') ||
+        f.name.endsWith('.jpg') ||
+        f.name.endsWith('.jpeg') ||
+        f.name.endsWith('.webp')
     );
 
     if (validFiles.length === 0) {
-      toast.error("Please select valid image files (PNG, JPG, WebP, ICO, SVG)");
+      toast.error('Please select valid image files (PNG, JPG, WebP, ICO, SVG)');
       return;
     }
 
@@ -85,11 +85,11 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
 
       try {
         const formData = new FormData();
-        formData.append("file", file);
-        formData.append("folder", folder);
+        formData.append('file', file);
+        formData.append('folder', folder);
 
-        const res = await fetch("/api/upload", {
-          method: "POST",
+        const res = await fetch('/api/upload', {
+          method: 'POST',
           body: formData,
         });
 
@@ -100,26 +100,26 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
           toast.error(json.error || `Failed to upload ${file.name}`);
         }
       } catch (err: any) {
-        console.error("Upload error:", err);
+        console.error('Upload error:', err);
         toast.error(err?.message || `Failed to upload ${file.name}`);
       }
     }
 
     setIsUploading(false);
-    setUploadProgressText("");
+    setUploadProgressText('');
 
     if (uploadedUrls.length > 0) {
       if (maxImages === 1) {
         handleUpdate([uploadedUrls[0]]);
       } else {
-        const currentStringImages = images.map((img) =>
-          typeof img === "string" ? img : ""
-        ).filter(Boolean);
+        const currentStringImages = images
+          .map((img) => (typeof img === 'string' ? img : ''))
+          .filter(Boolean);
         handleUpdate([...currentStringImages, ...uploadedUrls].slice(0, maxImages));
       }
       toast.success(
         uploadedUrls.length === 1
-          ? "Image uploaded successfully!"
+          ? 'Image uploaded successfully!'
           : `${uploadedUrls.length} images uploaded successfully!`
       );
     }
@@ -152,7 +152,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
     if (e.target.files && e.target.files.length > 0) {
       const selectedFiles = Array.from(e.target.files);
       await uploadAndAddFiles(selectedFiles);
-      e.target.value = "";
+      e.target.value = '';
     }
   };
 
@@ -167,14 +167,14 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
     if (maxImages === 1) {
       handleUpdate([url]);
     } else {
-      const currentStringImages = images.map((img) =>
-        typeof img === "string" ? img : ""
-      ).filter(Boolean);
+      const currentStringImages = images
+        .map((img) => (typeof img === 'string' ? img : ''))
+        .filter(Boolean);
       handleUpdate([...currentStringImages, url].slice(0, maxImages));
     }
-    setManualUrl("");
+    setManualUrl('');
     setShowUrlInput(false);
-    toast.success("Image URL added!");
+    toast.success('Image URL added!');
   };
 
   return (
@@ -201,7 +201,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
           onClick={() => setShowUrlInput(!showUrlInput)}
           className="text-[11px] text-[#0C356A] hover:text-[#C86218] font-semibold transition-colors cursor-pointer"
         >
-          {showUrlInput ? "Hide Direct URL" : "Paste Direct URL"}
+          {showUrlInput ? 'Hide Direct URL' : 'Paste Direct URL'}
         </button>
       </div>
 
@@ -214,7 +214,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
             placeholder="Paste direct image URL (https://...)"
             value={manualUrl}
             onChange={(e) => setManualUrl(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleAddManualUrl()}
+            onKeyDown={(e) => e.key === 'Enter' && handleAddManualUrl()}
             className="flex-1 bg-transparent border-none outline-none text-xs text-slate-800 placeholder:text-slate-400 font-mono"
           />
           <button
@@ -242,18 +242,14 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
         <div className="space-y-3">
           {images.map((img, index) => {
             const url =
-              typeof img === "string"
-                ? img
-                : img instanceof File
-                ? URL.createObjectURL(img)
-                : "";
+              typeof img === 'string' ? img : img instanceof File ? URL.createObjectURL(img) : '';
             const isLocal = img instanceof File;
             const filename =
-              typeof img === "string"
-                ? img.split("/").pop()
+              typeof img === 'string'
+                ? img.split('/').pop()
                 : img instanceof File
-                ? img.name
-                : "Image";
+                  ? img.name
+                  : 'Image';
 
             return (
               <div
@@ -274,7 +270,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
                       {filename}
                     </span>
                     <span className="text-[10px] text-slate-400">
-                      {isLocal ? "Pending save upload" : "✓ Active on Cloudinary"}
+                      {isLocal ? 'Pending save upload' : '✓ Active on Cloudinary'}
                     </span>
                   </div>
                 </div>
@@ -304,30 +300,28 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
           onClick={() => !isUploading && fileInputRef.current?.click()}
           className={`relative border-2 border-dashed rounded-3xl p-6 sm:p-8 flex flex-col items-center justify-center transition-all cursor-pointer group ${
             isDragging
-              ? "border-[#0C356A] bg-blue-50/40 scale-[0.99]"
-              : "border-gray-200 bg-gray-50/50 hover:bg-gray-50 hover:border-gray-300"
-          } ${isUploading ? "opacity-60 pointer-events-none" : ""}`}
+              ? 'border-[#0C356A] bg-blue-50/40 scale-[0.99]'
+              : 'border-gray-200 bg-gray-50/50 hover:bg-gray-50 hover:border-gray-300'
+          } ${isUploading ? 'opacity-60 pointer-events-none' : ''}`}
         >
           {isUploading ? (
             <div className="flex flex-col items-center gap-3 py-3">
               <Loader2 className="w-8 h-8 animate-spin text-[#C86218]" />
-              <p className="text-xs font-semibold text-slate-600">
-                Uploading to Cloudinary...
-              </p>
+              <p className="text-xs font-semibold text-slate-600">Uploading to Cloudinary...</p>
             </div>
           ) : (
             <>
               <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">
                 {maxImages > 1
                   ? `Upload Images (${images.length}/${maxImages})`
-                  : "Provide an image or lubricant graphic"}
+                  : 'Provide an image or lubricant graphic'}
               </span>
 
               <div
                 className={`p-3 rounded-2xl shadow-xs border mb-3 transition-transform ${
                   isDragging
-                    ? "bg-[#0C356A] text-white scale-110 border-[#0C356A]"
-                    : "bg-white text-[#0C356A] border-gray-100 group-hover:scale-110"
+                    ? 'bg-[#0C356A] text-white scale-110 border-[#0C356A]'
+                    : 'bg-white text-[#0C356A] border-gray-100 group-hover:scale-110'
                 }`}
               >
                 <CloudUpload className="w-6 h-6" strokeWidth={2} />
@@ -341,7 +335,7 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
               </p>
               <p className="text-slate-400 text-[11px] text-center font-normal">
                 PNG, JPG, WebP, SVG or ICO (up to 10MB).
-                {maxImages > 1 ? ` Max ${maxImages} images.` : ""}
+                {maxImages > 1 ? ` Max ${maxImages} images.` : ''}
               </p>
             </>
           )}

@@ -1,14 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Sparkles, Factory, Layers, CheckCircle2 } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { StringListEditor } from "@/components/StringListEditor";
-import { ImagePickerField } from "@/components/ImagePickerField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { StringListEditor } from '@/components/StringListEditor';
+import { ImagePickerField } from '@/components/ImagePickerField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface HomeHeroData {
   badge: string;
@@ -24,30 +23,19 @@ export interface HomeHeroData {
 }
 
 export const DEFAULT_HOME_HERO_DATA: HomeHeroData = {
-  badge: "MULTI-BRAND LUBRICANT SOLUTIONS",
-  heading: "Reliable lubrication for every industry and application.",
-  description:
-    "Jai Deva Oil Co. is a trusted multi-brand industrial and automotive lubricant distributor, helping businesses choose quality products from leading brands with confidence.",
-  primaryBtnLabel: "Explore Products",
-  primaryBtnUrl: "#products",
-  secondaryBtnLabel: "Become a Partner",
-  secondaryBtnUrl: "#contact",
-  points: [
-    "Engine, hydraulic and gear oils",
-    "Grease and specialty lubricants",
-    "Reliable supply and guidance",
-  ],
-  bgImage:
-    "https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=2200&q=85",
-  productImage:
-    "https://www.hplubricants.in/sites/default/files/industrial-1.png",
+  badge: '',
+  heading: '',
+  description: '',
+  primaryBtnLabel: '',
+  primaryBtnUrl: '',
+  secondaryBtnLabel: '',
+  secondaryBtnUrl: '',
+  points: [],
+  bgImage: '',
+  productImage: '',
 };
 
-export function HomeHeroSection({
-  initialData,
-}: {
-  initialData?: any;
-}) {
+export function HomeHeroSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -56,43 +44,19 @@ export function HomeHeroSection({
   useEffect(() => {
     if (initialData) {
       setFormData({
-        badge:
-          initialData.badge ||
-          initialData.title ||
-          DEFAULT_HOME_HERO_DATA.badge,
-        heading:
-          initialData.heading ||
-          initialData.subtitle2 ||
-          initialData.subtitle1 ||
-          DEFAULT_HOME_HERO_DATA.heading,
-        description:
-          initialData.description ||
-          initialData.paragraph1 ||
-          DEFAULT_HOME_HERO_DATA.description,
-        primaryBtnLabel:
-          initialData.primaryBtnLabel ||
-          initialData.btnLabel ||
-          DEFAULT_HOME_HERO_DATA.primaryBtnLabel,
-        primaryBtnUrl:
-          initialData.primaryBtnUrl ||
-          initialData.btnUrl ||
-          DEFAULT_HOME_HERO_DATA.primaryBtnUrl,
-        secondaryBtnLabel:
-          initialData.secondaryBtnLabel ||
-          DEFAULT_HOME_HERO_DATA.secondaryBtnLabel,
-        secondaryBtnUrl:
-          initialData.secondaryBtnUrl ||
-          DEFAULT_HOME_HERO_DATA.secondaryBtnUrl,
+        badge: initialData.badge || '',
+        heading: initialData.heading || '',
+        description: initialData.description || '',
+        primaryBtnLabel: initialData.primaryBtnLabel || '',
+        primaryBtnUrl: initialData.primaryBtnUrl || '',
+        secondaryBtnLabel: initialData.secondaryBtnLabel || '',
+        secondaryBtnUrl: initialData.secondaryBtnUrl || '',
         points:
           Array.isArray(initialData.points) && initialData.points.length > 0
             ? initialData.points
-            : DEFAULT_HOME_HERO_DATA.points,
-        bgImage:
-          initialData.bgImage ||
-          DEFAULT_HOME_HERO_DATA.bgImage,
-        productImage:
-          initialData.productImage ||
-          DEFAULT_HOME_HERO_DATA.productImage,
+            : [],
+        bgImage: initialData.bgImage || '',
+        productImage: initialData.productImage || '',
       });
     }
   }, [initialData]);
@@ -102,22 +66,22 @@ export function HomeHeroSection({
     setSaved(false);
     try {
       // 1. Save HomeHero section
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "HomeHero",
+          section: 'HomeHero',
           content: formData,
         }),
       });
       const json = await res.json();
 
       // 2. Also keep legacy AboutSection in sync
-      await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "AboutSection",
+          section: 'AboutSection',
           content: {
             title: formData.badge,
             subtitle1: formData.badge,
@@ -133,13 +97,13 @@ export function HomeHeroSection({
 
       if (json.success) {
         setSaved(true);
-        toast.success("Homepage Hero saved successfully!");
+        toast.success('Homepage Hero saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save homepage hero");
+        toast.error(json.error || 'Failed to save homepage hero');
       }
     } catch {
-      toast.error("Error saving homepage hero");
+      toast.error('Error saving homepage hero');
     } finally {
       setLoading(false);
     }
@@ -158,7 +122,7 @@ export function HomeHeroSection({
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">
@@ -168,9 +132,7 @@ export function HomeHeroSection({
                 <InputField
                   label="Category Badge / Tagline"
                   value={formData.badge}
-                  onChange={(e) =>
-                    setFormData({ ...formData, badge: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, badge: e.target.value })}
                   placeholder="MULTI-BRAND LUBRICANT SOLUTIONS"
                   helperText="Orange accented badge with factory icon"
                 />
@@ -178,9 +140,7 @@ export function HomeHeroSection({
                 <InputField
                   label="Main Hero Headline"
                   value={formData.heading}
-                  onChange={(e) =>
-                    setFormData({ ...formData, heading: e.target.value })
-                  }
+                  onChange={(e) => setFormData({ ...formData, heading: e.target.value })}
                   placeholder="Reliable lubrication for every industry and application."
                   helperText="Primary bold heading at the top"
                 />
@@ -191,9 +151,7 @@ export function HomeHeroSection({
                 label="Hero Description Paragraph"
                 rows={3}
                 value={formData.description}
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Jai Deva Oil Co. is a trusted multi-brand industrial and automotive lubricant distributor..."
                 helperText="Summary paragraph displayed below the headline"
               />
@@ -283,9 +241,7 @@ export function HomeHeroSection({
                 <ImagePickerField
                   label="Hero Background Banner Image"
                   value={formData.bgImage}
-                  onChange={(url) =>
-                    setFormData({ ...formData, bgImage: url })
-                  }
+                  onChange={(url) => setFormData({ ...formData, bgImage: url })}
                   helperText="Industrial plant or background wallpaper (high resolution)"
                   folder="jaideva/hero"
                 />
@@ -293,9 +249,7 @@ export function HomeHeroSection({
                 <ImagePickerField
                   label="Featured Product / Drum Image"
                   value={formData.productImage}
-                  onChange={(url) =>
-                    setFormData({ ...formData, productImage: url })
-                  }
+                  onChange={(url) => setFormData({ ...formData, productImage: url })}
                   helperText="Featured container/pail/drum shown on desktop right column"
                   folder="jaideva/hero"
                 />

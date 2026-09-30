@@ -1,1 +1,1 @@
-export * from "@/app/components/RecentEnquiries";
+export * from '@/app/components/RecentEnquiries';

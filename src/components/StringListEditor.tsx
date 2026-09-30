@@ -1,1 +1,1 @@
-export * from "@/app/components/StringListEditor";
+export * from '@/app/components/StringListEditor';

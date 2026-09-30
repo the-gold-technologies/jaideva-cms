@@ -1,1 +1,1 @@
-export * from "@/app/components/PropertiesTableEditor";
+export * from '@/app/components/PropertiesTableEditor';

@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-const ABOUT_SLUG = "about-us";
+const ABOUT_SLUG = 'about-us';
 
 export async function GET() {
   try {
@@ -33,11 +33,8 @@ export async function GET() {
 
     return NextResponse.json({ success: true, data: sectionsMap, seo });
   } catch (error) {
-    console.error("Error fetching about-us:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error fetching about-us:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -48,10 +45,10 @@ export async function PUT(request: Request) {
     const page = await prisma.page.upsert({
       where: { slug: ABOUT_SLUG },
       create: {
-        title: "About Us",
+        title: 'About Us',
         slug: ABOUT_SLUG,
-        type: "static",
-        visibility: "published",
+        type: 'static',
+        visibility: 'published',
       },
       update: {},
     });
@@ -60,14 +57,20 @@ export async function PUT(request: Request) {
 
     if (body.section && body.content !== undefined) {
       sectionsToSave[body.section] = body.content;
-    } else if (body.sections && typeof body.sections === "object") {
+    } else if (body.sections && typeof body.sections === 'object') {
       sectionsToSave = body.sections;
     } else {
       sectionsToSave = body;
     }
 
     for (const [sectionType, content] of Object.entries(sectionsToSave)) {
-      if (sectionType === "sections" || sectionType === "section" || sectionType === "content" || sectionType === "seo") continue;
+      if (
+        sectionType === 'sections' ||
+        sectionType === 'section' ||
+        sectionType === 'content' ||
+        sectionType === 'seo'
+      )
+        continue;
       const existing = await prisma.section.findFirst({
         where: { pageId: page.id, type: sectionType },
       });
@@ -92,10 +95,7 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error saving about-us sections:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error saving about-us sections:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

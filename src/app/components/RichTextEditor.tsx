@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { useMemo, useRef, useCallback } from "react";
-import dynamic from "next/dynamic";
-import toast from "react-hot-toast";
-import "react-quill-new/dist/quill.snow.css";
+import React, { useMemo, useRef, useCallback } from 'react';
+import dynamic from 'next/dynamic';
+import toast from 'react-hot-toast';
+import 'react-quill-new/dist/quill.snow.css';
 
 // Dynamic import for ReactQuill to prevent SSR window/document issues in Next.js App Router
 const ReactQuill = dynamic(
   async () => {
-    const { default: RQ } = await import("react-quill-new");
+    const { default: RQ } = await import('react-quill-new');
     // ForwardRef wrapper to enable getEditor() access with ref
     return function ReactQuillWrapper(props: any) {
       return <RQ {...props} />;
@@ -38,31 +38,31 @@ export function RichTextEditor({
   label,
   value,
   onChange,
-  placeholder = "Write rich article content, guides, formatting, and highlights...",
+  placeholder = 'Write rich article content, guides, formatting, and highlights...',
   tooltip,
-  minHeight = "320px",
+  minHeight = '320px',
   error,
 }: RichTextEditorProps) {
   const quillRef = useRef<any>(null);
 
   // Custom Image Upload Handler directly uploading to /api/upload
   const handleImageUpload = useCallback(() => {
-    const input = document.createElement("input");
-    input.setAttribute("type", "file");
-    input.setAttribute("accept", "image/png, image/jpeg, image/jpg, image/webp, image/gif");
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/png, image/jpeg, image/jpg, image/webp, image/gif');
     input.click();
 
     input.onchange = async () => {
       const file = input.files?.[0];
       if (!file) return;
 
-      const toastId = toast.loading("Uploading article image...");
+      const toastId = toast.loading('Uploading article image...');
       try {
         const formData = new FormData();
-        formData.append("files", file);
+        formData.append('files', file);
 
-        const res = await fetch("/api/upload", {
-          method: "POST",
+        const res = await fetch('/api/upload', {
+          method: 'POST',
           body: formData,
         });
 
@@ -75,22 +75,20 @@ export function RichTextEditor({
             const range = editor.getSelection(true) || {
               index: editor.getLength(),
             };
-            editor.insertEmbed(range.index, "image", imageUrl);
+            editor.insertEmbed(range.index, 'image', imageUrl);
             editor.setSelection(range.index + 1);
           } else {
             // Fallback appending HTML
-            onChange(
-              `${value}<p><img src="${imageUrl}" alt="${file.name}" /></p>`
-            );
+            onChange(`${value}<p><img src="${imageUrl}" alt="${file.name}" /></p>`);
           }
 
-          toast.success("Image inserted into article!", { id: toastId });
+          toast.success('Image inserted into article!', { id: toastId });
         } else {
-          toast.error(json.error || "Failed to upload image", { id: toastId });
+          toast.error(json.error || 'Failed to upload image', { id: toastId });
         }
       } catch (err) {
-        console.error("Image upload error:", err);
-        toast.error("Error uploading image", { id: toastId });
+        console.error('Image upload error:', err);
+        toast.error('Error uploading image', { id: toastId });
       }
     };
   }, [onChange, value]);
@@ -100,13 +98,13 @@ export function RichTextEditor({
       toolbar: {
         container: [
           [{ header: [2, 3, 4, false] }],
-          ["bold", "italic", "underline", "strike"],
-          [{ list: "ordered" }, { list: "bullet" }],
+          ['bold', 'italic', 'underline', 'strike'],
+          [{ list: 'ordered' }, { list: 'bullet' }],
           [{ color: [] }, { background: [] }],
           [{ align: [] }],
-          ["blockquote", "code-block"],
-          ["link", "image"],
-          ["clean"],
+          ['blockquote', 'code-block'],
+          ['link', 'image'],
+          ['clean'],
         ],
         handlers: {
           image: handleImageUpload,
@@ -117,20 +115,20 @@ export function RichTextEditor({
   );
 
   const formats = [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "list",
-    "bullet",
-    "color",
-    "background",
-    "align",
-    "blockquote",
-    "code-block",
-    "link",
-    "image",
+    'header',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'list',
+    'bullet',
+    'color',
+    'background',
+    'align',
+    'blockquote',
+    'code-block',
+    'link',
+    'image',
   ];
 
   return (
@@ -138,19 +136,15 @@ export function RichTextEditor({
       {label && (
         <div className="flex items-center justify-between">
           <label className="text-xs font-bold text-gray-700">{label}</label>
-          {tooltip && (
-            <span className="text-[11px] text-gray-400 font-medium">
-              {tooltip}
-            </span>
-          )}
+          {tooltip && <span className="text-[11px] text-gray-400 font-medium">{tooltip}</span>}
         </div>
       )}
 
       <div
         className={`rich-editor-wrapper bg-white rounded-2xl border transition-all overflow-hidden ${
           error
-            ? "border-red-500 ring-1 ring-red-500"
-            : "border-gray-200 focus-within:border-[#C86218] focus-within:ring-1 focus-within:ring-[#C86218]"
+            ? 'border-red-500 ring-1 ring-red-500'
+            : 'border-gray-200 focus-within:border-[#C86218] focus-within:ring-1 focus-within:ring-[#C86218]'
         }`}
       >
         <ReactQuill
@@ -254,7 +248,9 @@ export function RichTextEditor({
           border-radius: 1rem;
           margin: 1.25rem 0;
           border: 1px solid #e2e8f0;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+          box-shadow:
+            0 4px 6px -1px rgba(0, 0, 0, 0.05),
+            0 2px 4px -2px rgba(0, 0, 0, 0.05);
         }
       `}</style>
     </div>

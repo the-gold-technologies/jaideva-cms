@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useParams } from "next/navigation";
-import { BlogForm } from "../../components/BlogForm";
+import React from 'react';
+import { useParams } from 'next/navigation';
+import { BlogForm } from '../../components/BlogForm';
 
 export default function EditBlogPage() {
   const params = useParams();

@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
-const CONTACT_SLUG = "contact-us";
+const CONTACT_SLUG = 'contact-us';
 
 export async function GET() {
   try {
@@ -13,7 +13,7 @@ export async function GET() {
     const sectionsMap: Record<string, any> = {};
     if (page?.sections) {
       for (const section of page.sections) {
-        if (section.type !== "RegionalOffices") {
+        if (section.type !== 'RegionalOffices') {
           sectionsMap[section.type] = section.content;
         }
       }
@@ -40,11 +40,8 @@ export async function GET() {
       seo,
     });
   } catch (error) {
-    console.error("Error fetching contact-us:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error fetching contact-us:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -55,10 +52,10 @@ export async function PUT(request: Request) {
     const page = await prisma.page.upsert({
       where: { slug: CONTACT_SLUG },
       create: {
-        title: "Contact Us",
+        title: 'Contact Us',
         slug: CONTACT_SLUG,
-        type: "static",
-        visibility: "published",
+        type: 'static',
+        visibility: 'published',
       },
       update: {},
     });
@@ -91,7 +88,13 @@ export async function PUT(request: Request) {
 
     // 2. Full object update
     for (const [sectionType, content] of Object.entries(body)) {
-      if (sectionType === "sections" || sectionType === "offices" || sectionType === "seo" || sectionType === "RegionalOffices") continue;
+      if (
+        sectionType === 'sections' ||
+        sectionType === 'offices' ||
+        sectionType === 'seo' ||
+        sectionType === 'RegionalOffices'
+      )
+        continue;
 
       const existing = await prisma.section.findFirst({
         where: { pageId: page.id, type: sectionType },
@@ -117,10 +120,7 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error updating contact-us sections:", error);
-    return NextResponse.json(
-      { success: false, error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error('Error updating contact-us sections:', error);
+    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }

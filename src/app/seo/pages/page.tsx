@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { PageHeader } from "@/components/PageHeader";
-import Link from "next/link";
-import { Edit2, Search, ChevronDown, ChevronRight } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import { PageHeader } from '@/components/PageHeader';
+import Link from 'next/link';
+import { Edit2, Search, ChevronDown, ChevronRight } from 'lucide-react';
 
 interface PageSEOSummary {
   id: string;
@@ -24,20 +24,18 @@ interface PageSEOSummary {
 export default function PageSEODashboard() {
   const [pages, setPages] = useState<PageSEOSummary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [expandedParents, setExpandedParents] = useState<
-    Record<string, boolean>
-  >({});
+  const [searchQuery, setSearchQuery] = useState('');
+  const [expandedParents, setExpandedParents] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     async function fetchPages() {
       try {
-        const res = await fetch("/api/seo/pages");
+        const res = await fetch('/api/seo/pages');
         const json = await res.json();
         if (json.success && Array.isArray(json.data)) {
           const seen = new Set<string>();
           const uniquePages = json.data.filter((p: PageSEOSummary) => {
-            if (p.slug === "home") return false;
+            if (p.slug === 'home') return false;
             const norm = p.slug.toLowerCase().trim();
             if (seen.has(norm)) return false;
             seen.add(norm);
@@ -46,7 +44,7 @@ export default function PageSEODashboard() {
           setPages(uniquePages);
         }
       } catch (error) {
-        console.error("Error fetching pages for SEO:", error);
+        console.error('Error fetching pages for SEO:', error);
       } finally {
         setIsLoading(false);
       }
@@ -63,13 +61,13 @@ export default function PageSEODashboard() {
 
   const filteredPages = pages.filter(
     (page) =>
-      page.slug !== "home" &&
+      page.slug !== 'home' &&
       (page.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         page.slug.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const rootLinks = filteredPages
-    .filter((l) => l.parent === "-" || !pages.some((p) => p.id === l.parent))
+    .filter((l) => l.parent === '-' || !pages.some((p) => p.id === l.parent))
     .sort((a, b) => a.order - b.order);
 
   return (
@@ -140,7 +138,9 @@ export default function PageSEODashboard() {
                   const isExpanded = !!expandedParents[root.id];
 
                   const hasTitle = Boolean(root.metaTitle && root.metaTitle.trim().length > 0);
-                  const hasDesc = Boolean(root.metaDescription && root.metaDescription.trim().length > 0);
+                  const hasDesc = Boolean(
+                    root.metaDescription && root.metaDescription.trim().length > 0
+                  );
 
                   return (
                     <React.Fragment key={root.id}>
@@ -173,7 +173,7 @@ export default function PageSEODashboard() {
                           </div>
                         </td>
                         <td className="px-6 py-5 whitespace-nowrap">
-                          {root.type === "Dropdown" ? (
+                          {root.type === 'Dropdown' ? (
                             <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest whitespace-nowrap">
                               Group Container
                             </span>
@@ -182,20 +182,20 @@ export default function PageSEODashboard() {
                               <span
                                 className={`inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${
                                   hasTitle
-                                    ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                    : "bg-orange-50 text-[#C86218] border border-orange-100"
+                                    ? 'bg-emerald-50 text-emerald-600 border border-emerald-100'
+                                    : 'bg-orange-50 text-[#C86218] border border-orange-100'
                                 }`}
                               >
-                                {hasTitle ? "Title ✓" : "Title ✗"}
+                                {hasTitle ? 'Title ✓' : 'Title ✗'}
                               </span>
                               <span
                                 className={`inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${
                                   hasDesc
-                                    ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                    : "bg-orange-50 text-[#C86218] border border-orange-100"
+                                    ? 'bg-emerald-50 text-emerald-600 border border-emerald-100'
+                                    : 'bg-orange-50 text-[#C86218] border border-orange-100'
                                 }`}
                               >
-                                {hasDesc ? "Desc ✓" : "Desc ✗"}
+                                {hasDesc ? 'Desc ✓' : 'Desc ✗'}
                               </span>
                             </div>
                           )}
@@ -203,11 +203,11 @@ export default function PageSEODashboard() {
                         <td className="px-6 py-5 whitespace-nowrap">
                           <span
                             className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${
-                              root.type === "Main Link"
-                                ? "bg-blue-50 text-[#002B5C]"
-                                : root.type === "Dropdown"
-                                ? "bg-purple-50 text-purple-600"
-                                : "bg-gray-100 text-gray-600"
+                              root.type === 'Main Link'
+                                ? 'bg-blue-50 text-[#002B5C]'
+                                : root.type === 'Dropdown'
+                                  ? 'bg-purple-50 text-purple-600'
+                                  : 'bg-gray-100 text-gray-600'
                             }`}
                           >
                             {root.type}
@@ -218,7 +218,7 @@ export default function PageSEODashboard() {
                         </td>
                         <td className="px-6 py-5 whitespace-nowrap text-right">
                           <div className="flex items-center gap-3 justify-end">
-                            {root.type !== "Dropdown" && (
+                            {root.type !== 'Dropdown' && (
                               <Link
                                 href={`/seo/pages/${root.slug}`}
                                 className="p-2 bg-gray-50 text-slate-600 rounded-xl hover:bg-[#002B5C] hover:text-white transition-all group inline-flex items-center justify-center"
@@ -256,20 +256,20 @@ export default function PageSEODashboard() {
                                   <span
                                     className={`inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${
                                       childHasTitle
-                                        ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                        : "bg-orange-50 text-[#C86218] border border-orange-100"
+                                        ? 'bg-emerald-50 text-emerald-600 border border-emerald-100'
+                                        : 'bg-orange-50 text-[#C86218] border border-orange-100'
                                     }`}
                                   >
-                                    {childHasTitle ? "Title ✓" : "Title ✗"}
+                                    {childHasTitle ? 'Title ✓' : 'Title ✗'}
                                   </span>
                                   <span
                                     className={`inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap ${
                                       childHasDesc
-                                        ? "bg-emerald-50 text-emerald-600 border border-emerald-100"
-                                        : "bg-orange-50 text-[#C86218] border border-orange-100"
+                                        ? 'bg-emerald-50 text-emerald-600 border border-emerald-100'
+                                        : 'bg-orange-50 text-[#C86218] border border-orange-100'
                                     }`}
                                   >
-                                    {childHasDesc ? "Desc ✓" : "Desc ✗"}
+                                    {childHasDesc ? 'Desc ✓' : 'Desc ✗'}
                                   </span>
                                 </div>
                               </td>

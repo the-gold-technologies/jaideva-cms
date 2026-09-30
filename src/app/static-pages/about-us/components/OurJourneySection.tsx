@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { Plus, Trash2, Clock } from "lucide-react";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { Plus, Trash2, Clock } from 'lucide-react';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 interface Milestone {
   year: string;
@@ -16,26 +16,33 @@ interface Milestone {
 }
 
 const ICON_OPTIONS = [
-  "Calendar", "Layers", "Boxes", "ShieldCheck", "Users", "Clock", "Truck", "Factory",
+  'Calendar',
+  'Layers',
+  'Boxes',
+  'ShieldCheck',
+  'Users',
+  'Clock',
+  'Truck',
+  'Factory',
 ];
 
-const EMPTY_MILESTONE: Milestone = { year: "", icon: "Calendar", title: "", description: "" };
+const EMPTY_MILESTONE: Milestone = { year: '', icon: 'Calendar', title: '', description: '' };
 
 export function OurJourneySection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [eyebrow, setEyebrow] = useState("");
-  const [heading, setHeading] = useState("");
-  const [intro, setIntro] = useState("");
+  const [eyebrow, setEyebrow] = useState('');
+  const [heading, setHeading] = useState('');
+  const [intro, setIntro] = useState('');
   const [milestones, setMilestones] = useState<Milestone[]>([]);
 
   useEffect(() => {
     if (initialData) {
-      setEyebrow(initialData.eyebrow || "");
-      setHeading(initialData.heading || "");
-      setIntro(initialData.intro || "");
+      setEyebrow(initialData.eyebrow || '');
+      setHeading(initialData.heading || '');
+      setIntro(initialData.intro || '');
       setMilestones(initialData.milestones || []);
     }
   }, [initialData]);
@@ -44,11 +51,11 @@ export function OurJourneySection({ initialData }: { initialData?: any }) {
     setLoading(true);
     setSaved(false);
     try {
-      const res = await fetch("/api/about-us", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/about-us', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "OurJourneySection",
+          section: 'OurJourneySection',
           content: {
             eyebrow: eyebrow.trim(),
             heading: heading.trim(),
@@ -60,13 +67,13 @@ export function OurJourneySection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Journey timeline saved successfully");
+        toast.success('Journey timeline saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch (err: any) {
-      toast.error(err?.message || "Error saving journey");
+      toast.error(err?.message || 'Error saving journey');
     } finally {
       setLoading(false);
     }
@@ -76,7 +83,7 @@ export function OurJourneySection({ initialData }: { initialData?: any }) {
 
   const removeMilestone = (idx: number) => {
     if (milestones.length <= 1) {
-      toast.error("At least one milestone is required.");
+      toast.error('At least one milestone is required.');
       return;
     }
     setMilestones(milestones.filter((_, i) => i !== idx));
@@ -98,23 +105,24 @@ export function OurJourneySection({ initialData }: { initialData?: any }) {
         onToggle={() => setIsOpen(!isOpen)}
       />
 
-      <div className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+      >
         <div className="overflow-hidden">
           <div className="flex flex-col gap-6 pt-4">
-
             {/* Header fields */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <InputField
                 label="Eyebrow Label"
                 value={eyebrow}
-                onChange={e => setEyebrow(e.target.value)}
+                onChange={(e) => setEyebrow(e.target.value)}
                 placeholder="Our Journey"
               />
               <div className="md:col-span-2">
                 <InputField
                   label="Section Heading"
                   value={heading}
-                  onChange={e => setHeading(e.target.value)}
+                  onChange={(e) => setHeading(e.target.value)}
                   placeholder="Building Trust Since 2007"
                 />
               </div>
@@ -123,7 +131,7 @@ export function OurJourneySection({ initialData }: { initialData?: any }) {
             <TextAreaField
               label="Intro Paragraph"
               value={intro}
-              onChange={e => setIntro(e.target.value)}
+              onChange={(e) => setIntro(e.target.value)}
               rows={2}
               placeholder="Every milestone below reflects a step in how we grew…"
             />
@@ -171,31 +179,35 @@ export function OurJourneySection({ initialData }: { initialData?: any }) {
                       <InputField
                         label="Year / Period"
                         value={m.year}
-                        onChange={e => updateMilestone(idx, "year", e.target.value)}
+                        onChange={(e) => updateMilestone(idx, 'year', e.target.value)}
                         placeholder="2007"
                       />
                       <div className="flex flex-col gap-1">
                         <label className="text-xs font-semibold text-gray-600">Icon</label>
                         <select
                           value={m.icon}
-                          onChange={e => updateMilestone(idx, "icon", e.target.value)}
+                          onChange={(e) => updateMilestone(idx, 'icon', e.target.value)}
                           className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#0C356A]/20"
                         >
-                          {ICON_OPTIONS.map(ic => <option key={ic} value={ic}>{ic}</option>)}
+                          {ICON_OPTIONS.map((ic) => (
+                            <option key={ic} value={ic}>
+                              {ic}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
                     <InputField
                       label="Title"
                       value={m.title}
-                      onChange={e => updateMilestone(idx, "title", e.target.value)}
+                      onChange={(e) => updateMilestone(idx, 'title', e.target.value)}
                       placeholder="Company Founded"
                     />
 
                     <TextAreaField
                       label="Description"
                       value={m.description}
-                      onChange={e => updateMilestone(idx, "description", e.target.value)}
+                      onChange={(e) => updateMilestone(idx, 'description', e.target.value)}
                       rows={2}
                       placeholder="Brief summary of this milestone…"
                     />

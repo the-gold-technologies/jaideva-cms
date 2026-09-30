@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 export const DEFAULT_HERO_IMAGES: string[] = [];
 
@@ -13,29 +13,17 @@ export function HeroSliderSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [images, setImages] =
-    useState<(File | string | null)[]>(DEFAULT_HERO_IMAGES);
+  const [images, setImages] = useState<(File | string | null)[]>(DEFAULT_HERO_IMAGES);
 
   useEffect(() => {
     if (initialData) {
       if (Array.isArray(initialData) && initialData.length > 0) {
         setImages(
-          initialData.map((item: any) =>
-            typeof item === "string"
-              ? item
-              : item.img || item.image || item.bgImage || ""
-          )
+          initialData.map((item: any) => (typeof item === 'string' ? item : item.img || ''))
         );
-      } else if (
-        Array.isArray(initialData.slides) &&
-        initialData.slides.length > 0
-      ) {
+      } else if (Array.isArray(initialData.slides) && initialData.slides.length > 0) {
         setImages(
-          initialData.slides.map((item: any) =>
-            typeof item === "string"
-              ? item
-              : item.img || item.image || item.bgImage || ""
-          )
+          initialData.slides.map((item: any) => (typeof item === 'string' ? item : item.img || ''))
         );
       }
     }
@@ -45,12 +33,10 @@ export function HeroSliderSection({ initialData }: { initialData?: any }) {
     setLoading(true);
     setSaved(false);
     try {
-      const validImages = images.filter(
-        (img): img is File | string => !!img
-      );
+      const validImages = images.filter((img): img is File | string => !!img);
 
       if (validImages.length === 0) {
-        toast.error("Please upload at least 1 hero banner image.");
+        toast.error('Please upload at least 1 hero banner image.');
         setLoading(false);
         return;
       }
@@ -63,15 +49,15 @@ export function HeroSliderSection({ initialData }: { initialData?: any }) {
         id: i + 1,
         img: url,
         title: `HP Lubricants Banner ${i + 1}`,
-        link: "#products",
+        link: '#products',
       }));
 
       // 3. Save to /api/home
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "HeroSlider",
+          section: 'HeroSlider',
           content: {
             slides,
           },
@@ -82,13 +68,13 @@ export function HeroSliderSection({ initialData }: { initialData?: any }) {
       if (json.success) {
         setSaved(true);
         setImages(uploadedUrls);
-        toast.success("Hero slider banners saved successfully!");
+        toast.success('Hero slider banners saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch (err: any) {
-      toast.error(err?.message || "Error saving hero slider");
+      toast.error(err?.message || 'Error saving hero slider');
     } finally {
       setLoading(false);
     }
@@ -102,14 +88,14 @@ export function HeroSliderSection({ initialData }: { initialData?: any }) {
         <SectionHeader
           title="Hero Banner Slider"
           description="Upload homepage carousel banner images. Drag and drop multiple banners at once."
-          badge={`${validCount} Banner${validCount === 1 ? "" : "s"}`}
+          badge={`${validCount} Banner${validCount === 1 ? '' : 's'}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">

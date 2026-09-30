@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useRef } from "react";
-import { CloudUpload, Link as LinkIcon, X, Loader2, Image as ImageIcon, Check } from "lucide-react";
-import { cn } from "@/lib/utils";
-import toast from "react-hot-toast";
+import React, { useState, useRef } from 'react';
+import { CloudUpload, Link as LinkIcon, X, Loader2, Image as ImageIcon, Check } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import toast from 'react-hot-toast';
 
 interface ImagePickerFieldProps {
   label?: string;
@@ -15,12 +15,12 @@ interface ImagePickerFieldProps {
 }
 
 export function ImagePickerField({
-  label = "Upload Image",
-  value = "",
+  label = 'Upload Image',
+  value = '',
   onChange,
   helperText,
-  placeholder = "https://... or upload from computer",
-  folder = "mahalaxmi/uploads",
+  placeholder = 'https://... or upload from computer',
+  folder = 'mahalaxmi/uploads',
 }: ImagePickerFieldProps) {
   const [uploading, setUploading] = useState(false);
   const [showUrlInput, setShowUrlInput] = useState(false);
@@ -31,7 +31,7 @@ export function ImagePickerField({
 
     // Validate size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
-      toast.error("File size too large (maximum 10MB)");
+      toast.error('File size too large (maximum 10MB)');
       return;
     }
 
@@ -40,28 +40,28 @@ export function ImagePickerField({
 
     try {
       const formData = new FormData();
-      formData.append("file", file);
-      formData.append("folder", folder);
+      formData.append('file', file);
+      formData.append('folder', folder);
 
-      const res = await fetch("/api/upload", {
-        method: "POST",
+      const res = await fetch('/api/upload', {
+        method: 'POST',
         body: formData,
       });
 
       const json = await res.json();
       if (json.success && json.url) {
         onChange?.(json.url);
-        toast.success("Image uploaded to Cloudinary successfully!", { id: toastId });
+        toast.success('Image uploaded to Cloudinary successfully!', { id: toastId });
       } else {
-        toast.error(json.error || "Failed to upload image", { id: toastId });
+        toast.error(json.error || 'Failed to upload image', { id: toastId });
       }
     } catch (err: any) {
-      console.error("Upload error:", err);
-      toast.error(err?.message || "Network error uploading image", { id: toastId });
+      console.error('Upload error:', err);
+      toast.error(err?.message || 'Network error uploading image', { id: toastId });
     } finally {
       setUploading(false);
       if (fileInputRef.current) {
-        fileInputRef.current.value = "";
+        fileInputRef.current.value = '';
       }
     }
   };
@@ -69,15 +69,13 @@ export function ImagePickerField({
   return (
     <div className="flex flex-col gap-2 w-full">
       <div className="flex items-center justify-between">
-        <label className="text-xs font-bold text-slate-800 tracking-wide">
-          {label}
-        </label>
+        <label className="text-xs font-bold text-slate-800 tracking-wide">{label}</label>
         <button
           type="button"
           onClick={() => setShowUrlInput(!showUrlInput)}
           className="text-[11px] text-[#002B5C] hover:text-[#EB1E25] font-semibold transition-colors cursor-pointer"
         >
-          {showUrlInput ? "Hide Direct URL" : "Paste Direct URL"}
+          {showUrlInput ? 'Hide Direct URL' : 'Paste Direct URL'}
         </button>
       </div>
 
@@ -87,7 +85,7 @@ export function ImagePickerField({
           <LinkIcon className="absolute left-3 w-4 h-4 text-slate-400" />
           <input
             type="text"
-            value={value || ""}
+            value={value || ''}
             onChange={(e) => onChange?.(e.target.value)}
             placeholder={placeholder}
             className="w-full pl-9 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#002B5C]/20 focus:border-[#002B5C] transition-all"
@@ -121,7 +119,7 @@ export function ImagePickerField({
                 className="w-full h-full object-contain"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src =
-                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80";
+                    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80';
                 }}
               />
             </div>
@@ -148,12 +146,12 @@ export function ImagePickerField({
                   <Loader2 size={13} className="animate-spin" /> Uploading
                 </span>
               ) : (
-                "Change Image"
+                'Change Image'
               )}
             </button>
             <button
               type="button"
-              onClick={() => onChange?.("")}
+              onClick={() => onChange?.('')}
               className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-colors cursor-pointer"
               title="Remove image"
             >
@@ -182,9 +180,7 @@ export function ImagePickerField({
                 <p className="text-xs font-bold text-slate-800">
                   Click to upload image from computer
                 </p>
-                <p className="text-[11px] text-slate-400 mt-0.5">
-                  PNG, JPG, WEBP, SVG up to 10MB
-                </p>
+                <p className="text-[11px] text-slate-400 mt-0.5">PNG, JPG, WEBP, SVG up to 10MB</p>
               </div>
             </>
           )}

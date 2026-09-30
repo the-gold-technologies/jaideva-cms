@@ -1,5 +1,5 @@
-import React from "react";
-import { Save, Check, Loader2 } from "lucide-react";
+import React from 'react';
+import { Save, Check, Loader2 } from 'lucide-react';
 
 interface SaveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
@@ -9,9 +9,9 @@ interface SaveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> 
 }
 
 export const SaveButton: React.FC<SaveButtonProps> = ({
-  label = "Save Changes",
+  label = 'Save Changes',
   icon,
-  className = "",
+  className = '',
   disabled,
   loading = false,
   saved = false,
@@ -23,8 +23,8 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
     <button
       disabled={isDisabled}
       className={`bg-[#C86218] cursor-pointer text-white px-8 py-3 rounded-full font-semibold tracking-wide hover:bg-[#0C356A] transition-all duration-300 border border-transparent hover:border-[#C86218] hover:shadow-[0_0_25px_rgba(200,98,24,0.35)] flex items-center justify-center gap-2.5 group ${
-        isDisabled ? "opacity-75 cursor-not-allowed" : ""
-      } ${saved ? "bg-emerald-600 hover:bg-emerald-700" : ""} ${className}`}
+        isDisabled ? 'opacity-75 cursor-not-allowed' : ''
+      } ${saved ? 'bg-emerald-600 hover:bg-emerald-700' : ''} ${className}`}
       {...props}
     >
       {loading ? (
@@ -36,9 +36,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       ) : (
         <Save className="w-4 h-4" />
       )}
-      <span>
-        {loading ? "Saving..." : saved ? "Saved!" : label}
-      </span>
+      <span>{loading ? 'Saving...' : saved ? 'Saved!' : label}</span>
     </button>
   );
 };

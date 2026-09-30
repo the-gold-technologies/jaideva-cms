@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Plus,
   Trash2,
@@ -10,12 +10,12 @@ import {
   X,
   RefreshCw,
   Building2,
-} from "lucide-react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
+} from 'lucide-react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
 
 export interface ClientItem {
   id: string;
@@ -33,15 +33,15 @@ export interface TrustedClientsData {
 export const DEFAULT_TRUSTED_CLIENTS: ClientItem[] = [];
 
 export const DEFAULT_TRUSTED_CLIENTS_DATA: TrustedClientsData = {
-  title: "",
-  description: "",
+  title: '',
+  description: '',
   clients: [],
 };
 
 function LogoDropzone({
   value,
   onChange,
-  label = "Client Brand Logo",
+  label = 'Client Brand Logo',
 }: {
   value: string;
   onChange: (url: string) => void;
@@ -52,30 +52,30 @@ function LogoDropzone({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const uploadFile = async (file: File) => {
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please upload an image file (PNG, JPG, WebP)");
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file (PNG, JPG, WebP)');
       return;
     }
 
     setIsUploading(true);
     try {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append('file', file);
 
-      const res = await fetch("/api/upload", {
-        method: "POST",
+      const res = await fetch('/api/upload', {
+        method: 'POST',
         body: formData,
       });
 
       const data = await res.json();
       if (data.success && data.url) {
         onChange(data.url);
-        toast.success("Logo uploaded successfully");
+        toast.success('Logo uploaded successfully');
       } else {
-        toast.error(data.error || "Failed to upload image");
+        toast.error(data.error || 'Failed to upload image');
       }
     } catch {
-      toast.error("Error uploading logo");
+      toast.error('Error uploading logo');
     } finally {
       setIsUploading(false);
     }
@@ -83,9 +83,7 @@ function LogoDropzone({
 
   return (
     <div className="flex flex-col gap-1.5 w-full">
-      <label className="text-xs font-semibold text-slate-700 tracking-wide">
-        {label}
-      </label>
+      <label className="text-xs font-semibold text-slate-700 tracking-wide">{label}</label>
 
       <input
         type="file"
@@ -93,7 +91,7 @@ function LogoDropzone({
         onChange={(e) => {
           if (e.target.files && e.target.files[0]) {
             uploadFile(e.target.files[0]);
-            e.target.value = "";
+            e.target.value = '';
           }
         }}
         accept="image/png, image/jpeg, image/jpg, image/webp"
@@ -111,17 +109,15 @@ function LogoDropzone({
                 className="w-full h-full object-contain"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src =
-                    "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&w=150&q=80";
+                    'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?auto=format&fit=crop&w=150&q=80';
                 }}
               />
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-xs font-bold text-gray-900 truncate">
-                {value.split("/").pop() || "Logo Image"}
+                {value.split('/').pop() || 'Logo Image'}
               </span>
-              <span className="text-[11px] text-emerald-600 font-medium">
-                ✓ Logo loaded
-              </span>
+              <span className="text-[11px] text-emerald-600 font-medium">✓ Logo loaded</span>
             </div>
           </div>
 
@@ -141,7 +137,7 @@ function LogoDropzone({
             </button>
             <button
               type="button"
-              onClick={() => onChange("")}
+              onClick={() => onChange('')}
               disabled={isUploading}
               className="p-1 text-gray-400 hover:text-red-600 hover:bg-orange-50 rounded-lg transition-colors cursor-pointer"
               title="Remove image"
@@ -170,8 +166,8 @@ function LogoDropzone({
           onClick={() => fileInputRef.current?.click()}
           className={`w-full border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-4 transition-all cursor-pointer group ${
             isDragging
-              ? "border-[#C86218] bg-orange-50/50 scale-[0.99]"
-              : "border-gray-300 bg-gray-50/60 hover:bg-gray-50 hover:border-gray-400"
+              ? 'border-[#C86218] bg-orange-50/50 scale-[0.99]'
+              : 'border-gray-300 bg-gray-50/60 hover:bg-gray-50 hover:border-gray-400'
           }`}
         >
           {isUploading ? (
@@ -198,25 +194,22 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [data, setData] = useState<TrustedClientsData>(
-    DEFAULT_TRUSTED_CLIENTS_DATA
-  );
+  const [data, setData] = useState<TrustedClientsData>(DEFAULT_TRUSTED_CLIENTS_DATA);
   const [expandedIds, setExpandedIds] = useState<Record<string, boolean>>({
     haldiram: true,
   });
 
   useEffect(() => {
     if (initialData) {
-      const list =
-        Array.isArray(initialData.clients)
-          ? initialData.clients
-          : Array.isArray(initialData)
+      const list = Array.isArray(initialData.clients)
+        ? initialData.clients
+        : Array.isArray(initialData)
           ? initialData
           : [];
 
       setData({
-        title: initialData.title || "",
-        description: initialData.description || "",
+        title: initialData.title || '',
+        description: initialData.description || '',
         clients: list,
       });
 
@@ -240,33 +233,29 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
     const newId = `client-${Date.now()}`;
     const newItem: ClientItem = {
       id: newId,
-      name: "New Partner / Client",
-            logo: "",
+      name: 'New Partner / Client',
+      logo: '',
     };
     setData((prev) => ({
       ...prev,
       clients: [...prev.clients, newItem],
     }));
     setExpandedIds((prev) => ({ ...prev, [newId]: true }));
-    toast.success("New client added");
+    toast.success('New client added');
   };
 
   const handleRemoveClient = (idx: number, e: React.MouseEvent) => {
     e.stopPropagation();
     if (data.clients.length <= 1) {
-      toast.error("You must have at least 1 client.");
+      toast.error('You must have at least 1 client.');
       return;
     }
     const updated = data.clients.filter((_, i) => i !== idx);
     setData((prev) => ({ ...prev, clients: updated }));
-    toast.success("Client removed");
+    toast.success('Client removed');
   };
 
-  const handleClientChange = (
-    idx: number,
-    field: keyof ClientItem,
-    value: string
-  ) => {
+  const handleClientChange = (idx: number, field: keyof ClientItem, value: string) => {
     const updated = [...data.clients];
     updated[idx] = { ...updated[idx], [field]: value };
     setData((prev) => ({ ...prev, clients: updated }));
@@ -276,11 +265,11 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
     setLoading(true);
     setSaved(false);
     try {
-      const res = await fetch("/api/home", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/home', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          section: "TrustedClientsSection",
+          section: 'TrustedClientsSection',
           content: data,
         }),
       });
@@ -288,13 +277,13 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
       const json = await res.json();
       if (json.success) {
         setSaved(true);
-        toast.success("Trusted clients saved successfully!");
+        toast.success('Trusted clients saved successfully!');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch {
-      toast.error("Error saving trusted clients");
+      toast.error('Error saving trusted clients');
     } finally {
       setLoading(false);
     }
@@ -306,16 +295,14 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
         <SectionHeader
           title="Trusted Clients & Partners Marquee"
           description="Manage corporate client logos, government partners, and defense organizations displayed in the marquee."
-          badge={`${data.clients.length} Client${
-            data.clients.length === 1 ? "" : "s"
-          }`}
+          badge={`${data.clients.length} Client${data.clients.length === 1 ? '' : 's'}`}
           isOpen={isOpen}
           onToggle={() => setIsOpen(!isOpen)}
         />
 
         <div
           className={`grid transition-all duration-300 ease-in-out ${
-            isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
           }`}
         >
           <div className="overflow-hidden">
@@ -325,9 +312,7 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
                 <InputField
                   label="Section Title"
                   value={data.title}
-                  onChange={(e) =>
-                    setData((prev) => ({ ...prev, title: e.target.value }))
-                  }
+                  onChange={(e) => setData((prev) => ({ ...prev, title: e.target.value }))}
                   placeholder="TRUSTED CLIENTS & PARTNERS"
                   helperText="Main heading for the marquee section"
                 />
@@ -407,7 +392,6 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
                             <span className="text-xs font-bold text-[#0B0F29] uppercase tracking-wide truncate">
                               {client.name || `Client #${idx + 1}`}
                             </span>
-                            
                           </div>
                         </div>
 
@@ -425,7 +409,7 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
                           )}
                           <div
                             className={`p-1.5 rounded-lg text-gray-500 hover:bg-gray-200/70 transition-transform duration-200 ${
-                              isItemExpanded ? "rotate-180" : ""
+                              isItemExpanded ? 'rotate-180' : ''
                             }`}
                           >
                             <ChevronDown className="w-4 h-4" />
@@ -437,26 +421,22 @@ export function TrustedClientsSection({ initialData }: { initialData?: any }) {
                       <div
                         className={`grid transition-all duration-200 ease-in-out border-t border-gray-200/60 ${
                           isItemExpanded
-                            ? "grid-rows-[1fr] opacity-100 p-5 bg-white"
-                            : "grid-rows-[0fr] opacity-0"
+                            ? 'grid-rows-[1fr] opacity-100 p-5 bg-white'
+                            : 'grid-rows-[0fr] opacity-0'
                         }`}
                       >
                         <div className="overflow-hidden flex flex-col gap-4">
                           <InputField
                             label="Client / Enterprise Name"
                             value={client.name}
-                            onChange={(e) =>
-                              handleClientChange(idx, "name", e.target.value)
-                            }
+                            onChange={(e) => handleClientChange(idx, 'name', e.target.value)}
                             placeholder="e.g. Caltex / HP Lubricants / MotulTech"
                           />
 
                           <LogoDropzone
                             label="Client Brand Logo"
                             value={client.logo}
-                            onChange={(url) =>
-                              handleClientChange(idx, "logo", url)
-                            }
+                            onChange={(url) => handleClientChange(idx, 'logo', url)}
                           />
                         </div>
                       </div>
