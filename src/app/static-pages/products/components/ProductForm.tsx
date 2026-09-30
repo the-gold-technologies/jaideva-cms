@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -58,6 +58,79 @@ const DEFAULT_SPECS_TABLE: PropertyRow[] = [
   { property: "Flash Point, °C", value: "225" },
 ];
 
+const BRAND_SUBCATEGORIES: Record<string, string[]> = {
+  "hp-lubricants": [
+    "Engine Oils",
+    "Gear Oils",
+    "Hydraulic Oils",
+    "Greases",
+    "Industrial Oils",
+    "Specialty Products",
+  ],
+  "valvoline": [
+    "Automotive Lubricants",
+    "Commercial Vehicle Lubricants",
+    "Industrial Lubricants",
+    "Greases",
+    "Specialty Products",
+  ],
+  "gs-caltex": [
+    "Automotive Lubricants",
+    "Industrial Lubricants",
+    "Greases",
+    "Specialty Lubricants",
+  ],
+  "idemitsu": [
+    "Automotive Lubricants",
+    "Industrial Lubricants",
+    "Gear Oils",
+    "Hydraulic Oils",
+    "Greases",
+    "Specialty Products",
+  ],
+  "molygraph-lubricants": [
+    "Industrial Lubricants",
+    "Specialty Lubricants",
+    "Greases",
+    "Metalworking Fluids",
+    "Assembly & Maintenance Products",
+  ],
+  "motul-tech": [
+    "Metalworking Fluids",
+    "Industrial Lubricants",
+    "Greases",
+    "Specialty Products",
+    "Maintenance Solutions",
+  ],
+  "deep-pneumatics": [
+    "Air Compressors",
+    "Pneumatic Products",
+    "Air Treatment Solutions",
+    "Industrial Equipment",
+    "Compressor Lubricants",
+  ],
+  "lubricon": [
+    "Engine Oils",
+    "Gear Oils",
+    "Hydraulic Oils",
+    "Greases",
+    "Specialty Lubricants",
+    "Industrial Lubricants",
+  ],
+  "tw-chemin": [
+    "Industrial Chemicals",
+    "Lubrication Solutions",
+    "Specialty Chemicals",
+    "Maintenance Products",
+  ],
+  "filtermist": [
+    "Oil Mist Collectors",
+    "Filtration Systems",
+    "Industrial Air Filtration",
+    "Extraction Solutions",
+  ],
+};
+
 export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -68,8 +141,8 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
   const [subtitle, setSubtitle] = useState("");
-  const [categorySlug, setCategorySlug] = useState("industrial-oils");
-  const [categoryName, setCategoryName] = useState("Industrial Oils");
+  const [categorySlug, setCategorySlug] = useState("hp-lubricants");
+  const [categoryName, setCategoryName] = useState("HP Lubricants");
   const [subCategoryTitle, setSubCategoryTitle] = useState("");
   const [containerImages, setContainerImages] = useState<
     (File | string | null)[]
@@ -87,6 +160,16 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [pdfUrl, setPdfUrl] = useState("");
   const [msdsUrl, setMsdsUrl] = useState("");
   const [isFeatured, setIsFeatured] = useState(false);
+
+  const activeCategorySuggestions = useMemo(() => {
+    return BRAND_SUBCATEGORIES[categorySlug] || [
+      "Engine Oils",
+      "Gear Oils",
+      "Hydraulic Oils",
+      "Greases",
+      "Specialty Products",
+    ];
+  }, [categorySlug]);
 
   // Load Categories & Product Data
   useEffect(() => {
@@ -113,8 +196,8 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             setName(p.name || "");
             setSlug(p.slug || "");
             setSubtitle(p.subtitle || "");
-            setCategorySlug(p.categorySlug || "industrial-oils");
-            setCategoryName(p.categoryName || "Industrial Oils");
+            setCategorySlug(p.categorySlug || "hp-lubricants");
+            setCategoryName(p.categoryName || "HP Lubricants");
             setSubCategoryTitle(p.subCategoryTitle || "");
             setContainerImages(p.containerImage ? [p.containerImage] : []);
             setDescription(p.description || "");
@@ -278,12 +361,22 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column (2 Cols): Core Product Details */}
         <div className="lg:col-span-2 flex flex-col gap-6">
-          {/* Card 1: Basic Information */}
+          {/* Card 1: Brand & Category Classification */}
           <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
               <Package className="w-4 h-4 text-[#C86218]" />
-              1. Commercial Identification
+              1. Brand & Category Classification
             </h3>
+
+            {/* Clear Hierarchy Guide Banner */}
+            <div className="flex items-center gap-2 p-3 bg-orange-50/70 border border-orange-200/60 rounded-2xl text-[11px] font-semibold text-[#8C3D00]">
+              <span className="font-extrabold uppercase bg-[#C86218] text-white px-2 py-0.5 rounded-full text-[10px]">
+                Hierarchy Guide
+              </span>
+              <span>
+                1. <strong>Brand Name</strong> (e.g. HP Lubricants) ➔ 2. <strong>Brand Category</strong> (e.g. Engine Oils) ➔ 3. <strong>Product</strong> (e.g. HP Racer 4T 20W-40)
+              </span>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <InputField
@@ -293,24 +386,37 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                 placeholder="e.g. HP Milcy Turbo 15W-40"
                 required
               />
-              <InputField
-                label="URL Slug *"
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                placeholder="e.g. hp-milcy-turbo-15w-40"
-                required
-              />
+              {/* Auto-generated slug — read-only */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+                  URL SLUG <span className="text-[#C86218]">*</span>
+                </label>
+                <div className="flex items-center gap-2 px-4 py-3 rounded-2xl border border-gray-200 bg-gray-50/80 text-sm font-mono text-gray-700 select-all min-h-[44px]">
+                  <svg className="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  </svg>
+                  <span className="truncate">{slug || <span className="text-gray-400 font-sans italic">auto-generated from name</span>}</span>
+                  <span className="ml-auto shrink-0 text-[10px] font-bold text-gray-400 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded-full uppercase tracking-wide">Auto</span>
+                </div>
+                <p className="text-[10px] text-gray-400 leading-snug pl-0.5">Generated automatically from the product name. Cannot be edited manually.</p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <SelectField
-                label="Main Category *"
+                label="1. Brand Name (Partner) *"
                 value={categorySlug}
                 onChange={(e) => {
                   const val = e.target.value;
                   setCategorySlug(val);
                   const match = categories.find((c) => c.slug === val);
-                  if (match) setCategoryName(match.name);
+                  if (match) {
+                    setCategoryName(match.name);
+                    const defaultCat = BRAND_SUBCATEGORIES[val]?.[0] || "";
+                    if (defaultCat && (!subCategoryTitle || subCategoryTitle === "Engine Oils")) {
+                      setSubCategoryTitle(defaultCat);
+                    }
+                  }
                 }}
                 options={
                   categories.length > 0
@@ -319,37 +425,60 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                         label: c.name,
                       }))
                     : [
-                        {
-                          value: "industrial-oils",
-                          label: "Industrial Oils",
-                        },
-                        {
-                          value: "industrial-greases",
-                          label: "Industrial Greases",
-                        },
-                        {
-                          value: "automotive-lubricants",
-                          label: "Automotive Lubricants",
-                        },
-                        {
-                          value: "agriculture-oils",
-                          label: "Agriculture & Tractor Oils",
-                        },
+                        { value: "hp-lubricants", label: "HP Lubricants" },
+                        { value: "valvoline", label: "Valvoline" },
+                        { value: "gs-caltex", label: "GS Caltex" },
+                        { value: "idemitsu", label: "Idemitsu" },
+                        { value: "molygraph-lubricants", label: "Molygraph Lubricants" },
+                        { value: "motul-tech", label: "Motul Tech" },
+                        { value: "deep-pneumatics", label: "Deep Pneumatics" },
+                        { value: "lubricon", label: "Lubricon" },
+                        { value: "tw-chemin", label: "TW Chemin" },
+                        { value: "filtermist", label: "Filtermist" },
                       ]
                 }
               />
               <InputField
-                label="Sub-Classification"
-                value={subCategoryTitle}
-                onChange={(e) => setSubCategoryTitle(e.target.value)}
-                placeholder="e.g. Hydraulic Oils / Diesel Oils"
-              />
-              <InputField
-                label="Tagline / Subtitle"
+                label="Tagline / Card Subtitle"
                 value={subtitle}
                 onChange={(e) => setSubtitle(e.target.value)}
-                placeholder="e.g. Premium Heavy Duty Engine Oil"
+                placeholder={`e.g. ${categoryName || "HP Lubricants"} • ${subCategoryTitle || "Engine Oils"}`}
               />
+            </div>
+
+            {/* Brand Category Selection with Quick Chips */}
+            <div className="flex flex-col gap-2.5 p-4 bg-gray-50/70 rounded-2xl border border-gray-100">
+              <InputField
+                label={`2. Brand Category Name (under ${categoryName || "Brand"}) *`}
+                value={subCategoryTitle}
+                onChange={(e) => setSubCategoryTitle(e.target.value)}
+                placeholder="e.g. Engine Oils, Gear Oils, Hydraulic Oils"
+                required
+              />
+              <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mr-1">
+                  Quick Pick Category under ${categoryName || "Brand"}:
+                </span>
+                {activeCategorySuggestions.map((sub) => (
+                  <button
+                    key={sub}
+                    type="button"
+                    onClick={() => {
+                      setSubCategoryTitle(sub);
+                      if (!subtitle || subtitle.includes("•")) {
+                        setSubtitle(`${categoryName} • ${sub}`);
+                      }
+                    }}
+                    className={`text-[11px] px-3 py-1 rounded-full font-semibold transition-all cursor-pointer ${
+                      subCategoryTitle === sub
+                        ? "bg-[#C86218] text-white shadow-xs"
+                        : "bg-white border border-gray-200 text-gray-700 hover:border-[#C86218] hover:text-[#C86218]"
+                    }`}
+                  >
+                    {sub}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 

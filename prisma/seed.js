@@ -1797,1463 +1797,4105 @@ async function main() {
   }
   console.log("✓ Events page & sections ready.");
 
-  // 8. Product Categories
-  const categories = [
-    {
-      name: "Industrial Oils",
-      slug: "industrial-oils",
-      shortDesc:
-        "High performance hydraulic, compressor, turbine, transformer, gear, film, and machinery lubricants.",
-      fullDesc:
-        "Discover JAI DEVA OIL CO.' industrial oils tailored for hydraulic systems, gearboxes, compressors, sugar mills, and more. Trusted for quality, innovation, and reliability.",
-      coverImage:
-        "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Compressor-Oils.png",
-      isFeatured: true,
-      order: 0,
-    },
-    {
-      name: "Industrial Greases",
-      slug: "industrial-greases",
-      shortDesc:
-        "Extreme pressure lithium, complex, wheel bearing, and specialty temperature resistant greases.",
-      fullDesc:
-        "JAI DEVA OIL CO. supplies premium industrial greases formulated for heavy machinery bearings, steel mills, and high temperature applications.",
-      coverImage:
-        "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Industrial-Greases.png",
-      isFeatured: true,
-      order: 1,
-    },
-    {
-      name: "Automotive Oils",
-      slug: "automotive-oils",
-      shortDesc:
-        "High-quality automotive, agricultural, passenger car, and engine oils.",
-      fullDesc:
-        "Explore JAI DEVA OIL CO.' range of automotive, agricultural, and commercial engine oils offering superior quality and performance for all your vehicles.",
-      coverImage:
-        "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Automotive-Oils.png",
-      isFeatured: true,
-      order: 2,
-    },
-    {
-      name: "Bike Engine Oils",
-      slug: "bike-oils",
-      shortDesc:
-        "4-stroke motorcycle engine lubricants with JASO MA2 wet clutch specification.",
-      fullDesc:
-        "HP RACER 4T motorcycle oils provide 3-in-1 protection for motorcycle engine, wet clutch, and transmission gearbox.",
-      coverImage:
-        "https://www.hplubricants.in/sites/default/files/styles/product_category_thumb/public/Automotive-Oils.png",
-      isFeatured: true,
-      order: 3,
-    },
-  ];
+  // 8 & 9. Brand Categories & Products (inlined from seed-brands.js)
+// Auto-generated brand categories and products seeder
+const brandCategories = [
+  {
+    "name": "HP Lubricants",
+    "slug": "hp-lubricants",
+    "shortDesc": "India's Premier Lubricant Solutions & Direct Refinery Supply Authority",
+    "fullDesc": "HP Lubricants is India's largest lubricant brand, offering an exhaustive spectrum of high-performance automotive and heavy industrial oils. Backed by state-of-the-art refinery testing, direct pipeline infrastructure, and ISO-certified batch blending, HP Lubricants ensures maximum machine longevity, thermal stability, and operational efficiency across critical power, steel, manufacturing, and transport infrastructure.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "isFeatured": true,
+    "order": 1
+  },
+  {
+    "name": "Valvoline",
+    "slug": "valvoline",
+    "shortDesc": "Over 150 Years of Severe-Duty Fleet Innovation & Extended Drain Chemistry",
+    "fullDesc": "Valvoline has pioneered heavy fleet lubrication since 1866. Engineered specifically for severe-duty commercial transport, mining haulers, and high-hour industrial equipment, Valvoline's patented chemistry ensures maximum thermal breakdown defense, soot dispersion, and extended drain intervals.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+    "isFeatured": true,
+    "order": 2
+  },
+  {
+    "name": "GS Caltex",
+    "slug": "gs-caltex",
+    "shortDesc": "World-Class Kixx Group II/III Synthetic Base Oil Technology",
+    "fullDesc": "GS Caltex operates one of the world's largest single-site petroleum refineries and base oil manufacturing facilities. Its flagship Kixx lubricant portfolio leverages ultra-pure Group II and Group III synthetic base oils, ensuring superior oxidation resistance, reduced friction, and exceptional fuel economy under severe loads.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+    "isFeatured": true,
+    "order": 3
+  },
+  {
+    "name": "Idemitsu",
+    "slug": "idemitsu",
+    "shortDesc": "Tight-Tolerance Japanese OEM Precision Fluids & Machine Tool Chemistry",
+    "fullDesc": "Idemitsu is Japan's premier OEM lubricant partner, formulating factory-fill fluids for world-leading Japanese automotive and machinery manufacturers. Its specialized Daphne product line is engineered for high-speed spindles, EDM dielectric spark erosion, and ultra-tight tolerance CNC machine tools.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "isFeatured": true,
+    "order": 4
+  },
+  {
+    "name": "Molygraph Lubricants",
+    "slug": "molygraph-lubricants",
+    "shortDesc": "Engineered Specialty High-Temp Greases, Pastes & Extreme Tribology",
+    "fullDesc": "Molygraph is India's leading manufacturer of engineered specialty greases, anti-seize pastes, and high-temperature tribological lubricants. Built specifically for cement kilns, steel mills, continuous casters, and heavy forging plants where conventional lubricants melt or wash off under extreme pressure.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "isFeatured": true,
+    "order": 5
+  },
+  {
+    "name": "Motul Tech",
+    "slug": "motul-tech",
+    "shortDesc": "French Industrial Fluid Technology & Metal Transformation Chemistry",
+    "fullDesc": "MotulTech is the dedicated heavy industrial division of France's Motul Group. Specializing in high-performance CNC metalworking coolants, neat cutting oils, dielectric spark erosion fluids, and accelerated quench oils, MotulTech products optimize tool life, machine uptime, and metal transformation quality.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "isFeatured": true,
+    "order": 6
+  },
+  {
+    "name": "Deep Pneumatics",
+    "slug": "deep-pneumatics",
+    "shortDesc": "Industrial Rotary Screw Compressors, Clean Air Treatment & Specialized Fluids",
+    "fullDesc": "Deep Pneumatics is an industrial leader providing high-efficiency rotary screw compressors, air treatment dryers, pneumatic filtration units, and custom synthetic compressor fluids. Engineered to provide continuous, carbon-free compressed air for critical automation, pneumatic machinery, and heavy industrial facilities.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "isFeatured": true,
+    "order": 7
+  },
+  {
+    "name": "Lubricon",
+    "slug": "lubricon",
+    "shortDesc": "Custom Industrial Blends, Severe-Duty Circulating & Plant-Specific Fluids",
+    "fullDesc": "Lubricon delivers customized industrial lubricant blends, precision slideway fluids, and plant-specific process oils formulated to match machinery configurations. Designed for continuous manufacturing lines, severe circulating sumps, heavy machine tools, and specialized industrial gear drives.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "isFeatured": true,
+    "order": 8
+  },
+  {
+    "name": "TW Chemin",
+    "slug": "tw-chemin",
+    "shortDesc": "European Precision Metalworking Chemistry, CNC Coolants & Rust Defense",
+    "fullDesc": "TW Chemin represents German precision chemical formulations for multi-axis CNC metal cutting, surface preparation, and long-term corrosion prevention. Formulated with bio-stable biocides, zero-chlorine lubricity boosters, and thin-film dewatering anti-corrosion barriers.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "isFeatured": true,
+    "order": 9
+  },
+  {
+    "name": "Filtermist",
+    "slug": "filtermist",
+    "shortDesc": "UK World Leaders in Centrifugal Oil Mist Extraction & Machine Shop Clean Air",
+    "fullDesc": "Filtermist is the international standard in oil mist collectors, centrifugal smoke eliminators, and workshop air filtration units since 1969. Engineered to capture hazardous oil mist directly at the CNC machine source, recover valuable coolants, and protect workers' health.",
+    "coverImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+    "isFeatured": true,
+    "order": 10
+  }
+];
 
-  for (const cat of categories) {
+const brandProducts = [
+  {
+    "name": "HP Racer 4T 20W-40",
+    "slug": "hp-racer-4t-20w40",
+    "subtitle": "HP Lubricants • Engine Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Engine Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+    "description": "Premium four-stroke motorcycle and scooter engine oil with high friction stability and clutch anti-slippage.",
+    "applicationAreas": "Two-Wheelers, Four-Stroke Motorcycles, Scooters",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API SL | JASO MA2 | SAE 20W-40.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 900ml / 1L / 50L / 210L Drum",
+      "Application areas: Two-Wheelers, Four-Stroke Motorcycles, Scooters",
+      "Standards & specs: API SL | JASO MA2 | SAE 20W-40"
+    ],
+    "specsText": "API SL | JASO MA2 | SAE 20W-40",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Engine Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API SL | JASO MA2 | SAE 20W-40"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Two-Wheelers, Four-Stroke Motorcycles, Scooters"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "900ml, 1L, 50L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 101
+  },
+  {
+    "name": "HP Milcy Turbo 15W-40",
+    "slug": "hp-milcy-turbo-15w40",
+    "subtitle": "HP Lubricants • Engine Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Engine Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+    "description": "Severe-duty turbo-charged diesel engine oil engineered for extended drain intervals, soot dispersion, and bore protection.",
+    "applicationAreas": "Heavy Commercial Vehicles, Earthmovers, Diesel Gensets",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API CI-4 Plus / SL | MB 228.3 | SAE 15W-40.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 7.5L / 10L / 20L Bucket / 210L Drum",
+      "Application areas: Heavy Commercial Vehicles, Earthmovers, Diesel Gensets",
+      "Standards & specs: API CI-4 Plus / SL | MB 228.3 | SAE 15W-40"
+    ],
+    "specsText": "API CI-4 Plus / SL | MB 228.3 | SAE 15W-40",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Engine Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API CI-4 Plus / SL | MB 228.3 | SAE 15W-40"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Heavy Commercial Vehicles, Earthmovers, Diesel Gensets"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "7.5L, 10L, 20L Bucket, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 102
+  },
+  {
+    "name": "HP Neosynth 5W-30",
+    "slug": "hp-neosynth-5w30",
+    "subtitle": "HP Lubricants • Engine Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Engine Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+    "description": "100% full synthetic motor oil delivering maximum fuel efficiency and cold-cranking protection for modern petrol/diesel cars.",
+    "applicationAreas": "Modern Turbocharged Cars, SUVs, Hybrid Powertrains",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API SP | ILSAC GF-6 | Full Synthetic.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 1L / 3.5L / 4L Canister / 210L Drum",
+      "Application areas: Modern Turbocharged Cars, SUVs, Hybrid Powertrains",
+      "Standards & specs: API SP | ILSAC GF-6 | Full Synthetic"
+    ],
+    "specsText": "API SP | ILSAC GF-6 | Full Synthetic",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Engine Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API SP | ILSAC GF-6 | Full Synthetic"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Modern Turbocharged Cars, SUVs, Hybrid Powertrains"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "1L, 3.5L, 4L Canister, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 103
+  },
+  {
+    "name": "HP Gear Oil EP 90",
+    "slug": "hp-gear-oil-ep-90",
+    "subtitle": "HP Lubricants • Gear Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Gear Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Multi-purpose extreme pressure gear lubricant formulated for hypoid, spiral bevel, and synchromesh gearboxes.",
+    "applicationAreas": "Manual Transmissions, Hypoid Differentials, Steering Gears",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API GL-4 | IS:1118-1992 | EP 90.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 1L / 5L / 20L Bucket / 210L Drum",
+      "Application areas: Manual Transmissions, Hypoid Differentials, Steering Gears",
+      "Standards & specs: API GL-4 | IS:1118-1992 | EP 90"
+    ],
+    "specsText": "API GL-4 | IS:1118-1992 | EP 90",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Gear Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API GL-4 | IS:1118-1992 | EP 90"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Manual Transmissions, Hypoid Differentials, Steering Gears"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "1L, 5L, 20L Bucket, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 104
+  },
+  {
+    "name": "HP Parthan EP 220",
+    "slug": "hp-parthan-ep-220",
+    "subtitle": "HP Lubricants • Gear Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Gear Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Premium lead-free extreme pressure industrial gear oil with excellent demulsibility and anti-micropitting defense.",
+    "applicationAreas": "Steel Rolling Mills, Cement Ball Mills, Paper Machine Drives",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 220 | DIN 51517 Part 3 (CLP) | AGMA 9005-E02.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 20L Bucket / 210L Refinery Barrel / Bulk Road Tanker",
+      "Application areas: Steel Rolling Mills, Cement Ball Mills, Paper Machine Drives",
+      "Standards & specs: ISO VG 220 | DIN 51517 Part 3 (CLP) | AGMA 9005-E02"
+    ],
+    "specsText": "ISO VG 220 | DIN 51517 Part 3 (CLP) | AGMA 9005-E02",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Gear Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 220 | DIN 51517 Part 3 (CLP) | AGMA 9005-E02"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Steel Rolling Mills, Cement Ball Mills, Paper Machine Drives"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Bucket, 210L Refinery Barrel, Bulk Road Tanker"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 105
+  },
+  {
+    "name": "HP Parthan EP 320",
+    "slug": "hp-parthan-ep-320",
+    "subtitle": "HP Lubricants • Gear Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Gear Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Heavy-duty industrial enclosed gear lubricant built to withstand continuous heavy shock loading and high temperatures.",
+    "applicationAreas": "Crusher Gearboxes, Extruders, Heavy Mining Conveyors",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 320 | DIN 51517 Part 3 | US Steel 224.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 20L / 210L Drum / Tanker Delivery",
+      "Application areas: Crusher Gearboxes, Extruders, Heavy Mining Conveyors",
+      "Standards & specs: ISO VG 320 | DIN 51517 Part 3 | US Steel 224"
+    ],
+    "specsText": "ISO VG 320 | DIN 51517 Part 3 | US Steel 224",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Gear Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 320 | DIN 51517 Part 3 | US Steel 224"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Crusher Gearboxes, Extruders, Heavy Mining Conveyors"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 210L Drum, Tanker Delivery"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 106
+  },
+  {
+    "name": "HP Enklo 68",
+    "slug": "hp-enklo-68",
+    "subtitle": "HP Lubricants • Hydraulic Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Hydraulic Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "High performance anti-wear hydraulic oil providing oxidation stability, anti-foam, and rapid water separation.",
+    "applicationAreas": "Plastic Injection Molding, CNC Hydraulic Packs, Hydraulic Presses",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 68 | DIN 51524 Part 2 (HLP) | Parker Denison HF-0.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 20L Bucket / 210L Refinery Barrel / Bulk Road Tanker",
+      "Application areas: Plastic Injection Molding, CNC Hydraulic Packs, Hydraulic Presses",
+      "Standards & specs: ISO VG 68 | DIN 51524 Part 2 (HLP) | Parker Denison HF-0"
+    ],
+    "specsText": "ISO VG 68 | DIN 51524 Part 2 (HLP) | Parker Denison HF-0",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Hydraulic Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 68 | DIN 51524 Part 2 (HLP) | Parker Denison HF-0"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Plastic Injection Molding, CNC Hydraulic Packs, Hydraulic Presses"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Bucket, 210L Refinery Barrel, Bulk Road Tanker"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 107
+  },
+  {
+    "name": "HP Enklo 46",
+    "slug": "hp-enklo-46",
+    "subtitle": "HP Lubricants • Hydraulic Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Hydraulic Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Premium anti-wear hydraulic oil formulated for rotary vane, piston, and gear type hydraulic pumps under severe duty.",
+    "applicationAreas": "Mobile Construction Equipment, Machine Tool Hydraulics, Forklifts",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 46 | DIN 51524 Part 2 | Eaton Vickers I-286-S.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 20L / 210L Drum / Bulk Tanker",
+      "Application areas: Mobile Construction Equipment, Machine Tool Hydraulics, Forklifts",
+      "Standards & specs: ISO VG 46 | DIN 51524 Part 2 | Eaton Vickers I-286-S"
+    ],
+    "specsText": "ISO VG 46 | DIN 51524 Part 2 | Eaton Vickers I-286-S",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Hydraulic Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 46 | DIN 51524 Part 2 | Eaton Vickers I-286-S"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Mobile Construction Equipment, Machine Tool Hydraulics, Forklifts"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 210L Drum, Bulk Tanker"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 108
+  },
+  {
+    "name": "HP Enklo 32",
+    "slug": "hp-enklo-32",
+    "subtitle": "HP Lubricants • Hydraulic Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Hydraulic Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Light viscosity anti-wear fluid designed for tight-clearance servo valves and high-cycle industrial automation.",
+    "applicationAreas": "Servo-Controlled Machine Tools, Precision Robotics, Low Temp Hydraulics",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 32 | DIN 51524 Part 2 | High Viscosity Index.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 20L Bucket / 210L Drum",
+      "Application areas: Servo-Controlled Machine Tools, Precision Robotics, Low Temp Hydraulics",
+      "Standards & specs: ISO VG 32 | DIN 51524 Part 2 | High Viscosity Index"
+    ],
+    "specsText": "ISO VG 32 | DIN 51524 Part 2 | High Viscosity Index",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Hydraulic Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 32 | DIN 51524 Part 2 | High Viscosity Index"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Servo-Controlled Machine Tools, Precision Robotics, Low Temp Hydraulics"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Bucket, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 109
+  },
+  {
+    "name": "HP Lithon 2",
+    "slug": "hp-lithon-2",
+    "subtitle": "HP Lubricants • Greases",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Greases",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Premium multi-purpose lithium grease with high mechanical shear stability, anti-rust, and water resistance.",
+    "applicationAreas": "Electric Motor Bearings, Industrial Rollers, General Plant Lubrication",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting NLGI 2 | Lithium Base | Drop Point 190°C.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 1kg / 5kg / 18kg Pail / 180kg Barrel",
+      "Application areas: Electric Motor Bearings, Industrial Rollers, General Plant Lubrication",
+      "Standards & specs: NLGI 2 | Lithium Base | Drop Point 190°C"
+    ],
+    "specsText": "NLGI 2 | Lithium Base | Drop Point 190°C",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Greases"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "NLGI 2 | Lithium Base | Drop Point 190°C"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Electric Motor Bearings, Industrial Rollers, General Plant Lubrication"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "1kg, 5kg, 18kg Pail, 180kg Barrel"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 110
+  },
+  {
+    "name": "HP AP3 Grease",
+    "slug": "hp-ap3-grease",
+    "subtitle": "HP Lubricants • Greases",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Greases",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "High shear resistance grease designed specifically for automotive wheel bearings and heavy industrial shaft collars.",
+    "applicationAreas": "Commercial Truck Wheel Bearings, Textile Machinery, Farm Equipment",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting NLGI 3 | Premium Lithium Soap | Drop Point 195°C.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 500g / 1kg / 3kg / 18kg Pail / 180kg Drum",
+      "Application areas: Commercial Truck Wheel Bearings, Textile Machinery, Farm Equipment",
+      "Standards & specs: NLGI 3 | Premium Lithium Soap | Drop Point 195°C"
+    ],
+    "specsText": "NLGI 3 | Premium Lithium Soap | Drop Point 195°C",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Greases"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "NLGI 3 | Premium Lithium Soap | Drop Point 195°C"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Commercial Truck Wheel Bearings, Textile Machinery, Farm Equipment"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "500g, 1kg, 3kg, 18kg Pail, 180kg Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 111
+  },
+  {
+    "name": "HP High Temp Complex EP Grease",
+    "slug": "hp-high-temp-grease",
+    "subtitle": "HP Lubricants • Greases",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Greases",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "High drop point extreme-pressure grease formulated for continuous operation in furnace cars, asphalt dryers, and steel plants.",
+    "applicationAreas": "Furnace Rollers, Cement Kiln Exhaust Fans, Continuous Casters",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting NLGI 2 | Lithium Complex EP | Drop Point >260°C.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 18kg Pail / 180kg Drum",
+      "Application areas: Furnace Rollers, Cement Kiln Exhaust Fans, Continuous Casters",
+      "Standards & specs: NLGI 2 | Lithium Complex EP | Drop Point >260°C"
+    ],
+    "specsText": "NLGI 2 | Lithium Complex EP | Drop Point >260°C",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Greases"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "NLGI 2 | Lithium Complex EP | Drop Point >260°C"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Furnace Rollers, Cement Kiln Exhaust Fans, Continuous Casters"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "18kg Pail, 180kg Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 112
+  },
+  {
+    "name": "HP Turbinol 46",
+    "slug": "hp-turbinol-46",
+    "subtitle": "HP Lubricants • Industrial Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Industrial Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Inhibited steam and gas turbine oil offering exceptional oxidation resistance and rapid air release.",
+    "applicationAreas": "Power Plant Turbines, Centrifugal Compressors, Heavy Hydro Plants",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 46 | DIN 51515 Part 1 (L-TD) | GE GEK 32568.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 210L Refinery Barrel / Bulk Tanker",
+      "Application areas: Power Plant Turbines, Centrifugal Compressors, Heavy Hydro Plants",
+      "Standards & specs: ISO VG 46 | DIN 51515 Part 1 (L-TD) | GE GEK 32568"
+    ],
+    "specsText": "ISO VG 46 | DIN 51515 Part 1 (L-TD) | GE GEK 32568",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 46 | DIN 51515 Part 1 (L-TD) | GE GEK 32568"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Power Plant Turbines, Centrifugal Compressors, Heavy Hydro Plants"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "210L Refinery Barrel, Bulk Tanker"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 113
+  },
+  {
+    "name": "HP Compressor Oil 68",
+    "slug": "hp-compressor-68",
+    "subtitle": "HP Lubricants • Industrial Oils",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Industrial Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Severe duty reciprocating and screw air compressor oil designed to prevent carbon valve build-up.",
+    "applicationAreas": "Reciprocating Air Compressors, Rotary Screw Compressors",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 68 | DIN 51506 VDL | Low Carbon Residue.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 20L Bucket / 210L Drum",
+      "Application areas: Reciprocating Air Compressors, Rotary Screw Compressors",
+      "Standards & specs: ISO VG 68 | DIN 51506 VDL | Low Carbon Residue"
+    ],
+    "specsText": "ISO VG 68 | DIN 51506 VDL | Low Carbon Residue",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 68 | DIN 51506 VDL | Low Carbon Residue"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Reciprocating Air Compressors, Rotary Screw Compressors"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Bucket, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 114
+  },
+  {
+    "name": "HP Transformer Oil 60",
+    "slug": "hp-transformer-oil-60",
+    "subtitle": "HP Lubricants • Specialty Products",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Specialty Products",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Uninhibited mineral insulating electrical oil with superior cooling properties and low dielectric dissipation factor.",
+    "applicationAreas": "High Voltage Transformers, Switchgear, Circuit Breakers",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting IEC 60296 | IS:335 | High Breakdown Voltage >60 kV.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 210L Sealed Refinery Drum / Dedicated Tanker Delivery",
+      "Application areas: High Voltage Transformers, Switchgear, Circuit Breakers",
+      "Standards & specs: IEC 60296 | IS:335 | High Breakdown Voltage >60 kV"
+    ],
+    "specsText": "IEC 60296 | IS:335 | High Breakdown Voltage >60 kV",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Specialty Products"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "IEC 60296 | IS:335 | High Breakdown Voltage >60 kV"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "High Voltage Transformers, Switchgear, Circuit Breakers"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "210L Sealed Refinery Drum, Dedicated Tanker Delivery"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 115
+  },
+  {
+    "name": "HP Thermic Fluid 32",
+    "slug": "hp-thermic-fluid-32",
+    "subtitle": "HP Lubricants • Specialty Products",
+    "categorySlug": "hp-lubricants",
+    "categoryName": "HP Lubricants",
+    "subCategoryTitle": "Specialty Products",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Mineral based circulating heat transfer fluid designed to resist cracking and thermal sludge formation in closed heat systems.",
+    "applicationAreas": "Textile Processing, Chemical Reactors, Plywood Presses",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 32 | High Bulk Thermal Stability to 300°C.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by HP Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from HP Lubricants",
+      "Packaging sizes: 210L Drum / Bulk Delivery",
+      "Application areas: Textile Processing, Chemical Reactors, Plywood Presses",
+      "Standards & specs: ISO VG 32 | High Bulk Thermal Stability to 300°C"
+    ],
+    "specsText": "ISO VG 32 | High Bulk Thermal Stability to 300°C",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "HP Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Specialty Products"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (HQ) (Authorized Industrial Partner)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 32 | High Bulk Thermal Stability to 300°C"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Textile Processing, Chemical Reactors, Plywood Presses"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "210L Drum, Bulk Delivery"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 116
+  },
+  {
+    "name": "Valvoline SynPower 5W-40",
+    "slug": "valvoline-synpower-5w40",
+    "subtitle": "Valvoline • Automotive Lubricants",
+    "categorySlug": "valvoline",
+    "categoryName": "Valvoline",
+    "subCategoryTitle": "Automotive Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+    "description": "Advanced full synthetic passenger car engine oil delivering maximum thermal breakdown protection.",
+    "applicationAreas": "Turbocharged Gasoline Engines, European Passenger Cars",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API SP / SN Plus | ACEA A3/B4 | Full Synthetic.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Valvoline."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Valvoline",
+      "Packaging sizes: 1L / 4L / 210L Drum",
+      "Application areas: Turbocharged Gasoline Engines, European Passenger Cars",
+      "Standards & specs: API SP / SN Plus | ACEA A3/B4 | Full Synthetic"
+    ],
+    "specsText": "API SP / SN Plus | ACEA A3/B4 | Full Synthetic",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Valvoline"
+      },
+      {
+        "property": "Category",
+        "value": "Automotive Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United States (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API SP / SN Plus | ACEA A3/B4 | Full Synthetic"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Turbocharged Gasoline Engines, European Passenger Cars"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "1L, 4L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 117
+  },
+  {
+    "name": "Valvoline All-Climate 20W-50",
+    "slug": "valvoline-all-climate-20w50",
+    "subtitle": "Valvoline • Automotive Lubricants",
+    "categorySlug": "valvoline",
+    "categoryName": "Valvoline",
+    "subCategoryTitle": "Automotive Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+    "description": "High viscosity mineral engine oil providing thick protective film under high ambient heat.",
+    "applicationAreas": "Commercial Taxis, Heavy Duty Utility Vehicles",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API SL/CF | Multi-Grade Engine Protection.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Valvoline."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Valvoline",
+      "Packaging sizes: 1L / 5L / 50L / 210L Drum",
+      "Application areas: Commercial Taxis, Heavy Duty Utility Vehicles",
+      "Standards & specs: API SL/CF | Multi-Grade Engine Protection"
+    ],
+    "specsText": "API SL/CF | Multi-Grade Engine Protection",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Valvoline"
+      },
+      {
+        "property": "Category",
+        "value": "Automotive Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United States (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API SL/CF | Multi-Grade Engine Protection"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Commercial Taxis, Heavy Duty Utility Vehicles"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "1L, 5L, 50L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 118
+  },
+  {
+    "name": "Valvoline Premium Blue 15W-40",
+    "slug": "valvoline-premium-blue-15w40",
+    "subtitle": "Valvoline • Commercial Vehicle Lubricants",
+    "categorySlug": "valvoline",
+    "categoryName": "Valvoline",
+    "subCategoryTitle": "Commercial Vehicle Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+    "description": "Exclusively endorsed by Cummins, offering extended drain intervals and superior oxidation resistance.",
+    "applicationAreas": "Cummins Diesel Engines, Highway Fleets, Mining Haulers",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Cummins CES 20086 | API CK-4 / CJ-4 | SAE 15W-40.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Valvoline."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Valvoline",
+      "Packaging sizes: 7.5L / 15L / 50L / 210L Drum",
+      "Application areas: Cummins Diesel Engines, Highway Fleets, Mining Haulers",
+      "Standards & specs: Cummins CES 20086 | API CK-4 / CJ-4 | SAE 15W-40"
+    ],
+    "specsText": "Cummins CES 20086 | API CK-4 / CJ-4 | SAE 15W-40",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Valvoline"
+      },
+      {
+        "property": "Category",
+        "value": "Commercial Vehicle Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United States (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Cummins CES 20086 | API CK-4 / CJ-4 | SAE 15W-40"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Cummins Diesel Engines, Highway Fleets, Mining Haulers"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "7.5L, 15L, 50L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 119
+  },
+  {
+    "name": "Valvoline All-Fleet Extra 15W-40",
+    "slug": "valvoline-all-fleet-extra",
+    "subtitle": "Valvoline • Commercial Vehicle Lubricants",
+    "categorySlug": "valvoline",
+    "categoryName": "Valvoline",
+    "subCategoryTitle": "Commercial Vehicle Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+    "description": "Engineered for high-mileage heavy commercial vehicles operating in severe road conditions.",
+    "applicationAreas": "Heavy Buses, Multi-Axle Trucks, Excavators",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API CI-4 / CH-4 | Volvo VDS-3 | MB 228.3.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Valvoline."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Valvoline",
+      "Packaging sizes: 10L / 20L / 210L Drum",
+      "Application areas: Heavy Buses, Multi-Axle Trucks, Excavators",
+      "Standards & specs: API CI-4 / CH-4 | Volvo VDS-3 | MB 228.3"
+    ],
+    "specsText": "API CI-4 / CH-4 | Volvo VDS-3 | MB 228.3",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Valvoline"
+      },
+      {
+        "property": "Category",
+        "value": "Commercial Vehicle Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United States (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API CI-4 / CH-4 | Volvo VDS-3 | MB 228.3"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Heavy Buses, Multi-Axle Trucks, Excavators"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "10L, 20L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 120
+  },
+  {
+    "name": "Valvoline GEO LA 40",
+    "slug": "valvoline-geo-40",
+    "subtitle": "Valvoline • Industrial Lubricants",
+    "categorySlug": "valvoline",
+    "categoryName": "Valvoline",
+    "subCategoryTitle": "Industrial Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Formulated for high-output natural gas and biogas stationary industrial engines.",
+    "applicationAreas": "Power Cogeneration Plants, Landfill Gas Gensets",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Low Ash Stationary Gas Engine Oil | SAE 40.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Valvoline."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Valvoline",
+      "Packaging sizes: 208L Drum / Bulk Tanker",
+      "Application areas: Power Cogeneration Plants, Landfill Gas Gensets",
+      "Standards & specs: Low Ash Stationary Gas Engine Oil | SAE 40"
+    ],
+    "specsText": "Low Ash Stationary Gas Engine Oil | SAE 40",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Valvoline"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United States (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Low Ash Stationary Gas Engine Oil | SAE 40"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Power Cogeneration Plants, Landfill Gas Gensets"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "208L Drum, Bulk Tanker"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 121
+  },
+  {
+    "name": "Valvoline Crimson EP 2",
+    "slug": "valvoline-crimson-ep2",
+    "subtitle": "Valvoline • Greases",
+    "categorySlug": "valvoline",
+    "categoryName": "Valvoline",
+    "subCategoryTitle": "Greases",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Tacky extreme-pressure grease engineered for severe wash-off conditions and vibrating screens.",
+    "applicationAreas": "Mining Conveyors, Excavator Pivot Pins, Marine Terminals",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting NLGI 2 | Calcium Sulfonate Complex | High Water Washout.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Valvoline."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Valvoline",
+      "Packaging sizes: 18kg Pail / 180kg Drum",
+      "Application areas: Mining Conveyors, Excavator Pivot Pins, Marine Terminals",
+      "Standards & specs: NLGI 2 | Calcium Sulfonate Complex | High Water Washout"
+    ],
+    "specsText": "NLGI 2 | Calcium Sulfonate Complex | High Water Washout",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Valvoline"
+      },
+      {
+        "property": "Category",
+        "value": "Greases"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United States (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "NLGI 2 | Calcium Sulfonate Complex | High Water Washout"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Mining Conveyors, Excavator Pivot Pins, Marine Terminals"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "18kg Pail, 180kg Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 122
+  },
+  {
+    "name": "Valvoline ZEREX HD Extended Life Coolant",
+    "slug": "valvoline-zerex-hd-coolant",
+    "subtitle": "Valvoline • Specialty Products",
+    "categorySlug": "valvoline",
+    "categoryName": "Valvoline",
+    "subCategoryTitle": "Specialty Products",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Protects heavy diesel engine cylinder liners against cavitation and pitting for up to 1,000,000 km.",
+    "applicationAreas": "Heavy Diesel Cooling Systems, Industrial Gensets",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Organic Acid Technology (OAT) | ASTM D6210.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Valvoline."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Valvoline",
+      "Packaging sizes: 5L / 20L / 210L Drum",
+      "Application areas: Heavy Diesel Cooling Systems, Industrial Gensets",
+      "Standards & specs: Organic Acid Technology (OAT) | ASTM D6210"
+    ],
+    "specsText": "Organic Acid Technology (OAT) | ASTM D6210",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Valvoline"
+      },
+      {
+        "property": "Category",
+        "value": "Specialty Products"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United States (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Organic Acid Technology (OAT) | ASTM D6210"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Heavy Diesel Cooling Systems, Industrial Gensets"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "5L, 20L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 123
+  },
+  {
+    "name": "Kixx PAO 1 0W-30",
+    "slug": "kixx-pao-1-0w30",
+    "subtitle": "GS Caltex • Automotive Lubricants",
+    "categorySlug": "gs-caltex",
+    "categoryName": "GS Caltex",
+    "subCategoryTitle": "Automotive Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+    "description": "Top-tier polyalphaolefin synthetic oil for ultra-low friction and high thermal stability.",
+    "applicationAreas": "High-End Performance Vehicles, Direct Injection Engines",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting 100% PAO Synthetic | API SP | ACEA C2/C3.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by GS Caltex."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from GS Caltex",
+      "Packaging sizes: 1L / 4L Can / 200L Drum",
+      "Application areas: High-End Performance Vehicles, Direct Injection Engines",
+      "Standards & specs: 100% PAO Synthetic | API SP | ACEA C2/C3"
+    ],
+    "specsText": "100% PAO Synthetic | API SP | ACEA C2/C3",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "GS Caltex"
+      },
+      {
+        "property": "Category",
+        "value": "Automotive Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "South Korea (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "100% PAO Synthetic | API SP | ACEA C2/C3"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "High-End Performance Vehicles, Direct Injection Engines"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "1L, 4L Can, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 124
+  },
+  {
+    "name": "Kixx HDX CK-4 15W-40",
+    "slug": "kixx-hdx-ck4",
+    "subtitle": "GS Caltex • Automotive Lubricants",
+    "categorySlug": "gs-caltex",
+    "categoryName": "GS Caltex",
+    "subCategoryTitle": "Automotive Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+    "description": "Low-SAPS heavy duty diesel engine oil preserving particulate filters (DPF).",
+    "applicationAreas": "Euro VI Fleets, Heavy Construction Equipment",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API CK-4 / CJ-4 | Volvo VDS-4.5 | Cummins CES 20086.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by GS Caltex."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from GS Caltex",
+      "Packaging sizes: 15L / 20L / 200L Drum",
+      "Application areas: Euro VI Fleets, Heavy Construction Equipment",
+      "Standards & specs: API CK-4 / CJ-4 | Volvo VDS-4.5 | Cummins CES 20086"
+    ],
+    "specsText": "API CK-4 / CJ-4 | Volvo VDS-4.5 | Cummins CES 20086",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "GS Caltex"
+      },
+      {
+        "property": "Category",
+        "value": "Automotive Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "South Korea (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API CK-4 / CJ-4 | Volvo VDS-4.5 | Cummins CES 20086"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Euro VI Fleets, Heavy Construction Equipment"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "15L, 20L, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 125
+  },
+  {
+    "name": "GS Hydro HD 68",
+    "slug": "gs-hydro-hd-68",
+    "subtitle": "GS Caltex • Industrial Lubricants",
+    "categorySlug": "gs-caltex",
+    "categoryName": "GS Caltex",
+    "subCategoryTitle": "Industrial Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "High anti-wear hydraulic oil providing rapid air release and exceptional thermal stability.",
+    "applicationAreas": "Industrial Hydraulic Systems, Precision Presses",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 68 | DIN 51524 Part 2 | Denison HF-0.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by GS Caltex."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from GS Caltex",
+      "Packaging sizes: 20L / 200L Drum",
+      "Application areas: Industrial Hydraulic Systems, Precision Presses",
+      "Standards & specs: ISO VG 68 | DIN 51524 Part 2 | Denison HF-0"
+    ],
+    "specsText": "ISO VG 68 | DIN 51524 Part 2 | Denison HF-0",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "GS Caltex"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "South Korea (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 68 | DIN 51524 Part 2 | Denison HF-0"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Industrial Hydraulic Systems, Precision Presses"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 126
+  },
+  {
+    "name": "GS Golden Pearl EP 2",
+    "slug": "gs-golden-pearl-ep2",
+    "subtitle": "GS Caltex • Greases",
+    "categorySlug": "gs-caltex",
+    "categoryName": "GS Caltex",
+    "subCategoryTitle": "Greases",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Heavy multi-purpose grease offering high shear endurance and anti-rust protection.",
+    "applicationAreas": "Heavy Industrial Bearings, Truck Chassis",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting NLGI 2 | Premium Lithium EP | High Drop Point.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by GS Caltex."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from GS Caltex",
+      "Packaging sizes: 18kg Pail / 180kg Drum",
+      "Application areas: Heavy Industrial Bearings, Truck Chassis",
+      "Standards & specs: NLGI 2 | Premium Lithium EP | High Drop Point"
+    ],
+    "specsText": "NLGI 2 | Premium Lithium EP | High Drop Point",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "GS Caltex"
+      },
+      {
+        "property": "Category",
+        "value": "Greases"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "South Korea (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "NLGI 2 | Premium Lithium EP | High Drop Point"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Heavy Industrial Bearings, Truck Chassis"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "18kg Pail, 180kg Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 127
+  },
+  {
+    "name": "GS Thermic Heat Transfer Oil 32",
+    "slug": "gs-thermic-32",
+    "subtitle": "GS Caltex • Specialty Lubricants",
+    "categorySlug": "gs-caltex",
+    "categoryName": "GS Caltex",
+    "subCategoryTitle": "Specialty Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Synthetic based heat transfer fluid preventing carbon fouling in thermal boiler circuits.",
+    "applicationAreas": "Industrial Heaters, Chemical Reactors",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 32 | Operating Temp to 310°C.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by GS Caltex."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from GS Caltex",
+      "Packaging sizes: 200L Drum / Bulk Tanker",
+      "Application areas: Industrial Heaters, Chemical Reactors",
+      "Standards & specs: ISO VG 32 | Operating Temp to 310°C"
+    ],
+    "specsText": "ISO VG 32 | Operating Temp to 310°C",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "GS Caltex"
+      },
+      {
+        "property": "Category",
+        "value": "Specialty Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "South Korea (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 32 | Operating Temp to 310°C"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Industrial Heaters, Chemical Reactors"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "200L Drum, Bulk Tanker"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 128
+  },
+  {
+    "name": "Idemitsu IFG7 0W-20",
+    "slug": "idemitsu-ifg7-0w20",
+    "subtitle": "Idemitsu • Automotive Lubricants",
+    "categorySlug": "idemitsu",
+    "categoryName": "Idemitsu",
+    "subCategoryTitle": "Automotive Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+    "description": "Ultra-low viscosity Japanese OEM synthetic motor oil delivering high thermal response.",
+    "applicationAreas": "Japanese OEM Cars, Hybrid Vehicles",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API SP | ILSAC GF-6A | Nano-Tailored Synthetic.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Idemitsu."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Idemitsu",
+      "Packaging sizes: 1L / 3.5L / 200L Drum",
+      "Application areas: Japanese OEM Cars, Hybrid Vehicles",
+      "Standards & specs: API SP | ILSAC GF-6A | Nano-Tailored Synthetic"
+    ],
+    "specsText": "API SP | ILSAC GF-6A | Nano-Tailored Synthetic",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Idemitsu"
+      },
+      {
+        "property": "Category",
+        "value": "Automotive Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Japan (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API SP | ILSAC GF-6A | Nano-Tailored Synthetic"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Japanese OEM Cars, Hybrid Vehicles"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "1L, 3.5L, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 129
+  },
+  {
+    "name": "Daphne Super Spindle Oil 2",
+    "slug": "daphne-super-spindle-2",
+    "subtitle": "Idemitsu • Industrial Lubricants",
+    "categorySlug": "idemitsu",
+    "categoryName": "Idemitsu",
+    "subCategoryTitle": "Industrial Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Formulated for ultra-high-speed CNC grinding and milling spindles exceeding 30,000 RPM.",
+    "applicationAreas": "High-Speed CNC Spindles, Precision Internal Grinders",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Viscosity 2 cSt @ 40°C | Ultra-Low Friction.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Idemitsu."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Idemitsu",
+      "Packaging sizes: 20L Can / 200L Drum",
+      "Application areas: High-Speed CNC Spindles, Precision Internal Grinders",
+      "Standards & specs: Viscosity 2 cSt @ 40°C | Ultra-Low Friction"
+    ],
+    "specsText": "Viscosity 2 cSt @ 40°C | Ultra-Low Friction",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Idemitsu"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Japan (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Viscosity 2 cSt @ 40°C | Ultra-Low Friction"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "High-Speed CNC Spindles, Precision Internal Grinders"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Can, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 130
+  },
+  {
+    "name": "Daphne Super Gear Oil 220",
+    "slug": "daphne-super-gear-220",
+    "subtitle": "Idemitsu • Gear Oils",
+    "categorySlug": "idemitsu",
+    "categoryName": "Idemitsu",
+    "subCategoryTitle": "Gear Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Precision Japanese industrial gear oil preventing micro-pitting under repetitive reverse torque.",
+    "applicationAreas": "Machine Tool Gearboxes, Robotic Drive Joints",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 220 | High EP | Sludge Resistant.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Idemitsu."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Idemitsu",
+      "Packaging sizes: 20L / 200L Drum",
+      "Application areas: Machine Tool Gearboxes, Robotic Drive Joints",
+      "Standards & specs: ISO VG 220 | High EP | Sludge Resistant"
+    ],
+    "specsText": "ISO VG 220 | High EP | Sludge Resistant",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Idemitsu"
+      },
+      {
+        "property": "Category",
+        "value": "Gear Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Japan (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 220 | High EP | Sludge Resistant"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Machine Tool Gearboxes, Robotic Drive Joints"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 131
+  },
+  {
+    "name": "Daphne Super Hydro 46A",
+    "slug": "daphne-super-hydro-46a",
+    "subtitle": "Idemitsu • Hydraulic Oils",
+    "categorySlug": "idemitsu",
+    "categoryName": "Idemitsu",
+    "subCategoryTitle": "Hydraulic Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Eliminates copper corrosion and valve sticking in electro-hydraulic servo machine tools.",
+    "applicationAreas": "Electro-Hydraulic Servo Systems, Plastic Injection Machines",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 46 | Ashless Non-Zinc | Long Drain.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Idemitsu."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Idemitsu",
+      "Packaging sizes: 20L / 200L Drum",
+      "Application areas: Electro-Hydraulic Servo Systems, Plastic Injection Machines",
+      "Standards & specs: ISO VG 46 | Ashless Non-Zinc | Long Drain"
+    ],
+    "specsText": "ISO VG 46 | Ashless Non-Zinc | Long Drain",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Idemitsu"
+      },
+      {
+        "property": "Category",
+        "value": "Hydraulic Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Japan (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 46 | Ashless Non-Zinc | Long Drain"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Electro-Hydraulic Servo Systems, Plastic Injection Machines"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 132
+  },
+  {
+    "name": "Daphne Eponex Grease EP 2",
+    "slug": "daphne-eponex-ep2",
+    "subtitle": "Idemitsu • Greases",
+    "categorySlug": "idemitsu",
+    "categoryName": "Idemitsu",
+    "subCategoryTitle": "Greases",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "High-speed precision bearing grease with 3x longer life than conventional lithium soaps.",
+    "applicationAreas": "Precision Machine Tool Bearings, Robotic Linear Guides",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting NLGI 2 | Polyurea Thickener | Drop Point 260°C.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Idemitsu."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Idemitsu",
+      "Packaging sizes: 16kg Pail / 180kg Drum",
+      "Application areas: Precision Machine Tool Bearings, Robotic Linear Guides",
+      "Standards & specs: NLGI 2 | Polyurea Thickener | Drop Point 260°C"
+    ],
+    "specsText": "NLGI 2 | Polyurea Thickener | Drop Point 260°C",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Idemitsu"
+      },
+      {
+        "property": "Category",
+        "value": "Greases"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Japan (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "NLGI 2 | Polyurea Thickener | Drop Point 260°C"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Precision Machine Tool Bearings, Robotic Linear Guides"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "16kg Pail, 180kg Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 133
+  },
+  {
+    "name": "Daphne Cut Dielectric EDM Fluid",
+    "slug": "daphne-dielectric-cut-68",
+    "subtitle": "Idemitsu • Specialty Products",
+    "categorySlug": "idemitsu",
+    "categoryName": "Idemitsu",
+    "subCategoryTitle": "Specialty Products",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Specialized dielectric fluid for spark erosion electrical discharge machines.",
+    "applicationAreas": "CNC Sinker EDM Machines, Die & Mold Spark Erosion",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Synthetic Dielectric | Odorless | High Flash Point.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Idemitsu."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Idemitsu",
+      "Packaging sizes: 20L / 200L Drum",
+      "Application areas: CNC Sinker EDM Machines, Die & Mold Spark Erosion",
+      "Standards & specs: Synthetic Dielectric | Odorless | High Flash Point"
+    ],
+    "specsText": "Synthetic Dielectric | Odorless | High Flash Point",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Idemitsu"
+      },
+      {
+        "property": "Category",
+        "value": "Specialty Products"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Japan (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Synthetic Dielectric | Odorless | High Flash Point"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "CNC Sinker EDM Machines, Die & Mold Spark Erosion"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 134
+  },
+  {
+    "name": "Molylube Ultra High Temp Chain Oil",
+    "slug": "molylube-chain-oil-280",
+    "subtitle": "Molygraph Lubricants • Industrial Lubricants",
+    "categorySlug": "molygraph-lubricants",
+    "categoryName": "Molygraph Lubricants",
+    "subCategoryTitle": "Industrial Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Synthetic ester chain lubricant that does not produce carbon varnishing in paint ovens and stenters.",
+    "applicationAreas": "Paint Shop Conveyors, Textile Stenter Chains, Glass Annealing",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Operating Temp to 280°C | Zero Residue Synthetic.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Molygraph Lubricants",
+      "Packaging sizes: 20L Bucket / 210L Drum",
+      "Application areas: Paint Shop Conveyors, Textile Stenter Chains, Glass Annealing",
+      "Standards & specs: Operating Temp to 280°C | Zero Residue Synthetic"
+    ],
+    "specsText": "Operating Temp to 280°C | Zero Residue Synthetic",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Molygraph Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Operating Temp to 280°C | Zero Residue Synthetic"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Paint Shop Conveyors, Textile Stenter Chains, Glass Annealing"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Bucket, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 135
+  },
+  {
+    "name": "Molylube Open Gear Sprayable Compound",
+    "slug": "molylube-open-gear-1000",
+    "subtitle": "Molygraph Lubricants • Specialty Lubricants",
+    "categorySlug": "molygraph-lubricants",
+    "categoryName": "Molygraph Lubricants",
+    "subCategoryTitle": "Specialty Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Sprayable open girth gear lubricant for rotary cement kilns and ball mills.",
+    "applicationAreas": "Cement Kiln Girth Gears, Sugar Mill Drives",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Asphalt-Free | Extreme Pressure Solid MoS2 Package.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Molygraph Lubricants",
+      "Packaging sizes: 18kg Pail / 180kg Drum",
+      "Application areas: Cement Kiln Girth Gears, Sugar Mill Drives",
+      "Standards & specs: Asphalt-Free | Extreme Pressure Solid MoS2 Package"
+    ],
+    "specsText": "Asphalt-Free | Extreme Pressure Solid MoS2 Package",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Molygraph Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Specialty Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Asphalt-Free | Extreme Pressure Solid MoS2 Package"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Cement Kiln Girth Gears, Sugar Mill Drives"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "18kg Pail, 180kg Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 136
+  },
+  {
+    "name": "Molygraph Superlube 2000",
+    "slug": "molygraph-superlube-2000",
+    "subtitle": "Molygraph Lubricants • Greases",
+    "categorySlug": "molygraph-lubricants",
+    "categoryName": "Molygraph Lubricants",
+    "subCategoryTitle": "Greases",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Resists extreme shock loading, chemical exposure, and water flooding in rolling mills.",
+    "applicationAreas": "Steel Rolling Mills, Continuous Casters, Mining Wash Plants",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting NLGI 2 | Calcium Sulfonate Complex | 4-Ball Weld >600 kg.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Molygraph Lubricants",
+      "Packaging sizes: 18kg Pail / 180kg Drum",
+      "Application areas: Steel Rolling Mills, Continuous Casters, Mining Wash Plants",
+      "Standards & specs: NLGI 2 | Calcium Sulfonate Complex | 4-Ball Weld >600 kg"
+    ],
+    "specsText": "NLGI 2 | Calcium Sulfonate Complex | 4-Ball Weld >600 kg",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Molygraph Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Greases"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "NLGI 2 | Calcium Sulfonate Complex | 4-Ball Weld >600 kg"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Steel Rolling Mills, Continuous Casters, Mining Wash Plants"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "18kg Pail, 180kg Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 137
+  },
+  {
+    "name": "Molygraph Formchem 50 Drawing Oil",
+    "slug": "molygraph-formchem-50",
+    "subtitle": "Molygraph Lubricants • Metalworking Fluids",
+    "categorySlug": "molygraph-lubricants",
+    "categoryName": "Molygraph Lubricants",
+    "subCategoryTitle": "Metalworking Fluids",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Prevents die scoring and galling in severe deep drawing and heavy gauge sheet stamping.",
+    "applicationAreas": "Automotive Body Panel Stamping, Deep Drawing Presses",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Chlorine-Free EP Lubricant | Water Washable.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Molygraph Lubricants",
+      "Packaging sizes: 20L / 210L Drum",
+      "Application areas: Automotive Body Panel Stamping, Deep Drawing Presses",
+      "Standards & specs: Chlorine-Free EP Lubricant | Water Washable"
+    ],
+    "specsText": "Chlorine-Free EP Lubricant | Water Washable",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Molygraph Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Metalworking Fluids"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Chlorine-Free EP Lubricant | Water Washable"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Automotive Body Panel Stamping, Deep Drawing Presses"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 138
+  },
+  {
+    "name": "Molygraph Kopal 1000 Copper Anti-Seize",
+    "slug": "molygraph-kopal-1000",
+    "subtitle": "Molygraph Lubricants • Assembly & Maintenance Products",
+    "categorySlug": "molygraph-lubricants",
+    "categoryName": "Molygraph Lubricants",
+    "subCategoryTitle": "Assembly & Maintenance Products",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Prevents thread galling, welding, and corrosion on high-heat turbine bolts and exhaust studs.",
+    "applicationAreas": "Turbine Casing Studs, Furnace Flanges, Exhaust Manifolds",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Operating Temp to 1100°C | Lead-Free.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Molygraph Lubricants",
+      "Packaging sizes: 500g Tin / 1kg / 5kg / 20kg Pail",
+      "Application areas: Turbine Casing Studs, Furnace Flanges, Exhaust Manifolds",
+      "Standards & specs: Operating Temp to 1100°C | Lead-Free"
+    ],
+    "specsText": "Operating Temp to 1100°C | Lead-Free",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Molygraph Lubricants"
+      },
+      {
+        "property": "Category",
+        "value": "Assembly & Maintenance Products"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Operating Temp to 1100°C | Lead-Free"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Turbine Casing Studs, Furnace Flanges, Exhaust Manifolds"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "500g Tin, 1kg, 5kg, 20kg Pail"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 139
+  },
+  {
+    "name": "MotulTech Supracool 9620",
+    "slug": "supracool-9620",
+    "subtitle": "Motul Tech • Metalworking Fluids",
+    "categorySlug": "motul-tech",
+    "categoryName": "Motul Tech",
+    "subCategoryTitle": "Metalworking Fluids",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Long-life machining emulsion delivering high tool lubricity on titanium, inconel, and stainless alloys.",
+    "applicationAreas": "Aerospace Multi-Axis CNC, High Pressure Through-Spindle Machining",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Bio-Stable Semi-Synthetic Coolant | Chlorine & Boron Free.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Motul Tech."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Motul Tech",
+      "Packaging sizes: 20L / 208L Drum",
+      "Application areas: Aerospace Multi-Axis CNC, High Pressure Through-Spindle Machining",
+      "Standards & specs: Bio-Stable Semi-Synthetic Coolant | Chlorine & Boron Free"
+    ],
+    "specsText": "Bio-Stable Semi-Synthetic Coolant | Chlorine & Boron Free",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Motul Tech"
+      },
+      {
+        "property": "Category",
+        "value": "Metalworking Fluids"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "France (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Bio-Stable Semi-Synthetic Coolant | Chlorine & Boron Free"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Aerospace Multi-Axis CNC, High Pressure Through-Spindle Machining"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 208L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 140
+  },
+  {
+    "name": "MotulTech Thermocool 32",
+    "slug": "motultech-thermocool-32",
+    "subtitle": "Motul Tech • Industrial Lubricants",
+    "categorySlug": "motul-tech",
+    "categoryName": "Motul Tech",
+    "subCategoryTitle": "Industrial Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Resists thermal cracking and deposit formation in high-heat industrial circulation boilers.",
+    "applicationAreas": "Plastic Molding Heaters, Chemical Reactors",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 32 | High Thermal Stability to 320°C.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Motul Tech."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Motul Tech",
+      "Packaging sizes: 208L Drum / Bulk Tanker",
+      "Application areas: Plastic Molding Heaters, Chemical Reactors",
+      "Standards & specs: ISO VG 32 | High Thermal Stability to 320°C"
+    ],
+    "specsText": "ISO VG 32 | High Thermal Stability to 320°C",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Motul Tech"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "France (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 32 | High Thermal Stability to 320°C"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Plastic Molding Heaters, Chemical Reactors"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "208L Drum, Bulk Tanker"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 141
+  },
+  {
+    "name": "MotulTech Thermogrease 300",
+    "slug": "motultech-thermogrease-300",
+    "subtitle": "Motul Tech • Greases",
+    "categorySlug": "motul-tech",
+    "categoryName": "Motul Tech",
+    "subCategoryTitle": "Greases",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Engineered for high-temperature furnace exhaust bearings and drying fans.",
+    "applicationAreas": "Furnace Fans, Asphalt Processing",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Synthetic Base | Operating Temp to 300°C.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Motul Tech."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Motul Tech",
+      "Packaging sizes: 18kg Pail / 180kg Drum",
+      "Application areas: Furnace Fans, Asphalt Processing",
+      "Standards & specs: Synthetic Base | Operating Temp to 300°C"
+    ],
+    "specsText": "Synthetic Base | Operating Temp to 300°C",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Motul Tech"
+      },
+      {
+        "property": "Category",
+        "value": "Greases"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "France (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Synthetic Base | Operating Temp to 300°C"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Furnace Fans, Asphalt Processing"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "18kg Pail, 180kg Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 142
+  },
+  {
+    "name": "MotulTech Severe Quench Oil 20",
+    "slug": "motultech-thermocut-quench",
+    "subtitle": "Motul Tech • Specialty Products",
+    "categorySlug": "motul-tech",
+    "categoryName": "Motul Tech",
+    "subCategoryTitle": "Specialty Products",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Delivers maximum surface hardness without distortion during steel heat treatment.",
+    "applicationAreas": "Gear Tooth Hardening, Bearing Ring Quenching",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Accelerated Quench Speed | Low Drag-Out.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Motul Tech."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Motul Tech",
+      "Packaging sizes: 208L Drum",
+      "Application areas: Gear Tooth Hardening, Bearing Ring Quenching",
+      "Standards & specs: Accelerated Quench Speed | Low Drag-Out"
+    ],
+    "specsText": "Accelerated Quench Speed | Low Drag-Out",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Motul Tech"
+      },
+      {
+        "property": "Category",
+        "value": "Specialty Products"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "France (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Accelerated Quench Speed | Low Drag-Out"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Gear Tooth Hardening, Bearing Ring Quenching"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "208L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 143
+  },
+  {
+    "name": "MotulTech Safco Clean Degreaser",
+    "slug": "safco-clean-degreaser",
+    "subtitle": "Motul Tech • Maintenance Solutions",
+    "categorySlug": "motul-tech",
+    "categoryName": "Motul Tech",
+    "subCategoryTitle": "Maintenance Solutions",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Quick-drying degreasing solvent for machine tools and metal parts before painting.",
+    "applicationAreas": "Machine Shop Maintenance, Pre-Assembly Cleaning",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Zero-Residue Solvent | High Dielectric.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Motul Tech."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Motul Tech",
+      "Packaging sizes: 20L Canister / 208L Drum",
+      "Application areas: Machine Shop Maintenance, Pre-Assembly Cleaning",
+      "Standards & specs: Zero-Residue Solvent | High Dielectric"
+    ],
+    "specsText": "Zero-Residue Solvent | High Dielectric",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Motul Tech"
+      },
+      {
+        "property": "Category",
+        "value": "Maintenance Solutions"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "France (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Zero-Residue Solvent | High Dielectric"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Machine Shop Maintenance, Pre-Assembly Cleaning"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Canister, 208L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 144
+  },
+  {
+    "name": "Deep Rotary Screw Compressor 37 kW",
+    "slug": "deep-screw-compressor-37kw",
+    "subtitle": "Deep Pneumatics • Air Compressors",
+    "categorySlug": "deep-pneumatics",
+    "categoryName": "Deep Pneumatics",
+    "subCategoryTitle": "Air Compressors",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Continuous duty direct-coupled industrial screw compressor with smart micro-processor control.",
+    "applicationAreas": "Manufacturing Plants, Textile Automation, Automotive Assembly",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting 37 kW (50 HP) | 215 CFM @ 8 Bar | Direct Drive.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Deep Pneumatics",
+      "Packaging sizes: Complete Unit",
+      "Application areas: Manufacturing Plants, Textile Automation, Automotive Assembly",
+      "Standards & specs: 37 kW (50 HP) | 215 CFM @ 8 Bar | Direct Drive"
+    ],
+    "specsText": "37 kW (50 HP) | 215 CFM @ 8 Bar | Direct Drive",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Deep Pneumatics"
+      },
+      {
+        "property": "Category",
+        "value": "Air Compressors"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "37 kW (50 HP) | 215 CFM @ 8 Bar | Direct Drive"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Manufacturing Plants, Textile Automation, Automotive Assembly"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "Complete Unit"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 145
+  },
+  {
+    "name": "Deep Industrial FRL Trio Combination",
+    "slug": "deep-frl-trio",
+    "subtitle": "Deep Pneumatics • Pneumatic Products",
+    "categorySlug": "deep-pneumatics",
+    "categoryName": "Deep Pneumatics",
+    "subCategoryTitle": "Pneumatic Products",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Clean moisture separation, precise pressure regulation, and micro-fog lubrication for air tools.",
+    "applicationAreas": "Pneumatic Tool Lines, Machine Tool Air Prep",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting 1/2\" to 1\" Port | 5 Micron Filtration | Auto Drain.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Deep Pneumatics",
+      "Packaging sizes: Box Unit",
+      "Application areas: Pneumatic Tool Lines, Machine Tool Air Prep",
+      "Standards & specs: 1/2\" to 1\" Port | 5 Micron Filtration | Auto Drain"
+    ],
+    "specsText": "1/2\" to 1\" Port | 5 Micron Filtration | Auto Drain",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Deep Pneumatics"
+      },
+      {
+        "property": "Category",
+        "value": "Pneumatic Products"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "1/2\" to 1\" Port | 5 Micron Filtration | Auto Drain"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Pneumatic Tool Lines, Machine Tool Air Prep"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "Box Unit"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 146
+  },
+  {
+    "name": "Deep Refrigerated Air Dryer 150 CFM",
+    "slug": "deep-ref-dryer-150",
+    "subtitle": "Deep Pneumatics • Air Treatment Solutions",
+    "categorySlug": "deep-pneumatics",
+    "categoryName": "Deep Pneumatics",
+    "subCategoryTitle": "Air Treatment Solutions",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Eliminates pipe condensation, rust, and water damage across factory air lines.",
+    "applicationAreas": "CNC Machine Air Lines, Spray Painting Booths",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting +3°C Pressure Dew Point | R134a Eco Refrigerant.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Deep Pneumatics",
+      "Packaging sizes: Self-Contained Cabinet",
+      "Application areas: CNC Machine Air Lines, Spray Painting Booths",
+      "Standards & specs: +3°C Pressure Dew Point | R134a Eco Refrigerant"
+    ],
+    "specsText": "+3°C Pressure Dew Point | R134a Eco Refrigerant",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Deep Pneumatics"
+      },
+      {
+        "property": "Category",
+        "value": "Air Treatment Solutions"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "+3°C Pressure Dew Point | R134a Eco Refrigerant"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "CNC Machine Air Lines, Spray Painting Booths"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "Self-Contained Cabinet"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 147
+  },
+  {
+    "name": "Deep 1000L Vertical Air Receiver Tank",
+    "slug": "deep-air-receiver-1000l",
+    "subtitle": "Deep Pneumatics • Industrial Equipment",
+    "categorySlug": "deep-pneumatics",
+    "categoryName": "Deep Pneumatics",
+    "subCategoryTitle": "Industrial Equipment",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Dampens compressor pulsations and acts as a surge storage tank for high-demand bursts.",
+    "applicationAreas": "Centralized Compressed Air Utility",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting 1000 Liters | 10 Bar Design Pressure | ASME Certified.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Deep Pneumatics",
+      "Packaging sizes: Vertical Vessel",
+      "Application areas: Centralized Compressed Air Utility",
+      "Standards & specs: 1000 Liters | 10 Bar Design Pressure | ASME Certified"
+    ],
+    "specsText": "1000 Liters | 10 Bar Design Pressure | ASME Certified",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Deep Pneumatics"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Equipment"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "1000 Liters | 10 Bar Design Pressure | ASME Certified"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Centralized Compressed Air Utility"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "Vertical Vessel"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 148
+  },
+  {
+    "name": "Deep UltraSynthec 8000h Compressor Oil",
+    "slug": "deep-synthec-8000h",
+    "subtitle": "Deep Pneumatics • Compressor Lubricants",
+    "categorySlug": "deep-pneumatics",
+    "categoryName": "Deep Pneumatics",
+    "subCategoryTitle": "Compressor Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Prevents varnish and carbon sludge in high-temperature rotary screw compressors.",
+    "applicationAreas": "Rotary Screw Air Compressors, Continuous Duty Vane Units",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 46 | 100% PAO Synthetic | 8000 Operating Hours.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Deep Pneumatics",
+      "Packaging sizes: 20L Bucket / 210L Drum",
+      "Application areas: Rotary Screw Air Compressors, Continuous Duty Vane Units",
+      "Standards & specs: ISO VG 46 | 100% PAO Synthetic | 8000 Operating Hours"
+    ],
+    "specsText": "ISO VG 46 | 100% PAO Synthetic | 8000 Operating Hours",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Deep Pneumatics"
+      },
+      {
+        "property": "Category",
+        "value": "Compressor Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 46 | 100% PAO Synthetic | 8000 Operating Hours"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Rotary Screw Air Compressors, Continuous Duty Vane Units"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Bucket, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 149
+  },
+  {
+    "name": "Lubricon Fleet Master 15W-40",
+    "slug": "lubricon-fleet-15w40",
+    "subtitle": "Lubricon • Engine Oils",
+    "categorySlug": "lubricon",
+    "categoryName": "Lubricon",
+    "subCategoryTitle": "Engine Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg",
+    "description": "Multi-grade commercial diesel fluid designed for heavy transport and off-road engines.",
+    "applicationAreas": "Commercial Fleet Vehicles, Industrial Tractors",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting API CI-4 / SL | Heavy Fleet Protection.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Lubricon."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Lubricon",
+      "Packaging sizes: 20L / 210L Drum",
+      "Application areas: Commercial Fleet Vehicles, Industrial Tractors",
+      "Standards & specs: API CI-4 / SL | Heavy Fleet Protection"
+    ],
+    "specsText": "API CI-4 / SL | Heavy Fleet Protection",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Lubricon"
+      },
+      {
+        "property": "Category",
+        "value": "Engine Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "API CI-4 / SL | Heavy Fleet Protection"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Commercial Fleet Vehicles, Industrial Tractors"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 150
+  },
+  {
+    "name": "Lubricon Industrial Gear EP 220",
+    "slug": "lubricon-gear-ep-220",
+    "subtitle": "Lubricon • Gear Oils",
+    "categorySlug": "lubricon",
+    "categoryName": "Lubricon",
+    "subCategoryTitle": "Gear Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Heavy anti-scuff industrial gear fluid for enclosed helical and bevel gearboxes.",
+    "applicationAreas": "Industrial Gearboxes, Crusher Drives",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 220 | High EP | DIN 51517 Part 3.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Lubricon."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Lubricon",
+      "Packaging sizes: 20L / 210L Drum",
+      "Application areas: Industrial Gearboxes, Crusher Drives",
+      "Standards & specs: ISO VG 220 | High EP | DIN 51517 Part 3"
+    ],
+    "specsText": "ISO VG 220 | High EP | DIN 51517 Part 3",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Lubricon"
+      },
+      {
+        "property": "Category",
+        "value": "Gear Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 220 | High EP | DIN 51517 Part 3"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Industrial Gearboxes, Crusher Drives"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 151
+  },
+  {
+    "name": "Lubricon Hydro AW 68",
+    "slug": "lubricon-hydro-68",
+    "subtitle": "Lubricon • Hydraulic Oils",
+    "categorySlug": "lubricon",
+    "categoryName": "Lubricon",
+    "subCategoryTitle": "Hydraulic Oils",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "High anti-wear hydraulic oil for heavy duty industrial pumps and presses.",
+    "applicationAreas": "Hydraulic Machinery, Die Casting Machines",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 68 | Anti-Wear | DIN 51524 Part 2.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Lubricon."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Lubricon",
+      "Packaging sizes: 20L / 210L Drum",
+      "Application areas: Hydraulic Machinery, Die Casting Machines",
+      "Standards & specs: ISO VG 68 | Anti-Wear | DIN 51524 Part 2"
+    ],
+    "specsText": "ISO VG 68 | Anti-Wear | DIN 51524 Part 2",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Lubricon"
+      },
+      {
+        "property": "Category",
+        "value": "Hydraulic Oils"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 68 | Anti-Wear | DIN 51524 Part 2"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Hydraulic Machinery, Die Casting Machines"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 152
+  },
+  {
+    "name": "Lubricon Litho-Plex EP 2",
+    "slug": "lubricon-lithoplex-2",
+    "subtitle": "Lubricon • Greases",
+    "categorySlug": "lubricon",
+    "categoryName": "Lubricon",
+    "subCategoryTitle": "Greases",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "General plant multi-purpose grease offering high shear endurance under heavy vibration.",
+    "applicationAreas": "Conveyor Bearings, Industrial Rollers",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting NLGI 2 | Lithium Complex Soap | High Drop Point.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Lubricon."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Lubricon",
+      "Packaging sizes: 18kg Pail / 180kg Drum",
+      "Application areas: Conveyor Bearings, Industrial Rollers",
+      "Standards & specs: NLGI 2 | Lithium Complex Soap | High Drop Point"
+    ],
+    "specsText": "NLGI 2 | Lithium Complex Soap | High Drop Point",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Lubricon"
+      },
+      {
+        "property": "Category",
+        "value": "Greases"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "NLGI 2 | Lithium Complex Soap | High Drop Point"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Conveyor Bearings, Industrial Rollers"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "18kg Pail, 180kg Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 153
+  },
+  {
+    "name": "Lubricon Thermol-300 Thermal Fluid",
+    "slug": "lubricon-thermol-300",
+    "subtitle": "Lubricon • Specialty Lubricants",
+    "categorySlug": "lubricon",
+    "categoryName": "Lubricon",
+    "subCategoryTitle": "Specialty Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Mineral circulating heat transfer oil with high resistance to thermal degradation.",
+    "applicationAreas": "Industrial Process Heaters, Plywood Hot Presses",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Thermal Fluid | Operating Temp to 300°C.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Lubricon."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Lubricon",
+      "Packaging sizes: 210L Drum / Bulk Tanker",
+      "Application areas: Industrial Process Heaters, Plywood Hot Presses",
+      "Standards & specs: Thermal Fluid | Operating Temp to 300°C"
+    ],
+    "specsText": "Thermal Fluid | Operating Temp to 300°C",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Lubricon"
+      },
+      {
+        "property": "Category",
+        "value": "Specialty Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Thermal Fluid | Operating Temp to 300°C"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Industrial Process Heaters, Plywood Hot Presses"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "210L Drum, Bulk Tanker"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 154
+  },
+  {
+    "name": "Lubricon Waylube ISO 68",
+    "slug": "lubricon-waylube-68",
+    "subtitle": "Lubricon • Industrial Lubricants",
+    "categorySlug": "lubricon",
+    "categoryName": "Lubricon",
+    "subCategoryTitle": "Industrial Lubricants",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Eliminates jerky stick-slip motion on horizontal CNC machine tool ways and slides.",
+    "applicationAreas": "Horizontal CNC Lathes, Milling Machine Slideways",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting ISO VG 68 | Anti-Stick-Slip | DIN 51502 CGLP.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Lubricon."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Lubricon",
+      "Packaging sizes: 20L Bucket / 210L Drum",
+      "Application areas: Horizontal CNC Lathes, Milling Machine Slideways",
+      "Standards & specs: ISO VG 68 | Anti-Stick-Slip | DIN 51502 CGLP"
+    ],
+    "specsText": "ISO VG 68 | Anti-Stick-Slip | DIN 51502 CGLP",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Lubricon"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Lubricants"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "India (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "ISO VG 68 | Anti-Stick-Slip | DIN 51502 CGLP"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Horizontal CNC Lathes, Milling Machine Slideways"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Bucket, 210L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 155
+  },
+  {
+    "name": "TW SolvClean 100 Industrial Degreaser",
+    "slug": "tw-solvclean-100",
+    "subtitle": "TW Chemin • Industrial Chemicals",
+    "categorySlug": "tw-chemin",
+    "categoryName": "TW Chemin",
+    "subCategoryTitle": "Industrial Chemicals",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Removes stubborn machining oils, greases, and carbon deposits from metal parts.",
+    "applicationAreas": "Ultrasonic Wash Tanks, Pre-Assembly Cleaning",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Fast Evaporating | Zero Residue | Non-Corrosive.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by TW Chemin."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from TW Chemin",
+      "Packaging sizes: 20L Can / 200L Drum",
+      "Application areas: Ultrasonic Wash Tanks, Pre-Assembly Cleaning",
+      "Standards & specs: Fast Evaporating | Zero Residue | Non-Corrosive"
+    ],
+    "specsText": "Fast Evaporating | Zero Residue | Non-Corrosive",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "TW Chemin"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Chemicals"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Germany (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Fast Evaporating | Zero Residue | Non-Corrosive"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Ultrasonic Wash Tanks, Pre-Assembly Cleaning"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L Can, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 156
+  },
+  {
+    "name": "TW CoolPro 500 Semi-Synthetic Coolant",
+    "slug": "tw-coolpro-500",
+    "subtitle": "TW Chemin • Lubrication Solutions",
+    "categorySlug": "tw-chemin",
+    "categoryName": "TW Chemin",
+    "subCategoryTitle": "Lubrication Solutions",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "High performance cutting fluid designed for steel, cast iron, and aluminum alloys.",
+    "applicationAreas": "CNC Milling & Turning, High Pressure Drilling",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Biostable Emulsion | Chlorine-Free | Anti-Foam.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by TW Chemin."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from TW Chemin",
+      "Packaging sizes: 20L / 200L Drum",
+      "Application areas: CNC Milling & Turning, High Pressure Drilling",
+      "Standards & specs: Biostable Emulsion | Chlorine-Free | Anti-Foam"
+    ],
+    "specsText": "Biostable Emulsion | Chlorine-Free | Anti-Foam",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "TW Chemin"
+      },
+      {
+        "property": "Category",
+        "value": "Lubrication Solutions"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Germany (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Biostable Emulsion | Chlorine-Free | Anti-Foam"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "CNC Milling & Turning, High Pressure Drilling"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 157
+  },
+  {
+    "name": "TW RustGuard Dewatering 200",
+    "slug": "tw-rustguard-200",
+    "subtitle": "TW Chemin • Specialty Chemicals",
+    "categorySlug": "tw-chemin",
+    "categoryName": "TW Chemin",
+    "subCategoryTitle": "Specialty Chemicals",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Displaces water instantly from wet machined parts, leaving an anti-corrosion barrier.",
+    "applicationAreas": "Export Packaging, Intermediate Storage Parts",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Rapid Dewatering | Thin Oily Film | 12+ Months Protection.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by TW Chemin."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from TW Chemin",
+      "Packaging sizes: 20L / 200L Drum",
+      "Application areas: Export Packaging, Intermediate Storage Parts",
+      "Standards & specs: Rapid Dewatering | Thin Oily Film | 12+ Months Protection"
+    ],
+    "specsText": "Rapid Dewatering | Thin Oily Film | 12+ Months Protection",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "TW Chemin"
+      },
+      {
+        "property": "Category",
+        "value": "Specialty Chemicals"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Germany (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Rapid Dewatering | Thin Oily Film | 12+ Months Protection"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Export Packaging, Intermediate Storage Parts"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "20L, 200L Drum"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 158
+  },
+  {
+    "name": "TW MoistureDisplacer 40 Spray",
+    "slug": "tw-moisture-displacer",
+    "subtitle": "TW Chemin • Maintenance Products",
+    "categorySlug": "tw-chemin",
+    "categoryName": "TW Chemin",
+    "subCategoryTitle": "Maintenance Products",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg",
+    "description": "Frees rusted bolts, displaces moisture from electrical circuits, and stops squeaks.",
+    "applicationAreas": "Maintenance Toolkits, Electrical Switchgear Maintenance",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting High Dielectric | Penetrating & Lubricating.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by TW Chemin."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from TW Chemin",
+      "Packaging sizes: 500ml Aerosol / 5L Can / 20L Can",
+      "Application areas: Maintenance Toolkits, Electrical Switchgear Maintenance",
+      "Standards & specs: High Dielectric | Penetrating & Lubricating"
+    ],
+    "specsText": "High Dielectric | Penetrating & Lubricating",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "TW Chemin"
+      },
+      {
+        "property": "Category",
+        "value": "Maintenance Products"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "Germany (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "High Dielectric | Penetrating & Lubricating"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Maintenance Toolkits, Electrical Switchgear Maintenance"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "500ml Aerosol, 5L Can, 20L Can"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 159
+  },
+  {
+    "name": "Filtermist FX4002 Centrifugal Mist Collector",
+    "slug": "filtermist-fx4002",
+    "subtitle": "Filtermist • Oil Mist Collectors",
+    "categorySlug": "filtermist",
+    "categoryName": "Filtermist",
+    "subCategoryTitle": "Oil Mist Collectors",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+    "description": "Direct-drive centrifugal unit removing oil mist and returning condensed coolant into the sump.",
+    "applicationAreas": "CNC Turning Centers, Milling Enclosures",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Airflow 1250 m³/h | 1.1 kW Motor | Low Noise 70 dB(A).",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Filtermist."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Filtermist",
+      "Packaging sizes: Complete Collector Unit",
+      "Application areas: CNC Turning Centers, Milling Enclosures",
+      "Standards & specs: Airflow 1250 m³/h | 1.1 kW Motor | Low Noise 70 dB(A)"
+    ],
+    "specsText": "Airflow 1250 m³/h | 1.1 kW Motor | Low Noise 70 dB(A)",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Filtermist"
+      },
+      {
+        "property": "Category",
+        "value": "Oil Mist Collectors"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United Kingdom (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Airflow 1250 m³/h | 1.1 kW Motor | Low Noise 70 dB(A)"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "CNC Turning Centers, Milling Enclosures"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "Complete Collector Unit"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 160
+  },
+  {
+    "name": "Filtermist FX5002 Mist Collector",
+    "slug": "filtermist-fx5002",
+    "subtitle": "Filtermist • Oil Mist Collectors",
+    "categorySlug": "filtermist",
+    "categoryName": "Filtermist",
+    "subCategoryTitle": "Oil Mist Collectors",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg",
+    "description": "Higher throughput extraction unit for high-pressure through-spindle coolant CNC centers.",
+    "applicationAreas": "High-Pressure Machining Centers, Large Enclosures",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Airflow 1750 m³/h | 1.5 kW | High Volume Mist Extraction.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Filtermist."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Filtermist",
+      "Packaging sizes: Complete Collector Unit",
+      "Application areas: High-Pressure Machining Centers, Large Enclosures",
+      "Standards & specs: Airflow 1750 m³/h | 1.5 kW | High Volume Mist Extraction"
+    ],
+    "specsText": "Airflow 1750 m³/h | 1.5 kW | High Volume Mist Extraction",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Filtermist"
+      },
+      {
+        "property": "Category",
+        "value": "Oil Mist Collectors"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United Kingdom (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Airflow 1750 m³/h | 1.5 kW | High Volume Mist Extraction"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "High-Pressure Machining Centers, Large Enclosures"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "Complete Collector Unit"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 161
+  },
+  {
+    "name": "Filtermist HEPA H13 Afterfilter",
+    "slug": "filtermist-hepa-afterfilter",
+    "subtitle": "Filtermist • Filtration Systems",
+    "categorySlug": "filtermist",
+    "categoryName": "Filtermist",
+    "subCategoryTitle": "Filtration Systems",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Mounted on top of the Filtermist collector to eliminate dry smoke and sub-micron oil particulate.",
+    "applicationAreas": "Neat Oil Machining, High Speed Grinding Smoke",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Efficiency 99.95% @ 0.3 Micron | H13 Standard.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Filtermist."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Filtermist",
+      "Packaging sizes: Filter Pack",
+      "Application areas: Neat Oil Machining, High Speed Grinding Smoke",
+      "Standards & specs: Efficiency 99.95% @ 0.3 Micron | H13 Standard"
+    ],
+    "specsText": "Efficiency 99.95% @ 0.3 Micron | H13 Standard",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Filtermist"
+      },
+      {
+        "property": "Category",
+        "value": "Filtration Systems"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United Kingdom (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Efficiency 99.95% @ 0.3 Micron | H13 Standard"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Neat Oil Machining, High Speed Grinding Smoke"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "Filter Pack"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 162
+  },
+  {
+    "name": "Filtermist Industrial Smoke Eliminator",
+    "slug": "filtermist-smoke-eliminator",
+    "subtitle": "Filtermist • Industrial Air Filtration",
+    "categorySlug": "filtermist",
+    "categoryName": "Filtermist",
+    "subCategoryTitle": "Industrial Air Filtration",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg",
+    "description": "Captures dense smoke generated by heat treatment and severe high-speed machining.",
+    "applicationAreas": "Heat Treatment Shops, Heavy Machining Plants",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Multi-Stage High Performance Sub-Micron Filtration.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Filtermist."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Filtermist",
+      "Packaging sizes: Filtration Unit",
+      "Application areas: Heat Treatment Shops, Heavy Machining Plants",
+      "Standards & specs: Multi-Stage High Performance Sub-Micron Filtration"
+    ],
+    "specsText": "Multi-Stage High Performance Sub-Micron Filtration",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Filtermist"
+      },
+      {
+        "property": "Category",
+        "value": "Industrial Air Filtration"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United Kingdom (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Multi-Stage High Performance Sub-Micron Filtration"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Heat Treatment Shops, Heavy Machining Plants"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "Filtration Unit"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 163
+  },
+  {
+    "name": "Filtermist F-Monitor Airflow Sensor",
+    "slug": "filtermist-f-monitor",
+    "subtitle": "Filtermist • Extraction Solutions",
+    "categorySlug": "filtermist",
+    "categoryName": "Filtermist",
+    "subCategoryTitle": "Extraction Solutions",
+    "containerImage": "https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg",
+    "description": "Monitors airflow volume and alerts machine operators when afterfilters require maintenance.",
+    "applicationAreas": "Continuous Airflow Monitoring, Preventive Maintenance",
+    "performanceBenefits": [
+      "Formulated for severe-duty performance meeting Digital LED Status Indicator | Airflow & Filter Monitor.",
+      "Maximum thermal stability, oxidation resistance, and extended equipment operational life.",
+      "Robust boundary-film lubrication minimizing friction and mechanical downtime.",
+      "Guaranteed 100% original manufacturer distribution stock by Filtermist."
+    ],
+    "specialFeatures": [
+      "Authorized factory supply from Filtermist",
+      "Packaging sizes: Sensor Gauge Kit",
+      "Application areas: Continuous Airflow Monitoring, Preventive Maintenance",
+      "Standards & specs: Digital LED Status Indicator | Airflow & Filter Monitor"
+    ],
+    "specsText": "Digital LED Status Indicator | Airflow & Filter Monitor",
+    "tableHeaders": [
+      "Property",
+      "Value"
+    ],
+    "propertiesTable": [
+      {
+        "property": "Brand / Manufacturer",
+        "value": "Filtermist"
+      },
+      {
+        "property": "Category",
+        "value": "Extraction Solutions"
+      },
+      {
+        "property": "Origin / Status",
+        "value": "United Kingdom (Certified Multi-Brand Stockist)"
+      },
+      {
+        "property": "Specifications / Standards",
+        "value": "Digital LED Status Indicator | Airflow & Filter Monitor"
+      },
+      {
+        "property": "Primary Applications",
+        "value": "Continuous Airflow Monitoring, Preventive Maintenance"
+      },
+      {
+        "property": "Standard Packaging Options",
+        "value": "Sensor Gauge Kit"
+      },
+      {
+        "property": "Product Status",
+        "value": "100% Genuine Authorized Stock"
+      }
+    ],
+    "pdfUrl": "#",
+    "msdsUrl": "#",
+    "isFeatured": true,
+    "order": 164
+  }
+];
+
+
+  // === Brand Categories & Products ===
+
+  console.log("Cleaning up any extraneous products & categories...");
+  const validCategorySlugs = brandCategories.map((c) => c.slug);
+  const validProductSlugs = brandProducts.map((p) => p.slug);
+
+  await prisma.product.deleteMany({
+    where: { slug: { notIn: validProductSlugs } },
+  });
+  await prisma.productCategory.deleteMany({
+    where: { slug: { notIn: validCategorySlugs } },
+  });
+
+  console.log("Upserting brand categories...");
+  for (const cat of brandCategories) {
     await prisma.productCategory.upsert({
       where: { slug: cat.slug },
       update: cat,
       create: cat,
     });
   }
-  console.log(`✓ ${categories.length} Product categories ready.`);
+  console.log(`✓ ${brandCategories.length} Brand categories ready.`);
 
-  // 9. Products
-  const sampleProducts = [
-    {
-      name: "HYCOM 150 P",
-      slug: "hycom-150-p",
-      subtitle: "COMPRESSOR OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Specially developed for railway compressors.",
-      applicationAreas: "Specially developed for railway compressors.",
-      performanceBenefits: [
-        "This oil has good demulsibility property, low deposits and sludge foaming tendency at a wide range of working temperature and in any gaseous atmosphere.",
-        "Meets DIN 51506 VDL specifications, IS 13256:1992 DAB",
-      ],
-      specialFeatures: [
-        "It is blended out of highly refined turbine base stocks and special types of anti-oxidants, anti-rust, anti-foam and demulsifier which do not react to any of the types of gases.",
-      ],
-      specsText: "Meets DIN 51506 VDL specifications, IS 13256:1992 DAB",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Appearance",
-          value: "Clear",
-        },
-        {
-          property: "Acidity, Total mg KOH / g",
-          value: "0.20",
-        },
-        {
-          property: "Density @ 29.5°C, g/cc",
-          value: "0.8770",
-        },
-        {
-          property: "Flash Point, COC, °C",
-          value: ">210",
-        },
-        {
-          property: "Pour Point, °C",
-          value: "<-15",
-        },
-        {
-          property: "OXIDATION STABILITY @ 135°C, 168 Hrs",
-          value: "Pass",
-        },
-        {
-          property: "FZG Rig Test, Pass Load Stage",
-          value: ">8",
-        },
-        {
-          property: "Rusting Test, Syn Sea Water, 24 Hrs",
-          value: "Pass",
-        },
-        {
-          property: "Kin. Viscosity @ 40°C, cSt",
-          value: "135-165",
-        },
-        {
-          property: "Kin. Viscosity @ 100°C, cSt",
-          value: "15.0",
-        },
-        {
-          property: "Viscosity Index",
-          value: "100",
-        },
-      ],
-      pdfUrl: "/docs/HYCOM_150_P_TDS.pdf",
-      msdsUrl: "/docs/HYCOM_150_P_MSDS.pdf",
-      isFeatured: true,
-      order: 0,
-    },
-    {
-      name: "HYCOM C 100, 150, 220, 320, 460",
-      slug: "hycom-c-series",
-      subtitle: "COMPRESSOR OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Reciprocating air compressor lubrication.",
-      applicationAreas: "Reciprocating air compressor lubrication.",
-      performanceBenefits: ["High thermal stability", "Low carbon residue"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "100 - 460",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: true,
-      order: 1,
-    },
-    {
-      name: "HYCOM LS EXPO SERIES",
-      slug: "hycom-ls-expo",
-      subtitle: "COMPRESSOR OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Long service life screw compressor oil.",
-      applicationAreas: "Long service life screw compressor oil.",
-      performanceBenefits: ["Anti-wear", "Oxidation resistance"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Type",
-          value: "Synthetic Blend",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: true,
-      order: 2,
-    },
-    {
-      name: "HYCOM LS SERIES",
-      slug: "hycom-ls-series",
-      subtitle: "COMPRESSOR OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Rotary screw air compressors.",
-      applicationAreas: "Rotary screw air compressors.",
-      performanceBenefits: ["Extended drain interval"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Type",
-          value: "Rotary Screw Oil",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: true,
-      order: 3,
-    },
-    {
-      name: "HYCOM PGE",
-      slug: "hycom-pge",
-      subtitle: "COMPRESSOR OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Polyglycol synthetic compressor lubricant.",
-      applicationAreas: "Polyglycol synthetic compressor lubricant.",
-      performanceBenefits: ["Gas compressor compatibility"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Base",
-          value: "PAG Synthetic",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: true,
-      order: 4,
-    },
-    {
-      name: "CYNDOL GRADES",
-      slug: "cyndol-grades",
-      subtitle: "CYLINDER OIL",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "CYLINDER OIL",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description:
-        "Steam engine cylinders and worm gear drives operating under heavy wet steam conditions.",
-      applicationAreas:
-        "Steam engine cylinders and worm gear drives operating under heavy wet steam conditions.",
-      performanceBenefits: [
-        "Compounded with fatty oils",
-        "Resists water washing",
-      ],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Viscosity @ 100°C",
-          value: "30 - 45 cSt",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: true,
-      order: 5,
-    },
-    {
-      name: "HP FILM OIL",
-      slug: "hp-film-oil",
-      subtitle: "FILM OILS & STEEL MILL BEARING OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "FILM OIL",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description:
-        "HP FILM OIL grades are recommended for use in anti-friction bearings, plain bearings, drive gears and pinion of steel mills, where operating conditions are moderate. They are also suitable for use in circulation systems, where oils with high demulsibility characteristics are required.",
-      applicationAreas:
-        "HP FILM OIL grades are recommended for use in anti-friction bearings, plain bearings, drive gears and pinion of steel mills, where operating conditions are moderate. They are also suitable for use in circulation systems, where oils with high demulsibility characteristics are required.",
-      performanceBenefits: [
-        "Excellent oxidation stability",
-        "High demulsibility",
-        "Non-corrosive to materials",
-      ],
-      specialFeatures: [
-        "HP FILM OILS are highly refined mineral oils suitable for oil film bearings used in steel plants. The product is blended from solvent extracted high viscosity index base stocks having excellent demulsibility characteristics. They also possess good oxidation and thermal stability.",
-      ],
-      specsText:
-        "HP FILM OIL grades meet IPSS 1-09-001-95 GRADE 1 TO 6 & IS : 6552-1987",
-      tableHeaders: ["46", "68", "100", "150", "220"],
-      propertiesTable: [
-        {
-          property: "Appearance",
-          value: "Bright & Clear",
-        },
-        {
-          property: "Kinematic, Viscosity, cSt, @ 40°C",
-          value: "",
-          values: ["46", "68", "100", "150", "220"],
-        },
-        {
-          property: "Kinematic, Viscosity, cSt, @ 100°C",
-          value: "",
-          values: ["4.0", "5.0", "6.1", "7.8", "10.1"],
-        },
-        {
-          property: "Viscosity Index, Min",
-          value: "",
-          values: ["90", "90", "90", "90", "90"],
-        },
-        {
-          property: "Flash Point, COC,°C, Min.",
-          value: "",
-          values: ["160", "190", "200", "210", "230"],
-        },
-        {
-          property: "Pour Point, °C, Max.",
-          value: "",
-          values: ["(-)18", "(-)18", "(-)15", "(-)12", "(-)12"],
-        },
-        {
-          property: "Copper Strip Corrosion, @ 100°C For 3 Hrs.",
-          value: "Pass",
-        },
-        {
-          property:
-            "Emulsion Characteristics, In 20 Minutes,ml, At 54°C At 82°C",
-          value: "",
-          values: ["40-37-3", "40-37-3", "-", "-", "-"],
-        },
-      ],
-      pdfUrl: "/docs/HP_FILM_OIL_TDS.pdf",
-      msdsUrl: "/docs/HP_FILM_OIL_MSDS.pdf",
-      isFeatured: true,
-      order: 6,
-    },
-    {
-      name: "HP STEEL 320",
-      slug: "hp-steel-320",
-      subtitle: "FILM OIL",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "FILM OIL",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Heavy duty steel mill roll neck bearings.",
-      applicationAreas: "Heavy duty steel mill roll neck bearings.",
-      performanceBenefits: ["Water separation"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "320",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: true,
-      order: 7,
-    },
-    {
-      name: "HP STEEL EP 100",
-      slug: "hp-steel-ep-100",
-      subtitle: "FILM OIL",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "FILM OIL",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Steel wire rod mill high speed bearings.",
-      applicationAreas: "Steel wire rod mill high speed bearings.",
-      performanceBenefits: ["Extreme pressure EP protection"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "100",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 8,
-    },
-    {
-      name: "HP STEEL GRADES",
-      slug: "hp-steel-grades",
-      subtitle: "FILM OIL",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "FILM OIL",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Rolling mill Morgoil lubrication systems.",
-      applicationAreas: "Rolling mill Morgoil lubrication systems.",
-      performanceBenefits: ["Oxidation resistance"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Series",
-          value: "Steel Grades",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 9,
-    },
-    {
-      name: "HP FLUSHING OIL",
-      slug: "hp-flushing-oil",
-      subtitle: "MACHINERY OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "GENERAL PURPOSE MACHINERY OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Flushing out old oil, sludge, and contaminants.",
-      applicationAreas: "Flushing out old oil, sludge, and contaminants.",
-      performanceBenefits: ["High solvency", "Viscosity light"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Viscosity @ 40°C",
-          value: "15 - 22 cSt",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 10,
-    },
-    {
-      name: "YANTROL / YANTROL N SERIES",
-      slug: "yantrol-series",
-      subtitle: "MACHINERY OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "GENERAL PURPOSE MACHINERY OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Textile looms and plain bearings.",
-      applicationAreas: "Textile looms and plain bearings.",
-      performanceBenefits: ["Non-drip tacky property"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Viscosity Grades",
-          value: "32 to 460",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 11,
-    },
-    {
-      name: "ENKLO 32 SUPER",
-      slug: "enklo-32-super",
-      subtitle: "HYDRAULIC OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "HYDRAULIC OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Precision CNC machine tools.",
-      applicationAreas: "Precision CNC machine tools.",
-      performanceBenefits: ["Anti-wear protection"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "32",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 12,
-    },
-    {
-      name: "ENKLO 46 PREMIUM",
-      slug: "enklo-46-premium",
-      subtitle: "HYDRAULIC OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "HYDRAULIC OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Industrial hydraulic presses.",
-      applicationAreas: "Industrial hydraulic presses.",
-      performanceBenefits: ["Demulsibility"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "46",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 13,
-    },
-    {
-      name: "ENKLO 46 SUPER",
-      slug: "enklo-46-super",
-      subtitle: "HYDRAULIC OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "HYDRAULIC OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Mobile earthmoving machinery.",
-      applicationAreas: "Mobile earthmoving machinery.",
-      performanceBenefits: ["Anti-foam"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "46",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 14,
-    },
-    {
-      name: "ENKLO 68 PREMIUM",
-      slug: "enklo-68-premium",
-      subtitle: "HYDRAULIC OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "HYDRAULIC OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Heavy duty hydraulic systems.",
-      applicationAreas: "Heavy duty hydraulic systems.",
-      performanceBenefits: ["Shear stability"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "68",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 15,
-    },
-    {
-      name: "ENKLO 68 SUPER",
-      slug: "enklo-68-super",
-      subtitle: "HYDRAULIC OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "HYDRAULIC OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "High-pressure hydraulic pumps.",
-      applicationAreas: "High-pressure hydraulic pumps.",
-      performanceBenefits: ["Pump anti-wear"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Kin. Viscosity @ 40°C",
-          value: "64.0 - 72.0 cSt",
-        },
-      ],
-      pdfUrl: "/docs/ENKLO_68_TDS.pdf",
-      msdsUrl: "/docs/ENKLO_68_MSDS.pdf",
-      isFeatured: false,
-      order: 16,
-    },
-    {
-      name: "WAYLUBE",
-      slug: "waylube-grades",
-      subtitle: "MACHINERY OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "MACHINERY OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Machine tool slideways and guides.",
-      applicationAreas: "Machine tool slideways and guides.",
-      performanceBenefits: ["Prevents stick-slip chatter"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "68 / 220",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 17,
-    },
-    {
-      name: "HYTAK",
-      slug: "hytak-base",
-      subtitle: "OPEN GEAR COMPOUNDS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "OPEN GEAR COMPOUNDS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Heavy open gears.",
-      applicationAreas: "Heavy open gears.",
-      performanceBenefits: ["Bitumen free compound"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Type",
-          value: "Open Gear Compound",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 18,
-    },
-    {
-      name: "HYTAK 500 NB",
-      slug: "hytak-500-nb",
-      subtitle: "OPEN GEAR COMPOUNDS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "OPEN GEAR COMPOUNDS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Cement kilns open gear lubricant.",
-      applicationAreas: "Cement kilns open gear lubricant.",
-      performanceBenefits: ["Non-toxic"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Grade",
-          value: "500 NB",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 19,
-    },
-    {
-      name: "HYTAK 500 NB-1000",
-      slug: "hytak-500-nb-1000",
-      subtitle: "OPEN GEAR COMPOUNDS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "OPEN GEAR COMPOUNDS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Ultra-heavy load open gear drives.",
-      applicationAreas: "Ultra-heavy load open gear drives.",
-      performanceBenefits: ["Synthetic film"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Viscosity @ 100°C",
-          value: "1000 cSt",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 20,
-    },
-    {
-      name: "NU-MATIC",
-      slug: "nu-matic-grades",
-      subtitle: "PNEUMATIC TOOL OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "PNEUMATIC TOOL OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Air hammers and rock drills.",
-      applicationAreas: "Air hammers and rock drills.",
-      performanceBenefits: ["Emulsifies with moisture"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Viscosity",
-          value: "ISO VG 46 / 100 / 320",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 21,
-    },
-    {
-      name: "SEETUL GRADES",
-      slug: "seetul-grades",
-      subtitle: "REFRIGERATION OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "REFRIGERATION COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Ammonia refrigeration compressors.",
-      applicationAreas: "Ammonia refrigeration compressors.",
-      performanceBenefits: ["Low pour point"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Type",
-          value: "Mineral Refrigeration Oil",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 22,
-    },
-    {
-      name: "SEETUL N 68 (P)",
-      slug: "seetul-n-68",
-      subtitle: "REFRIGERATION OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "REFRIGERATION COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Cold storage refrigeration.",
-      applicationAreas: "Cold storage refrigeration.",
-      performanceBenefits: ["Ultra low floc point"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "68",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 23,
-    },
-    {
-      name: "SEETUL RFL GRADES",
-      slug: "seetul-rfl",
-      subtitle: "REFRIGERATION OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "REFRIGERATION COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Freon refrigerant systems.",
-      applicationAreas: "Freon refrigerant systems.",
-      performanceBenefits: ["Refrigerant compatibility"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Series",
-          value: "RFL",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 24,
-    },
-    {
-      name: "SEETUL S 68",
-      slug: "seetul-s-68",
-      subtitle: "REFRIGERATION OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "REFRIGERATION COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Synthetic refrigeration compressor oil.",
-      applicationAreas: "Synthetic refrigeration compressor oil.",
-      performanceBenefits: ["High thermal resistance"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "68",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 25,
-    },
-    {
-      name: "SEETUL SE 68",
-      slug: "seetul-se-68",
-      subtitle: "REFRIGERATION OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "REFRIGERATION COMPRESSOR OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Polyolester POE synthetic oil.",
-      applicationAreas: "Polyolester POE synthetic oil.",
-      performanceBenefits: ["HFC compatible"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Base",
-          value: "POE Synthetic",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 26,
-    },
-    {
-      name: "SPINTEK",
-      slug: "spintek-base",
-      subtitle: "SPINDLE OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "SPINDLE OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Textile spinning spindles.",
-      applicationAreas: "Textile spinning spindles.",
-      performanceBenefits: ["Ultra low viscosity"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Viscosity @ 40°C",
-          value: "2 to 22 cSt",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 27,
-    },
-    {
-      name: "SPINTEK 3",
-      slug: "spintek-3",
-      subtitle: "SPINDLE OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "SPINDLE OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Ultra-high speed textile spindles.",
-      applicationAreas: "Ultra-high speed textile spindles.",
-      performanceBenefits: ["Low power consumption"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "3",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 28,
-    },
-    {
-      name: "SPINTEK EE SERIES",
-      slug: "spintek-ee-series",
-      subtitle: "SPINDLE OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "SPINDLE OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Energy efficient textile spindle lubricant.",
-      applicationAreas: "Energy efficient textile spindle lubricant.",
-      performanceBenefits: ["Friction modifier technology"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Series",
-          value: "EE Series",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 29,
-    },
-    {
-      name: "SPINTEK SYN 2",
-      slug: "spintek-syn-2",
-      subtitle: "SPINDLE OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "SPINDLE OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Synthetic textile spindle fluid.",
-      applicationAreas: "Synthetic textile spindle fluid.",
-      performanceBenefits: ["Zero deposit formation"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "2",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 30,
-    },
-    {
-      name: "STANTROL 1, 3",
-      slug: "stantrol-1-3",
-      subtitle: "STENTER OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "STENTER OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Textile stenter machine conveyor chains up to 240°C.",
-      applicationAreas: "Textile stenter machine conveyor chains up to 240°C.",
-      performanceBenefits: ["Non-carbonizing high temperature synthetic oil"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Flash Point",
-          value: "> 260°C",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 31,
-    },
-    {
-      name: "CRUSHFINE 40 NB",
-      slug: "crushfine-40-nb",
-      subtitle: "SUGAR MILL OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "SUGAR MILL BEARING OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Sugar mill crushing roller journal bearings.",
-      applicationAreas: "Sugar mill crushing roller journal bearings.",
-      performanceBenefits: ["Bitumen-free compounded oil"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Grade",
-          value: "40 NB",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 32,
-    },
-    {
-      name: "CRUSHFINE 45 NB-II",
-      slug: "crushfine-45-nb-ii",
-      subtitle: "SUGAR MILL OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "SUGAR MILL BEARING OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Heavy duty sugar mill roll bearings.",
-      applicationAreas: "Heavy duty sugar mill roll bearings.",
-      performanceBenefits: ["High film strength"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Grade",
-          value: "45 NB-II",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 33,
-    },
-    {
-      name: "CRUSHFINE 60 NB-I",
-      slug: "crushfine-60-nb-i",
-      subtitle: "SUGAR MILL OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "SUGAR MILL BEARING OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Sugar cane crusher bearings under high shock load.",
-      applicationAreas: "Sugar cane crusher bearings under high shock load.",
-      performanceBenefits: ["Anti-wear EP"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Grade",
-          value: "60 NB-I",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 34,
-    },
-    {
-      name: "CRUSHFINE 60 NB-II",
-      slug: "crushfine-60-nb-ii",
-      subtitle: "SUGAR MILL OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "SUGAR MILL BEARING OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "High capacity sugar mill rollers.",
-      applicationAreas: "High capacity sugar mill rollers.",
-      performanceBenefits: ["Water resistance"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Grade",
-          value: "60 NB-II",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 35,
-    },
-    {
-      name: "CRUSHWELL 1, 2, 3, 4, 5",
-      slug: "crushwell-series",
-      subtitle: "SUGAR MILL OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "SUGAR MILL BEARING OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "All grades of sugar mill crusher bearings.",
-      applicationAreas: "All grades of sugar mill crusher bearings.",
-      performanceBenefits: ["High viscosity compounded oil"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Grades",
-          value: "1 to 5",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 36,
-    },
-    {
-      name: "HP TRANSFORMER OIL I",
-      slug: "hp-transformer-oil-1",
-      subtitle: "TRANSFORMER OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "TRANSFORMER OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Electrical insulation in power transformers.",
-      applicationAreas: "Electrical insulation in power transformers.",
-      performanceBenefits: ["High breakdown voltage >70 kV"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "IS Standard",
-          value: "IS 335",
-        },
-      ],
-      pdfUrl: "/docs/POWERTRAN_TDS.pdf",
-      msdsUrl: "/docs/POWERTRAN_MSDS.pdf",
-      isFeatured: false,
-      order: 37,
-    },
-    {
-      name: "HP TRANSFORMER OILS",
-      slug: "hp-transformer-oils",
-      subtitle: "TRANSFORMER OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "TRANSFORMER OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Distribution transformers and switchgear.",
-      applicationAreas: "Distribution transformers and switchgear.",
-      performanceBenefits: ["Low Tan Delta"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Type",
-          value: "Uninhibited",
-        },
-      ],
-      pdfUrl: "/docs/POWERTRAN_TDS.pdf",
-      msdsUrl: "/docs/POWERTRAN_MSDS.pdf",
-      isFeatured: false,
-      order: 38,
-    },
-    {
-      name: "TURBINOL",
-      slug: "turbinol-base",
-      subtitle: "TURBINE OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "TURBINE OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Steam, gas, and hydro turbines.",
-      applicationAreas: "Steam, gas, and hydro turbines.",
-      performanceBenefits: ["TOST life > 3500 hours", "Water demulsibility"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ISO VG",
-          value: "32 / 46 / 68",
-        },
-      ],
-      pdfUrl: "/docs/TURBINOL_TDS.pdf",
-      msdsUrl: "/docs/TURBINOL_MSDS.pdf",
-      isFeatured: false,
-      order: 39,
-    },
-    {
-      name: "TURBINOL LP",
-      slug: "turbinol-lp",
-      subtitle: "TURBINE OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "TURBINE OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Long life turbine oil.",
-      applicationAreas: "Long life turbine oil.",
-      performanceBenefits: ["High thermal stability"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Series",
-          value: "LP",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 40,
-    },
-    {
-      name: "TURBINOL XT",
-      slug: "turbinol-xt",
-      subtitle: "TURBINE OILS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "TURBINE OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Extreme temperature gas turbine bearings.",
-      applicationAreas: "Extreme temperature gas turbine bearings.",
-      performanceBenefits: ["Synthetic turbine oil"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Series",
-          value: "XT",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 41,
-    },
-    {
-      name: "HP METWIRE NB",
-      slug: "hp-metwire-nb",
-      subtitle: "WIRE ROPE LUBRICANTS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "WIRE ROPE LUBRICANTS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Steel wire ropes in cranes, hoists, and elevators.",
-      applicationAreas: "Steel wire ropes in cranes, hoists, and elevators.",
-      performanceBenefits: ["Deep strand penetration"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Type",
-          value: "Non-bituminous",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 42,
-    },
-    {
-      name: "RODEC 120",
-      slug: "rodec-120",
-      subtitle: "WIRE ROPE LUBRICANTS",
-      categorySlug: "industrial-oils",
-      categoryName: "Industrial Oils",
-      subCategoryTitle: "WIRE ROPE LUBRICANTS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description: "Heavy duty crane wire ropes.",
-      applicationAreas: "Heavy duty crane wire ropes.",
-      performanceBenefits: ["Tacky coating"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Grade",
-          value: "120",
-        },
-      ],
-      pdfUrl: "/docs/TDS.pdf",
-      msdsUrl: "/docs/MSDS.pdf",
-      isFeatured: false,
-      order: 43,
-    },
-    {
-      name: "HP ALPLEX 2",
-      slug: "hp-alplex-2",
-      subtitle: "INDUSTRIAL GREASES",
-      categorySlug: "industrial-greases",
-      categoryName: "Industrial Greases",
-      subCategoryTitle: "INDUSTRIAL GREASES",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description:
-        "Lithium complex extreme pressure grease for steel rolling mills and heavy bearings.",
-      applicationAreas:
-        "Lithium complex extreme pressure grease for steel rolling mills and heavy bearings.",
-      performanceBenefits: ["Drop point >260°C", "High load bearing capacity"],
-      specialFeatures: [],
-      specsText: "IS 14847:2000 NLGI 2",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "Drop Point",
-          value: "> 260°C",
-        },
-      ],
-      pdfUrl: "/docs/ALPLEX_TDS.pdf",
-      msdsUrl: "/docs/ALPLEX_MSDS.pdf",
-      isFeatured: false,
-      order: 44,
-    },
-    {
-      name: "HP AP3 LL (B)",
-      slug: "hp-ap3-ll",
-      subtitle: "INDUSTRIAL GREASES",
-      categorySlug: "industrial-greases",
-      categoryName: "Industrial Greases",
-      subCategoryTitle: "INDUSTRIAL GREASES",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description:
-        "All-purpose grease for anti-friction bearings, chassis, and water pumps.",
-      applicationAreas:
-        "All-purpose grease for anti-friction bearings, chassis, and water pumps.",
-      performanceBenefits: ["High structural shear stability"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "NLGI Grade",
-          value: "3",
-        },
-      ],
-      pdfUrl: "/docs/AP3_TDS.pdf",
-      msdsUrl: "/docs/AP3_MSDS.pdf",
-      isFeatured: false,
-      order: 45,
-    },
-    {
-      name: "HP KISAN SHAKTI",
-      slug: "hp-kisan-shakti",
-      subtitle: "AGRICULTURE OILS",
-      categorySlug: "automotive-oils",
-      categoryName: "Automotive Oils",
-      subCategoryTitle: "AGRICULTURE OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description:
-        "Formulated specifically for tractors and pump sets used in heavy agricultural operations.",
-      applicationAreas:
-        "Formulated specifically for tractors and pump sets used in heavy agricultural operations.",
-      performanceBenefits: [
-        "High engine protection against dust",
-        "Shear stability under continuous tilling",
-      ],
-      specialFeatures: [],
-      specsText: "API CF/SF, IS 13656 E-DL2",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "SAE Viscosity Grade",
-          value: "20W-40",
-        },
-      ],
-      pdfUrl: "/docs/HP_KISAN_SHAKTI_TDS.pdf",
-      msdsUrl: "/docs/HP_KISAN_SHAKTI_MSDS.pdf",
-      isFeatured: false,
-      order: 46,
-    },
-    {
-      name: "HP SUPER DUTY BRAKE FLUID DOT 3",
-      slug: "hp-super-duty-brake-fluid-dot-3",
-      subtitle: "BRAKE FLUIDS",
-      categorySlug: "automotive-oils",
-      categoryName: "Automotive Oils",
-      subCategoryTitle: "BRAKE FLUIDS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description:
-        "Hydraulic brake and clutch systems in passenger cars, trucks, and buses.",
-      applicationAreas:
-        "Hydraulic brake and clutch systems in passenger cars, trucks, and buses.",
-      performanceBenefits: ["High boiling point preventing vapor lock"],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "ERBP, °C",
-          value: "> 230",
-        },
-      ],
-      pdfUrl: "/docs/DOT3_TDS.pdf",
-      msdsUrl: "/docs/DOT3_MSDS.pdf",
-      isFeatured: false,
-      order: 47,
-    },
-    {
-      name: "HP RACER 4T 20W-40",
-      slug: "hp-racer-4t-20w40",
-      subtitle: "SCOOTER & BIKE OILS",
-      categorySlug: "bike-oils",
-      categoryName: "Bike Engine Oils",
-      subCategoryTitle: "SCOOTER & BIKE OILS",
-      containerImage:
-        "https://www.hplubricants.in/sites/default/files/15-W-40-Final-Graphic.jpg",
-      description:
-        "4-stroke motorcycles from Hero, Honda, Bajaj, TVS, Yamaha, and Royal Enfield.",
-      applicationAreas:
-        "4-stroke motorcycles from Hero, Honda, Bajaj, TVS, Yamaha, and Royal Enfield.",
-      performanceBenefits: [
-        "JASO MA2 wet clutch friction control",
-        "Smooth gear shifting",
-      ],
-      specialFeatures: [],
-      specsText: "",
-      tableHeaders: ["Property", "Value"],
-      propertiesTable: [
-        {
-          property: "SAE Grade",
-          value: "20W-40",
-        },
-      ],
-      pdfUrl: "/docs/RACER_20W40_TDS.pdf",
-      msdsUrl: "/docs/RACER_20W40_MSDS.pdf",
-      isFeatured: false,
-      order: 48,
-    },
-  ];
-
-  for (const p of sampleProducts) {
+  console.log("Upserting brand products...");
+  for (const p of brandProducts) {
     await prisma.product.upsert({
       where: { slug: p.slug },
       update: p,
       create: p,
     });
   }
-  console.log(`✓ ${sampleProducts.length} Products ready.`);
+  console.log(`✓ ${brandProducts.length} Brand products ready.`);
 
   // 10. Blogs Page & Sections
   const blogsPage = await prisma.page.upsert({

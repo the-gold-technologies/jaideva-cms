@@ -24,7 +24,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, slug, shortDesc, fullDesc, coverImage, isFeatured } = body;
+    const { name, slug, shortDesc, fullDesc, coverImage, isFeatured, primaryCtaText, secondaryCtaText, featuredBadgeText } = body;
 
     if (!name || !slug) {
       return NextResponse.json(
@@ -42,6 +42,9 @@ export async function POST(request: Request) {
         shortDesc: shortDesc || null,
         fullDesc: fullDesc || null,
         coverImage: coverImage || null,
+        primaryCtaText: primaryCtaText || "Request a Quote",
+        secondaryCtaText: secondaryCtaText || "Browse range",
+        featuredBadgeText: featuredBadgeText || "Featured product",
         isFeatured: isFeatured ?? true,
         order: count,
       },
@@ -66,7 +69,7 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
   try {
     const body = await request.json();
-    const { id, name, slug, shortDesc, fullDesc, coverImage, isFeatured, order } = body;
+    const { id, name, slug, shortDesc, fullDesc, coverImage, isFeatured, order, primaryCtaText, secondaryCtaText, featuredBadgeText } = body;
 
     if (!id) {
       return NextResponse.json(
@@ -83,6 +86,9 @@ export async function PUT(request: Request) {
         ...(shortDesc !== undefined && { shortDesc }),
         ...(fullDesc !== undefined && { fullDesc }),
         ...(coverImage !== undefined && { coverImage }),
+        ...(primaryCtaText !== undefined && { primaryCtaText }),
+        ...(secondaryCtaText !== undefined && { secondaryCtaText }),
+        ...(featuredBadgeText !== undefined && { featuredBadgeText }),
         ...(isFeatured !== undefined && { isFeatured }),
         ...(order !== undefined && { order: Number(order) }),
       },

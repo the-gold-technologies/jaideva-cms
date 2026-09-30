@@ -46,13 +46,16 @@ model Section {
 }
 
 model ProductCategory {
-  id          String   @id @default(cuid())
-  name        String
-  slug        String   @unique
-  shortDesc   String?
-  fullDesc    String?
-  coverImage  String?
-  order       Int      @default(0)
+  id                String   @id @default(cuid())
+  name              String
+  slug              String   @unique
+  shortDesc         String?
+  fullDesc          String?
+  coverImage        String?
+  primaryCtaText    String?  
+  secondaryCtaText  String?  
+  featuredBadgeText String?  
+  order             Int      @default(0)
   isFeatured  Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
