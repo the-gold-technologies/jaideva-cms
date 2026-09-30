@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Plus, Trash2 } from "lucide-react";
+import React, { useRef } from "react";
+import { Plus, Trash2, GripVertical, CheckCircle2 } from "lucide-react";
 
 interface StringListEditorProps {
   label: string;
@@ -17,10 +17,15 @@ export function StringListEditor({
   items = [],
   onChange,
   placeholder = "Add point...",
-  accentColor = "red",
 }: StringListEditorProps) {
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
   const handleAdd = () => {
     onChange([...items, ""]);
+    // Focus the newly added input after render
+    setTimeout(() => {
+      inputRefs.current[items.length]?.focus();
+    }, 50);
   };
 
   const handleRemove = (index: number) => {
@@ -38,65 +43,108 @@ export function StringListEditor({
       onChange(copy);
       return;
     }
-
     const copy = [...items];
     copy[index] = val;
     onChange(copy);
   };
 
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    idx: number,
+  ) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onChange([...items.slice(0, idx + 1), "", ...items.slice(idx + 1)]);
+      setTimeout(() => {
+        inputRefs.current[idx + 1]?.focus();
+      }, 50);
+    }
+    if (e.key === "Backspace" && items[idx] === "" && items.length > 1) {
+      e.preventDefault();
+      onChange(items.filter((_, i) => i !== idx));
+      setTimeout(() => {
+        inputRefs.current[Math.max(0, idx - 1)]?.focus();
+      }, 50);
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-2.5 w-full">
+    <div className="flex flex-col gap-3 w-full">
+      {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <label className="text-[11px] font-bold text-gray-500 uppercase tracking-widest ml-1">
+          <label className="text-[11px] font-black text-gray-600 uppercase tracking-widest">
             {label}
           </label>
-          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-50 text-[#C86218] border border-orange-100">
-            {items.length} {items.length === 1 ? "item" : "items"}
-          </span>
+          {items.length > 0 && (
+            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C86218]/10 text-[#C86218] border border-[#C86218]/20">
+              {items.length}
+            </span>
+          )}
         </div>
         <button
           type="button"
           onClick={handleAdd}
-          className="inline-flex items-center gap-1 text-xs font-bold text-[#C86218] hover:text-[#0C356A] transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-[11px] font-bold text-white bg-[#C86218] hover:bg-[#A5501A] px-3 py-1.5 rounded-xl transition-all shadow-sm hover:shadow cursor-pointer"
         >
-          <Plus className="w-3.5 h-3.5" />
-          Add Item
+          <Plus className="w-3 h-3" />
+          Add
         </button>
       </div>
 
-      <div className="flex flex-col gap-2">
+      {/* Items */}
+      <div className="flex flex-col gap-1.5">
         {items.length === 0 ? (
-          <div
+          <button
+            type="button"
             onClick={handleAdd}
-            className="p-4 rounded-2xl bg-gray-50 border border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:bg-gray-100 hover:border-[#C86218]/40 transition-all flex items-center justify-center gap-2"
+            className="w-full p-5 rounded-2xl bg-gray-50 border-2 border-dashed border-gray-200 text-center text-xs text-gray-400 cursor-pointer hover:border-[#C86218]/50 hover:bg-orange-50/30 hover:text-[#C86218] transition-all flex flex-col items-center justify-center gap-2 group"
           >
-            <Plus className="w-3.5 h-3.5 text-[#C86218]" />
-            <span>Click to add your first bullet point</span>
-          </div>
+            <div className="w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#C86218]/10 flex items-center justify-center transition-colors">
+              <Plus className="w-4 h-4 text-gray-400 group-hover:text-[#C86218]" />
+            </div>
+            <span className="font-semibold">Click to add first point</span>
+          </button>
         ) : (
           items.map((item, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-2xl px-3.5 py-1.5 focus-within:bg-white focus-within:border-[#C86218] focus-within:ring-2 focus-within:ring-[#C86218]/10 transition-all group"
+              className="group flex items-start gap-2.5 bg-white border border-gray-200 rounded-2xl px-3 py-2.5 hover:border-[#C86218]/40 focus-within:border-[#C86218] focus-within:ring-2 focus-within:ring-[#C86218]/10 focus-within:shadow-sm transition-all"
             >
-              <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 bg-orange-50 text-[#C86218]">
-                <span className="text-[10px] font-bold">{idx + 1}</span>
+              {/* Drag handle (visual only) */}
+              <GripVertical className="w-3.5 h-3.5 text-gray-300 mt-1.5 shrink-0 group-hover:text-gray-400 transition-colors" />
+
+              {/* Number badge */}
+              <div className="w-5 h-5 mt-0.5 rounded-full flex items-center justify-center shrink-0 bg-[#C86218]/10 text-[#C86218] group-focus-within:bg-[#C86218] group-focus-within:text-white transition-colors">
+                <span className="text-[10px] font-black leading-none">
+                  {idx + 1}
+                </span>
               </div>
 
+              {/* Input — full width, wraps text */}
               <input
+                ref={(el) => {
+                  inputRefs.current[idx] = el;
+                }}
                 type="text"
                 value={item}
                 onChange={(e) => handleUpdate(idx, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(e, idx)}
                 placeholder={placeholder}
-                className="flex-1 bg-transparent border-none text-xs sm:text-sm text-gray-800 focus:outline-none placeholder:text-gray-400 py-1.5"
+                className="flex-1 min-w-0 bg-transparent border-none text-[13px] text-gray-800 font-medium focus:outline-none placeholder:text-gray-300 py-0.5 leading-relaxed"
               />
 
+              {/* Valid indicator */}
+              {item.trim().length > 0 && (
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-1.5 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+              )}
+
+              {/* Delete */}
               <button
                 type="button"
                 onClick={() => handleRemove(idx)}
-                className="p-1 text-gray-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors cursor-pointer opacity-70 group-hover:opacity-100"
-                title="Remove item"
+                className="p-1 mt-0.5 text-gray-300 hover:text-red-500 rounded-lg hover:bg-red-50 transition-all cursor-pointer shrink-0 opacity-0 group-hover:opacity-100"
+                title="Remove"
               >
                 <Trash2 className="w-3.5 h-3.5" />
               </button>
@@ -104,6 +152,21 @@ export function StringListEditor({
           ))
         )}
       </div>
+
+      {/* Footer hint */}
+      {items.length > 0 && (
+        <p className="text-[10px] text-gray-400 pl-1 leading-snug">
+          Press{" "}
+          <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-200 rounded text-[9px] font-mono">
+            Enter
+          </kbd>{" "}
+          to add a new line ·{" "}
+          <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-200 rounded text-[9px] font-mono">
+            Backspace
+          </kbd>{" "}
+          on empty row to remove
+        </p>
+      )}
     </div>
   );
 }

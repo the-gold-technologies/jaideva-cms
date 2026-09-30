@@ -67,7 +67,7 @@ const BRAND_SUBCATEGORIES: Record<string, string[]> = {
     "Industrial Oils",
     "Specialty Products",
   ],
-  "valvoline": [
+  valvoline: [
     "Automotive Lubricants",
     "Commercial Vehicle Lubricants",
     "Industrial Lubricants",
@@ -80,7 +80,7 @@ const BRAND_SUBCATEGORIES: Record<string, string[]> = {
     "Greases",
     "Specialty Lubricants",
   ],
-  "idemitsu": [
+  idemitsu: [
     "Automotive Lubricants",
     "Industrial Lubricants",
     "Gear Oils",
@@ -109,7 +109,7 @@ const BRAND_SUBCATEGORIES: Record<string, string[]> = {
     "Industrial Equipment",
     "Compressor Lubricants",
   ],
-  "lubricon": [
+  lubricon: [
     "Engine Oils",
     "Gear Oils",
     "Hydraulic Oils",
@@ -123,7 +123,7 @@ const BRAND_SUBCATEGORIES: Record<string, string[]> = {
     "Specialty Chemicals",
     "Maintenance Products",
   ],
-  "filtermist": [
+  filtermist: [
     "Oil Mist Collectors",
     "Filtration Systems",
     "Industrial Air Filtration",
@@ -152,7 +152,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [performanceBenefits, setPerformanceBenefits] =
     useState<string[]>(DEFAULT_BENEFITS);
   const [specialFeatures, setSpecialFeatures] = useState<string[]>(
-    DEFAULT_SPECIAL_FEATURES
+    DEFAULT_SPECIAL_FEATURES,
   );
   const [specsText, setSpecsText] = useState("");
   const [propertiesTable, setPropertiesTable] =
@@ -162,13 +162,15 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [isFeatured, setIsFeatured] = useState(false);
 
   const activeCategorySuggestions = useMemo(() => {
-    return BRAND_SUBCATEGORIES[categorySlug] || [
-      "Engine Oils",
-      "Gear Oils",
-      "Hydraulic Oils",
-      "Greases",
-      "Specialty Products",
-    ];
+    return (
+      BRAND_SUBCATEGORIES[categorySlug] || [
+        "Engine Oils",
+        "Gear Oils",
+        "Hydraulic Oils",
+        "Greases",
+        "Specialty Products",
+      ]
+    );
   }, [categorySlug]);
 
   // Load Categories & Product Data
@@ -205,12 +207,12 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             setPerformanceBenefits(
               Array.isArray(p.performanceBenefits)
                 ? p.performanceBenefits
-                : DEFAULT_BENEFITS
+                : DEFAULT_BENEFITS,
             );
             setSpecialFeatures(
               Array.isArray(p.specialFeatures)
                 ? p.specialFeatures
-                : DEFAULT_SPECIAL_FEATURES
+                : DEFAULT_SPECIAL_FEATURES,
             );
             setSpecsText(p.specsText || "");
             setPropertiesTable(p.propertiesTable || DEFAULT_SPECS_TABLE);
@@ -239,7 +241,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         val
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-+|-+$/g, "")
+          .replace(/^-+|-+$/g, ""),
       );
     }
   };
@@ -256,7 +258,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
     try {
       let finalContainerImageUrl = "";
       const validImages = containerImages.filter(
-        (img): img is File | string => !!img
+        (img): img is File | string => !!img,
       );
       if (validImages.length > 0) {
         const [uploaded] = await uploadFiles(validImages);
@@ -290,9 +292,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(
-          isNew ? payload : { ...payload, id: productId }
-        ),
+        body: JSON.stringify(isNew ? payload : { ...payload, id: productId }),
       });
 
       const json = await res.json();
@@ -300,7 +300,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         toast.success(
           isNew
             ? "Product created successfully!"
-            : "Product updated successfully!"
+            : "Product updated successfully!",
         );
         router.push("/static-pages/products");
       } else {
@@ -369,13 +369,41 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             </h3>
 
             {/* Clear Hierarchy Guide Banner */}
-            <div className="flex items-center gap-2 p-3 bg-orange-50/70 border border-orange-200/60 rounded-2xl text-[11px] font-semibold text-[#8C3D00]">
-              <span className="font-extrabold uppercase bg-[#C86218] text-white px-2 py-0.5 rounded-full text-[10px]">
-                Hierarchy Guide
+            <div className="flex flex-wrap items-center gap-2 p-3.5 bg-gradient-to-r from-orange-50 to-amber-50/40 border border-orange-200/70 rounded-2xl">
+              <span className="shrink-0 text-[10px] font-black uppercase tracking-widest text-white bg-[#C86218] px-2.5 py-1 rounded-lg shadow-sm">
+                Hierarchy
               </span>
-              <span>
-                1. <strong>Brand Name</strong> (e.g. HP Lubricants) ➔ 2. <strong>Brand Category</strong> (e.g. Engine Oils) ➔ 3. <strong>Product</strong> (e.g. HP Racer 4T 20W-40)
-              </span>
+              <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold text-[#7A3500]">
+                <span className="flex items-center gap-1">
+                  <span className="w-4 h-4 rounded-full bg-[#C86218] text-white text-[9px] font-black flex items-center justify-center shrink-0">
+                    1
+                  </span>
+                  <strong>Brand</strong>
+                  <span className="text-gray-400 text-[10px] font-normal italic">
+                    (e.g. HP Lubricants)
+                  </span>
+                </span>
+                <span className="text-[#C86218] font-bold">→</span>
+                <span className="flex items-center gap-1">
+                  <span className="w-4 h-4 rounded-full bg-[#C86218] text-white text-[9px] font-black flex items-center justify-center shrink-0">
+                    2
+                  </span>
+                  <strong>Category</strong>
+                  <span className="text-gray-400 text-[10px] font-normal italic">
+                    (e.g. Engine Oils)
+                  </span>
+                </span>
+                <span className="text-[#C86218] font-bold">→</span>
+                <span className="flex items-center gap-1">
+                  <span className="w-4 h-4 rounded-full bg-[#C86218] text-white text-[9px] font-black flex items-center justify-center shrink-0">
+                    3
+                  </span>
+                  <strong>Product</strong>
+                  <span className="text-gray-400 text-[10px] font-normal italic">
+                    (e.g. HP Racer 4T 20W-40)
+                  </span>
+                </span>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -392,13 +420,34 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                   URL SLUG <span className="text-[#C86218]">*</span>
                 </label>
                 <div className="flex items-center gap-2 px-4 py-3 rounded-2xl border border-gray-200 bg-gray-50/80 text-sm font-mono text-gray-700 select-all min-h-[44px]">
-                  <svg className="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  <svg
+                    className="w-3.5 h-3.5 text-gray-400 shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                    />
                   </svg>
-                  <span className="truncate">{slug || <span className="text-gray-400 font-sans italic">auto-generated from name</span>}</span>
-                  <span className="ml-auto shrink-0 text-[10px] font-bold text-gray-400 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded-full uppercase tracking-wide">Auto</span>
+                  <span className="truncate">
+                    {slug || (
+                      <span className="text-gray-400 font-sans italic">
+                        auto-generated from name
+                      </span>
+                    )}
+                  </span>
+                  <span className="ml-auto shrink-0 text-[10px] font-bold text-gray-400 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                    Auto
+                  </span>
                 </div>
-                <p className="text-[10px] text-gray-400 leading-snug pl-0.5">Generated automatically from the product name. Cannot be edited manually.</p>
+                <p className="text-[10px] text-gray-400 leading-snug pl-0.5">
+                  Generated automatically from the product name. Cannot be
+                  edited manually.
+                </p>
               </div>
             </div>
 
@@ -413,8 +462,14 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                   if (match) {
                     setCategoryName(match.name);
                     const defaultCat = BRAND_SUBCATEGORIES[val]?.[0] || "";
-                    if (defaultCat && (!subCategoryTitle || subCategoryTitle === "Engine Oils")) {
+                    if (
+                      defaultCat &&
+                      (!subCategoryTitle || subCategoryTitle === "Engine Oils")
+                    ) {
                       setSubCategoryTitle(defaultCat);
+                      setSubtitle(`${match.name} • ${defaultCat}`);
+                    } else {
+                      setSubtitle(`${match.name} • ${subCategoryTitle}`);
                     }
                   }
                 }}
@@ -429,7 +484,10 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                         { value: "valvoline", label: "Valvoline" },
                         { value: "gs-caltex", label: "GS Caltex" },
                         { value: "idemitsu", label: "Idemitsu" },
-                        { value: "molygraph-lubricants", label: "Molygraph Lubricants" },
+                        {
+                          value: "molygraph-lubricants",
+                          label: "Molygraph Lubricants",
+                        },
                         { value: "motul-tech", label: "Motul Tech" },
                         { value: "deep-pneumatics", label: "Deep Pneumatics" },
                         { value: "lubricon", label: "Lubricon" },
@@ -438,12 +496,30 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                       ]
                 }
               />
-              <InputField
-                label="Tagline / Card Subtitle"
-                value={subtitle}
-                onChange={(e) => setSubtitle(e.target.value)}
-                placeholder={`e.g. ${categoryName || "HP Lubricants"} • ${subCategoryTitle || "Engine Oils"}`}
-              />
+              {/* Auto-generated tagline — read-only */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+                  Tagline / Card Subtitle
+                </label>
+                <div className="flex items-center gap-2 px-4 py-3 rounded-2xl border border-gray-200 bg-gray-50/80 text-sm text-gray-700 select-all min-h-[44px]">
+                  <span className="truncate font-medium">
+                    {subtitle || (
+                      <span className="text-gray-400 italic text-[13px]">
+                        {categoryName && subCategoryTitle
+                          ? `${categoryName} • ${subCategoryTitle}`
+                          : "auto-generated from brand & category"}
+                      </span>
+                    )}
+                  </span>
+                  <span className="ml-auto shrink-0 text-[10px] font-bold text-gray-400 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded-full uppercase tracking-wide">
+                    Auto
+                  </span>
+                </div>
+                <p className="text-[10px] text-gray-400 leading-snug pl-0.5">
+                  Generated from Brand Name + Brand Category. Updates
+                  automatically.
+                </p>
+              </div>
             </div>
 
             {/* Brand Category Selection with Quick Chips */}
@@ -451,7 +527,10 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
               <InputField
                 label={`2. Brand Category Name (under ${categoryName || "Brand"}) *`}
                 value={subCategoryTitle}
-                onChange={(e) => setSubCategoryTitle(e.target.value)}
+                onChange={(e) => {
+                  setSubCategoryTitle(e.target.value);
+                  setSubtitle(`${categoryName} • ${e.target.value}`);
+                }}
                 placeholder="e.g. Engine Oils, Gear Oils, Hydraulic Oils"
                 required
               />
@@ -465,9 +544,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                     type="button"
                     onClick={() => {
                       setSubCategoryTitle(sub);
-                      if (!subtitle || subtitle.includes("•")) {
-                        setSubtitle(`${categoryName} • ${sub}`);
-                      }
+                      setSubtitle(`${categoryName} • ${sub}`);
                     }}
                     className={`text-[11px] px-3 py-1 rounded-full font-semibold transition-all cursor-pointer ${
                       subCategoryTitle === sub
@@ -611,7 +688,8 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                   Feature on Homepage
                 </span>
                 <span className="text-[11px] text-gray-500 leading-snug">
-                  Displays this lubricant grade in the featured catalog spotlight.
+                  Displays this lubricant grade in the featured catalog
+                  spotlight.
                 </span>
               </div>
             </label>

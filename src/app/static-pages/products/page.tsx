@@ -17,6 +17,8 @@ import {
   Sparkles,
   Droplets,
   ChevronRight,
+  ChevronDown,
+  RotateCcw,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { PageHeader } from "@/components/PageHeader";
@@ -68,7 +70,8 @@ export default function ProductsCatalogCMSPage() {
   // 1. Selected Brand
   const [selectedBrandSlug, setSelectedBrandSlug] = useState<string>("all");
   // 2. Selected Category within that Brand
-  const [selectedCategoryTitle, setSelectedCategoryTitle] = useState<string>("all");
+  const [selectedCategoryTitle, setSelectedCategoryTitle] =
+    useState<string>("all");
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -85,7 +88,8 @@ export default function ProductsCatalogCMSPage() {
   const [brandImages, setBrandImages] = useState<(File | string | null)[]>([]);
   const [brandPrimaryCta, setBrandPrimaryCta] = useState("Request a Quote");
   const [brandSecondaryCta, setBrandSecondaryCta] = useState("Browse range");
-  const [brandFeaturedBadge, setBrandFeaturedBadge] = useState("Featured product");
+  const [brandFeaturedBadge, setBrandFeaturedBadge] =
+    useState("Featured product");
   const [brandOrder, setBrandOrder] = useState<number>(0);
 
   const fetchCatalog = async () => {
@@ -144,7 +148,7 @@ export default function ProductsCatalogCMSPage() {
         val
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, "-")
-          .replace(/^-+|-+$/g, "")
+          .replace(/^-+|-+$/g, ""),
       );
     }
   };
@@ -161,7 +165,7 @@ export default function ProductsCatalogCMSPage() {
     try {
       let finalCoverUrl = "";
       const validImages = brandImages.filter(
-        (img): img is File | string => !!img
+        (img): img is File | string => !!img,
       );
       if (validImages.length > 0) {
         const [uploaded] = await uploadFiles(validImages);
@@ -187,14 +191,16 @@ export default function ProductsCatalogCMSPage() {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(
-          editingBrand ? { ...payload, id: editingBrand.id } : payload
+          editingBrand ? { ...payload, id: editingBrand.id } : payload,
         ),
       });
 
       const json = await res.json();
       if (json.success) {
         toast.success(
-          editingBrand ? "Brand updated successfully" : "Brand created successfully"
+          editingBrand
+            ? "Brand updated successfully"
+            : "Brand created successfully",
         );
         setIsBrandModalOpen(false);
         fetchCatalog();
@@ -209,7 +215,12 @@ export default function ProductsCatalogCMSPage() {
   };
 
   const handleDeleteBrand = async (id: string, name: string) => {
-    if (!confirm(`Are you sure you want to delete brand "${name}" and its associated products?`)) return;
+    if (
+      !confirm(
+        `Are you sure you want to delete brand "${name}" and its associated products?`,
+      )
+    )
+      return;
 
     try {
       const res = await fetch(`/api/products/categories?id=${id}`, {
@@ -297,7 +308,19 @@ export default function ProductsCatalogCMSPage() {
   const activeBrandName =
     selectedBrandSlug === "all"
       ? "All Brands"
-      : brands.find((b) => b.slug === selectedBrandSlug)?.name || selectedBrandSlug;
+      : brands.find((b) => b.slug === selectedBrandSlug)?.name ||
+        selectedBrandSlug;
+
+  const hasActiveFilters =
+    selectedBrandSlug !== "all" ||
+    selectedCategoryTitle !== "all" ||
+    searchQuery.trim() !== "";
+
+  const handleClearFilters = () => {
+    setSelectedBrandSlug("all");
+    setSelectedCategoryTitle("all");
+    setSearchQuery("");
+  };
 
   return (
     <section className="flex flex-col gap-8 pb-12">
@@ -327,170 +350,107 @@ export default function ProductsCatalogCMSPage() {
       </div>
 
       {/* Two-Tier Filter Card: Brand Level + Category Level */}
-      <div className="flex flex-col gap-5 bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
-        {/* Tier 1 Header & Search */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Award className="w-4 h-4 text-[#C86218]" />
-            <span className="text-xs font-black uppercase tracking-wider text-gray-800">
-              1. Filter by Brand Partner ({brands.length} Brands)
-            </span>
-          </div>
-
-          <div className="relative w-full md:w-80 shrink-0">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search product, grade, viscosity, specs..."
-              className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-full text-xs font-medium focus:ring-1 focus:ring-[#C86218] focus:border-[#C86218] outline-none"
-            />
-          </div>
-        </div>
-
-        {/* Tier 1: Brand Pills Row */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar min-w-0">
-          <button
-            type="button"
-            onClick={() => handleSelectBrand("all")}
-            className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
-              selectedBrandSlug === "all"
-                ? "bg-[#0B0F29] text-white shadow-sm"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
-          >
-            All Brands ({products.length})
-          </button>
-          {brands.map((brand) => {
-            const count = products.filter(
-              (p) => p.categorySlug === brand.slug
-            ).length;
-            const isSelected = selectedBrandSlug === brand.slug;
-            return (
-              <div key={brand.slug} className="flex items-center group/brand">
-                <button
-                  type="button"
-                  onClick={() => handleSelectBrand(brand.slug)}
-                  className={`px-3.5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
-                    isSelected
-                      ? "bg-[#C86218] text-white shadow-sm"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
-                >
-                  <span>{brand.name}</span>
-                  <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      isSelected
-                        ? "bg-white/20 text-white"
-                        : "bg-gray-200 text-gray-700"
-                    }`}
-                  >
-                    {count}
-                  </span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => openEditBrandModal(brand)}
-                  className="opacity-0 group-hover/brand:opacity-100 ml-1 p-1 text-gray-400 hover:text-gray-900 transition-opacity cursor-pointer"
-                  title={`Edit Brand "${brand.name}"`}
-                >
-                  <Edit2 className="w-3 h-3" />
-                </button>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Tier 2: Category Filter within the Selected Brand */}
-        <div className="pt-4 border-t border-gray-100 flex flex-col gap-2.5">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Layers className="w-4 h-4 text-[#0C356A]" />
-              <span className="text-xs font-black uppercase tracking-wider text-gray-800">
-                2. Categories in {activeBrandName} ({availableCategoriesForBrand.length} Categories)
-              </span>
+      {/* ── Filter Bar ── */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Brand dropdown */}
+          <div className="flex flex-col gap-1">
+            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 pl-1">
+              Brand
+            </label>
+            <div className="relative">
+              <select
+                value={selectedBrandSlug}
+                onChange={(e) => handleSelectBrand(e.target.value)}
+                className="appearance-none pl-3 pr-8 py-2 rounded-xl border border-gray-200 bg-gray-50 text-[12px] font-semibold text-gray-700 focus:outline-none focus:border-[#C86218] focus:ring-2 focus:ring-[#C86218]/10 cursor-pointer transition-all hover:border-gray-300 min-w-[180px]"
+              >
+                <option value="all">All Brands ({products.length})</option>
+                {brands.map((brand) => {
+                  const count = products.filter(
+                    (p) => p.categorySlug === brand.slug,
+                  ).length;
+                  return (
+                    <option key={brand.slug} value={brand.slug}>
+                      {brand.name} ({count})
+                    </option>
+                  );
+                })}
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             </div>
-            {selectedCategoryTitle !== "all" && (
+          </div>
+
+          {/* Category dropdown */}
+          <div className="flex flex-col gap-1">
+            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 pl-1">
+              Category
+            </label>
+            <div className="relative">
+              <select
+                value={selectedCategoryTitle}
+                onChange={(e) => setSelectedCategoryTitle(e.target.value)}
+                className="appearance-none pl-3 pr-8 py-2 rounded-xl border border-gray-200 bg-gray-50 text-[12px] font-semibold text-gray-700 focus:outline-none focus:border-[#C86218] focus:ring-2 focus:ring-[#C86218]/10 cursor-pointer transition-all hover:border-gray-300 min-w-[180px]"
+              >
+                <option value="all">
+                  All Categories ({availableCategoriesForBrand.length})
+                </option>
+                {availableCategoriesForBrand.map((cat) => (
+                  <option key={cat.name} value={cat.name}>
+                    {cat.name} ({cat.count})
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="w-px h-9 bg-gray-200 self-end hidden sm:block" />
+
+          {/* Search */}
+          <div className="flex flex-col gap-1 flex-1 min-w-[200px]">
+            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 pl-1">
+              Search
+            </label>
+            <div className="relative">
+              <Search className="w-3.5 h-3.5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Grade, viscosity, specs..."
+                className="w-full pl-8 pr-8 py-2 rounded-xl border border-gray-200 bg-gray-50 text-[12px] font-medium text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-[#C86218] focus:bg-white focus:ring-2 focus:ring-[#C86218]/10 transition-all"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Result count & Clear Filters */}
+          <div className="flex items-center gap-3 self-end pb-0.5 ml-auto flex-wrap">
+            <span className="text-[11px] font-semibold text-gray-400 whitespace-nowrap">
+              <span className="font-black text-gray-700">
+                {filteredProducts.length}
+              </span>{" "}
+              / {products.length} products
+            </span>
+            {hasActiveFilters && (
               <button
                 type="button"
-                onClick={() => setSelectedCategoryTitle("all")}
-                className="text-[11px] font-bold text-[#C86218] hover:underline cursor-pointer"
+                onClick={handleClearFilters}
+                className="inline-flex items-center gap-1.5 text-[11px] font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-200/80 rounded-xl px-2.5 py-1.5 transition-all cursor-pointer shadow-2xs"
+                title="Reset all filters"
               >
-                Clear Category Filter ×
+                <RotateCcw className="w-3 h-3" />
+                Clear Filters
               </button>
-            )}
-          </div>
-
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar min-w-0">
-            <button
-              type="button"
-              onClick={() => setSelectedCategoryTitle("all")}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
-                selectedCategoryTitle === "all"
-                  ? "bg-[#0C356A] text-white shadow-xs"
-                  : "bg-blue-50/60 border border-blue-100 text-[#0C356A] hover:bg-blue-100/60"
-              }`}
-            >
-              All {activeBrandName} Categories
-            </button>
-            {availableCategoriesForBrand.map((cat) => {
-              const isSelected =
-                selectedCategoryTitle.toLowerCase().trim() ===
-                cat.name.toLowerCase().trim();
-              return (
-                <button
-                  key={cat.name}
-                  type="button"
-                  onClick={() => setSelectedCategoryTitle(cat.name)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer flex items-center gap-1.5 ${
-                    isSelected
-                      ? "bg-[#C86218] text-white shadow-xs"
-                      : "bg-gray-50 border border-gray-200/80 text-gray-700 hover:border-[#C86218] hover:text-[#C86218]"
-                  }`}
-                >
-                  <Droplets className="w-3 h-3 opacity-60" />
-                  <span>{cat.name}</span>
-                  <span
-                    className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                      isSelected
-                        ? "bg-white/20 text-white"
-                        : "bg-gray-200/80 text-gray-600"
-                    }`}
-                  >
-                    {cat.count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Footer Meta Row */}
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100/80 text-[11px] text-gray-500 font-medium">
-          <div>
-            <span>
-              Showing {filteredProducts.length} of {products.length} products
-            </span>
-            {selectedBrandSlug !== "all" && (
-              <span> • Brand: <strong className="text-gray-900">{activeBrandName}</strong></span>
-            )}
-            {selectedCategoryTitle !== "all" && (
-              <span> • Category: <strong className="text-gray-900">{selectedCategoryTitle}</strong></span>
-            )}
-          </div>
-
-          <div className="flex items-center gap-3">
-            {selectedBrandSlug !== "all" && (
-              <a
-                href={`http://localhost:3000/products/${selectedBrandSlug}`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-[#C86218] font-bold hover:underline"
-              >
-                <span>View {activeBrandName} on Website</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
             )}
           </div>
         </div>
@@ -536,7 +496,7 @@ export default function ProductsCatalogCMSPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredProducts.map((p) => {
             const packagingRow = p.propertiesTable?.find((r) =>
-              r.property.toLowerCase().includes("packaging")
+              r.property.toLowerCase().includes("packaging"),
             );
 
             return (
@@ -663,10 +623,13 @@ export default function ProductsCatalogCMSPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-gray-900">
-                    {editingBrand ? `Edit Brand: ${editingBrand.name}` : "Add New Brand Partner"}
+                    {editingBrand
+                      ? `Edit Brand: ${editingBrand.name}`
+                      : "Add New Brand Partner"}
                   </h3>
                   <p className="text-xs text-gray-400 font-medium">
-                    Configure brand identity, taglines, hero banner graphics, and catalog ordering.
+                    Configure brand identity, taglines, hero banner graphics,
+                    and catalog ordering.
                   </p>
                 </div>
               </div>
@@ -750,7 +713,9 @@ export default function ProductsCatalogCMSPage() {
                   label="Display Order Index"
                   type="number"
                   value={String(brandOrder)}
-                  onChange={(e) => setBrandOrder(parseInt(e.target.value, 10) || 0)}
+                  onChange={(e) =>
+                    setBrandOrder(parseInt(e.target.value, 10) || 0)
+                  }
                   placeholder="0"
                 />
               </div>
