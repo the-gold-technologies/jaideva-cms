@@ -36,10 +36,9 @@ async function main() {
       logo: '/jaideva-logo.png',
       socialLinks: {
         facebook: 'https://facebook.com',
-        youtube: 'https://youtube.com',
         instagram: 'https://instagram.com',
         linkedin: 'https://linkedin.com',
-        twitter: 'https://twitter.com',
+        footerLogo: '/jaideva-logo.png',
         copyrightText: '© 2026 Jai Deva Oil Co. All rights reserved.',
       },
     },
@@ -54,10 +53,9 @@ async function main() {
       logo: '/jaideva-logo.png',
       socialLinks: {
         facebook: 'https://facebook.com',
-        youtube: 'https://youtube.com',
         instagram: 'https://instagram.com',
         linkedin: 'https://linkedin.com',
-        twitter: 'https://twitter.com',
+        footerLogo: '/jaideva-logo.png',
         copyrightText: '© 2026 Jai Deva Oil Co. All rights reserved.',
       },
     },
