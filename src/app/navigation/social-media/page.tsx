@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Share2, Image as ImageIcon, MapPin, Phone, Mail, Building2 } from "lucide-react";
-import toast from "react-hot-toast";
-import { PageHeader } from "@/components/PageHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { SaveButton } from "@/components/SaveButton";
-import { ImagePickerField } from "@/components/ImagePickerField";
+import React, { useState, useEffect } from 'react';
+import { Share2, Image as ImageIcon, MapPin, Phone, Mail, Building2 } from 'lucide-react';
+import toast from 'react-hot-toast';
+import { PageHeader } from '@/components/PageHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { SaveButton } from '@/components/SaveButton';
+import { ImagePickerField } from '@/components/ImagePickerField';
 
 export default function FooterSocialMediaCMSPage() {
   const [loadingSocial, setLoadingSocial] = useState(false);
@@ -20,23 +20,23 @@ export default function FooterSocialMediaCMSPage() {
   const [savedContact, setSavedContact] = useState(false);
 
   // Social Links (Facebook, LinkedIn, Instagram only)
-  const [facebook, setFacebook] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [instagram, setInstagram] = useState("");
+  const [facebook, setFacebook] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [instagram, setInstagram] = useState('');
 
   // Footer Branding & Icon
-  const [footerLogo, setFooterLogo] = useState("");
-  const [copyrightText, setCopyrightText] = useState("");
+  const [footerLogo, setFooterLogo] = useState('');
+  const [copyrightText, setCopyrightText] = useState('');
 
   // Footer Contact Details
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
 
   useEffect(() => {
     async function loadConfig() {
       try {
-        const res = await fetch("/api/seo");
+        const res = await fetch('/api/seo');
         const json = await res.json();
         if (json.success && json.data) {
           const cfg = json.data;
@@ -52,14 +52,14 @@ export default function FooterSocialMediaCMSPage() {
           if (s.copyrightText) setCopyrightText(s.copyrightText);
         }
       } catch (err) {
-        console.error("Failed to load footer & social config:", err);
+        console.error('Failed to load footer & social config:', err);
       }
     }
     loadConfig();
   }, []);
 
   const saveConfig = async (updatedFields: Record<string, any>) => {
-    const getRes = await fetch("/api/seo");
+    const getRes = await fetch('/api/seo');
     const currentJson = await getRes.json();
     const currentConfig = currentJson.data || {};
     const currentSocials = currentConfig.socialLinks || {};
@@ -85,9 +85,9 @@ export default function FooterSocialMediaCMSPage() {
       },
     };
 
-    const res = await fetch("/api/seo", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/seo', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
     return await res.json();
@@ -106,13 +106,13 @@ export default function FooterSocialMediaCMSPage() {
       });
       if (json.success) {
         setSavedSocial(true);
-        toast.success("Social media profiles updated successfully!");
+        toast.success('Social media profiles updated successfully!');
         setTimeout(() => setSavedSocial(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch (err: any) {
-      toast.error(err?.message || "Failed to save");
+      toast.error(err?.message || 'Failed to save');
     } finally {
       setLoadingSocial(false);
     }
@@ -130,13 +130,13 @@ export default function FooterSocialMediaCMSPage() {
       });
       if (json.success) {
         setSavedBranding(true);
-        toast.success("Footer logo and copyright updated successfully!");
+        toast.success('Footer logo and copyright updated successfully!');
         setTimeout(() => setSavedBranding(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch (err: any) {
-      toast.error(err?.message || "Failed to save");
+      toast.error(err?.message || 'Failed to save');
     } finally {
       setLoadingBranding(false);
     }
@@ -153,13 +153,13 @@ export default function FooterSocialMediaCMSPage() {
       });
       if (json.success) {
         setSavedContact(true);
-        toast.success("Footer contact details updated successfully!");
+        toast.success('Footer contact details updated successfully!');
         setTimeout(() => setSavedContact(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch (err: any) {
-      toast.error(err?.message || "Failed to save");
+      toast.error(err?.message || 'Failed to save');
     } finally {
       setLoadingContact(false);
     }
@@ -183,7 +183,8 @@ export default function FooterSocialMediaCMSPage() {
             <div>
               <h3 className="font-bold text-slate-900 text-lg">1. Social Media Profiles</h3>
               <p className="text-xs text-slate-500">
-                Corporate channel URLs appearing in the website footer (Facebook, LinkedIn, Instagram)
+                Corporate channel URLs appearing in the website footer (Facebook, LinkedIn,
+                Instagram)
               </p>
             </div>
           </div>
@@ -276,11 +277,10 @@ export default function FooterSocialMediaCMSPage() {
               <Building2 size={20} />
             </div>
             <div>
-              <h3 className="font-bold text-slate-900 text-lg">
-                3. Footer Contact Details
-              </h3>
+              <h3 className="font-bold text-slate-900 text-lg">3. Footer Contact Details</h3>
               <p className="text-xs text-slate-500">
-                Registered office location and communication channels shown in the footer contact column
+                Registered office location and communication channels shown in the footer contact
+                column
               </p>
             </div>
           </div>

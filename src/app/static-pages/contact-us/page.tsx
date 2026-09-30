@@ -6,6 +6,7 @@ import {
   ContactHeroSection,
   ContactHeadquarterSection,
   ContactFormConfigSection,
+  ExistingBusinessNetworkCMSSection,
 } from './components';
 import toast from 'react-hot-toast';
 
@@ -83,6 +84,12 @@ export default function ContactUsCMSPage() {
           <ContactFormConfigSection
             initialData={sections.ContactForm}
             onSave={(data) => handleSaveSection('ContactForm', data)}
+          />
+
+          {/* Section 4: Existing Business Network & Map */}
+          <ExistingBusinessNetworkCMSSection
+            initialData={sections.ExistingBusinessNetwork}
+            onSave={(data) => handleSaveSection('ExistingBusinessNetwork', data)}
           />
         </div>
       )}
