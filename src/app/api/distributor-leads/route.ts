@@ -37,6 +37,18 @@ export async function POST(request: Request) {
       );
     }
 
+    const resolvedExistingBusiness =
+      existingBusiness ||
+      body.currentBusiness ||
+      (body.businessType ? `Business: ${body.businessType}` : null) ||
+      null;
+
+    const resolvedAnnualTurnover = annualTurnover || body.investmentCapacity || null;
+
+    const extraDetails = [body.lubeType ? `Lube Segment: ${body.lubeType}` : null, message]
+      .filter(Boolean)
+      .join('\n');
+
     const created = await prisma.distributorApplication.create({
       data: {
         name,
@@ -45,10 +57,10 @@ export async function POST(request: Request) {
         phone,
         city: city || 'N/A',
         state: state || 'N/A',
-        existingBusiness: existingBusiness || null,
-        annualTurnover: annualTurnover || null,
-        experienceYears: experienceYears || null,
-        message: message || null,
+        existingBusiness: resolvedExistingBusiness,
+        annualTurnover: resolvedAnnualTurnover,
+        experienceYears: experienceYears ? String(experienceYears) : null,
+        message: extraDetails || null,
         status: 'Pending',
       },
     });

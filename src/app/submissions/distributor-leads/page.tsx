@@ -71,7 +71,7 @@ export default function DistributorLeadsCMSPage() {
   return (
     <div className="flex flex-col gap-8 pb-20">
       <PageHeader
-        title="Distributor &amp; Dealership Applications"
+        title="Lubricant Distribution Applications"
         description="Review incoming dealership requests, turnover history, and territories from applicant firms."
       />
 

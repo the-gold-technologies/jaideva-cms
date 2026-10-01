@@ -59,7 +59,7 @@ const sidebarLinks: SidebarLink[] = [
     icon: Layers,
     sublinks: [
       { title: 'Enquiries', href: '/submissions/enquiries' },
-      { title: 'Distributor Leads', href: '/submissions/distributor-leads' },
+      { title: 'Lubricant Distribution', href: '/submissions/distributor-leads' },
     ],
   },
   {

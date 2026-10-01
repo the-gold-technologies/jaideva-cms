@@ -39,7 +39,7 @@ export async function POST(request: Request) {
         name,
         email: email || 'noemail@provided.com',
         phone: phone || null,
-        company: company || null,
+        company: company || body.companyName || null,
         interestedIn: interestedIn || null,
         product: product || interestedIn || null,
         budget: budget || null,
