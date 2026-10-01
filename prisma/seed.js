@@ -64,22 +64,42 @@ async function main() {
 
   // 3. Navigation Links
   const navLinks = [
-    { label: 'Home', title: 'HOME', url: '/', order: 0 },
-    { label: 'About Us', title: 'ABOUT US', url: '/about-us', order: 1 },
+    { label: 'Home', title: 'HOME', url: '/', type: 'Main Link', parent: '-', order: 0 },
+    { label: 'About', title: 'ABOUT', url: '/about-us', type: 'Main Link', parent: '-', order: 1 },
+    { label: 'Brands', title: 'BRANDS', url: '/brands', type: 'Main Link', parent: '-', order: 2 },
     {
-      label: 'Products & Services',
-      title: 'PRODUCTS & SERVICES',
+      label: 'Products',
+      title: 'PRODUCTS',
       url: '/products',
-      order: 2,
-    },
-    {
-      label: 'Events & Gallery',
-      title: 'EVENTS & GALLERY',
-      url: '/events',
+      type: 'Dropdown',
+      parent: '-',
       order: 3,
     },
-    { label: 'Blogs', title: 'BLOGS', url: '/blogs', order: 4 },
-    { label: 'Contact Us', title: 'CONTACT US', url: '/contact-us', order: 5 },
+    {
+      label: 'Industries',
+      title: 'INDUSTRIES',
+      url: '/industries',
+      type: 'Main Link',
+      parent: '-',
+      order: 4,
+    },
+    {
+      label: 'Gallery',
+      title: 'GALLERY',
+      url: '/events',
+      type: 'Main Link',
+      parent: '-',
+      order: 5,
+    },
+    { label: 'Blog', title: 'BLOG', url: '/blogs', type: 'Main Link', parent: '-', order: 6 },
+    {
+      label: 'Contact',
+      title: 'CONTACT',
+      url: '/contact-us',
+      type: 'Main Link',
+      parent: '-',
+      order: 7,
+    },
   ];
 
   for (const n of navLinks) {
@@ -102,6 +122,8 @@ async function main() {
     where: { slug: 'home' },
     update: {
       title: 'Home',
+      order: 0,
+      parent: '-',
       description:
         'Established in 2007, Jai Deva Oil Co. is a trusted Multi-Brand Distributor of Industrial & Automotive Lubricants.',
       metaTitle: 'Jai Deva Oil Co. | Multi-Brand Industrial & Automotive Lubricant Distributor',
@@ -111,6 +133,8 @@ async function main() {
     create: {
       title: 'Home',
       slug: 'home',
+      order: 0,
+      parent: '-',
       type: 'static',
       visibility: 'published',
       isStatic: true,
@@ -451,6 +475,9 @@ async function main() {
   const aboutPage = await prisma.page.upsert({
     where: { slug: 'about-us' },
     update: {
+      title: 'About Us',
+      order: 1,
+      parent: '-',
       description:
         'Learn more about Jai Deva Oil Co., our mentor Mr. Mayank Goyal, and our multi-brand lubricant distribution network.',
       metaTitle: 'About Us | Jai Deva Oil Co. - Multi-Brand Lubricant Distributor',
@@ -460,6 +487,8 @@ async function main() {
     create: {
       title: 'About Us',
       slug: 'about-us',
+      order: 1,
+      parent: '-',
       type: 'static',
       visibility: 'published',
       isStatic: true,
@@ -792,6 +821,8 @@ async function main() {
     where: { slug: 'brands' },
     update: {
       title: 'Brands',
+      order: 2,
+      parent: '-',
       description:
         'Authorized Multi-Brand Distribution Partner for HP, Castrol, Shell, Gulf, Motul, and world-class lubrication manufacturers.',
       metaTitle: 'Multi-Brand Lubricants Portfolio | Jai Deva Oil Co.',
@@ -801,6 +832,8 @@ async function main() {
     create: {
       title: 'Brands',
       slug: 'brands',
+      order: 2,
+      parent: '-',
       type: 'static',
       visibility: 'published',
       isStatic: true,
@@ -847,15 +880,15 @@ async function main() {
       type: 'BrandsPillarsSection',
       order: 2,
       content: {
-        eyebrow: 'WHY PARTNER WITH JAI DEVA OIL CO.',
-        heading: 'Engineered Sourcing. Zero Compromise on Fluid Quality.',
+        eyebrow: 'ENGINEERING RELIABILITY',
+        heading: 'STRONG BRANDS. BETTER OPERATIONS.',
         description:
-          'We bridge international lubricant formulation science with ground-level plant reliability, ensuring right oil, right machinery, and zero unplanned downtime.',
+          "A trusted brand behind a lubricant isn't a formality — it's the difference between predictable maintenance and catastrophic machinery downtime.",
         image:
           'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
         sideImage:
           'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
-        verifiedBadge: 'Authorized Refinery Stocks',
+        verifiedBadge: 'AUTHORIZED REFINERY STOCKS',
         guaranteeTitle: 'REFINERY STOCK GUARANTEE',
         guaranteeTag: 'ISO VG 32 to 680',
         guaranteeHeadline: 'Direct Factory-Sealed Distribution',
@@ -995,6 +1028,8 @@ async function main() {
     where: { slug: 'industries' },
     update: {
       title: 'Industries',
+      order: 4,
+      parent: '-',
       description:
         'Industrial lubrication solutions and application engineering for steel mills, cement plants, power generation, automotive stamping, and manufacturing.',
       metaTitle: 'Industrial Lubricants & Plant Engineering | Jai Deva Oil Co.',
@@ -1004,6 +1039,8 @@ async function main() {
     create: {
       title: 'Industries',
       slug: 'industries',
+      order: 4,
+      parent: '-',
       type: 'static',
       visibility: 'published',
       isStatic: true,
@@ -1435,6 +1472,8 @@ async function main() {
     where: { slug: 'contact-us' },
     update: {
       title: 'Contact Us',
+      order: 7,
+      parent: '-',
       description:
         'Get in touch with Jai Deva Oil Co. for bulk lubricants supply, custom quotes, and distribution enquiries.',
       metaTitle: 'Contact Us | Jai Deva Oil Co. - Multi-Brand Lubricants Distributor',
@@ -1444,6 +1483,8 @@ async function main() {
     create: {
       title: 'Contact Us',
       slug: 'contact-us',
+      order: 7,
+      parent: '-',
       type: 'static',
       visibility: 'published',
       isStatic: true,
@@ -1720,6 +1761,8 @@ async function main() {
     where: { slug: 'events' },
     update: {
       title: 'Events & Activities',
+      order: 5,
+      parent: '-',
       description: 'Photo gallery and stakeholder engagement events hosted by Jai Deva Oil Co.',
       metaTitle: 'Events & Gallery | Jai Deva Oil Co.',
       metaDescription:
@@ -1728,6 +1771,8 @@ async function main() {
     create: {
       title: 'Events & Activities',
       slug: 'events',
+      order: 5,
+      parent: '-',
       type: 'static',
       visibility: 'published',
       isStatic: true,
@@ -5979,6 +6024,70 @@ async function main() {
   }
   console.log(`✓ ${brandCategories.length} Brand categories ready.`);
 
+  console.log('Upserting products root page...');
+  await prisma.page.upsert({
+    where: { slug: 'products' },
+    update: {
+      title: 'Products',
+      description:
+        'Explore high-performance automotive and industrial lubricants, fluids, and filtration equipment.',
+      metaTitle: 'Products & Solutions | Jai Deva Oil Co.',
+      metaDescription:
+        'Explore high-performance automotive and industrial lubricants, greases, fluids, and filtration equipment distributed by Jai Deva Oil Co.',
+      order: 3,
+      parent: '-',
+      type: 'standard',
+      visibility: 'published',
+      isStatic: true,
+    },
+    create: {
+      title: 'Products',
+      slug: 'products',
+      description:
+        'Explore high-performance automotive and industrial lubricants, fluids, and filtration equipment.',
+      metaTitle: 'Products & Solutions | Jai Deva Oil Co.',
+      metaDescription:
+        'Explore high-performance automotive and industrial lubricants, greases, fluids, and filtration equipment distributed by Jai Deva Oil Co.',
+      order: 3,
+      parent: '-',
+      type: 'standard',
+      visibility: 'published',
+      isStatic: true,
+    },
+  });
+
+  console.log('Upserting brand category SEO pages...');
+  for (const cat of brandCategories) {
+    const pageSlug = `products/${cat.slug}`;
+    await prisma.page.upsert({
+      where: { slug: pageSlug },
+      update: {
+        title: cat.name,
+        description: cat.shortDesc,
+        metaTitle: `${cat.name} | Jai Deva Oil Co.`,
+        metaDescription: cat.shortDesc,
+        order: cat.order,
+        parent: 'products',
+        type: 'standard',
+        visibility: 'published',
+        isStatic: false,
+      },
+      create: {
+        title: cat.name,
+        slug: pageSlug,
+        description: cat.shortDesc,
+        metaTitle: `${cat.name} | Jai Deva Oil Co.`,
+        metaDescription: cat.shortDesc,
+        order: cat.order,
+        parent: 'products',
+        type: 'standard',
+        visibility: 'published',
+        isStatic: false,
+      },
+    });
+  }
+  console.log(`✓ ${brandCategories.length} Brand category SEO pages ready.`);
+
   console.log('Upserting brand products...');
   for (const p of brandProducts) {
     await prisma.product.upsert({
@@ -5994,6 +6103,8 @@ async function main() {
     where: { slug: 'blogs' },
     update: {
       title: 'Technical Articles & Lubrication Insights',
+      order: 6,
+      parent: '-',
       description:
         'Technical articles, educational guides, and lubrication maintenance recommendations.',
       metaTitle: 'Blogs & Insights | Jai Deva Oil Co.',
@@ -6003,6 +6114,8 @@ async function main() {
     create: {
       title: 'Technical Articles & Lubrication Insights',
       slug: 'blogs',
+      order: 6,
+      parent: '-',
       type: 'static',
       visibility: 'published',
       isStatic: true,
@@ -6561,6 +6674,8 @@ async function main() {
     where: { slug: 'privacy-policy' },
     update: {
       title: 'Privacy Policy',
+      order: 50,
+      parent: '-',
       metaTitle: 'Privacy Policy | Jai Deva Oil Co.',
       metaDescription:
         'Read the Privacy Policy of Jai Deva Oil Co., trusted multi-brand distributor for industrial and automotive lubricants and greases.',
@@ -6573,6 +6688,7 @@ async function main() {
       type: 'legal',
       visibility: 'published',
       order: 50,
+      parent: '-',
       metaTitle: 'Privacy Policy | Jai Deva Oil Co.',
       metaDescription:
         'Read the Privacy Policy of Jai Deva Oil Co., trusted multi-brand distributor for industrial and automotive lubricants and greases.',

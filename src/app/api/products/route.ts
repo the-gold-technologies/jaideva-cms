@@ -60,18 +60,13 @@ export async function GET(request: Request) {
       orderBy: { order: 'asc' },
     });
 
-    // If filtering by category, return per-category SEO (products/hp-lubricants)
-    // Otherwise return the global products page SEO
-    const seoSlug = (categorySlug && categorySlug !== 'all')
-      ? `products/${categorySlug}`
-      : 'products';
-
-    const seoPage = await prisma.page.findUnique({
-      where: { slug: seoSlug },
-    });
-
-    const seo = seoPage
-      ? {
+    let seo = null;
+    if (categorySlug && categorySlug !== 'all') {
+      const seoPage = await prisma.page.findUnique({
+        where: { slug: `products/${categorySlug}` },
+      });
+      if (seoPage) {
+        seo = {
           metaTitle: seoPage.metaTitle,
           metaDescription: seoPage.metaDescription,
           targetKeywords: seoPage.targetKeywords,
@@ -79,8 +74,9 @@ export async function GET(request: Request) {
           noIndex: seoPage.noIndex,
           schema: seoPage.schema,
           headingOptions: seoPage.headingOptions,
-        }
-      : null;
+        };
+      }
+    }
 
     return NextResponse.json({
       success: true,

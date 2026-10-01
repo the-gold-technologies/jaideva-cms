@@ -53,7 +53,7 @@ export async function GET() {
       }
       seenSlugs.add(normalizedSlug);
 
-      const assignedOrder = link.order !== undefined && link.order > 0 ? link.order : navIndex++;
+      const assignedOrder = typeof link.order === 'number' ? link.order : navIndex++;
 
       if (matchedPage) {
         mergedData.push({
@@ -122,9 +122,36 @@ export async function GET() {
     let prodParentIdx = mergedData.findIndex((m: any) => m.slug === 'products');
     let prodParentId = prodParentIdx !== -1 ? mergedData[prodParentIdx].id : 'products';
 
-    for (const item of mergedData) {
-      if (item.parent === 'products' || (item.slug && item.slug.startsWith('products/') && item.slug.split('/').length === 2)) {
-        item.parent = prodParentId;
+    const categoriesList = await prisma.productCategory.findMany({
+      orderBy: { order: 'asc' },
+    });
+
+    for (const cat of categoriesList) {
+      const catSlug = `products/${cat.slug}`;
+      const existing = mergedData.find((m: any) => m.slug === catSlug);
+      if (existing) {
+        existing.parent = prodParentId;
+        existing.type = 'Category';
+        existing.title = cat.name;
+        existing.order = cat.order;
+      } else {
+        const matchedPage = pages.find((p: any) => p.slug === catSlug);
+        mergedData.push({
+          id: matchedPage ? `page-${matchedPage.id}` : `cat-${cat.id}`,
+          pageId: matchedPage?.id || cat.id,
+          title: cat.name,
+          slug: catSlug,
+          metaTitle: matchedPage?.metaTitle || null,
+          metaDescription: matchedPage?.metaDescription || null,
+          type: 'Category',
+          visibility: matchedPage?.visibility || 'published',
+          parent: prodParentId,
+          order: cat.order,
+          description: matchedPage?.description || null,
+          navTitle: cat.name,
+          isStatic: false,
+          headingOptions: matchedPage?.headingOptions || null,
+        });
       }
     }
 

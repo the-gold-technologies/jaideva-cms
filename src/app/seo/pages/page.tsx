@@ -133,7 +133,9 @@ export default function PageSEODashboard() {
                 </tr>
               ) : (
                 rootLinks.map((root, rootIndex) => {
-                  const children = filteredPages.filter((c) => c.parent === root.id);
+                  const children = filteredPages
+                    .filter((c) => c.parent === root.id)
+                    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
                   const hasChildren = children.length > 0;
                   const isExpanded = !!expandedParents[root.id];
 
@@ -173,7 +175,7 @@ export default function PageSEODashboard() {
                           </div>
                         </td>
                         <td className="px-6 py-5 whitespace-nowrap">
-                          {root.type === 'Dropdown' ? (
+                          {root.type === 'Dropdown' || root.slug === 'products' ? (
                             <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest whitespace-nowrap">
                               Group Container
                             </span>
@@ -218,7 +220,7 @@ export default function PageSEODashboard() {
                         </td>
                         <td className="px-6 py-5 whitespace-nowrap text-right">
                           <div className="flex items-center gap-3 justify-end">
-                            {root.type !== 'Dropdown' && (
+                            {root.type !== 'Dropdown' && root.slug !== 'products' && (
                               <Link
                                 href={`/seo/pages/${root.slug}`}
                                 className="p-2 bg-gray-50 text-slate-600 rounded-xl hover:bg-[#002B5C] hover:text-white transition-all group inline-flex items-center justify-center"

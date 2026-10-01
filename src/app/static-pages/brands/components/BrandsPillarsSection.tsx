@@ -168,13 +168,13 @@ export function BrandsPillarsSection({
                 label="Eyebrow Subtitle"
                 value={eyebrow}
                 onChange={(e) => setEyebrow(e.target.value)}
-                placeholder="WHY PARTNER WITH JAI DEVA OIL CO."
+                placeholder="ENGINEERING RELIABILITY"
               />
               <InputField
                 label="Section Heading"
                 value={heading}
                 onChange={(e) => setHeading(e.target.value)}
-                placeholder="Engineered Sourcing. Zero Compromise on Fluid Quality."
+                placeholder="STRONG BRANDS. BETTER OPERATIONS."
               />
             </div>
 
@@ -183,7 +183,7 @@ export function BrandsPillarsSection({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={2}
-              placeholder="We bridge international lubricant formulation science..."
+              placeholder="A trusted brand behind a lubricant isn't a formality — it's the difference between predictable maintenance..."
             />
 
             {/* Side Card & Guarantee Settings */}
@@ -205,7 +205,7 @@ export function BrandsPillarsSection({
                   label="Floating Badge Text"
                   value={verifiedBadge}
                   onChange={(e) => setVerifiedBadge(e.target.value)}
-                  placeholder="Authorized Refinery Stocks"
+                  placeholder="AUTHORIZED REFINERY STOCKS"
                 />
                 <InputField
                   label="Guarantee Badge Title"

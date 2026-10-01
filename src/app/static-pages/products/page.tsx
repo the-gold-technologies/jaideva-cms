@@ -622,12 +622,11 @@ export default function ProductsCatalogCMSPage() {
                   required
                 />
                 <InputField
-                  label="Brand URL Slug (Auto-generated)"
+                  label="Brand URL Slug *"
                   value={brandSlug}
                   readOnly
                   placeholder="Auto-generated from brand name"
                   className="bg-gray-50 text-gray-500 cursor-not-allowed select-none"
-                  tooltip="The URL slug is automatically generated from the brand name."
                 />
               </div>
 
