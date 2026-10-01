@@ -41,6 +41,8 @@ async function main() {
         footerLogo: '/jaideva-logo.png',
         copyrightText: '© 2026 Jai Deva Oil Co. All rights reserved.',
       },
+      robotsTxt: 'User-agent: *\nAllow: /\n\nSitemap: https://jaidevaoil.com/sitemap.xml',
+      sitemapEnabled: true,
     },
     create: {
       id: 'global',
