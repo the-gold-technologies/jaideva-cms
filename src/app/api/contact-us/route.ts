@@ -21,8 +21,7 @@ export async function GET() {
 
     const seo = page
       ? {
-          title: page.metaTitle || page.title,
-          metaTitle: page.metaTitle || page.title,
+          metaTitle: page.metaTitle,
           metaDescription: page.metaDescription,
           targetKeywords: page.targetKeywords,
           canonicalUrl: page.canonicalUrl,

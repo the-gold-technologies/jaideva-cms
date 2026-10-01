@@ -109,7 +109,7 @@ let mockPages: any[] = [
     ogTitle: 'Jai Deva Oil Co.',
     ogDescription: 'Multi-Brand Industrial & Automotive Lubricant Distributor',
     ogImage: '',
-    headingOptions: {},
+    headingOptions: 'h1',
     createdAt: new Date(),
     updatedAt: new Date(),
     sections: [
@@ -447,7 +447,7 @@ let mockPages: any[] = [
     ogTitle: 'About Us - Jai Deva Oil Co.',
     ogDescription: 'Multi-Brand Industrial & Automotive Lubricant Distributor',
     ogImage: '',
-    headingOptions: {},
+    headingOptions: 'h1',
     createdAt: new Date(),
     updatedAt: new Date(),
     sections: [
@@ -553,7 +553,7 @@ let mockPages: any[] = [
     ogTitle: 'Contact Us - Jai Deva Oil Co.',
     ogDescription: 'Multi-Brand Industrial & Automotive Lubricants Distributor',
     ogImage: '/contact-us-banner.jpg',
-    headingOptions: {},
+    headingOptions: 'h1',
     createdAt: new Date(),
     updatedAt: new Date(),
     sections: [
@@ -622,7 +622,7 @@ let mockPages: any[] = [
     ogTitle: 'Events & Activities - Jai Deva Oil Co.',
     ogDescription: 'Events and activities gallery',
     ogImage: '/events-banner.jpg',
-    headingOptions: {},
+    headingOptions: 'h1',
     createdAt: new Date(),
     updatedAt: new Date(),
     sections: [
@@ -833,7 +833,7 @@ let mockPages: any[] = [
     ogTitle: 'Blogs & Lubrication Insights - Jai Deva Oil Co.',
     ogDescription: 'Lubrication best practices and technical articles',
     ogImage: '/blogs-banner.jpg',
-    headingOptions: {},
+    headingOptions: 'h1',
     createdAt: new Date(),
     updatedAt: new Date(),
     sections: [

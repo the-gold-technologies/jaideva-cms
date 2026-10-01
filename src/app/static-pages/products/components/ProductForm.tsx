@@ -11,6 +11,7 @@ import {
   FileText,
   FlaskConical,
   ShieldCheck,
+  Globe,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { PageHeader } from '@/components/PageHeader';
@@ -150,6 +151,10 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [pdfUrl, setPdfUrl] = useState('');
   const [msdsUrl, setMsdsUrl] = useState('');
   const [isFeatured, setIsFeatured] = useState(false);
+  const [metaTitle, setMetaTitle] = useState('');
+  const [metaDescription, setMetaDescription] = useState('');
+  const [targetKeywords, setTargetKeywords] = useState('');
+  const [canonicalUrl, setCanonicalUrl] = useState('');
 
   const activeCategorySuggestions = useMemo(() => {
     return (
@@ -203,6 +208,10 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             setPdfUrl(p.pdfUrl || '');
             setMsdsUrl(p.msdsUrl || '');
             setIsFeatured(!!p.isFeatured);
+            setMetaTitle(p.metaTitle || '');
+            setMetaDescription(p.metaDescription || '');
+            setTargetKeywords(p.targetKeywords || '');
+            setCanonicalUrl(p.canonicalUrl || '');
           } else {
             toast.error('Product not found');
             router.push('/static-pages/products');
@@ -264,6 +273,10 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         pdfUrl: pdfUrl.trim(),
         msdsUrl: msdsUrl.trim(),
         isFeatured,
+        metaTitle: metaTitle.trim(),
+        metaDescription: metaDescription.trim(),
+        targetKeywords: targetKeywords.trim(),
+        canonicalUrl: canonicalUrl.trim(),
       };
 
       const url = '/api/products';
@@ -629,6 +642,47 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
               value={msdsUrl}
               onChange={setMsdsUrl}
               tooltip="Upload product MSDS safety sheet (.pdf) or edit direct URL."
+            />
+          </div>
+
+          {/* Card: Search Engine Optimization (SEO) */}
+          <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
+            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
+              <Globe className="w-4 h-4 text-[#C86218]" />
+              Product SEO Metadata
+            </h3>
+
+            <InputField
+              label="Meta Title"
+              value={metaTitle}
+              onChange={(e) => setMetaTitle(e.target.value)}
+              placeholder="Enter meta title..."
+              tooltip="The title tag appearing in Google search results and browser tabs."
+            />
+
+            <TextAreaField
+              label="Meta Description"
+              rows={2}
+              value={metaDescription}
+              onChange={(e) => setMetaDescription(e.target.value)}
+              placeholder="Enter meta description..."
+              tooltip="The description displayed underneath the link in search results."
+            />
+
+            <InputField
+              label="Target Keywords"
+              value={targetKeywords}
+              onChange={(e) => setTargetKeywords(e.target.value)}
+              placeholder="Enter target keywords (comma separated)..."
+              tooltip="Comma-separated focus keywords for SEO indexing."
+            />
+
+            <InputField
+              label="Canonical URL"
+              value={canonicalUrl}
+              onChange={(e) => setCanonicalUrl(e.target.value)}
+              placeholder="Enter canonical URL..."
+              tooltip="Canonical URL link tag to avoid duplicate content penalty."
             />
           </div>
 

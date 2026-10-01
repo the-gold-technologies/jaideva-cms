@@ -59,7 +59,7 @@ export async function GET() {
           targetKeywords: 'Privacy Policy, Jai Deva Oil Co., HP Lubricants data protection',
           canonicalUrl: '/privacy-policy',
           noIndex: false,
-          headingOptions: { heroHeadingTag: 'h1' },
+          headingOptions: 'h1',
         },
       });
     }
@@ -73,8 +73,7 @@ export async function GET() {
       sectionsMap['PrivacyPolicyContent'] || sectionsMap['content'] || DEFAULT_PRIVACY_DATA;
 
     const seo = {
-      title: page.metaTitle || page.title,
-      metaTitle: page.metaTitle || page.title,
+      metaTitle: page.metaTitle,
       metaDescription: page.metaDescription,
       targetKeywords: page.targetKeywords,
       canonicalUrl: page.canonicalUrl,

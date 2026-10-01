@@ -15,16 +15,17 @@ export async function GET(request: Request) {
         const blogPage = await prisma.page.findUnique({
           where: { slug: `blogs/${blog.slug}` },
         });
-        const seo = {
-          title: blogPage?.metaTitle || blog.title,
-          metaTitle: blogPage?.metaTitle || blog.title,
-          metaDescription: blogPage?.metaDescription || blog.excerpt,
-          targetKeywords: blogPage?.targetKeywords || blog.category,
-          canonicalUrl: blogPage?.canonicalUrl || `https://jaidevaoil.com/blogs/${blog.slug}`,
-          noIndex: blogPage?.noIndex ?? false,
-          schema: blogPage?.schema,
-          headingOptions: blogPage?.headingOptions,
-        };
+        const seo = blogPage
+          ? {
+              metaTitle: blogPage.metaTitle,
+              metaDescription: blogPage.metaDescription,
+              targetKeywords: blogPage.targetKeywords,
+              canonicalUrl: blogPage.canonicalUrl,
+              noIndex: blogPage.noIndex,
+              schema: blogPage.schema,
+              headingOptions: blogPage.headingOptions,
+            }
+          : null;
         return NextResponse.json({ success: true, data: blog, seo });
       }
       return NextResponse.json({ success: true, data: blog, seo: null });
@@ -37,16 +38,17 @@ export async function GET(request: Request) {
         const blogPage = await prisma.page.findUnique({
           where: { slug: `blogs/${pureSlug}` },
         });
-        const seo = {
-          title: blogPage?.metaTitle || blog.title,
-          metaTitle: blogPage?.metaTitle || blog.title,
-          metaDescription: blogPage?.metaDescription || blog.excerpt,
-          targetKeywords: blogPage?.targetKeywords || blog.category,
-          canonicalUrl: blogPage?.canonicalUrl || `https://jaidevaoil.com/blogs/${pureSlug}`,
-          noIndex: blogPage?.noIndex ?? false,
-          schema: blogPage?.schema,
-          headingOptions: blogPage?.headingOptions,
-        };
+        const seo = blogPage
+          ? {
+              metaTitle: blogPage.metaTitle,
+              metaDescription: blogPage.metaDescription,
+              targetKeywords: blogPage.targetKeywords,
+              canonicalUrl: blogPage.canonicalUrl,
+              noIndex: blogPage.noIndex,
+              schema: blogPage.schema,
+              headingOptions: blogPage.headingOptions,
+            }
+          : null;
         return NextResponse.json({ success: true, data: blog, seo });
       }
       return NextResponse.json({ success: true, data: blog, seo: null });
@@ -72,8 +74,7 @@ export async function GET(request: Request) {
 
     const seo = page
       ? {
-          title: page.metaTitle || page.title,
-          metaTitle: page.metaTitle || page.title,
+          metaTitle: page.metaTitle,
           metaDescription: page.metaDescription,
           targetKeywords: page.targetKeywords,
           canonicalUrl: page.canonicalUrl,

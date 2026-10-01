@@ -118,7 +118,52 @@ export async function GET() {
       }
     }
 
-    // 3. Automatically inject Dynamic Blog Posts from DB under Blogs parent
+    // 3. Find Products parent ID and nest categories under Products
+    let prodParentIdx = mergedData.findIndex((m: any) => m.slug === 'products');
+    let prodParentId = prodParentIdx !== -1 ? mergedData[prodParentIdx].id : 'products';
+
+    for (const item of mergedData) {
+      if (item.parent === 'products' || (item.slug && item.slug.startsWith('products/') && item.slug.split('/').length === 2)) {
+        item.parent = prodParentId;
+      }
+    }
+
+    // 4. Automatically inject Dynamic Products from DB under their respective categories
+    const productsList = await prisma.product.findMany({
+      orderBy: { order: 'asc' },
+    });
+
+    for (const prod of productsList) {
+      const prodPageSlug = `products/${prod.categorySlug}/${prod.slug}`;
+      const normalizedProdSlug = prodPageSlug.toLowerCase().trim();
+
+      if (!seenSlugs.has(normalizedProdSlug)) {
+        seenSlugs.add(normalizedProdSlug);
+
+        // Find the category item in mergedData to be its parent
+        const catItem = mergedData.find((m: any) => m.slug === `products/${prod.categorySlug}`);
+        const parentId = catItem ? catItem.id : prodParentId;
+
+        mergedData.push({
+          id: `product-${prod.id}`,
+          pageId: prod.id,
+          title: prod.name,
+          slug: prodPageSlug,
+          metaTitle: prod.metaTitle,
+          metaDescription: prod.metaDescription,
+          type: 'Product',
+          visibility: 'published',
+          parent: parentId,
+          order: prod.order || 0,
+          description: null,
+          navTitle: prod.name,
+          isStatic: false,
+          headingOptions: prod.headingOptions,
+        });
+      }
+    }
+
+    // 5. Automatically inject Dynamic Blog Posts from DB under Blogs parent
     let blogParentIdx = mergedData.findIndex((m: any) => m.slug === 'blogs' || m.slug === 'blog');
     let blogParentId = 'blogs-seo-parent-id';
 

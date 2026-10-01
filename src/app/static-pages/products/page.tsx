@@ -139,14 +139,12 @@ export default function ProductsCatalogCMSPage() {
 
   const handleBrandNameChange = (val: string) => {
     setBrandName(val);
-    if (!editingBrand) {
-      setBrandSlug(
-        val
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/^-+|-+$/g, '')
-      );
-    }
+    setBrandSlug(
+      val
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+    );
   };
 
   const handleSaveBrand = async (e: React.FormEvent) => {
@@ -620,15 +618,16 @@ export default function ProductsCatalogCMSPage() {
                   label="Brand Name *"
                   value={brandName}
                   onChange={(e) => handleBrandNameChange(e.target.value)}
-                  placeholder="e.g. HP Lubricants"
+                  placeholder="Enter brand name"
                   required
                 />
                 <InputField
-                  label="Brand URL Slug *"
+                  label="Brand URL Slug (Auto-generated)"
                   value={brandSlug}
-                  onChange={(e) => setBrandSlug(e.target.value)}
-                  placeholder="e.g. hp-lubricants"
-                  required
+                  readOnly
+                  placeholder="Auto-generated from brand name"
+                  className="bg-gray-50 text-gray-500 cursor-not-allowed select-none"
+                  tooltip="The URL slug is automatically generated from the brand name."
                 />
               </div>
 

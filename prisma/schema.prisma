@@ -28,7 +28,7 @@ model Page {
   ogDescription   String?
   ogImage         String?
   schema          String?
-  headingOptions  Json?
+  headingOptions  String?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   sections        Section[]
@@ -82,6 +82,13 @@ model Product {
   msdsUrl             String?
   isFeatured          Boolean          @default(false)
   order               Int              @default(0)
+  metaTitle           String?
+  metaDescription     String?
+  targetKeywords      String?
+  canonicalUrl        String?
+  noIndex             Boolean          @default(false)
+  schema              String?
+  headingOptions      String?
   createdAt           DateTime         @default(now())
   updatedAt           DateTime         @updatedAt
   category            ProductCategory? @relation(fields: [categorySlug], references: [slug], onDelete: SetNull)
@@ -199,7 +206,7 @@ model GlobalConfig {
   sitemapCustomContent String?
   robotsTxt           String?  @default("User-agent: *\nAllow: /\n\nSitemap: https://jaidevaoil.com/sitemap.xml")
   schema              String?
-  headingOptions      Json?
+  headingOptions      String?
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 }
