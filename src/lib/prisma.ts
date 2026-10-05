@@ -1,11 +1,14 @@
 import { PrismaClient } from '@prisma/client';
-import { mockPrisma } from './mockPrisma';
 
 declare global {
   var prismaInstance: PrismaClient | undefined;
 }
 
 let prismaClient: any;
+
+const getMockPrisma = () => {
+  return require('./mockPrisma').mockPrisma;
+};
 
 try {
   if (process.env.DATABASE_URL) {
@@ -18,11 +21,11 @@ try {
       prismaClient = global.prismaInstance;
     }
   } else {
-    prismaClient = mockPrisma;
+    prismaClient = getMockPrisma();
   }
 } catch (e) {
   console.warn('Could not instantiate PrismaClient, falling back to mockPrisma:', e);
-  prismaClient = mockPrisma;
+  prismaClient = getMockPrisma();
 }
 
 // Proxy to automatically fallback to mockPrisma if DB connection errors occur
@@ -30,7 +33,7 @@ export const prisma = new Proxy(prismaClient, {
   get(target, prop, receiver) {
     const original = Reflect.get(target, prop, receiver);
     if (!original) {
-      return (mockPrisma as any)[prop];
+      return (getMockPrisma() as any)[prop];
     }
     // Return a wrapped object to catch DB connection failures on any model call
     return new Proxy(original, {
@@ -46,7 +49,7 @@ export const prisma = new Proxy(prismaClient, {
               `Prisma.${String(prop)}.${String(methodProp)} failed, using mockPrisma fallback:`,
               err?.message || err
             );
-            const mockModel = (mockPrisma as any)[prop];
+            const mockModel = (getMockPrisma() as any)[prop];
             if (mockModel && typeof mockModel[methodProp] === 'function') {
               return await mockModel[methodProp](...args);
             }

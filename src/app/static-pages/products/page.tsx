@@ -11,7 +11,6 @@ import {
   FileText,
   FolderTree,
   X,
-  ExternalLink,
   Award,
   Sparkles,
   Droplets,
@@ -71,8 +70,6 @@ export default function ProductsCatalogCMSPage() {
   const [selectedCategoryTitle, setSelectedCategoryTitle] = useState<string>('all');
 
   const [searchQuery, setSearchQuery] = useState('');
-
-  const websiteBaseUrl = (process.env.NEXT_PUBLIC_WEBSITE_URL || '').replace(/\/$/, '');
 
   // Brand Edit Modal state
   const [isBrandModalOpen, setIsBrandModalOpen] = useState(false);
@@ -549,15 +546,6 @@ export default function ProductsCatalogCMSPage() {
                         <FileText className="w-3.5 h-3.5" />
                       </a>
                     )}
-                    <a
-                      href={`${websiteBaseUrl}/products/${p.categorySlug}/${p.slug}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-1.5 rounded-lg bg-gray-50 text-gray-400 hover:text-[#0C356A] transition-colors"
-                      title="View Live on Website"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
                   </div>
 
                   <div className="flex items-center gap-1.5">

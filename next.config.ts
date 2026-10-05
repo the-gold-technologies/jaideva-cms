@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
+    optimizePackageImports: [
+      'lucide-react',
+      'recharts',
+      'framer-motion',
+      'react-hot-toast',
+      'clsx',
+      'tailwind-merge',
+    ],
     serverActions: {
       bodySizeLimit: '50mb',
     },
