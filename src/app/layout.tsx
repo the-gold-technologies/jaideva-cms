@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   description: 'Manage your Jai Deva Oil Co. lubricant catalog, pages, and distributor leads',
   icons: {
-    icon: '/jaideva-logo.png',
-    shortcut: '/jaideva-logo.png',
-    apple: '/jaideva-logo.png',
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
   },
 };
 
