@@ -132,12 +132,7 @@ export default function SitemapRobotsPage() {
     );
   }
 
-  const websiteBaseUrl =
-    process.env.NEXT_PUBLIC_WEBSITE_URL ||
-    (typeof window !== 'undefined' &&
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-      ? 'http://localhost:3000'
-      : 'https://jaidevaoil.com');
+  const websiteBaseUrl = (process.env.NEXT_PUBLIC_WEBSITE_URL || '').replace(/\/$/, '');
 
   return (
     <div className="flex flex-col gap-8 max-w-6xl mx-auto pb-24 animate-in fade-in duration-500">

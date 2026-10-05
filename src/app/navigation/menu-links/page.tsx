@@ -107,19 +107,19 @@ export default function MenuLinksPage() {
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[640px]">
+            <table className="w-full text-left border-collapse min-w-[800px]">
               <thead>
                 <tr className="border-b border-transparent">
-                  <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider w-24 whitespace-nowrap">
+                  <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider w-20 whitespace-nowrap">
                     ORDER
                   </th>
-                  <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider whitespace-nowrap">
+                  <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider min-w-[280px]">
                     LABEL / TITLE
                   </th>
-                  <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider text-center w-40 whitespace-nowrap">
+                  <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider text-center w-36 whitespace-nowrap">
                     TYPE
                   </th>
-                  <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider w-56 whitespace-nowrap">
+                  <th className="py-4 px-6 text-[11px] font-bold text-slate-400 uppercase tracking-wider w-64 max-w-[280px] whitespace-nowrap">
                     URL
                   </th>
                 </tr>
@@ -140,12 +140,12 @@ export default function MenuLinksPage() {
 
                         {/* Label / Title Column */}
                         <td className="py-5 px-6">
-                          <div className="flex items-center gap-2.5">
+                          <div className="flex items-center gap-2.5 min-w-0">
                             {hasChildren ? (
                               <button
                                 type="button"
                                 onClick={() => toggleParent(root.id)}
-                                className="p-1 hover:bg-gray-100 rounded-md transition-colors text-gray-400 cursor-pointer"
+                                className="p-1 hover:bg-gray-100 rounded-md transition-colors text-gray-400 cursor-pointer shrink-0"
                                 aria-label="Toggle children"
                               >
                                 {isExpanded ? (
@@ -155,11 +155,16 @@ export default function MenuLinksPage() {
                                 )}
                               </button>
                             ) : (
-                              <div className="w-6" />
+                              <div className="w-6 shrink-0" />
                             )}
-                            <span className="text-sm sm:text-[15px] font-bold text-slate-900 tracking-tight whitespace-nowrap">
-                              {root.label}
-                            </span>
+                            <div className="min-w-0 flex-1">
+                              <span
+                                className="text-sm sm:text-[15px] font-bold text-slate-900 tracking-tight line-clamp-1 block"
+                                title={root.label}
+                              >
+                                {root.label}
+                              </span>
+                            </div>
                           </div>
                         </td>
 
@@ -169,7 +174,10 @@ export default function MenuLinksPage() {
                         </td>
 
                         {/* URL Column */}
-                        <td className="py-5 px-6 font-mono text-sm text-slate-500 font-normal whitespace-nowrap">
+                        <td
+                          className="py-5 px-6 font-mono text-sm text-slate-500 font-normal max-w-[280px] truncate"
+                          title={root.url}
+                        >
                           {root.url}
                         </td>
                       </tr>
@@ -188,12 +196,12 @@ export default function MenuLinksPage() {
                                   {rootIndex + 1}.{childIndex + 1}
                                 </td>
                                 <td className="py-4 px-6">
-                                  <div className="flex items-center gap-2.5 pl-6 border-l-2 border-gray-100/60">
+                                  <div className="flex items-start sm:items-center gap-2.5 pl-6 border-l-2 border-gray-100/60 min-w-0">
                                     {hasSubChildren ? (
                                       <button
                                         type="button"
                                         onClick={() => toggleParent(child.id)}
-                                        className="p-1 hover:bg-gray-200/60 rounded-md transition-colors text-gray-400 cursor-pointer"
+                                        className="p-1 hover:bg-gray-200/60 rounded-md transition-colors text-gray-400 cursor-pointer shrink-0 mt-0.5 sm:mt-0"
                                         aria-label="Toggle sub-children"
                                       >
                                         {isSubExpanded ? (
@@ -203,17 +211,25 @@ export default function MenuLinksPage() {
                                         )}
                                       </button>
                                     ) : (
-                                      <span className="text-gray-300 text-sm">↳</span>
+                                      <span className="text-gray-300 text-sm shrink-0">↳</span>
                                     )}
-                                    <span className="font-semibold text-xs sm:text-sm text-gray-800">
-                                      {child.label}
-                                    </span>
+                                    <div className="min-w-0 flex-1">
+                                      <span
+                                        className="font-semibold text-xs sm:text-sm text-gray-800 line-clamp-2 leading-snug block"
+                                        title={child.label}
+                                      >
+                                        {child.label}
+                                      </span>
+                                    </div>
                                   </div>
                                 </td>
                                 <td className="py-4 px-6 text-center whitespace-nowrap">
                                   {getTypeBadge(child.type)}
                                 </td>
-                                <td className="py-4 px-6 font-mono text-xs text-gray-400 whitespace-nowrap">
+                                <td
+                                  className="py-4 px-6 font-mono text-xs text-gray-400 max-w-[280px] truncate"
+                                  title={child.url}
+                                >
                                   {child.url}
                                 </td>
                               </tr>
@@ -229,17 +245,25 @@ export default function MenuLinksPage() {
                                       {rootIndex + 1}.{childIndex + 1}.{subIndex + 1}
                                     </td>
                                     <td className="py-3 px-6">
-                                      <div className="flex items-center gap-2 pl-12 border-l-2 border-indigo-100/50">
-                                        <span className="text-gray-300 text-xs">↳</span>
-                                        <span className="font-medium text-xs text-gray-600">
-                                          {sub.label}
-                                        </span>
+                                      <div className="flex items-center gap-2 pl-12 border-l-2 border-indigo-100/50 min-w-0">
+                                        <span className="text-gray-300 text-xs shrink-0">↳</span>
+                                        <div className="min-w-0 flex-1">
+                                          <span
+                                            className="font-medium text-xs text-gray-600 line-clamp-2 leading-snug block"
+                                            title={sub.label}
+                                          >
+                                            {sub.label}
+                                          </span>
+                                        </div>
                                       </div>
                                     </td>
                                     <td className="py-3 px-6 text-center whitespace-nowrap">
                                       {getTypeBadge(sub.type)}
                                     </td>
-                                    <td className="py-3 px-6 font-mono text-[11px] text-gray-400 whitespace-nowrap">
+                                    <td
+                                      className="py-3 px-6 font-mono text-[11px] text-gray-400 max-w-[280px] truncate"
+                                      title={sub.url}
+                                    >
                                       {sub.url}
                                     </td>
                                   </tr>

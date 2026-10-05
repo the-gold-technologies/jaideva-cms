@@ -72,6 +72,8 @@ export default function ProductsCatalogCMSPage() {
 
   const [searchQuery, setSearchQuery] = useState('');
 
+  const websiteBaseUrl = (process.env.NEXT_PUBLIC_WEBSITE_URL || '').replace(/\/$/, '');
+
   // Brand Edit Modal state
   const [isBrandModalOpen, setIsBrandModalOpen] = useState(false);
   const [brandModalLoading, setBrandModalLoading] = useState(false);
@@ -548,7 +550,7 @@ export default function ProductsCatalogCMSPage() {
                       </a>
                     )}
                     <a
-                      href={`http://localhost:3000/products/${p.categorySlug}/${p.slug}`}
+                      href={`${websiteBaseUrl}/products/${p.categorySlug}/${p.slug}`}
                       target="_blank"
                       rel="noreferrer"
                       className="p-1.5 rounded-lg bg-gray-50 text-gray-400 hover:text-[#0C356A] transition-colors"

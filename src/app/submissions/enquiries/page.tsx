@@ -13,6 +13,7 @@ import {
   Phone,
   Building,
   X,
+  Trash2,
 } from 'lucide-react';
 import { InputField } from '@/components/InputField';
 import toast from 'react-hot-toast';
@@ -36,6 +37,33 @@ export default function EnquiriesCMSPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeMessage, setActiveMessage] = useState<Enquiry | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleDeleteEnquiry = async (id: string) => {
+    if (
+      !window.confirm('Are you sure you want to delete this enquiry? This action cannot be undone.')
+    ) {
+      return;
+    }
+    setIsDeleting(true);
+    try {
+      const res = await fetch(`/api/enquiries?id=${id}`, {
+        method: 'DELETE',
+      });
+      const json = await res.json();
+      if (json.success) {
+        toast.success('Enquiry deleted successfully');
+        setEnquiries((prev) => prev.filter((e) => e.id !== id));
+        setActiveMessage(null);
+      } else {
+        toast.error(json.error || 'Failed to delete enquiry');
+      }
+    } catch {
+      toast.error('Network error while deleting enquiry');
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   const fetchEnquiries = async () => {
     setIsLoading(true);
@@ -227,7 +255,17 @@ export default function EnquiriesCMSPage() {
               </div>
             </div>
 
-            <div className="flex justify-end pt-2">
+            <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+              <button
+                type="button"
+                onClick={() => handleDeleteEnquiry(activeMessage.id)}
+                disabled={isDeleting}
+                className="px-4 py-2.5 rounded-full font-bold text-xs text-red-600 hover:bg-red-50 transition-colors cursor-pointer inline-flex items-center gap-1.5 border border-red-200 hover:border-red-300 disabled:opacity-50"
+              >
+                <Trash2 className="w-4 h-4" />
+                {isDeleting ? 'Deleting...' : 'Delete Enquiry'}
+              </button>
+
               <button
                 type="button"
                 onClick={() => setActiveMessage(null)}
