@@ -13,7 +13,6 @@ export interface LocateDistributorData {
   workingHours: string;
   email: string;
   btn1Text: string;
-  btn2Text: string;
 }
 
 export const DEFAULT_LOCATE_DISTRIBUTOR_DATA: LocateDistributorData = {
@@ -23,7 +22,6 @@ export const DEFAULT_LOCATE_DISTRIBUTOR_DATA: LocateDistributorData = {
   workingHours: '',
   email: '',
   btn1Text: '',
-  btn2Text: '',
 };
 
 export function LocateDistributorSection({ initialData }: { initialData?: any }) {
@@ -41,7 +39,6 @@ export function LocateDistributorSection({ initialData }: { initialData?: any })
         workingHours: initialData.workingHours || '',
         email: initialData.email || '',
         btn1Text: initialData.btn1Text || '',
-        btn2Text: initialData.btn2Text || '',
       });
     }
   }, [initialData]);
@@ -146,23 +143,6 @@ export function LocateDistributorSection({ initialData }: { initialData?: any })
                       }))
                     }
                     placeholder="SEND ENQUIRY"
-                  />
-                </div>
-
-                <div className="p-4 bg-slate-50/60 rounded-2xl border border-slate-100 flex flex-col gap-3">
-                  <span className="text-xs font-bold text-[#0C356A] uppercase tracking-wider">
-                    Button 2 (Navy - Become a Distributor)
-                  </span>
-                  <InputField
-                    label="Button 2 Label"
-                    value={formData.btn2Text}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        btn2Text: e.target.value,
-                      }))
-                    }
-                    placeholder="BECOME A DISTRIBUTOR"
                   />
                 </div>
               </div>

@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { sendDistributorLeadNotificationEmail } from '@/lib/mail';
 
 export async function GET(request: Request) {
   try {
@@ -65,10 +64,6 @@ export async function POST(request: Request) {
       },
     });
 
-    // Fire email notifications asynchronously without blocking the response
-    sendDistributorLeadNotificationEmail(created).catch((mailErr) => {
-      console.error('Async email dispatch failed for distributor lead:', mailErr);
-    });
 
     return NextResponse.json({ success: true, data: created });
   } catch (error) {
