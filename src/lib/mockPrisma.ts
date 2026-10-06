@@ -1,5 +1,4 @@
 // In-memory fallback mock for Prisma when live PostgreSQL is unavailable
-import { PrismaClient } from '@prisma/client';
 
 let mockUsers: any[] = [
   {

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Share2, Image as ImageIcon, MapPin, Phone, Mail, Building2 } from 'lucide-react';
+import { Share2, Image as ImageIcon, Phone, Building2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { PageHeader } from '@/components/PageHeader';
 import { InputField } from '@/components/InputField';

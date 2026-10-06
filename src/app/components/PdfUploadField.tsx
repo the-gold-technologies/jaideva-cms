@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { FileText, Upload, X, Loader2, HelpCircle, Link as LinkIcon, Check } from 'lucide-react';
+import { FileText, Upload, X, Loader2, HelpCircle, Link as LinkIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface PdfUploadFieldProps {

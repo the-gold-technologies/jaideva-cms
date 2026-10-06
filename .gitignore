@@ -35,3 +35,9 @@ next-env.d.ts
 .prettierrc*
 .prettierignore
 .vscode/
+
+# AI agents & assistants
+.agents/
+.agent/
+AGENTS.md
+agents.md

@@ -420,8 +420,18 @@ async function main() {
       },
     },
     {
-      type: 'LocateDistributorSection',
+      type: 'InstagramRibbon',
       order: 8,
+      content: {
+        title: '',
+        subtitle: '',
+        instagramAccountId: '',
+        instagramToken: '',
+      },
+    },
+    {
+      type: 'LocateDistributorSection',
+      order: 9,
       content: {
         companyName: 'Jai Deva Oil Co.',
         logo: '/jaideva-logo.png',
@@ -431,6 +441,19 @@ async function main() {
         email: 'sales@jaidevaoil.com',
         btn1Text: 'SEND ENQUIRY',
         btn2Text: 'BECOME A DISTRIBUTOR',
+      },
+    },
+    {
+      type: 'FirstTimePopup',
+      order: 10,
+      content: {
+        isEnabled: false,
+        showForm: true,
+        title: 'Special First-Time Visitor Offer',
+        subtitle:
+          'Connect with our technical team for competitive industrial pricing & direct supply.',
+        formTitle: 'Request an Instant Quote',
+        image: '',
       },
     },
   ];

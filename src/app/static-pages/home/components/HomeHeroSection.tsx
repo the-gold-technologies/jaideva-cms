@@ -76,25 +76,6 @@ export function HomeHeroSection({ initialData }: { initialData?: any }) {
       });
       const json = await res.json();
 
-      // 2. Also keep legacy AboutSection in sync
-      await fetch('/api/home', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          section: 'AboutSection',
-          content: {
-            title: formData.badge,
-            subtitle1: formData.badge,
-            subtitle2: formData.heading,
-            paragraph1: formData.description,
-            primaryBtnLabel: formData.primaryBtnLabel,
-            primaryBtnUrl: formData.primaryBtnUrl,
-            secondaryBtnLabel: formData.secondaryBtnLabel,
-            secondaryBtnUrl: formData.secondaryBtnUrl,
-          },
-        }),
-      }).catch(() => {});
-
       if (json.success) {
         setSaved(true);
         toast.success('Homepage Hero saved successfully!');

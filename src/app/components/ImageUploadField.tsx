@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { CloudUpload, X, HelpCircle, Loader2, Link as LinkIcon, CheckCircle2 } from 'lucide-react';
+import { CloudUpload, X, HelpCircle, Loader2, Link as LinkIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface ImageUploadFieldProps {

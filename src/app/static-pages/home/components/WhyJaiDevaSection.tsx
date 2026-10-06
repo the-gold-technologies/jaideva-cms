@@ -18,7 +18,6 @@ import {
 import toast from 'react-hot-toast';
 import { SectionHeader } from '@/components/SectionHeader';
 import { InputField } from '@/components/InputField';
-import { TextAreaField } from '@/components/TextAreaField';
 import { SaveButton } from '@/components/SaveButton';
 
 const AVAILABLE_ICONS = [

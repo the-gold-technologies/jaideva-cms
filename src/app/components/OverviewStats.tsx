@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Star, MessageSquare, BookOpen, Package } from 'lucide-react';
+import { Star, MessageSquare, BookOpen } from 'lucide-react';
 
 interface OverviewStatsProps {
   stats?: {

@@ -2,9 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  MapPin,
   Warehouse,
-  Building2,
   Navigation,
   Plus,
   Trash2,

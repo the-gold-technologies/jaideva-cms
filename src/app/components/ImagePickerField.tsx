@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { CloudUpload, Link as LinkIcon, X, Loader2, Image as ImageIcon, Check } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { CloudUpload, Link as LinkIcon, X, Loader2, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface ImagePickerFieldProps {

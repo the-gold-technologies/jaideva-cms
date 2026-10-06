@@ -9,7 +9,9 @@ import { IndustriesWeServeSection } from './components/IndustriesWeServeSection'
 import { WhyJaiDevaSection } from './components/WhyJaiDevaSection';
 import { TrustedClientsSection } from './components/TrustedClientsSection';
 import { BrandClosingBannerSection } from './components/BrandClosingBannerSection';
+import { InstagramRibbonCMS } from './components/InstagramRibbonCMS';
 import { LocateDistributorSection } from './components/LocateDistributorSection';
+import { FirstTimePopupSection } from './components/FirstTimePopupSection';
 
 export default function HomePageEditor() {
   const [homeData, setHomeData] = useState<any>(null);
@@ -39,25 +41,31 @@ export default function HomePageEditor() {
       {/* 1. Homepage Hero (Live Website Centerpiece) */}
       <HomeHeroSection initialData={homeData?.HomeHero} />
 
-      {/* 2. Our Product Range */}
+      {/* 2. First-Time Visitor Popup Configuration */}
+      <FirstTimePopupSection initialData={homeData?.FirstTimePopup} />
+
+      {/* 3. Our Product Range */}
       <ProductsServicesSection initialData={homeData?.ProductsServicesSection} />
 
-      {/* 3. Multi-Brand Lubricant Solutions */}
+      {/* 4. Multi-Brand Lubricant Solutions */}
       <MultiBrandSolutionsSection initialData={homeData?.MultiBrandSolutionsSection} />
 
-      {/* 4. Industries We Serve */}
+      {/* 5. Industries We Serve */}
       <IndustriesWeServeSection initialData={homeData?.IndustriesWeServeSection} />
 
-      {/* 5. Why Jai Deva Oil Co.? */}
+      {/* 6. Why Jai Deva Oil Co.? */}
       <WhyJaiDevaSection initialData={homeData?.WhyJaiDevaSection} />
 
-      {/* 6. Trusted Clients & Brands Marquee */}
+      {/* 7. Trusted Clients & Brands Marquee */}
       <TrustedClientsSection initialData={homeData?.TrustedClientsSection} />
 
-      {/* 7. Brand Summary Closing Banner */}
+      {/* 8. Brand Summary Closing Banner */}
       <BrandClosingBannerSection initialData={homeData?.BrandClosingBannerSection} />
 
-      {/* 8. Locate Distributor & Direct Enquiry Contact */}
+      {/* 9 Instagram Live Marquee Ribbon */}
+      <InstagramRibbonCMS initialData={homeData?.InstagramRibbon} />
+
+      {/* 10. Locate Distributor & Direct Enquiry Contact */}
       <LocateDistributorSection initialData={homeData?.LocateDistributorSection} />
     </section>
   );
