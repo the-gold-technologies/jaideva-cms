@@ -1,12 +1,5 @@
 import { NextResponse } from 'next/server';
-import { v2 as cloudinary } from 'cloudinary';
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || process.env.NEXT_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-  secure: true,
-});
+import { cloudinary, deleteCloudinaryFileByUrl } from '@/lib/cloudinary';
 
 export async function POST(request: Request) {
   try {
@@ -46,6 +39,38 @@ export async function POST(request: Request) {
     console.error('Cloudinary upload error:', error);
     return NextResponse.json(
       { success: false, error: error?.message || 'Upload failed' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    let url: string | null = null;
+
+    const contentType = request.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+      const body = await request.json().catch(() => ({}));
+      url = body.url || null;
+    } else {
+      const { searchParams } = new URL(request.url);
+      url = searchParams.get('url');
+    }
+
+    if (!url) {
+      return NextResponse.json({ success: false, error: 'File URL is required' }, { status: 400 });
+    }
+
+    const deleted = await deleteCloudinaryFileByUrl(url);
+
+    return NextResponse.json({
+      success: deleted,
+      url,
+    });
+  } catch (error: any) {
+    console.error('Cloudinary delete error:', error);
+    return NextResponse.json(
+      { success: false, error: error?.message || 'Delete failed' },
       { status: 500 }
     );
   }

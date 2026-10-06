@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
 const CONTACT_SLUG = 'contact-us';
 
@@ -66,6 +67,8 @@ export async function PUT(request: Request) {
       });
 
       if (existing) {
+        await cleanupReplacedCloudinaryFiles(existing.content, body.content);
+
         await prisma.section.update({
           where: { id: existing.id },
           data: { content: body.content },
@@ -100,6 +103,8 @@ export async function PUT(request: Request) {
       });
 
       if (existing) {
+        await cleanupReplacedCloudinaryFiles(existing.content, content);
+
         await prisma.section.update({
           where: { id: existing.id },
           data: { content: content as any },

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
 const BRANDS_SLUG = 'brands';
 
@@ -75,6 +76,8 @@ export async function PUT(request: Request) {
       });
 
       if (existing) {
+        await cleanupReplacedCloudinaryFiles(existing.content, content);
+
         await prisma.section.update({
           where: { id: existing.id },
           data: { content: content as any },

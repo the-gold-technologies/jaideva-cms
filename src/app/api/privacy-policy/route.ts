@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
 export const dynamic = 'force-dynamic';
 
@@ -123,6 +124,8 @@ export async function PUT(request: Request) {
     });
 
     if (existingSection) {
+      await cleanupReplacedCloudinaryFiles(existingSection.content, contentData);
+
       await prisma.section.update({
         where: { id: existingSection.id },
         data: { content: contentData as any },

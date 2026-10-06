@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
 const HOME_SLUG = 'home';
 
@@ -73,6 +74,8 @@ export async function PUT(request: Request) {
     });
 
     if (existingSection) {
+      await cleanupReplacedCloudinaryFiles(existingSection.content, content);
+
       await prisma.section.update({
         where: { id: existingSection.id },
         data: { content },

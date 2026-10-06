@@ -31,10 +31,27 @@ export async function uploadFiles(files: File[] | FileList | (File | string)[]):
   return urls;
 }
 
+/**
+ * Calls /api/upload with DELETE to delete a file from Cloudinary storage
+ */
 export async function deleteFileFromCloudinary(url: string): Promise<boolean> {
+  if (!url || typeof url !== 'string' || !url.includes('cloudinary.com')) {
+    return false;
+  }
+
   try {
-    return true;
-  } catch {
+    const res = await fetch('/api/upload', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url }),
+    });
+
+    const data = await res.json().catch(() => ({}));
+    return Boolean(data.success);
+  } catch (error) {
+    console.error('Error deleting file from Cloudinary:', error);
     return false;
   }
 }

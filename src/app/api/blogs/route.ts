@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
 const BLOGS_SLUG = 'blogs';
 
@@ -167,6 +168,11 @@ export async function PUT(request: Request) {
       return NextResponse.json({ success: false, error: 'Blog ID is required' }, { status: 400 });
     }
 
+    const existingBlog = await prisma.blogPost.findUnique({ where: { id } });
+    if (existingBlog) {
+      await cleanupReplacedCloudinaryFiles(existingBlog, body);
+    }
+
     const updated = await prisma.blogPost.update({
       where: { id },
       data: {
@@ -198,6 +204,11 @@ export async function DELETE(request: Request) {
 
     if (!id) {
       return NextResponse.json({ success: false, error: 'Blog ID is required' }, { status: 400 });
+    }
+
+    const existingBlog = await prisma.blogPost.findUnique({ where: { id } });
+    if (existingBlog) {
+      await cleanupReplacedCloudinaryFiles(existingBlog, null);
     }
 
     await prisma.blogPost.delete({ where: { id } });

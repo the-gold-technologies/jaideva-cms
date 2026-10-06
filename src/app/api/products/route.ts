@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
 export async function GET(request: Request) {
   try {
@@ -134,6 +135,14 @@ export async function PUT(request: Request) {
       );
     }
 
+    const existingProduct = await prisma.product.findUnique({
+      where: { id },
+    });
+
+    if (existingProduct) {
+      await cleanupReplacedCloudinaryFiles(existingProduct, data);
+    }
+
     const product = await prisma.product.update({
       where: { id },
       data,
@@ -156,6 +165,14 @@ export async function DELETE(request: Request) {
         { success: false, error: 'Product ID is required' },
         { status: 400 }
       );
+    }
+
+    const existingProduct = await prisma.product.findUnique({
+      where: { id },
+    });
+
+    if (existingProduct) {
+      await cleanupReplacedCloudinaryFiles(existingProduct, null);
     }
 
     await prisma.product.delete({

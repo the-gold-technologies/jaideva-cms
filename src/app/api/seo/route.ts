@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
 export const dynamic = 'force-dynamic';
 
@@ -34,6 +35,12 @@ export async function PUT(request: Request) {
       if (!slug) {
         return NextResponse.json({ success: false, error: 'slug is required' }, { status: 400 });
       }
+
+      const existingPage = await prisma.page.findUnique({ where: { slug } });
+      if (existingPage) {
+        await cleanupReplacedCloudinaryFiles(existingPage, seoData);
+      }
+
       const updated = await prisma.page.upsert({
         where: { slug },
         create: {
@@ -46,6 +53,11 @@ export async function PUT(request: Request) {
         update: seoData,
       });
       return NextResponse.json({ success: true, data: updated });
+    }
+
+    const existingConfig = await prisma.globalConfig.findUnique({ where: { id: 'global' } });
+    if (existingConfig) {
+      await cleanupReplacedCloudinaryFiles(existingConfig, body);
     }
 
     const updatedConfig = await prisma.globalConfig.upsert({
