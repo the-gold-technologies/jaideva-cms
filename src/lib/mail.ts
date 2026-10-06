@@ -11,7 +11,6 @@ export interface EnquiryEmailData {
   message?: string;
 }
 
-
 /**
  * Creates and returns a configured Nodemailer transporter.
  * Returns null if SMTP host/user is missing or not configured.

@@ -71,13 +71,18 @@ model Product {
   categoryName        String
   subCategoryTitle    String?
   containerImage      String?
-  description         String?
-  applicationAreas    String?
-  performanceBenefits Json?            @default("[]")
-  specialFeatures     Json?            @default("[]")
-  specsText           String?
-  tableHeaders        Json?            @default("[\"Property\", \"Value\"]")
-  propertiesTable     Json?            @default("[]")
+  descriptionTitle         String?          @default("Description")
+  description              String?
+  applicationAreasTitle    String?          @default("Application Areas")
+  applicationAreas         String?
+  performanceBenefitsTitle String?          @default("Performance Benefits")
+  performanceBenefits      Json?            @default("[]")
+  specialFeaturesTitle     String?          @default("Special Features")
+  specialFeatures          Json?            @default("[]")
+  specsText                String?
+  propertiesTableTitle     String?          @default("Physico-Chemical Properties")
+  tableHeaders             Json?            @default("[\"Property\", \"Value\"]")
+  propertiesTable          Json?            @default("[]")
   pdfUrl              String?
   msdsUrl             String?
   isFeatured          Boolean          @default(false)

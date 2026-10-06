@@ -142,11 +142,16 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [categoryName, setCategoryName] = useState('');
   const [subCategoryTitle, setSubCategoryTitle] = useState('');
   const [containerImages, setContainerImages] = useState<(File | string | null)[]>([]);
+  const [descriptionTitle, setDescriptionTitle] = useState('Description');
   const [description, setDescription] = useState('');
+  const [applicationAreasTitle, setApplicationAreasTitle] = useState('Application Areas');
   const [applicationAreas, setApplicationAreas] = useState('');
+  const [performanceBenefitsTitle, setPerformanceBenefitsTitle] = useState('Performance Benefits');
   const [performanceBenefits, setPerformanceBenefits] = useState<string[]>([]);
+  const [specialFeaturesTitle, setSpecialFeaturesTitle] = useState('Special Features');
   const [specialFeatures, setSpecialFeatures] = useState<string[]>([]);
   const [specsText, setSpecsText] = useState('');
+  const [propertiesTableTitle, setPropertiesTableTitle] = useState('Physico-Chemical Properties');
   const [propertiesTable, setPropertiesTable] = useState<PropertyRow[]>([]);
   const [pdfUrl, setPdfUrl] = useState('');
   const [msdsUrl, setMsdsUrl] = useState('');
@@ -197,13 +202,18 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             setCategoryName(p.categoryName || 'HP Lubricants');
             setSubCategoryTitle(p.subCategoryTitle || '');
             setContainerImages(p.containerImage ? [p.containerImage] : []);
+            setDescriptionTitle(p.descriptionTitle || 'Description');
             setDescription(p.description || '');
+            setApplicationAreasTitle(p.applicationAreasTitle || 'Application Areas');
             setApplicationAreas(p.applicationAreas || '');
+            setPerformanceBenefitsTitle(p.performanceBenefitsTitle || 'Performance Benefits');
             setPerformanceBenefits(
               Array.isArray(p.performanceBenefits) ? p.performanceBenefits : []
             );
+            setSpecialFeaturesTitle(p.specialFeaturesTitle || 'Special Features');
             setSpecialFeatures(Array.isArray(p.specialFeatures) ? p.specialFeatures : []);
             setSpecsText(p.specsText || '');
+            setPropertiesTableTitle(p.propertiesTableTitle || 'Physico-Chemical Properties');
             setPropertiesTable(Array.isArray(p.propertiesTable) ? p.propertiesTable : []);
             setPdfUrl(p.pdfUrl || '');
             setMsdsUrl(p.msdsUrl || '');
@@ -264,11 +274,16 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         categoryName: categories.find((c) => c.slug === categorySlug)?.name || categoryName,
         subCategoryTitle: subCategoryTitle.trim(),
         containerImage: finalContainerImageUrl,
+        descriptionTitle: descriptionTitle.trim() || 'Description',
         description: description.trim(),
+        applicationAreasTitle: applicationAreasTitle.trim() || 'Application Areas',
         applicationAreas: applicationAreas.trim(),
+        performanceBenefitsTitle: performanceBenefitsTitle.trim() || 'Performance Benefits',
         performanceBenefits: performanceBenefits.map((s) => s.trim()).filter(Boolean),
+        specialFeaturesTitle: specialFeaturesTitle.trim() || 'Special Features',
         specialFeatures: specialFeatures.map((s) => s.trim()).filter(Boolean),
         specsText: specsText.trim(),
+        propertiesTableTitle: propertiesTableTitle.trim() || 'Physico-Chemical Properties',
         propertiesTable,
         pdfUrl: pdfUrl.trim(),
         msdsUrl: msdsUrl.trim(),
@@ -539,11 +554,26 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           </div>
 
           {/* Card 2: Narrative & Application Scope */}
-          <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
+          <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-6">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
               <Layers className="w-4 h-4 text-[#C86218]" />
               2. Description & Application Scope
             </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <InputField
+                label="Description Section Heading"
+                value={descriptionTitle}
+                onChange={(e) => setDescriptionTitle(e.target.value)}
+                placeholder="Description (default)"
+              />
+              <InputField
+                label="Application Areas Section Heading"
+                value={applicationAreasTitle}
+                onChange={(e) => setApplicationAreasTitle(e.target.value)}
+                placeholder="Application Areas (default)"
+              />
+            </div>
 
             <TextAreaField
               label="General Formulation Description"
@@ -569,6 +599,21 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
               3. Benefits & OEM Approvals
             </h3>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <InputField
+                label="Benefits Section Heading"
+                value={performanceBenefitsTitle}
+                onChange={(e) => setPerformanceBenefitsTitle(e.target.value)}
+                placeholder="Performance Benefits (default)"
+              />
+              <InputField
+                label="Special Features Section Heading"
+                value={specialFeaturesTitle}
+                onChange={(e) => setSpecialFeaturesTitle(e.target.value)}
+                placeholder="Special Features (default)"
+              />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <StringListEditor
                 label="Performance Benefits"
@@ -578,7 +623,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                 accentColor="red"
               />
               <StringListEditor
-                label="OEM Approvals & Special Features"
+                label="OEM Approvals & Features"
                 items={specialFeatures}
                 onChange={setSpecialFeatures}
                 placeholder="e.g. API CI-4 / SL Certified..."
@@ -595,11 +640,18 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
           </div>
 
           {/* Card 4: Physico-Chemical Lab Properties */}
-          <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
+          <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-6">
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
               <FlaskConical className="w-4 h-4 text-[#C86218]" />
               4. Physico-Chemical Test Specifications
             </h3>
+
+            <InputField
+              label="Table Display Title"
+              value={propertiesTableTitle}
+              onChange={(e) => setPropertiesTableTitle(e.target.value)}
+              placeholder="Physico-Chemical Properties (default)"
+            />
 
             <PropertiesTableEditor properties={propertiesTable} onChange={setPropertiesTable} />
           </div>

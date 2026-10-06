@@ -40,7 +40,6 @@ export async function GET(request: Request) {
       }
     }
 
-
     const response = await fetch(downloadTarget);
     if (!response.ok) {
       return new NextResponse('Failed to fetch file from source', { status: response.status });
@@ -60,9 +59,6 @@ export async function GET(request: Request) {
     });
   } catch (error: any) {
     console.error('PDF download proxy error:', error);
-    return NextResponse.json(
-      { error: error?.message || 'Download failed' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error?.message || 'Download failed' }, { status: 500 });
   }
 }

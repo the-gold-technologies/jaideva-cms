@@ -35,9 +35,9 @@ async function main() {
       address: 'Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India',
       logo: '/jaideva-logo.png',
       socialLinks: {
-        facebook: 'https://facebook.com',
-        instagram: 'https://instagram.com',
-        linkedin: 'https://linkedin.com',
+        facebook: 'https://www.facebook.com/',
+        instagram: 'https://www.instagram.com/jaidevaoilco/?hl=en',
+        linkedin: 'https://www.linkedin.com/company/81617692/',
         footerLogo: '/jaideva-logo.png',
         copyrightText: '© 2026 Jai Deva Oil Co. All rights reserved.',
       },
@@ -54,9 +54,9 @@ async function main() {
       address: 'Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India',
       logo: '/jaideva-logo.png',
       socialLinks: {
-        facebook: 'https://facebook.com',
-        instagram: 'https://instagram.com',
-        linkedin: 'https://linkedin.com',
+        facebook: 'https://www.facebook.com/',
+        instagram: 'https://www.instagram.com/jaidevaoilco/?hl=en',
+        linkedin: 'https://www.linkedin.com/company/81617692/',
         footerLogo: '/jaideva-logo.png',
         copyrightText: '© 2026 Jai Deva Oil Co. All rights reserved.',
       },
@@ -2116,15 +2116,23 @@ async function main() {
       subCategoryTitle: 'Engine Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Premium four-stroke motorcycle and scooter engine oil with high friction stability and clutch anti-slippage.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Two-Wheelers, Four-Stroke Motorcycles, Scooters',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API SL | JASO MA2 | SAE 20W-40.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 900ml / 1L / 50L / 210L Drum',
@@ -2133,6 +2141,8 @@ async function main() {
       ],
       specsText: 'API SL | JASO MA2 | SAE 20W-40',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2177,15 +2187,23 @@ async function main() {
       subCategoryTitle: 'Engine Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Severe-duty turbo-charged diesel engine oil engineered for extended drain intervals, soot dispersion, and bore protection.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Heavy Commercial Vehicles, Earthmovers, Diesel Gensets',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API CI-4 Plus / SL | MB 228.3 | SAE 15W-40.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 7.5L / 10L / 20L Bucket / 210L Drum',
@@ -2194,6 +2212,8 @@ async function main() {
       ],
       specsText: 'API CI-4 Plus / SL | MB 228.3 | SAE 15W-40',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2238,15 +2258,23 @@ async function main() {
       subCategoryTitle: 'Engine Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+      descriptionTitle: 'Description',
+
       description:
         '100% full synthetic motor oil delivering maximum fuel efficiency and cold-cranking protection for modern petrol/diesel cars.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Modern Turbocharged Cars, SUVs, Hybrid Powertrains',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API SP | ILSAC GF-6 | Full Synthetic.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 1L / 3.5L / 4L Canister / 210L Drum',
@@ -2255,6 +2283,8 @@ async function main() {
       ],
       specsText: 'API SP | ILSAC GF-6 | Full Synthetic',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2299,15 +2329,23 @@ async function main() {
       subCategoryTitle: 'Gear Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Multi-purpose extreme pressure gear lubricant formulated for hypoid, spiral bevel, and synchromesh gearboxes.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Manual Transmissions, Hypoid Differentials, Steering Gears',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API GL-4 | IS:1118-1992 | EP 90.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 1L / 5L / 20L Bucket / 210L Drum',
@@ -2316,6 +2354,8 @@ async function main() {
       ],
       specsText: 'API GL-4 | IS:1118-1992 | EP 90',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2360,15 +2400,23 @@ async function main() {
       subCategoryTitle: 'Gear Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Premium lead-free extreme pressure industrial gear oil with excellent demulsibility and anti-micropitting defense.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Steel Rolling Mills, Cement Ball Mills, Paper Machine Drives',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 220 | DIN 51517 Part 3 (CLP) | AGMA 9005-E02.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 20L Bucket / 210L Refinery Barrel / Bulk Road Tanker',
@@ -2377,6 +2425,8 @@ async function main() {
       ],
       specsText: 'ISO VG 220 | DIN 51517 Part 3 (CLP) | AGMA 9005-E02',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2421,15 +2471,23 @@ async function main() {
       subCategoryTitle: 'Gear Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Heavy-duty industrial enclosed gear lubricant built to withstand continuous heavy shock loading and high temperatures.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Crusher Gearboxes, Extruders, Heavy Mining Conveyors',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 320 | DIN 51517 Part 3 | US Steel 224.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 20L / 210L Drum / Tanker Delivery',
@@ -2438,6 +2496,8 @@ async function main() {
       ],
       specsText: 'ISO VG 320 | DIN 51517 Part 3 | US Steel 224',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2482,15 +2542,23 @@ async function main() {
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'High performance anti-wear hydraulic oil providing oxidation stability, anti-foam, and rapid water separation.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Plastic Injection Molding, CNC Hydraulic Packs, Hydraulic Presses',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 68 | DIN 51524 Part 2 (HLP) | Parker Denison HF-0.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 20L Bucket / 210L Refinery Barrel / Bulk Road Tanker',
@@ -2499,6 +2567,8 @@ async function main() {
       ],
       specsText: 'ISO VG 68 | DIN 51524 Part 2 (HLP) | Parker Denison HF-0',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2543,15 +2613,23 @@ async function main() {
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Premium anti-wear hydraulic oil formulated for rotary vane, piston, and gear type hydraulic pumps under severe duty.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Mobile Construction Equipment, Machine Tool Hydraulics, Forklifts',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 46 | DIN 51524 Part 2 | Eaton Vickers I-286-S.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 20L / 210L Drum / Bulk Tanker',
@@ -2560,6 +2638,8 @@ async function main() {
       ],
       specsText: 'ISO VG 46 | DIN 51524 Part 2 | Eaton Vickers I-286-S',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2604,15 +2684,23 @@ async function main() {
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Light viscosity anti-wear fluid designed for tight-clearance servo valves and high-cycle industrial automation.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Servo-Controlled Machine Tools, Precision Robotics, Low Temp Hydraulics',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 32 | DIN 51524 Part 2 | High Viscosity Index.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 20L Bucket / 210L Drum',
@@ -2621,6 +2709,8 @@ async function main() {
       ],
       specsText: 'ISO VG 32 | DIN 51524 Part 2 | High Viscosity Index',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2665,15 +2755,23 @@ async function main() {
       subCategoryTitle: 'Greases',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Premium multi-purpose lithium grease with high mechanical shear stability, anti-rust, and water resistance.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Electric Motor Bearings, Industrial Rollers, General Plant Lubrication',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting NLGI 2 | Lithium Base | Drop Point 190°C.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 1kg / 5kg / 18kg Pail / 180kg Barrel',
@@ -2682,6 +2780,8 @@ async function main() {
       ],
       specsText: 'NLGI 2 | Lithium Base | Drop Point 190°C',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2726,15 +2826,23 @@ async function main() {
       subCategoryTitle: 'Greases',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'High shear resistance grease designed specifically for automotive wheel bearings and heavy industrial shaft collars.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Commercial Truck Wheel Bearings, Textile Machinery, Farm Equipment',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting NLGI 3 | Premium Lithium Soap | Drop Point 195°C.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 500g / 1kg / 3kg / 18kg Pail / 180kg Drum',
@@ -2743,6 +2851,8 @@ async function main() {
       ],
       specsText: 'NLGI 3 | Premium Lithium Soap | Drop Point 195°C',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2787,15 +2897,23 @@ async function main() {
       subCategoryTitle: 'Greases',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'High drop point extreme-pressure grease formulated for continuous operation in furnace cars, asphalt dryers, and steel plants.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Furnace Rollers, Cement Kiln Exhaust Fans, Continuous Casters',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting NLGI 2 | Lithium Complex EP | Drop Point >260°C.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 18kg Pail / 180kg Drum',
@@ -2804,6 +2922,8 @@ async function main() {
       ],
       specsText: 'NLGI 2 | Lithium Complex EP | Drop Point >260°C',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2848,15 +2968,23 @@ async function main() {
       subCategoryTitle: 'Industrial Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Inhibited steam and gas turbine oil offering exceptional oxidation resistance and rapid air release.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Power Plant Turbines, Centrifugal Compressors, Heavy Hydro Plants',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 46 | DIN 51515 Part 1 (L-TD) | GE GEK 32568.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 210L Refinery Barrel / Bulk Tanker',
@@ -2865,6 +2993,8 @@ async function main() {
       ],
       specsText: 'ISO VG 46 | DIN 51515 Part 1 (L-TD) | GE GEK 32568',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2909,15 +3039,23 @@ async function main() {
       subCategoryTitle: 'Industrial Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Severe duty reciprocating and screw air compressor oil designed to prevent carbon valve build-up.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Reciprocating Air Compressors, Rotary Screw Compressors',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 68 | DIN 51506 VDL | Low Carbon Residue.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 20L Bucket / 210L Drum',
@@ -2926,6 +3064,8 @@ async function main() {
       ],
       specsText: 'ISO VG 68 | DIN 51506 VDL | Low Carbon Residue',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -2970,15 +3110,23 @@ async function main() {
       subCategoryTitle: 'Specialty Products',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Uninhibited mineral insulating electrical oil with superior cooling properties and low dielectric dissipation factor.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'High Voltage Transformers, Switchgear, Circuit Breakers',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting IEC 60296 | IS:335 | High Breakdown Voltage >60 kV.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 210L Sealed Refinery Drum / Dedicated Tanker Delivery',
@@ -2987,6 +3135,8 @@ async function main() {
       ],
       specsText: 'IEC 60296 | IS:335 | High Breakdown Voltage >60 kV',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3031,15 +3181,23 @@ async function main() {
       subCategoryTitle: 'Specialty Products',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Mineral based circulating heat transfer fluid designed to resist cracking and thermal sludge formation in closed heat systems.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Textile Processing, Chemical Reactors, Plywood Presses',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 32 | High Bulk Thermal Stability to 300°C.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by HP Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from HP Lubricants',
         'Packaging sizes: 210L Drum / Bulk Delivery',
@@ -3048,6 +3206,8 @@ async function main() {
       ],
       specsText: 'ISO VG 32 | High Bulk Thermal Stability to 300°C',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3092,15 +3252,23 @@ async function main() {
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Advanced full synthetic passenger car engine oil delivering maximum thermal breakdown protection.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Turbocharged Gasoline Engines, European Passenger Cars',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API SP / SN Plus | ACEA A3/B4 | Full Synthetic.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Valvoline.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Valvoline',
         'Packaging sizes: 1L / 4L / 210L Drum',
@@ -3109,6 +3277,8 @@ async function main() {
       ],
       specsText: 'API SP / SN Plus | ACEA A3/B4 | Full Synthetic',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3153,15 +3323,23 @@ async function main() {
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'High viscosity mineral engine oil providing thick protective film under high ambient heat.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Commercial Taxis, Heavy Duty Utility Vehicles',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API SL/CF | Multi-Grade Engine Protection.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Valvoline.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Valvoline',
         'Packaging sizes: 1L / 5L / 50L / 210L Drum',
@@ -3170,6 +3348,8 @@ async function main() {
       ],
       specsText: 'API SL/CF | Multi-Grade Engine Protection',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3214,15 +3394,23 @@ async function main() {
       subCategoryTitle: 'Commercial Vehicle Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Exclusively endorsed by Cummins, offering extended drain intervals and superior oxidation resistance.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Cummins Diesel Engines, Highway Fleets, Mining Haulers',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Cummins CES 20086 | API CK-4 / CJ-4 | SAE 15W-40.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Valvoline.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Valvoline',
         'Packaging sizes: 7.5L / 15L / 50L / 210L Drum',
@@ -3231,6 +3419,8 @@ async function main() {
       ],
       specsText: 'Cummins CES 20086 | API CK-4 / CJ-4 | SAE 15W-40',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3275,15 +3465,23 @@ async function main() {
       subCategoryTitle: 'Commercial Vehicle Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Engineered for high-mileage heavy commercial vehicles operating in severe road conditions.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Heavy Buses, Multi-Axle Trucks, Excavators',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API CI-4 / CH-4 | Volvo VDS-3 | MB 228.3.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Valvoline.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Valvoline',
         'Packaging sizes: 10L / 20L / 210L Drum',
@@ -3292,6 +3490,8 @@ async function main() {
       ],
       specsText: 'API CI-4 / CH-4 | Volvo VDS-3 | MB 228.3',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3336,15 +3536,23 @@ async function main() {
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Formulated for high-output natural gas and biogas stationary industrial engines.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Power Cogeneration Plants, Landfill Gas Gensets',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Low Ash Stationary Gas Engine Oil | SAE 40.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Valvoline.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Valvoline',
         'Packaging sizes: 208L Drum / Bulk Tanker',
@@ -3353,6 +3561,8 @@ async function main() {
       ],
       specsText: 'Low Ash Stationary Gas Engine Oil | SAE 40',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3397,15 +3607,23 @@ async function main() {
       subCategoryTitle: 'Greases',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Tacky extreme-pressure grease engineered for severe wash-off conditions and vibrating screens.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Mining Conveyors, Excavator Pivot Pins, Marine Terminals',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting NLGI 2 | Calcium Sulfonate Complex | High Water Washout.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Valvoline.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Valvoline',
         'Packaging sizes: 18kg Pail / 180kg Drum',
@@ -3414,6 +3632,8 @@ async function main() {
       ],
       specsText: 'NLGI 2 | Calcium Sulfonate Complex | High Water Washout',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3458,15 +3678,23 @@ async function main() {
       subCategoryTitle: 'Specialty Products',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Protects heavy diesel engine cylinder liners against cavitation and pitting for up to 1,000,000 km.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Heavy Diesel Cooling Systems, Industrial Gensets',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Organic Acid Technology (OAT) | ASTM D6210.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Valvoline.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Valvoline',
         'Packaging sizes: 5L / 20L / 210L Drum',
@@ -3475,6 +3703,8 @@ async function main() {
       ],
       specsText: 'Organic Acid Technology (OAT) | ASTM D6210',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3519,15 +3749,23 @@ async function main() {
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Top-tier polyalphaolefin synthetic oil for ultra-low friction and high thermal stability.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'High-End Performance Vehicles, Direct Injection Engines',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting 100% PAO Synthetic | API SP | ACEA C2/C3.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by GS Caltex.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from GS Caltex',
         'Packaging sizes: 1L / 4L Can / 200L Drum',
@@ -3536,6 +3774,8 @@ async function main() {
       ],
       specsText: '100% PAO Synthetic | API SP | ACEA C2/C3',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3580,14 +3820,22 @@ async function main() {
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+      descriptionTitle: 'Description',
+
       description: 'Low-SAPS heavy duty diesel engine oil preserving particulate filters (DPF).',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Euro VI Fleets, Heavy Construction Equipment',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API CK-4 / CJ-4 | Volvo VDS-4.5 | Cummins CES 20086.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by GS Caltex.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from GS Caltex',
         'Packaging sizes: 15L / 20L / 200L Drum',
@@ -3596,6 +3844,8 @@ async function main() {
       ],
       specsText: 'API CK-4 / CJ-4 | Volvo VDS-4.5 | Cummins CES 20086',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3640,15 +3890,23 @@ async function main() {
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'High anti-wear hydraulic oil providing rapid air release and exceptional thermal stability.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Industrial Hydraulic Systems, Precision Presses',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 68 | DIN 51524 Part 2 | Denison HF-0.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by GS Caltex.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from GS Caltex',
         'Packaging sizes: 20L / 200L Drum',
@@ -3657,6 +3915,8 @@ async function main() {
       ],
       specsText: 'ISO VG 68 | DIN 51524 Part 2 | Denison HF-0',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3701,15 +3961,23 @@ async function main() {
       subCategoryTitle: 'Greases',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Heavy multi-purpose grease offering high shear endurance and anti-rust protection.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Heavy Industrial Bearings, Truck Chassis',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting NLGI 2 | Premium Lithium EP | High Drop Point.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by GS Caltex.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from GS Caltex',
         'Packaging sizes: 18kg Pail / 180kg Drum',
@@ -3718,6 +3986,8 @@ async function main() {
       ],
       specsText: 'NLGI 2 | Premium Lithium EP | High Drop Point',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3762,15 +4032,23 @@ async function main() {
       subCategoryTitle: 'Specialty Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Synthetic based heat transfer fluid preventing carbon fouling in thermal boiler circuits.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Industrial Heaters, Chemical Reactors',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 32 | Operating Temp to 310°C.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by GS Caltex.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from GS Caltex',
         'Packaging sizes: 200L Drum / Bulk Tanker',
@@ -3779,6 +4057,8 @@ async function main() {
       ],
       specsText: 'ISO VG 32 | Operating Temp to 310°C',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3823,15 +4103,23 @@ async function main() {
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Ultra-low viscosity Japanese OEM synthetic motor oil delivering high thermal response.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Japanese OEM Cars, Hybrid Vehicles',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API SP | ILSAC GF-6A | Nano-Tailored Synthetic.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Idemitsu.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Idemitsu',
         'Packaging sizes: 1L / 3.5L / 200L Drum',
@@ -3840,6 +4128,8 @@ async function main() {
       ],
       specsText: 'API SP | ILSAC GF-6A | Nano-Tailored Synthetic',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3884,15 +4174,23 @@ async function main() {
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Formulated for ultra-high-speed CNC grinding and milling spindles exceeding 30,000 RPM.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'High-Speed CNC Spindles, Precision Internal Grinders',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Viscosity 2 cSt @ 40°C | Ultra-Low Friction.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Idemitsu.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Idemitsu',
         'Packaging sizes: 20L Can / 200L Drum',
@@ -3901,6 +4199,8 @@ async function main() {
       ],
       specsText: 'Viscosity 2 cSt @ 40°C | Ultra-Low Friction',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -3945,15 +4245,23 @@ async function main() {
       subCategoryTitle: 'Gear Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Precision Japanese industrial gear oil preventing micro-pitting under repetitive reverse torque.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Machine Tool Gearboxes, Robotic Drive Joints',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 220 | High EP | Sludge Resistant.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Idemitsu.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Idemitsu',
         'Packaging sizes: 20L / 200L Drum',
@@ -3962,6 +4270,8 @@ async function main() {
       ],
       specsText: 'ISO VG 220 | High EP | Sludge Resistant',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4006,15 +4316,23 @@ async function main() {
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Eliminates copper corrosion and valve sticking in electro-hydraulic servo machine tools.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Electro-Hydraulic Servo Systems, Plastic Injection Machines',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 46 | Ashless Non-Zinc | Long Drain.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Idemitsu.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Idemitsu',
         'Packaging sizes: 20L / 200L Drum',
@@ -4023,6 +4341,8 @@ async function main() {
       ],
       specsText: 'ISO VG 46 | Ashless Non-Zinc | Long Drain',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4067,15 +4387,23 @@ async function main() {
       subCategoryTitle: 'Greases',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'High-speed precision bearing grease with 3x longer life than conventional lithium soaps.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Precision Machine Tool Bearings, Robotic Linear Guides',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting NLGI 2 | Polyurea Thickener | Drop Point 260°C.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Idemitsu.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Idemitsu',
         'Packaging sizes: 16kg Pail / 180kg Drum',
@@ -4084,6 +4412,8 @@ async function main() {
       ],
       specsText: 'NLGI 2 | Polyurea Thickener | Drop Point 260°C',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4128,14 +4458,22 @@ async function main() {
       subCategoryTitle: 'Specialty Products',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description: 'Specialized dielectric fluid for spark erosion electrical discharge machines.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'CNC Sinker EDM Machines, Die & Mold Spark Erosion',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Synthetic Dielectric | Odorless | High Flash Point.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Idemitsu.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Idemitsu',
         'Packaging sizes: 20L / 200L Drum',
@@ -4144,6 +4482,8 @@ async function main() {
       ],
       specsText: 'Synthetic Dielectric | Odorless | High Flash Point',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4188,15 +4528,23 @@ async function main() {
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Synthetic ester chain lubricant that does not produce carbon varnishing in paint ovens and stenters.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Paint Shop Conveyors, Textile Stenter Chains, Glass Annealing',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Operating Temp to 280°C | Zero Residue Synthetic.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Molygraph Lubricants',
         'Packaging sizes: 20L Bucket / 210L Drum',
@@ -4205,6 +4553,8 @@ async function main() {
       ],
       specsText: 'Operating Temp to 280°C | Zero Residue Synthetic',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4249,14 +4599,22 @@ async function main() {
       subCategoryTitle: 'Specialty Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description: 'Sprayable open girth gear lubricant for rotary cement kilns and ball mills.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Cement Kiln Girth Gears, Sugar Mill Drives',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Asphalt-Free | Extreme Pressure Solid MoS2 Package.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Molygraph Lubricants',
         'Packaging sizes: 18kg Pail / 180kg Drum',
@@ -4265,6 +4623,8 @@ async function main() {
       ],
       specsText: 'Asphalt-Free | Extreme Pressure Solid MoS2 Package',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4309,15 +4669,23 @@ async function main() {
       subCategoryTitle: 'Greases',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Resists extreme shock loading, chemical exposure, and water flooding in rolling mills.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Steel Rolling Mills, Continuous Casters, Mining Wash Plants',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting NLGI 2 | Calcium Sulfonate Complex | 4-Ball Weld >600 kg.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Molygraph Lubricants',
         'Packaging sizes: 18kg Pail / 180kg Drum',
@@ -4326,6 +4694,8 @@ async function main() {
       ],
       specsText: 'NLGI 2 | Calcium Sulfonate Complex | 4-Ball Weld >600 kg',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4370,15 +4740,23 @@ async function main() {
       subCategoryTitle: 'Metalworking Fluids',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Prevents die scoring and galling in severe deep drawing and heavy gauge sheet stamping.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Automotive Body Panel Stamping, Deep Drawing Presses',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Chlorine-Free EP Lubricant | Water Washable.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Molygraph Lubricants',
         'Packaging sizes: 20L / 210L Drum',
@@ -4387,6 +4765,8 @@ async function main() {
       ],
       specsText: 'Chlorine-Free EP Lubricant | Water Washable',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4431,15 +4811,23 @@ async function main() {
       subCategoryTitle: 'Assembly & Maintenance Products',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Prevents thread galling, welding, and corrosion on high-heat turbine bolts and exhaust studs.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Turbine Casing Studs, Furnace Flanges, Exhaust Manifolds',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Operating Temp to 1100°C | Lead-Free.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Molygraph Lubricants.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Molygraph Lubricants',
         'Packaging sizes: 500g Tin / 1kg / 5kg / 20kg Pail',
@@ -4448,6 +4836,8 @@ async function main() {
       ],
       specsText: 'Operating Temp to 1100°C | Lead-Free',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4492,15 +4882,23 @@ async function main() {
       subCategoryTitle: 'Metalworking Fluids',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Long-life machining emulsion delivering high tool lubricity on titanium, inconel, and stainless alloys.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Aerospace Multi-Axis CNC, High Pressure Through-Spindle Machining',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Bio-Stable Semi-Synthetic Coolant | Chlorine & Boron Free.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Motul Tech.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Motul Tech',
         'Packaging sizes: 20L / 208L Drum',
@@ -4509,6 +4907,8 @@ async function main() {
       ],
       specsText: 'Bio-Stable Semi-Synthetic Coolant | Chlorine & Boron Free',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4553,15 +4953,23 @@ async function main() {
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Resists thermal cracking and deposit formation in high-heat industrial circulation boilers.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Plastic Molding Heaters, Chemical Reactors',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 32 | High Thermal Stability to 320°C.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Motul Tech.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Motul Tech',
         'Packaging sizes: 208L Drum / Bulk Tanker',
@@ -4570,6 +4978,8 @@ async function main() {
       ],
       specsText: 'ISO VG 32 | High Thermal Stability to 320°C',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4614,14 +5024,22 @@ async function main() {
       subCategoryTitle: 'Greases',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description: 'Engineered for high-temperature furnace exhaust bearings and drying fans.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Furnace Fans, Asphalt Processing',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Synthetic Base | Operating Temp to 300°C.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Motul Tech.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Motul Tech',
         'Packaging sizes: 18kg Pail / 180kg Drum',
@@ -4630,6 +5048,8 @@ async function main() {
       ],
       specsText: 'Synthetic Base | Operating Temp to 300°C',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4674,15 +5094,23 @@ async function main() {
       subCategoryTitle: 'Specialty Products',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Delivers maximum surface hardness without distortion during steel heat treatment.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Gear Tooth Hardening, Bearing Ring Quenching',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Accelerated Quench Speed | Low Drag-Out.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Motul Tech.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Motul Tech',
         'Packaging sizes: 208L Drum',
@@ -4691,6 +5119,8 @@ async function main() {
       ],
       specsText: 'Accelerated Quench Speed | Low Drag-Out',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4735,15 +5165,23 @@ async function main() {
       subCategoryTitle: 'Maintenance Solutions',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Quick-drying degreasing solvent for machine tools and metal parts before painting.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Machine Shop Maintenance, Pre-Assembly Cleaning',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Zero-Residue Solvent | High Dielectric.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Motul Tech.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Motul Tech',
         'Packaging sizes: 20L Canister / 208L Drum',
@@ -4752,6 +5190,8 @@ async function main() {
       ],
       specsText: 'Zero-Residue Solvent | High Dielectric',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4796,15 +5236,23 @@ async function main() {
       subCategoryTitle: 'Air Compressors',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Continuous duty direct-coupled industrial screw compressor with smart micro-processor control.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Manufacturing Plants, Textile Automation, Automotive Assembly',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting 37 kW (50 HP) | 215 CFM @ 8 Bar | Direct Drive.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Deep Pneumatics',
         'Packaging sizes: Complete Unit',
@@ -4813,6 +5261,8 @@ async function main() {
       ],
       specsText: '37 kW (50 HP) | 215 CFM @ 8 Bar | Direct Drive',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4857,15 +5307,23 @@ async function main() {
       subCategoryTitle: 'Pneumatic Products',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Clean moisture separation, precise pressure regulation, and micro-fog lubrication for air tools.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Pneumatic Tool Lines, Machine Tool Air Prep',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting 1/2" to 1" Port | 5 Micron Filtration | Auto Drain.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Deep Pneumatics',
         'Packaging sizes: Box Unit',
@@ -4874,6 +5332,8 @@ async function main() {
       ],
       specsText: '1/2" to 1" Port | 5 Micron Filtration | Auto Drain',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4918,14 +5378,22 @@ async function main() {
       subCategoryTitle: 'Air Treatment Solutions',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description: 'Eliminates pipe condensation, rust, and water damage across factory air lines.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'CNC Machine Air Lines, Spray Painting Booths',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting +3°C Pressure Dew Point | R134a Eco Refrigerant.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Deep Pneumatics',
         'Packaging sizes: Self-Contained Cabinet',
@@ -4934,6 +5402,8 @@ async function main() {
       ],
       specsText: '+3°C Pressure Dew Point | R134a Eco Refrigerant',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -4978,15 +5448,23 @@ async function main() {
       subCategoryTitle: 'Industrial Equipment',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Dampens compressor pulsations and acts as a surge storage tank for high-demand bursts.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Centralized Compressed Air Utility',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting 1000 Liters | 10 Bar Design Pressure | ASME Certified.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Deep Pneumatics',
         'Packaging sizes: Vertical Vessel',
@@ -4995,6 +5473,8 @@ async function main() {
       ],
       specsText: '1000 Liters | 10 Bar Design Pressure | ASME Certified',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5039,15 +5519,23 @@ async function main() {
       subCategoryTitle: 'Compressor Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Prevents varnish and carbon sludge in high-temperature rotary screw compressors.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Rotary Screw Air Compressors, Continuous Duty Vane Units',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 46 | 100% PAO Synthetic | 8000 Operating Hours.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Deep Pneumatics.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Deep Pneumatics',
         'Packaging sizes: 20L Bucket / 210L Drum',
@@ -5056,6 +5544,8 @@ async function main() {
       ],
       specsText: 'ISO VG 46 | 100% PAO Synthetic | 8000 Operating Hours',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5100,15 +5590,23 @@ async function main() {
       subCategoryTitle: 'Engine Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Multi-grade commercial diesel fluid designed for heavy transport and off-road engines.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Commercial Fleet Vehicles, Industrial Tractors',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting API CI-4 / SL | Heavy Fleet Protection.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Lubricon.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Lubricon',
         'Packaging sizes: 20L / 210L Drum',
@@ -5117,6 +5615,8 @@ async function main() {
       ],
       specsText: 'API CI-4 / SL | Heavy Fleet Protection',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5161,15 +5661,23 @@ async function main() {
       subCategoryTitle: 'Gear Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Heavy anti-scuff industrial gear fluid for enclosed helical and bevel gearboxes.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Industrial Gearboxes, Crusher Drives',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 220 | High EP | DIN 51517 Part 3.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Lubricon.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Lubricon',
         'Packaging sizes: 20L / 210L Drum',
@@ -5178,6 +5686,8 @@ async function main() {
       ],
       specsText: 'ISO VG 220 | High EP | DIN 51517 Part 3',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5222,14 +5732,22 @@ async function main() {
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description: 'High anti-wear hydraulic oil for heavy duty industrial pumps and presses.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Hydraulic Machinery, Die Casting Machines',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 68 | Anti-Wear | DIN 51524 Part 2.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Lubricon.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Lubricon',
         'Packaging sizes: 20L / 210L Drum',
@@ -5238,6 +5756,8 @@ async function main() {
       ],
       specsText: 'ISO VG 68 | Anti-Wear | DIN 51524 Part 2',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5282,15 +5802,23 @@ async function main() {
       subCategoryTitle: 'Greases',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'General plant multi-purpose grease offering high shear endurance under heavy vibration.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Conveyor Bearings, Industrial Rollers',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting NLGI 2 | Lithium Complex Soap | High Drop Point.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Lubricon.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Lubricon',
         'Packaging sizes: 18kg Pail / 180kg Drum',
@@ -5299,6 +5827,8 @@ async function main() {
       ],
       specsText: 'NLGI 2 | Lithium Complex Soap | High Drop Point',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5343,15 +5873,23 @@ async function main() {
       subCategoryTitle: 'Specialty Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Mineral circulating heat transfer oil with high resistance to thermal degradation.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Industrial Process Heaters, Plywood Hot Presses',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Thermal Fluid | Operating Temp to 300°C.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Lubricon.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Lubricon',
         'Packaging sizes: 210L Drum / Bulk Tanker',
@@ -5360,6 +5898,8 @@ async function main() {
       ],
       specsText: 'Thermal Fluid | Operating Temp to 300°C',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5404,15 +5944,23 @@ async function main() {
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Eliminates jerky stick-slip motion on horizontal CNC machine tool ways and slides.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Horizontal CNC Lathes, Milling Machine Slideways',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting ISO VG 68 | Anti-Stick-Slip | DIN 51502 CGLP.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Lubricon.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Lubricon',
         'Packaging sizes: 20L Bucket / 210L Drum',
@@ -5421,6 +5969,8 @@ async function main() {
       ],
       specsText: 'ISO VG 68 | Anti-Stick-Slip | DIN 51502 CGLP',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5465,15 +6015,23 @@ async function main() {
       subCategoryTitle: 'Industrial Chemicals',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Removes stubborn machining oils, greases, and carbon deposits from metal parts.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Ultrasonic Wash Tanks, Pre-Assembly Cleaning',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Fast Evaporating | Zero Residue | Non-Corrosive.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by TW Chemin.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from TW Chemin',
         'Packaging sizes: 20L Can / 200L Drum',
@@ -5482,6 +6040,8 @@ async function main() {
       ],
       specsText: 'Fast Evaporating | Zero Residue | Non-Corrosive',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5526,15 +6086,23 @@ async function main() {
       subCategoryTitle: 'Lubrication Solutions',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'High performance cutting fluid designed for steel, cast iron, and aluminum alloys.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'CNC Milling & Turning, High Pressure Drilling',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Biostable Emulsion | Chlorine-Free | Anti-Foam.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by TW Chemin.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from TW Chemin',
         'Packaging sizes: 20L / 200L Drum',
@@ -5543,6 +6111,8 @@ async function main() {
       ],
       specsText: 'Biostable Emulsion | Chlorine-Free | Anti-Foam',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5587,15 +6157,23 @@ async function main() {
       subCategoryTitle: 'Specialty Chemicals',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Displaces water instantly from wet machined parts, leaving an anti-corrosion barrier.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Export Packaging, Intermediate Storage Parts',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Rapid Dewatering | Thin Oily Film | 12+ Months Protection.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by TW Chemin.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from TW Chemin',
         'Packaging sizes: 20L / 200L Drum',
@@ -5604,6 +6182,8 @@ async function main() {
       ],
       specsText: 'Rapid Dewatering | Thin Oily Film | 12+ Months Protection',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5648,15 +6228,23 @@ async function main() {
       subCategoryTitle: 'Maintenance Products',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Frees rusted bolts, displaces moisture from electrical circuits, and stops squeaks.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Maintenance Toolkits, Electrical Switchgear Maintenance',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting High Dielectric | Penetrating & Lubricating.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by TW Chemin.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from TW Chemin',
         'Packaging sizes: 500ml Aerosol / 5L Can / 20L Can',
@@ -5665,6 +6253,8 @@ async function main() {
       ],
       specsText: 'High Dielectric | Penetrating & Lubricating',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5709,15 +6299,23 @@ async function main() {
       subCategoryTitle: 'Oil Mist Collectors',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Direct-drive centrifugal unit removing oil mist and returning condensed coolant into the sump.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'CNC Turning Centers, Milling Enclosures',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Airflow 1250 m³/h | 1.1 kW Motor | Low Noise 70 dB(A).',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Filtermist.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Filtermist',
         'Packaging sizes: Complete Collector Unit',
@@ -5726,6 +6324,8 @@ async function main() {
       ],
       specsText: 'Airflow 1250 m³/h | 1.1 kW Motor | Low Noise 70 dB(A)',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5770,15 +6370,23 @@ async function main() {
       subCategoryTitle: 'Oil Mist Collectors',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Higher throughput extraction unit for high-pressure through-spindle coolant CNC centers.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'High-Pressure Machining Centers, Large Enclosures',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Airflow 1750 m³/h | 1.5 kW | High Volume Mist Extraction.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Filtermist.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Filtermist',
         'Packaging sizes: Complete Collector Unit',
@@ -5787,6 +6395,8 @@ async function main() {
       ],
       specsText: 'Airflow 1750 m³/h | 1.5 kW | High Volume Mist Extraction',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5831,15 +6441,23 @@ async function main() {
       subCategoryTitle: 'Filtration Systems',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Mounted on top of the Filtermist collector to eliminate dry smoke and sub-micron oil particulate.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Neat Oil Machining, High Speed Grinding Smoke',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Efficiency 99.95% @ 0.3 Micron | H13 Standard.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Filtermist.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Filtermist',
         'Packaging sizes: Filter Pack',
@@ -5848,6 +6466,8 @@ async function main() {
       ],
       specsText: 'Efficiency 99.95% @ 0.3 Micron | H13 Standard',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5892,15 +6512,23 @@ async function main() {
       subCategoryTitle: 'Industrial Air Filtration',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Captures dense smoke generated by heat treatment and severe high-speed machining.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Heat Treatment Shops, Heavy Machining Plants',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Multi-Stage High Performance Sub-Micron Filtration.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Filtermist.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Filtermist',
         'Packaging sizes: Filtration Unit',
@@ -5909,6 +6537,8 @@ async function main() {
       ],
       specsText: 'Multi-Stage High Performance Sub-Micron Filtration',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',
@@ -5953,15 +6583,23 @@ async function main() {
       subCategoryTitle: 'Extraction Solutions',
       containerImage:
         'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+      descriptionTitle: 'Description',
+
       description:
         'Monitors airflow volume and alerts machine operators when afterfilters require maintenance.',
+      applicationAreasTitle: 'Application Areas',
+
       applicationAreas: 'Continuous Airflow Monitoring, Preventive Maintenance',
+      performanceBenefitsTitle: 'Performance Benefits',
+
       performanceBenefits: [
         'Formulated for severe-duty performance meeting Digital LED Status Indicator | Airflow & Filter Monitor.',
         'Maximum thermal stability, oxidation resistance, and extended equipment operational life.',
         'Robust boundary-film lubrication minimizing friction and mechanical downtime.',
         'Guaranteed 100% original manufacturer distribution stock by Filtermist.',
       ],
+      specialFeaturesTitle: 'Special Features',
+
       specialFeatures: [
         'Authorized factory supply from Filtermist',
         'Packaging sizes: Sensor Gauge Kit',
@@ -5970,6 +6608,8 @@ async function main() {
       ],
       specsText: 'Digital LED Status Indicator | Airflow & Filter Monitor',
       tableHeaders: ['Property', 'Value'],
+      propertiesTableTitle: 'Physico-Chemical Properties',
+
       propertiesTable: [
         {
           property: 'Brand / Manufacturer',

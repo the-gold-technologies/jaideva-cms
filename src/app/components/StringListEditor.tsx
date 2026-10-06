@@ -68,13 +68,13 @@ export function StringListEditor({
   return (
     <div className="flex flex-col gap-3 w-full">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <label className="text-[11px] font-black text-gray-600 uppercase tracking-widest">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2 min-w-0">
+          <label className="text-[11px] font-bold text-gray-700 uppercase tracking-wider whitespace-nowrap truncate">
             {label}
           </label>
           {items.length > 0 && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C86218]/10 text-[#C86218] border border-[#C86218]/20">
+            <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C86218]/10 text-[#C86218] border border-[#C86218]/20">
               {items.length}
             </span>
           )}
@@ -82,7 +82,7 @@ export function StringListEditor({
         <button
           type="button"
           onClick={handleAdd}
-          className="inline-flex items-center gap-1.5 text-[11px] font-bold text-white bg-[#C86218] hover:bg-[#A5501A] px-3 py-1.5 rounded-xl transition-all shadow-sm hover:shadow cursor-pointer"
+          className="shrink-0 inline-flex items-center gap-1.5 text-[11px] font-bold text-white bg-[#C86218] hover:bg-[#A5501A] px-3 py-1.5 rounded-xl transition-all shadow-sm hover:shadow cursor-pointer"
         >
           <Plus className="w-3 h-3" />
           Add
