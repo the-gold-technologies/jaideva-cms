@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { cachedJson, noCacheJson, errorJson, buildSeoObject } from '@/lib/apiHelpers';
 import { prisma } from '@/lib/prisma';
 import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
@@ -12,7 +11,7 @@ export async function GET(request: Request) {
 
     if (slug && slug !== EVENTS_SLUG) {
       const event = await prisma.event.findUnique({ where: { slug } });
-      return cachedJson({ success: true, data: event, seo: null }, { maxAge: 120, staleWhileRevalidate: 600 });
+      return NextResponse.json({ success: true, data: event, seo: null });
     }
 
     // 1. Fetch static Page Sections for events page
@@ -40,7 +39,11 @@ export async function GET(request: Request) {
         }
       : null;
 
-    return cachedJson({ success: true, data: sectionsMap, seo }, { maxAge: 120, staleWhileRevalidate: 600 });
+    return NextResponse.json({
+      success: true,
+      data: sectionsMap,
+      seo,
+    });
   } catch (error) {
     console.error('Error fetching events:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -105,7 +108,7 @@ export async function PUT(request: Request) {
       }
     }
 
-    return noCacheJson({ success: true });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error saving events sections:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });

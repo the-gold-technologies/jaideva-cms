@@ -41,15 +41,15 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
   useEffect(() => {
     if (initialData) {
       if (initialData.bannerImage) setImages([initialData.bannerImage]);
-      if (initialData.badge) setBadge(initialData.badge);
-      if (initialData.heading) setHeading(initialData.heading);
-      if (initialData.tagline) setTagline(initialData.tagline);
-      if (initialData.description) setDescription(initialData.description);
-      if (initialData.altText) setAltText(initialData.altText);
-      if (initialData.ctaPrimaryText) setCtaPrimaryText(initialData.ctaPrimaryText);
-      if (initialData.ctaPrimaryUrl) setCtaPrimaryUrl(initialData.ctaPrimaryUrl);
-      if (initialData.ctaSecondaryText) setCtaSecondaryText(initialData.ctaSecondaryText);
-      if (initialData.ctaSecondaryUrl) setCtaSecondaryUrl(initialData.ctaSecondaryUrl);
+      setBadge(initialData.badge || "");
+      setHeading(initialData.heading || "");
+      setTagline(initialData.tagline || "");
+      setDescription(initialData.description || "");
+      setAltText(initialData.altText || "");
+      setCtaPrimaryText(initialData.ctaPrimaryText || "");
+      setCtaPrimaryUrl(initialData.ctaPrimaryUrl || "");
+      setCtaSecondaryText(initialData.ctaSecondaryText || "");
+      setCtaSecondaryUrl(initialData.ctaSecondaryUrl || "");
     }
   }, [initialData]);
 
@@ -108,7 +108,7 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
       <SectionHeader
         title="1. Hero Banner"
-        description="Set the main heading, tagline, description text, banner image, and action buttons for the About Us hero section."
+        description="Set the main heading, tagline, description text, and banner image for the About Us hero section."
         badge={`${validCount} Banner`}
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}

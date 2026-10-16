@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { cachedJson, noCacheJson, errorJson, buildSeoObject } from '@/lib/apiHelpers';
 import { prisma } from '@/lib/prisma';
 import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
@@ -26,7 +25,7 @@ export async function GET(request: Request) {
         schema: product.schema,
         headingOptions: product.headingOptions,
       };
-      return cachedJson({ success: true, data: product, seo }, { maxAge: 60, staleWhileRevalidate: 300 });
+      return NextResponse.json({ success: true, data: product, seo });
     }
 
     if (slug) {
@@ -45,7 +44,7 @@ export async function GET(request: Request) {
         schema: product.schema,
         headingOptions: product.headingOptions,
       };
-      return cachedJson({ success: true, data: product, seo }, { maxAge: 60, staleWhileRevalidate: 300 });
+      return NextResponse.json({ success: true, data: product, seo });
     }
 
     const where: any = {};
@@ -80,7 +79,11 @@ export async function GET(request: Request) {
       }
     }
 
-    return cachedJson({ success: true, data: { products, categories }, seo }, { maxAge: 60, staleWhileRevalidate: 300 });
+    return NextResponse.json({
+      success: true,
+      data: { products, categories },
+      seo,
+    });
   } catch (error) {
     console.error('Error fetching products:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -113,7 +116,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return noCacheJson({ success: true, data: product });
+    return NextResponse.json({ success: true, data: product });
   } catch (error) {
     console.error('Error creating product:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -176,7 +179,7 @@ export async function DELETE(request: Request) {
       where: { id },
     });
 
-    return noCacheJson({ success: true });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error deleting product:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });

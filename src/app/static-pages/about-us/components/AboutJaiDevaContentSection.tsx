@@ -28,20 +28,15 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
 
   useEffect(() => {
     if (initialData) {
-      setMainTitle(initialData.title || '');
-      setMentorSubHeader(initialData.subtitle || '');
-      setEstBadge(initialData.estBadge || '');
-      setFounderRole(initialData.founderRole || '');
-      setFounderName(initialData.founderName || '');
-      setFounderNote(initialData.founderNote || '');
-
+      setMainTitle(initialData.title || "");
+      setMentorSubHeader(initialData.subtitle || "");
+      setEstBadge(initialData.estBadge || "");
+      setFounderRole(initialData.founderRole || "");
+      setFounderName(initialData.founderName || "");
+      setFounderNote(initialData.founderNote || "");
+      setParagraphsText(initialData.paragraph || "");
       if (initialData.image) {
         setImages([initialData.image]);
-      }
-      if (Array.isArray(initialData.paragraphs)) {
-        setParagraphsText(initialData.paragraphs.join('\n\n'));
-      } else if (typeof initialData.paragraphs === 'string') {
-        setParagraphsText(initialData.paragraphs);
       }
     }
   }, [initialData]);
@@ -57,15 +52,10 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
         if (uploadedUrl) finalImageUrl = uploadedUrl;
       }
 
-      const paragraphs = paragraphsText
-        .split('\n\n')
-        .map((p) => p.trim())
-        .filter(Boolean);
-
       const payload = {
         title: mainTitle.trim(),
         subtitle: mentorSubHeader.trim(),
-        paragraphs,
+        paragraph: paragraphsText.trim(),
         image: finalImageUrl,
         estBadge: estBadge.trim(),
         founderRole: founderRole.trim(),
@@ -98,7 +88,7 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
   };
 
   const paragraphCount = paragraphsText
-    .split('\n\n')
+    .split(/\n\s*\n/)
     .map((p) => p.trim())
     .filter(Boolean).length;
 
@@ -107,7 +97,7 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
       <SectionHeader
         title="2. Company Story & Mentor Profile"
         description="Edit the company background, mentor leadership, founder photo, and narrative paragraphs."
-        badge={`${paragraphCount} Paragraphs`}
+        badge="Story Content"
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
       />

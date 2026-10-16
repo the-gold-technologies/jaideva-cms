@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { PageHeader } from '@/components/PageHeader';
+import React, { useState, useEffect } from "react";
+import { PageHeader } from "@/components/PageHeader";
 import {
   AboutHeroSection,
   AboutJaiDevaContentSection,
@@ -9,25 +9,37 @@ import {
   OurJourneySection,
   AboutWhyChooseSection,
   AboutImageGallerySection,
-} from './components';
+} from "./components";
 
 export default function AboutUsPageEditor() {
+  const [mounted, setMounted] = useState(false);
   const [aboutData, setAboutData] = useState<any>(null);
 
   useEffect(() => {
+    setMounted(true);
     async function loadAboutData() {
       try {
-        const res = await fetch('/api/about-us');
-        const json = await res.json();
+        const res = await fetch("/api/about-us", { cache: "no-store" });
+        if (!res.ok) {
+          console.error("HTTP error fetching /api/about-us:", res.status);
+          return;
+        }
+        const text = await res.text();
+        if (!text || text.trim() === "") return;
+        const json = JSON.parse(text);
         if (json.success && json.data) {
           setAboutData(json.data);
         }
       } catch (err) {
-        console.error('Failed to load about us data:', err);
+        console.error("Failed to load about us data:", err);
       }
     }
     loadAboutData();
   }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   const whyChooseData =
     aboutData?.AboutWhyChooseSection ||
@@ -51,10 +63,10 @@ export default function AboutUsPageEditor() {
       />
 
       {/* 1. Hero */}
-      <AboutHeroSection initialData={aboutData?.AboutHero} />
+      <AboutHeroSection key={aboutData ? "hero-loaded" : "hero-loading"} initialData={aboutData?.AboutHero} />
 
       {/* 2. Story & Mentor */}
-      <AboutJaiDevaContentSection initialData={aboutData?.AboutJaiDevaContent} />
+      <AboutJaiDevaContentSection key={aboutData ? "story-loaded" : "story-loading"} initialData={aboutData?.AboutJaiDevaContent} />
 
       {/* 3. Team Structure */}
       <OurTeamStructureSection initialData={aboutData?.OurTeamStructureSection} />

@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { cachedJson, noCacheJson, errorJson, buildSeoObject } from '@/lib/apiHelpers';
 import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
@@ -94,7 +93,7 @@ export async function GET() {
       }
     }
 
-    return cachedJson({ success: true, data: result }, { maxAge: 300, staleWhileRevalidate: 900 });
+    return NextResponse.json({ success: true, data: result });
   } catch (error) {
     console.error('Error fetching nav links:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -152,7 +151,7 @@ export async function PUT(request: Request) {
       }
     }
 
-    return noCacheJson({ success: true });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error updating nav links:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });

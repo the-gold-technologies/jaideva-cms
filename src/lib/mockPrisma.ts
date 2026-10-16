@@ -456,8 +456,18 @@ let mockPages: any[] = [
         type: 'AboutHero',
         order: 0,
         content: {
-          image: '/About-HPCL.jpg',
-          altText: 'About JAI DEVA OIL CO. Banner',
+          badge: 'About Jai Deva Oil Co.',
+          heading: 'BUILT ON TRUST SINCE 2007',
+          tagline: 'Less You Burn, the More You Earn',
+          description:
+            'Jai Deva Oil Co. is a multi-brand industrial and automotive lubricant distributor. We source, stock, and supply genuine oils, greases, and specialty fluids for plants, fleets, and workshops — with quality checks and dependable regional delivery.',
+          bannerImage:
+            'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+          altText: 'Jai Deva Oil Co. lubricant warehouse and supply',
+          ctaPrimaryText: 'Read our story',
+          ctaPrimaryUrl: '#about-story',
+          ctaSecondaryText: 'Talk to us',
+          ctaSecondaryUrl: '',
         },
       },
       {
@@ -467,50 +477,15 @@ let mockPages: any[] = [
         order: 1,
         content: {
           title: 'ABOUT JAI DEVA OIL CO.',
-          mainTitle: 'ABOUT JAI DEVA OIL CO.',
           subtitle: 'Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co.',
-          mentorSubHeader: 'Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.',
-          proprietorSubHeader: 'Mr. Mayank Goyal – Mentor, Jai Deva Oil Co.',
-          paragraphs: [
-            'Established in the year 2008, Jai Deva Oil Co. is the leading prominent Wholesaler, Distributor, and Trader of Lubricants Oil, Engine Oil, Automotive Grease, Hydraulic Oil, Cutting Oil, Gear Oil, Rust Preventive Oil and much more. Made by making use of finest quality inputs altogether with superior machinery, these are very much-admired and recommended. Also, these are tested carefully before getting delivered at the end of our customers. To add, their effectiveness, these are enormously popular. Accessible with us in a plethora of sizes and packing, these could be purchased from us at most affordable costs.',
-            "Our team of professionals keeps a check on clients' rising necessities and therefore aids us in meeting the same in certain period of time. Owing to our quality centric approach, we have been highly proficient to meet the desires of clients all over the marketplace. Also, we have with us a team of skilled and dexterous professionals who own years of expertise in this business realm.",
-            'We are headed by our mentor Mr. Mayank Goyal, who has enormous knowledge and experience of the field. Owing to his balanced business plans and policies, we have attained a noteworthy position in the industry.',
-          ],
-          whyChooseTitle: 'WHY CHOOSE JAI DEVA OIL CO.',
-          whyChooseSubtitle: 'Delivering Quality Lubricants. Building Trust Since 2008.',
-          whyChooseItems: [
-            {
-              icon: 'Building2',
-              title: 'Multi-Brand Distributor',
-              description: 'Catering to diverse industrial and automotive sectors nationwide.',
-            },
-            {
-              icon: 'Boxes',
-              title: 'Wide Product Range',
-              description: 'Industrial oils, automotive lubricants, greases, and specialty fluids.',
-            },
-            {
-              icon: 'Wrench',
-              title: 'Technical Expertise',
-              description:
-                'Professional guidance for selecting the right products for every application.',
-            },
-            {
-              icon: 'Truck',
-              title: 'Reliable Supply',
-              description: 'Consistent product availability with timely delivery.',
-            },
-            {
-              icon: 'ShieldCheck',
-              title: 'Quality Assurance',
-              description: 'Only genuine, high-performance industrial products.',
-            },
-            {
-              icon: 'Headphones',
-              title: 'Customer-Centric Support',
-              description: 'Dedicated service to ensure long-term customer satisfaction.',
-            },
-          ],
+          estBadge: 'Est. 2007',
+          founderRole: 'Mentor & Proprietor',
+          founderName: 'Mr. Mayank Goyal',
+          founderNote: 'Jai Deva Oil Co. — Trusted Lubricant Distribution',
+          image:
+            'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80',
+          paragraph:
+            "Established in the year 2007, Jai Deva Oil Co. is the leading prominent Wholesaler, Distributor, and Trader of Lubricants Oil, Engine Oil, Automotive Grease, Hydraulic Oil, Cutting Oil, Gear Oil, Rust Preventive Oil and much more. Made by making use of finest quality inputs altogether with superior machinery, these are very much-admired and recommended.\n\nAlso, these are tested carefully before getting delivered at the end of our customers. To add to their effectiveness, these are enormously popular. Accessible with us in a plethora of sizes and packaging, these can be purchased from us at most affordable costs. We source our products only from recognized and verified brands across the marketplace, each of which is tested carefully before delivery to our customers.\n\nOur team of professionals keeps a close watch on clients' evolving requirements, helping us meet them within a defined period of time. Owing to our quality-centric approach, we have been highly proficient in meeting the needs of clients across the marketplace, backed by a team of skilled and dexterous professionals with years of expertise in this business.\n\nWe are headed by our mentor Mr. Mayank Goyal, who brings extensive knowledge and experience to the field. Owing to his balanced business plans and policies, we have attained a noteworthy position in the industry.",
         },
       },
       {
