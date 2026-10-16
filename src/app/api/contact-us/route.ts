@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { cachedJson, noCacheJson, errorJson, buildSeoObject } from '@/lib/apiHelpers';
 import { prisma } from '@/lib/prisma';
 import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
@@ -32,13 +33,7 @@ export async function GET() {
         }
       : null;
 
-    return NextResponse.json({
-      success: true,
-      data: {
-        sections: sectionsMap,
-      },
-      seo,
-    });
+    return cachedJson({ success: true, data: { sections: sectionsMap }, seo }, { maxAge: 120, staleWhileRevalidate: 600 });
   } catch (error) {
     console.error('Error fetching contact-us:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -85,7 +80,7 @@ export async function PUT(request: Request) {
         });
       }
 
-      return NextResponse.json({ success: true });
+      return noCacheJson({ success: true });
     }
 
     // 2. Full object update

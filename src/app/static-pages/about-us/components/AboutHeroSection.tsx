@@ -1,20 +1,25 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
-import { SectionHeader } from '@/components/SectionHeader';
-import { InputField } from '@/components/InputField';
-import { TextAreaField } from '@/components/TextAreaField';
-import { ImageUploadField } from '@/components/ImageUploadField';
-import { SaveButton } from '@/components/SaveButton';
-import { uploadFiles } from '@/lib/uploadHelpers';
+import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import { SectionHeader } from "@/components/SectionHeader";
+import { InputField } from "@/components/InputField";
+import { TextAreaField } from "@/components/TextAreaField";
+import { ImageUploadField } from "@/components/ImageUploadField";
+import { SaveButton } from "@/components/SaveButton";
+import { uploadFiles } from "@/lib/uploadHelpers";
 
 export interface AboutHeroData {
+  badge?: string;
   heading?: string;
   tagline?: string;
   description?: string;
   bannerImage?: string;
   altText?: string;
+  ctaPrimaryText?: string;
+  ctaPrimaryUrl?: string;
+  ctaSecondaryText?: string;
+  ctaSecondaryUrl?: string;
 }
 
 export function AboutHeroSection({ initialData }: { initialData?: any }) {
@@ -22,19 +27,29 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [images, setImages] = useState<(File | string | null)[]>(['']);
-  const [heading, setHeading] = useState('');
-  const [tagline, setTagline] = useState('');
-  const [description, setDescription] = useState('');
-  const [altText, setAltText] = useState('');
+  const [images, setImages] = useState<(File | string | null)[]>([""]);
+  const [badge, setBadge] = useState("");
+  const [heading, setHeading] = useState("");
+  const [tagline, setTagline] = useState("");
+  const [description, setDescription] = useState("");
+  const [altText, setAltText] = useState("");
+  const [ctaPrimaryText, setCtaPrimaryText] = useState("");
+  const [ctaPrimaryUrl, setCtaPrimaryUrl] = useState("");
+  const [ctaSecondaryText, setCtaSecondaryText] = useState("");
+  const [ctaSecondaryUrl, setCtaSecondaryUrl] = useState("");
 
   useEffect(() => {
     if (initialData) {
       if (initialData.bannerImage) setImages([initialData.bannerImage]);
+      if (initialData.badge) setBadge(initialData.badge);
       if (initialData.heading) setHeading(initialData.heading);
       if (initialData.tagline) setTagline(initialData.tagline);
       if (initialData.description) setDescription(initialData.description);
       if (initialData.altText) setAltText(initialData.altText);
+      if (initialData.ctaPrimaryText) setCtaPrimaryText(initialData.ctaPrimaryText);
+      if (initialData.ctaPrimaryUrl) setCtaPrimaryUrl(initialData.ctaPrimaryUrl);
+      if (initialData.ctaSecondaryText) setCtaSecondaryText(initialData.ctaSecondaryText);
+      if (initialData.ctaSecondaryUrl) setCtaSecondaryUrl(initialData.ctaSecondaryUrl);
     }
   }, [initialData]);
 
@@ -44,39 +59,44 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
     try {
       const validImages = images.filter((img): img is File | string => !!img);
       if (validImages.length === 0) {
-        toast.error('Please upload a hero banner image.');
+        toast.error("Please upload a hero banner image.");
         setLoading(false);
         return;
       }
 
       const [uploadedUrl] = await uploadFiles(validImages);
-      const finalImageUrl = uploadedUrl || '';
+      const finalImageUrl = uploadedUrl || "";
 
       const payload: AboutHeroData = {
+        badge: badge.trim(),
         heading: heading.trim(),
         tagline: tagline.trim(),
         description: description.trim(),
         bannerImage: finalImageUrl,
         altText: altText.trim(),
+        ctaPrimaryText: ctaPrimaryText.trim(),
+        ctaPrimaryUrl: ctaPrimaryUrl.trim(),
+        ctaSecondaryText: ctaSecondaryText.trim(),
+        ctaSecondaryUrl: ctaSecondaryUrl.trim(),
       };
 
-      const res = await fetch('/api/about-us', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ section: 'AboutHero', content: payload }),
+      const res = await fetch("/api/about-us", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ section: "AboutHero", content: payload }),
       });
 
       const json = await res.json();
       if (json.success) {
         setSaved(true);
         setImages([finalImageUrl]);
-        toast.success('Hero Banner saved successfully');
+        toast.success("Hero Banner saved successfully");
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || 'Failed to save');
+        toast.error(json.error || "Failed to save");
       }
     } catch (err: any) {
-      toast.error(err?.message || 'Error saving hero banner');
+      toast.error(err?.message || "Error saving hero banner");
     } finally {
       setLoading(false);
     }
@@ -88,7 +108,7 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
     <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 flex flex-col gap-4 transition-all">
       <SectionHeader
         title="1. Hero Banner"
-        description="Set the main heading, tagline, description text, and banner image for the About Us hero section."
+        description="Set the main heading, tagline, description text, banner image, and action buttons for the About Us hero section."
         badge={`${validCount} Banner`}
         isOpen={isOpen}
         onToggle={() => setIsOpen(!isOpen)}
@@ -96,11 +116,19 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
         }`}
       >
         <div className="overflow-hidden">
           <div className="flex flex-col gap-6 pt-4">
+            <InputField
+              label="Eyebrow / Badge Text"
+              value={badge}
+              onChange={(e) => setBadge(e.target.value)}
+              placeholder="e.g. About Jai Deva Oil Co."
+              tooltip="Tag shown with factory icon above the main title"
+            />
+
             {/* Text fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <InputField
@@ -113,7 +141,7 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
                 label="Tagline (Sub-heading)"
                 value={tagline}
                 onChange={(e) => setTagline(e.target.value)}
-                placeholder="e.g. Mr. Mayank Goyal – Mentor & Proprietor"
+                placeholder="e.g. Less You Burn, the More You Earn"
               />
             </div>
 
@@ -140,6 +168,43 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
               onChange={(e) => setAltText(e.target.value)}
               placeholder="e.g. About Jai Deva Oil Co. lubricant warehouse"
             />
+
+            {/* Call to Action Buttons */}
+            <div className="pt-2 border-t border-gray-100 flex flex-col gap-4">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">Call to Action Buttons</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="flex flex-col gap-3 p-4 rounded-2xl bg-gray-50/70 border border-gray-100">
+                  <span className="text-xs font-semibold text-gray-700">Primary Button (Solid Orange)</span>
+                  <InputField
+                    label="Button Text"
+                    value={ctaPrimaryText}
+                    onChange={(e) => setCtaPrimaryText(e.target.value)}
+                    placeholder="e.g. Read our story"
+                  />
+                  <InputField
+                    label="Button Link / Anchor"
+                    value={ctaPrimaryUrl}
+                    onChange={(e) => setCtaPrimaryUrl(e.target.value)}
+                    placeholder="e.g. #about-story or /products"
+                  />
+                </div>
+                <div className="flex flex-col gap-3 p-4 rounded-2xl bg-gray-50/70 border border-gray-100">
+                  <span className="text-xs font-semibold text-gray-700">Secondary Button (Outlined)</span>
+                  <InputField
+                    label="Button Text"
+                    value={ctaSecondaryText}
+                    onChange={(e) => setCtaSecondaryText(e.target.value)}
+                    placeholder="e.g. Talk to us"
+                  />
+                  <InputField
+                    label="Button Link (Optional)"
+                    value={ctaSecondaryUrl}
+                    onChange={(e) => setCtaSecondaryUrl(e.target.value)}
+                    placeholder="Leave empty for enquiry popup, or e.g. /contact-us"
+                  />
+                </div>
+              </div>
+            </div>
 
             <div className="pt-4 border-t border-gray-100">
               <SaveButton

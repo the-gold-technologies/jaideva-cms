@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { cachedJson, noCacheJson, errorJson, buildSeoObject } from '@/lib/apiHelpers';
 import { prisma } from '@/lib/prisma';
 import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
@@ -27,7 +28,7 @@ export async function GET(request: Request) {
               headingOptions: blogPage.headingOptions,
             }
           : null;
-        return NextResponse.json({ success: true, data: blog, seo });
+        return cachedJson({ success: true, data: blog, seo }, { maxAge: 60, staleWhileRevalidate: 300 });
       }
       return NextResponse.json({ success: true, data: blog, seo: null });
     }
@@ -50,7 +51,7 @@ export async function GET(request: Request) {
               headingOptions: blogPage.headingOptions,
             }
           : null;
-        return NextResponse.json({ success: true, data: blog, seo });
+        return cachedJson({ success: true, data: blog, seo }, { maxAge: 60, staleWhileRevalidate: 300 });
       }
       return NextResponse.json({ success: true, data: blog, seo: null });
     }
@@ -85,14 +86,7 @@ export async function GET(request: Request) {
         }
       : null;
 
-    return NextResponse.json({
-      success: true,
-      data: {
-        blogs,
-        sections: sectionsMap,
-      },
-      seo,
-    });
+    return cachedJson({ success: true, data: { blogs, sections: sectionsMap }, seo }, { maxAge: 60, staleWhileRevalidate: 300 });
   } catch (error) {
     console.error('Error fetching blogs:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -139,7 +133,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ success: true, data: created });
+    return noCacheJson({ success: true, data: created });
   } catch (error) {
     console.error('Error creating blog post:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -190,7 +184,7 @@ export async function PUT(request: Request) {
       },
     });
 
-    return NextResponse.json({ success: true, data: updated });
+    return noCacheJson({ success: true, data: updated });
   } catch (error) {
     console.error('Error updating blog post:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -212,7 +206,7 @@ export async function DELETE(request: Request) {
     }
 
     await prisma.blogPost.delete({ where: { id } });
-    return NextResponse.json({ success: true });
+    return noCacheJson({ success: true });
   } catch (error) {
     console.error('Error deleting blog post:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });

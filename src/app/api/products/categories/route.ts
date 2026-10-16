@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { cachedJson, noCacheJson, errorJson, buildSeoObject } from '@/lib/apiHelpers';
 import { prisma } from '@/lib/prisma';
 
 export async function GET() {
@@ -11,7 +12,7 @@ export async function GET() {
         },
       },
     });
-    return NextResponse.json({ success: true, data: categories });
+    return cachedJson({ success: true, data: categories }, { maxAge: 120, staleWhileRevalidate: 600 });
   } catch (error) {
     console.error('Error fetching categories:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -57,7 +58,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ success: true, data: created });
+    return noCacheJson({ success: true, data: created });
   } catch (error: any) {
     console.error('Error creating category:', error);
     if (error.code === 'P2002') {
@@ -113,7 +114,7 @@ export async function PUT(request: Request) {
       },
     });
 
-    return NextResponse.json({ success: true, data: updated });
+    return noCacheJson({ success: true, data: updated });
   } catch (error: any) {
     console.error('Error updating category:', error);
     return NextResponse.json(
@@ -139,7 +140,7 @@ export async function DELETE(request: Request) {
       where: { id },
     });
 
-    return NextResponse.json({ success: true });
+    return noCacheJson({ success: true });
   } catch (error: any) {
     console.error('Error deleting category:', error);
     return NextResponse.json(

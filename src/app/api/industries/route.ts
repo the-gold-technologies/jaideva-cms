@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { cachedJson, noCacheJson, errorJson, buildSeoObject } from '@/lib/apiHelpers';
 import { prisma } from '@/lib/prisma';
 import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
@@ -12,7 +13,7 @@ export async function GET() {
     });
 
     if (!page) {
-      return NextResponse.json({ success: true, data: {}, seo: null });
+      return cachedJson({ success: true, data: {}, seo: null }, { maxAge: 120, staleWhileRevalidate: 600 });
     }
 
     const sectionsMap: Record<string, any> = {};
@@ -30,7 +31,7 @@ export async function GET() {
       headingOptions: page.headingOptions,
     };
 
-    return NextResponse.json({ success: true, data: sectionsMap, seo });
+    return cachedJson({ success: true, data: sectionsMap, seo }, { maxAge: 120, staleWhileRevalidate: 600 });
   } catch (error) {
     console.error('Error fetching industries page data:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -97,7 +98,7 @@ export async function PUT(request: Request) {
       }
     }
 
-    return NextResponse.json({ success: true });
+    return noCacheJson({ success: true });
   } catch (error) {
     console.error('Error saving industries page sections:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });

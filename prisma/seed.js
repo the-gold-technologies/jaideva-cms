@@ -541,6 +541,7 @@ async function main() {
       type: 'AboutHero',
       order: 0,
       content: {
+        badge: 'About Jai Deva Oil Co.',
         heading: 'BUILT ON TRUST SINCE 2007',
         tagline: 'Less You Burn, the More You Earn',
         description:
@@ -548,6 +549,10 @@ async function main() {
         bannerImage:
           'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
         altText: 'Jai Deva Oil Co. lubricant warehouse and supply',
+        ctaPrimaryText: 'Read our story',
+        ctaPrimaryUrl: '#about-story',
+        ctaSecondaryText: 'Talk to us',
+        ctaSecondaryUrl: '',
       },
     },
     // 1. Story & Mentor Narrative

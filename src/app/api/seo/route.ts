@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { cachedJson, noCacheJson, errorJson, buildSeoObject } from '@/lib/apiHelpers';
 import { prisma } from '@/lib/prisma';
 import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
@@ -13,11 +14,11 @@ export async function GET(request: Request) {
       const pages = await prisma.page.findMany({
         orderBy: { order: 'asc' },
       });
-      return NextResponse.json({ success: true, data: pages });
+      return cachedJson({ success: true, data: pages }, { maxAge: 120, staleWhileRevalidate: 600 });
     }
 
     const config = await prisma.globalConfig.findFirst();
-    return NextResponse.json({ success: true, data: config });
+    return cachedJson({ success: true, data: config }, { maxAge: 120, staleWhileRevalidate: 600 });
   } catch (error) {
     console.error('Error fetching SEO config:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
@@ -52,7 +53,7 @@ export async function PUT(request: Request) {
         },
         update: seoData,
       });
-      return NextResponse.json({ success: true, data: updated });
+      return noCacheJson({ success: true, data: updated });
     }
 
     const existingConfig = await prisma.globalConfig.findUnique({ where: { id: 'global' } });
@@ -91,7 +92,7 @@ export async function PUT(request: Request) {
       });
     }
 
-    return NextResponse.json({ success: true, data: updatedConfig });
+    return noCacheJson({ success: true, data: updatedConfig });
   } catch (error) {
     console.error('Error saving SEO config:', error);
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
