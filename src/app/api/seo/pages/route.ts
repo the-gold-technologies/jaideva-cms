@@ -95,6 +95,10 @@ export async function GET() {
     let secondaryIndex = 50;
     for (const page of pages) {
       const normalizedSlug = page.slug.toLowerCase().trim();
+      // Skip nested product and blog subpages so they are accurately grouped under their parent categories / blogs
+      if (normalizedSlug.startsWith('products/') || normalizedSlug.startsWith('blogs/')) {
+        continue;
+      }
       if (!seenSlugs.has(normalizedSlug)) {
         seenSlugs.add(normalizedSlug);
         mergedData.push({
@@ -214,7 +218,7 @@ export async function GET() {
 
         mergedData.push({
           id: `blog-post-${blog.id}`,
-          pageId: blog.id,
+          pageId: matchedBlogPage?.id || blog.id,
           title: blog.title || 'Untitled Blog',
           slug: blogPageSlug,
           metaTitle: matchedBlogPage?.metaTitle || blog.title,
@@ -227,6 +231,35 @@ export async function GET() {
           navTitle: blog.title,
           isStatic: false,
           headingOptions: matchedBlogPage?.headingOptions,
+        });
+      }
+    }
+
+    // Also include any orphan blog pages in Page table starting with blogs/
+    for (const page of pages) {
+      const normalizedSlug = page.slug.toLowerCase().trim();
+      if (normalizedSlug.startsWith('blogs/') && !seenSlugs.has(normalizedSlug)) {
+        seenSlugs.add(normalizedSlug);
+        mergedData.push({
+          id: `page-${page.id}`,
+          pageId: page.id,
+          title:
+            page.title ||
+            page.slug
+              .replace(/^blogs\//, '')
+              .replace(/-/g, ' ')
+              .replace(/\b\w/g, (l: string) => l.toUpperCase()),
+          slug: page.slug,
+          metaTitle: page.metaTitle,
+          metaDescription: page.metaDescription,
+          type: 'Blog Article',
+          visibility: page.visibility,
+          parent: blogParentId,
+          order: 0,
+          description: page.description || `SEO Configuration for ${page.title || page.slug}`,
+          navTitle: page.title,
+          isStatic: false,
+          headingOptions: page.headingOptions,
         });
       }
     }

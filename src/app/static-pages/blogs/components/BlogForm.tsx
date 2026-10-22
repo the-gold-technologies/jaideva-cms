@@ -187,7 +187,6 @@ export function BlogForm({ blogId, isNew = false }: BlogFormProps) {
         coverImage: finalCoverUrl,
         content: {
           bodyHtml: editorContent,
-          intro: excerpt.trim(),
         },
         isPublished,
       };

@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { SectionHeader } from "@/components/SectionHeader";
-import { InputField } from "@/components/InputField";
-import { TextAreaField } from "@/components/TextAreaField";
-import { ImageUploadField } from "@/components/ImageUploadField";
-import { SaveButton } from "@/components/SaveButton";
-import { uploadFiles } from "@/lib/uploadHelpers";
+import React, { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
+import { SectionHeader } from '@/components/SectionHeader';
+import { InputField } from '@/components/InputField';
+import { TextAreaField } from '@/components/TextAreaField';
+import { ImageUploadField } from '@/components/ImageUploadField';
+import { SaveButton } from '@/components/SaveButton';
+import { uploadFiles } from '@/lib/uploadHelpers';
 
 export interface AboutHeroData {
   badge?: string;
@@ -27,29 +27,29 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  const [images, setImages] = useState<(File | string | null)[]>([""]);
-  const [badge, setBadge] = useState("");
-  const [heading, setHeading] = useState("");
-  const [tagline, setTagline] = useState("");
-  const [description, setDescription] = useState("");
-  const [altText, setAltText] = useState("");
-  const [ctaPrimaryText, setCtaPrimaryText] = useState("");
-  const [ctaPrimaryUrl, setCtaPrimaryUrl] = useState("");
-  const [ctaSecondaryText, setCtaSecondaryText] = useState("");
-  const [ctaSecondaryUrl, setCtaSecondaryUrl] = useState("");
+  const [images, setImages] = useState<(File | string | null)[]>(['']);
+  const [badge, setBadge] = useState('');
+  const [heading, setHeading] = useState('');
+  const [tagline, setTagline] = useState('');
+  const [description, setDescription] = useState('');
+  const [altText, setAltText] = useState('');
+  const [ctaPrimaryText, setCtaPrimaryText] = useState('');
+  const [ctaPrimaryUrl, setCtaPrimaryUrl] = useState('');
+  const [ctaSecondaryText, setCtaSecondaryText] = useState('');
+  const [ctaSecondaryUrl, setCtaSecondaryUrl] = useState('');
 
   useEffect(() => {
     if (initialData) {
       if (initialData.bannerImage) setImages([initialData.bannerImage]);
-      setBadge(initialData.badge || "");
-      setHeading(initialData.heading || "");
-      setTagline(initialData.tagline || "");
-      setDescription(initialData.description || "");
-      setAltText(initialData.altText || "");
-      setCtaPrimaryText(initialData.ctaPrimaryText || "");
-      setCtaPrimaryUrl(initialData.ctaPrimaryUrl || "");
-      setCtaSecondaryText(initialData.ctaSecondaryText || "");
-      setCtaSecondaryUrl(initialData.ctaSecondaryUrl || "");
+      setBadge(initialData.badge || '');
+      setHeading(initialData.heading || '');
+      setTagline(initialData.tagline || '');
+      setDescription(initialData.description || '');
+      setAltText(initialData.altText || '');
+      setCtaPrimaryText(initialData.ctaPrimaryText || '');
+      setCtaPrimaryUrl(initialData.ctaPrimaryUrl || '');
+      setCtaSecondaryText(initialData.ctaSecondaryText || '');
+      setCtaSecondaryUrl(initialData.ctaSecondaryUrl || '');
     }
   }, [initialData]);
 
@@ -59,13 +59,13 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
     try {
       const validImages = images.filter((img): img is File | string => !!img);
       if (validImages.length === 0) {
-        toast.error("Please upload a hero banner image.");
+        toast.error('Please upload a hero banner image.');
         setLoading(false);
         return;
       }
 
       const [uploadedUrl] = await uploadFiles(validImages);
-      const finalImageUrl = uploadedUrl || "";
+      const finalImageUrl = uploadedUrl || '';
 
       const payload: AboutHeroData = {
         badge: badge.trim(),
@@ -80,23 +80,23 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
         ctaSecondaryUrl: ctaSecondaryUrl.trim(),
       };
 
-      const res = await fetch("/api/about-us", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "AboutHero", content: payload }),
+      const res = await fetch('/api/about-us', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section: 'AboutHero', content: payload }),
       });
 
       const json = await res.json();
       if (json.success) {
         setSaved(true);
         setImages([finalImageUrl]);
-        toast.success("Hero Banner saved successfully");
+        toast.success('Hero Banner saved successfully');
         setTimeout(() => setSaved(false), 3000);
       } else {
-        toast.error(json.error || "Failed to save");
+        toast.error(json.error || 'Failed to save');
       }
     } catch (err: any) {
-      toast.error(err?.message || "Error saving hero banner");
+      toast.error(err?.message || 'Error saving hero banner');
     } finally {
       setLoading(false);
     }
@@ -116,7 +116,7 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
 
       <div
         className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
         }`}
       >
         <div className="overflow-hidden">
@@ -171,10 +171,14 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
 
             {/* Call to Action Buttons */}
             <div className="pt-2 border-t border-gray-100 flex flex-col gap-4">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">Call to Action Buttons</h4>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                Call to Action Buttons
+              </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-3 p-4 rounded-2xl bg-gray-50/70 border border-gray-100">
-                  <span className="text-xs font-semibold text-gray-700">Primary Button (Solid Orange)</span>
+                  <span className="text-xs font-semibold text-gray-700">
+                    Primary Button (Solid Orange)
+                  </span>
                   <InputField
                     label="Button Text"
                     value={ctaPrimaryText}
@@ -189,7 +193,9 @@ export function AboutHeroSection({ initialData }: { initialData?: any }) {
                   />
                 </div>
                 <div className="flex flex-col gap-3 p-4 rounded-2xl bg-gray-50/70 border border-gray-100">
-                  <span className="text-xs font-semibold text-gray-700">Secondary Button (Outlined)</span>
+                  <span className="text-xs font-semibold text-gray-700">
+                    Secondary Button (Outlined)
+                  </span>
                   <InputField
                     label="Button Text"
                     value={ctaSecondaryText}

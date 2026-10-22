@@ -28,13 +28,13 @@ export function AboutJaiDevaContentSection({ initialData }: { initialData?: any 
 
   useEffect(() => {
     if (initialData) {
-      setMainTitle(initialData.title || "");
-      setMentorSubHeader(initialData.subtitle || "");
-      setEstBadge(initialData.estBadge || "");
-      setFounderRole(initialData.founderRole || "");
-      setFounderName(initialData.founderName || "");
-      setFounderNote(initialData.founderNote || "");
-      setParagraphsText(initialData.paragraph || "");
+      setMainTitle(initialData.title || '');
+      setMentorSubHeader(initialData.subtitle || '');
+      setEstBadge(initialData.estBadge || '');
+      setFounderRole(initialData.founderRole || '');
+      setFounderName(initialData.founderName || '');
+      setFounderNote(initialData.founderNote || '');
+      setParagraphsText(initialData.paragraph || '');
       if (initialData.image) {
         setImages([initialData.image]);
       }
