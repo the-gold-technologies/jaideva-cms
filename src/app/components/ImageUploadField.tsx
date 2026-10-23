@@ -93,11 +93,21 @@ export const ImageUploadField: React.FC<ImageUploadFieldProps> = ({
           body: formData,
         });
 
-        const json = await res.json();
-        if (json.success && json.url) {
+        const contentType = res.headers.get('content-type') || '';
+        let json: any = null;
+        if (contentType.includes('application/json')) {
+          json = await res.json().catch(() => null);
+        }
+
+        if (res.ok && json?.success && json?.url) {
           uploadedUrls.push(json.url);
         } else {
-          toast.error(json.error || `Failed to upload ${file.name}`);
+          const errMsg =
+            json?.error ||
+            (res.status === 413
+              ? 'File is too large for server payload limits'
+              : `Upload failed (Status ${res.status})`);
+          toast.error(errMsg);
         }
       } catch (err: any) {
         console.error('Upload error:', err);

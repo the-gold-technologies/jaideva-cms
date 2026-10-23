@@ -50,12 +50,22 @@ export function PdfUploadField({
         body: formData,
       });
 
-      const json = await res.json();
-      if (json.success && json.url) {
+      const contentType = res.headers.get('content-type') || '';
+      let json: any = null;
+      if (contentType.includes('application/json')) {
+        json = await res.json().catch(() => null);
+      }
+
+      if (res.ok && json?.success && json?.url) {
         onChange(json.url);
         toast.success('PDF uploaded successfully', { id: toastId });
       } else {
-        toast.error(json.error || 'Upload failed', { id: toastId });
+        const errMsg =
+          json?.error ||
+          (res.status === 413
+            ? 'PDF file is too large for server payload limits'
+            : `Upload failed (Status ${res.status})`);
+        toast.error(errMsg, { id: toastId });
       }
     } catch {
       toast.error('Network error during PDF upload', { id: toastId });

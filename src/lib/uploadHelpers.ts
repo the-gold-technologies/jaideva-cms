@@ -20,11 +20,21 @@ export async function uploadFiles(files: File[] | FileList | (File | string)[]):
       body: formData,
     });
 
-    const data = await res.json();
-    if (res.ok && data.url) {
+    const contentType = res.headers.get('content-type') || '';
+    let data: any = null;
+    if (contentType.includes('application/json')) {
+      data = await res.json().catch(() => null);
+    }
+
+    if (res.ok && data?.url) {
       urls.push(data.url);
     } else {
-      throw new Error(data.error || 'Upload failed');
+      const errMsg =
+        data?.error ||
+        (res.status === 413
+          ? 'File is too large for server payload limits'
+          : `Upload failed with status ${res.status}`);
+      throw new Error(errMsg);
     }
   }
 

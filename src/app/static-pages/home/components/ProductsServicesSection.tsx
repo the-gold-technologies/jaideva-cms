@@ -74,12 +74,17 @@ function CircularImageDropzone({
         body: formData,
       });
 
-      const data = await res.json();
-      if (data.success && data.url) {
+      const contentType = res.headers.get('content-type') || '';
+      let data: any = null;
+      if (contentType.includes('application/json')) {
+        data = await res.json().catch(() => null);
+      }
+
+      if (res.ok && data?.success && data?.url) {
         onChange(data.url);
         toast.success('Image uploaded successfully');
       } else {
-        toast.error(data.error || 'Failed to upload image');
+        toast.error(data?.error || `Failed to upload image (${res.status})`);
       }
     } catch {
       toast.error('Error uploading image');

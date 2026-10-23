@@ -47,12 +47,22 @@ export function ImagePickerField({
         body: formData,
       });
 
-      const json = await res.json();
-      if (json.success && json.url) {
+      const contentType = res.headers.get('content-type') || '';
+      let json: any = null;
+      if (contentType.includes('application/json')) {
+        json = await res.json().catch(() => null);
+      }
+
+      if (res.ok && json?.success && json?.url) {
         onChange?.(json.url);
         toast.success('Image uploaded to Cloudinary successfully!', { id: toastId });
       } else {
-        toast.error(json.error || 'Failed to upload image', { id: toastId });
+        const errMsg =
+          json?.error ||
+          (res.status === 413
+            ? 'File is too large for server payload limits'
+            : `Upload failed (Status ${res.status})`);
+        toast.error(errMsg, { id: toastId });
       }
     } catch (err: any) {
       console.error('Upload error:', err);

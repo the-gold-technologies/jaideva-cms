@@ -3,10 +3,14 @@ import { cloudinary, deleteCloudinaryFileByUrl } from '@/lib/cloudinary';
 import sharp from 'sharp';
 import { PDFDocument } from 'pdf-lib';
 
+export const dynamic = 'force-dynamic';
+export const maxDuration = 60;
+
 export async function POST(request: Request) {
   try {
     const data = await request.formData();
-    const file: File | null = data.get('file') as unknown as File;
+    const file: File | null =
+      (data.get('file') as unknown as File) || (data.get('files') as unknown as File);
     const folder = (data.get('folder') as string) || 'jaidevaoil-assets/uploads';
 
     if (!file) {
@@ -21,19 +25,23 @@ export async function POST(request: Request) {
 
     const lowerName = filename.toLowerCase();
     const isSvg = mimeType.includes('svg') || lowerName.endsWith('.svg');
+    const isIco = mimeType.includes('icon') || lowerName.endsWith('.ico');
     const isPdf = mimeType.includes('pdf') || lowerName.endsWith('.pdf');
     const isImage =
       !isSvg &&
+      !isIco &&
       !isPdf &&
       (mimeType.startsWith('image/') ||
         ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.bmp', '.tiff', '.avif'].some((ext) =>
           lowerName.endsWith(ext)
         ));
 
+    let isWebpConverted = false;
+
     // 1. Image Optimization & WebP Conversion
     if (isImage) {
       try {
-        const image = sharp(buffer);
+        const image = sharp(buffer, { failOn: 'none' });
         const metadata = await image.metadata();
 
         let pipeline = image.rotate(); // Respect EXIF orientation
@@ -55,7 +63,7 @@ export async function POST(request: Request) {
         buffer = await pipeline
           .webp({
             quality: 82,
-            effort: 6,
+            effort: 4,
           })
           .toBuffer();
 
@@ -63,8 +71,10 @@ export async function POST(request: Request) {
         const baseName = filename.substring(0, filename.lastIndexOf('.')) || filename;
         filename = `${baseName}.webp`;
         resourceType = 'image';
+        isWebpConverted = true;
       } catch (imgErr) {
         console.warn('Image optimization skipped, using original buffer:', imgErr);
+        resourceType = 'image';
       }
     } else if (isPdf) {
       // 2. PDF Stream & Object Stream Compression
@@ -87,7 +97,7 @@ export async function POST(request: Request) {
         console.warn('PDF compression skipped, using original buffer:', pdfErr);
       }
       resourceType = 'image';
-    } else if (isSvg) {
+    } else if (isSvg || isIco) {
       resourceType = 'image';
     }
 
@@ -102,7 +112,7 @@ export async function POST(request: Request) {
         resource_type: resourceType,
       };
 
-      if (isImage) {
+      if (isWebpConverted) {
         uploadOptions.format = 'webp';
       } else if (isPdf) {
         uploadOptions.format = 'pdf';
@@ -118,10 +128,11 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       url: result.secure_url,
+      urls: [result.secure_url],
       publicId: result.public_id,
       name: filename,
       size: buffer.length,
-      format: result.format || (isPdf ? 'pdf' : isSvg ? 'svg' : 'webp'),
+      format: result.format || (isPdf ? 'pdf' : isSvg ? 'svg' : isIco ? 'ico' : 'webp'),
     });
   } catch (error: any) {
     console.error('Cloudinary upload error:', error);

@@ -66,9 +66,14 @@ export function RichTextEditor({
           body: formData,
         });
 
-        const json = await res.json();
-        if (json.success && json.urls && json.urls.length > 0) {
-          const imageUrl = json.urls[0];
+        const contentType = res.headers.get('content-type') || '';
+        let json: any = null;
+        if (contentType.includes('application/json')) {
+          json = await res.json().catch(() => null);
+        }
+
+        if (res.ok && json?.success && (json?.urls?.[0] || json?.url)) {
+          const imageUrl = json.urls?.[0] || json.url;
           const editor = quillRef.current?.getEditor?.();
 
           if (editor) {
