@@ -43,7 +43,7 @@ export default function LoginPage() {
         <div className="text-center mb-8">
           <div className="flex justify-center">
             <img
-              src="https://res.cloudinary.com/dpa93copz/image/upload/v1788504772/jaideva/logo/jaideva-main-logo.png"
+              src="https://res.cloudinary.com/lfsnye1i/image/upload/v1792743977/jaidevaoil-assets/logo/jaideva-main-logo.png"
               alt="Jai Deva Oil Co. Logo"
               className="h-16 w-auto object-contain"
             />

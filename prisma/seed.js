@@ -33,13 +33,13 @@ async function main() {
       phone: '+91 98120 22340',
       email: 'sales@jaideva.com',
       address: 'Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India',
-      logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1792176934/jaideva/logo/jaideva-logo.png',
+      logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744007/jaidevaoil-assets/logo/jaideva-logo.png',
       socialLinks: {
         facebook: 'https://www.facebook.com/',
         instagram: 'https://www.instagram.com/jaidevaoilco/?hl=en',
         linkedin: 'https://www.linkedin.com/company/81617692/',
         footerLogo:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1792176934/jaideva/logo/jaideva-logo.png',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744007/jaidevaoil-assets/logo/jaideva-logo.png',
         copyrightText: '© 2026 Jai Deva Oil Co. All rights reserved.',
       },
       robotsTxt: 'User-agent: *\nAllow: /\n\nSitemap: https://jaidevaoil.com/sitemap.xml',
@@ -53,13 +53,13 @@ async function main() {
       phone: '+91 98120 22340',
       email: 'sales@jaideva.com',
       address: 'Industrial Area & Regional Distribution Hub, Haryana / Delhi NCR, India',
-      logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1792176934/jaideva/logo/jaideva-logo.png',
+      logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744007/jaidevaoil-assets/logo/jaideva-logo.png',
       socialLinks: {
         facebook: 'https://www.facebook.com/',
         instagram: 'https://www.instagram.com/jaidevaoilco/?hl=en',
         linkedin: 'https://www.linkedin.com/company/81617692/',
         footerLogo:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1792176934/jaideva/logo/jaideva-logo.png',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744007/jaidevaoil-assets/logo/jaideva-logo.png',
         copyrightText: '© 2026 Jai Deva Oil Co. All rights reserved.',
       },
     },
@@ -171,7 +171,7 @@ async function main() {
         bgImage:
           'https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=2200&q=85',
         productImage:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       },
     },
     {
@@ -308,57 +308,57 @@ async function main() {
           {
             id: 'hp-lubricants',
             name: 'HP Lubricants',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672222/jaideva/brands/hp-lubricants.png',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743985/jaidevaoil-assets/brands/hp-lubricants.png',
           },
           {
             id: 'caltex',
             name: 'Caltex',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672216/jaideva/brands/caltex.svg',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743978/jaidevaoil-assets/brands/caltex.svg',
           },
           {
             id: 'motultech',
             name: 'MotulTech',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672226/jaideva/brands/motultech.png',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743991/jaidevaoil-assets/brands/motultech.png',
           },
           {
             id: 'itw-chemin',
             name: 'ITW Chemin',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672224/jaideva/brands/itw-chemin.png',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743987/jaidevaoil-assets/brands/itw-chemin.png',
           },
           {
             id: 'valvoline',
             name: 'Valvoline',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672228/jaideva/brands/valvoline.png',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743992/jaidevaoil-assets/brands/valvoline.png',
           },
           {
             id: 'lubricon',
             name: 'Lubricon',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672225/jaideva/brands/lubricon.png',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743988/jaidevaoil-assets/brands/lubricon.png',
           },
           {
             id: 'molygraph',
             name: 'Molygraph',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672225/jaideva/brands/molygraph.png',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743990/jaidevaoil-assets/brands/molygraph.png',
           },
           {
             id: 'gs-caltex',
             name: 'GS Caltex',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672221/jaideva/brands/gs-caltex.png',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743984/jaidevaoil-assets/brands/gs-caltex.png',
           },
           {
             id: 'idemitsu',
             name: 'Idemitsu',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672223/jaideva/brands/idemitsu.png',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743986/jaidevaoil-assets/brands/idemitsu.png',
           },
           {
             id: 'deep-pneumatics',
             name: 'Deep Pneumatics',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672218/jaideva/brands/deep-pneumatics.png',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743980/jaidevaoil-assets/brands/deep-pneumatics.png',
           },
           {
             id: 'filtermist',
             name: 'Filtermist',
-            logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1790672219/jaideva/brands/filtermist.svg',
+            logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743982/jaidevaoil-assets/brands/filtermist.svg',
           },
         ],
       },
@@ -436,7 +436,7 @@ async function main() {
       order: 9,
       content: {
         companyName: 'Jai Deva Oil Co.',
-        logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1792176934/jaideva/logo/jaideva-logo.png',
+        logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744007/jaidevaoil-assets/logo/jaideva-logo.png',
         address: 'Industrial Area & Distribution Hub, India',
         phone: '+91 98765 43210',
         workingHours: 'Working Hours: Mon - Sat: 9:00 AM - 6:30 PM',
@@ -549,7 +549,7 @@ async function main() {
         description:
           'Jai Deva Oil Co. is a multi-brand industrial and automotive lubricant distributor. We source, stock, and supply genuine oils, greases, and specialty fluids for plants, fleets, and workshops — with quality checks and dependable regional delivery.',
         bannerImage:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
         altText: 'Jai Deva Oil Co. lubricant warehouse and supply',
         ctaPrimaryText: 'Read our story',
         ctaPrimaryUrl: '#about-story',
@@ -565,7 +565,7 @@ async function main() {
         title: 'About Jai Deva Oil Co.',
         subtitle: 'Mr. Mayank Goyal – Mentor & Proprietor, Jai Deva Oil Co.',
         image:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1791180157/jaideva/about/mr-mayank-goyal.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744005/jaidevaoil-assets/about/mr-mayank-goyal.jpg',
         estBadge: 'Est. 2007',
         founderRole: 'Mentor & Proprietor',
         founderName: 'Mr. Mayank Goyal',
@@ -785,7 +785,7 @@ async function main() {
             desc: 'Covered, temperature-regulated depot equipped for high-density storage of 210L barrels, 20L pails, and IBC intermediate bulk containers.',
             badges: ['Batch Segregation', 'Spill Containment System'],
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
             icon: 'Warehouse',
           },
           {
@@ -807,7 +807,7 @@ async function main() {
             desc: 'Verification protocols ensuring every supplied barrel matches OEM specifications, viscosity standards, and valid refinery test certificates.',
             badges: ['OEM Specification Checks', 'Sealed Batch Integrity'],
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
             icon: 'ShieldCheck',
           },
           {
@@ -818,7 +818,7 @@ async function main() {
             desc: 'Logistics infrastructure ensuring on-schedule delivery across manufacturing clusters, power plants, and automotive workshops in 40+ cities.',
             badges: ['Fast Dispatch Routes', 'Zero In-Transit Contamination'],
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675167/jaideva/about/oil-fleet-logistics.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743997/jaidevaoil-assets/about/oil-fleet-logistics.jpg',
             icon: 'Truck',
           },
         ],
@@ -888,7 +888,7 @@ async function main() {
         description:
           'Jai Deva Oil Co. brings together the world’s most trusted lubricant manufacturers, application engineering expertise, and dependable regional stock for automotive, manufacturing, and heavy infrastructure plants.',
         bannerImage:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
         ctaPrimaryText: 'Explore Brand Portfolio',
         ctaPrimaryUrl: '#brand-showcase',
         ctaSecondaryText: 'Consult a Specialist',
@@ -917,9 +917,9 @@ async function main() {
         description:
           "A trusted brand behind a lubricant isn't a formality — it's the difference between predictable maintenance and catastrophic machinery downtime.",
         image:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
         sideImage:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
         verifiedBadge: 'AUTHORIZED REFINERY STOCKS',
         guaranteeTitle: 'REFINERY STOCK GUARANTEE',
         guaranteeTag: 'ISO VG 32 to 680',
@@ -969,7 +969,7 @@ async function main() {
             description:
               'Synthetic 5W-30, 15W-40 diesel fluids, multi-grade gear lubricants, and coolants.',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
             badge: 'API CK-4 / SN Plus',
           },
           {
@@ -977,7 +977,7 @@ async function main() {
             description:
               'ISO VG 32 to 680 heavy anti-wear hydraulic, turbine, and industrial circulating oils.',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
             badge: 'DIN 51524 / ISO 11158',
           },
           {
@@ -985,7 +985,7 @@ async function main() {
             description:
               'Factory-sealed 210L drums and bulk road tankers for continuous plant consumption.',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
             badge: '210L Drums & Tankers',
           },
           {
@@ -993,7 +993,7 @@ async function main() {
             description:
               'High thermal stability engine oils engineered for severe load and extended drain life.',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
             badge: 'Extended Drain Interval',
           },
           {
@@ -1001,7 +1001,7 @@ async function main() {
             description:
               'Lithium complex, polyurea, and synthetic extreme-pressure greases for bearings & kilns.',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
             badge: 'NLGI 00 to 3 / EP Pastes',
           },
           {
@@ -1009,7 +1009,7 @@ async function main() {
             description:
               'Bio-stable water-soluble cutting emulsions, grinding fluids, and rust preventives.',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
             badge: 'Chlorine-Free Emulsions',
           },
         ],
@@ -1025,7 +1025,7 @@ async function main() {
         description:
           'Our lubrication engineers map OEM engine viscosities (0W-20, 5W-30, 15W-40), industrial gear grades, and drain intervals to maximize your equipment life.',
         image:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
         buttonText: 'Request Engine Oil Quote',
         phoneText: 'Direct Dispatch Desk',
         phoneNumber: '+91 98111 23456',
@@ -1095,7 +1095,7 @@ async function main() {
         description:
           'Refinery-certified multi-brand oils, greases, and fluids tailored to minimize friction, extend machinery life, and cut your plant // operating costs.',
         bannerImage:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
         ctaPrimaryText: 'Explore Industries',
         ctaPrimaryUrl: '#sector-stage',
         ctaSecondaryText: 'Request Plant Quote',
@@ -1142,7 +1142,7 @@ async function main() {
             plantImage:
               'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80',
             oilImage:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
             headline: 'Extreme-Heat & Shock-Load Protection',
             promise: 'Resists 650°C radiant heat & eliminates bearing seizure',
             operatingCondition: 'Temps up to 650°C • Extreme Shock Load • Heavy Mill Scale',
@@ -1167,7 +1167,7 @@ async function main() {
             plantImage:
               'https://images.unsplash.com/photo-1541888946425-d0fbb186f5f7?auto=format&fit=crop&w=1200&q=80',
             oilImage:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
             headline: 'Abrasive Clinker Dust & Kiln Heat Resistance',
             promise: 'Prevents girth gear pitting and cuts relubrication cycles',
             operatingCondition: 'Kiln Drive 220°C • Fine Clinker Abrasives • High Vibration',
@@ -1188,7 +1188,7 @@ async function main() {
             plantImage:
               'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80',
             oilImage:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
             headline: 'Varnish-Free Ultra-Clean Turbine Fluids',
             promise: '20,000+ hour oxidation life with zero servo valve sticking',
             operatingCondition: 'Continuous 24/7 Run • Steam Condensation • High Thermal Stress',
@@ -1209,7 +1209,7 @@ async function main() {
             plantImage:
               'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=1200&q=80',
             oilImage:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
             headline: 'Heavy Fleet Efficiency & Press Hydraulics',
             promise: 'Maximizes fleet km/L fuel savings and extends oil drains to 80k km',
             operatingCondition: 'BS-VI DPF Aftertreatment • 250 Bar Stamping Cycle • Highway Hauls',
@@ -1230,7 +1230,7 @@ async function main() {
             plantImage:
               'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80',
             oilImage:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
             headline: 'Bio-Stable Coolants & Anti-Chatter Waylubes',
             promise: 'Extends tool life by 30% and eliminates slideway stick-slip',
             operatingCondition: '30,000 RPM Spindles • Micro-Tolerances • High Cutting Heat',
@@ -1254,7 +1254,7 @@ async function main() {
             plantImage:
               'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=80',
             oilImage:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
             headline: '100% Non-Toxic NSF H1 Certified Lubricants',
             promise: 'Guarantees food safety compliance and resists caustic steam washdowns',
             operatingCondition:
@@ -1275,7 +1275,7 @@ async function main() {
             plantImage:
               'https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=1200&q=80',
             oilImage:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
             headline: 'Zero-Staining Scourable Needle Oils & Chain Fluids',
             promise: 'Prevents fabric oil spots and resists carbonization in 240°C stenter ovens',
             operatingCondition: '1,200 Picks/min • 240°C Stenter Heat • High Lint Atmosphere',
@@ -1341,7 +1341,7 @@ async function main() {
             title: 'Heavy Industrial Gearboxes',
             spec: 'ISO VG 150 to 680 • FVA 54 Certified',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
             desc: 'Formulated with sulfur-phosphorus EP chemistry to eliminate gear tooth micropitting in continuous planetary and helical drives.',
             oilHighlight: 'HP Parthan EP / Mobilgear 600 XP / Omala S2 G',
             benefits: [
@@ -1356,7 +1356,7 @@ async function main() {
             title: 'High-Pressure Hydraulic Systems',
             spec: 'ISO VG 32, 46, 68 • DIN 51524 HLP/HVLP',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
             desc: 'Engineered for high-flow proportional servo valves with ultra-rapid air release and sub-3-micron filterability.',
             oilHighlight: 'HP Enklo / Mobil DTE 10 Excel / Tellus S2 MX',
             benefits: [
@@ -1371,7 +1371,7 @@ async function main() {
             title: 'Turbines & Rotary Compressors',
             spec: 'Non-Zinc Ashless • 20,000+ Hour Drain',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
             desc: 'Ashless non-zinc formulation delivering extreme oxidation resistance and zero lacquer formation across high-speed rotating shafts.',
             oilHighlight: 'HP Turbinol / Mobil DTE 700 / Rarus 427',
             benefits: [
@@ -1386,7 +1386,7 @@ async function main() {
             title: 'Heavy Bearings & Open Girth Gears',
             spec: 'NLGI 1, 2, 3 • High-Temp Synthetic Base',
             image:
-              'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+              'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
             desc: 'Heavy calcium sulfonate and polyurea greases with solid MoS2 for kiln hoods, vibrating screens, and heavy crusher bearings.',
             oilHighlight: 'Molygraph Ultra / Mobilith SHC / Gadus S2',
             benefits: [
@@ -1536,7 +1536,7 @@ async function main() {
         title: 'Contact Us',
         subtitle: '',
         image:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1787738184/mahalaxmi/contact/contact-us-banner.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743974/jaidevaoil-assets/contact/contact-us-banner.jpg',
         altText: 'Contact Us - Jai Deva Oil Co.',
       },
     },
@@ -1576,7 +1576,7 @@ async function main() {
         description:
           'Direct distribution hubs, administrative branches, and field teams across the northern industrial corridor.',
         regionalMapImage:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1791178976/jaideva/contact/operating-region-map.png',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744004/jaidevaoil-assets/contact/operating-region-map.png',
         quickJumpWarehouses: '🔴 Mandoli, Baghpat, Haridwar',
         quickJumpOffices: '🔵 Delhi HQ & Haridwar',
         quickJumpFieldHubs: '🟡 14 Field Presence Hubs',
@@ -1822,7 +1822,7 @@ async function main() {
       order: 0,
       content: {
         image:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1787737913/mahalaxmi/events/events-banner.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743972/jaidevaoil-assets/events/events-banner.jpg',
         altText: 'JAI DEVA OIL CO. Events & Activities Gallery Banner',
       },
     },
@@ -2028,7 +2028,7 @@ async function main() {
       fullDesc:
         "HP Lubricants is India's largest lubricant brand, offering an exhaustive spectrum of high-performance automotive and heavy industrial oils. Backed by state-of-the-art refinery testing, direct pipeline infrastructure, and ISO-certified batch blending, HP Lubricants ensures maximum machine longevity, thermal stability, and operational efficiency across critical power, steel, manufacturing, and transport infrastructure.",
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       isFeatured: true,
       order: 1,
     },
@@ -2039,7 +2039,7 @@ async function main() {
       fullDesc:
         "Valvoline has pioneered heavy fleet lubrication since 1866. Engineered specifically for severe-duty commercial transport, mining haulers, and high-hour industrial equipment, Valvoline's patented chemistry ensures maximum thermal breakdown defense, soot dispersion, and extended drain intervals.",
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
       isFeatured: true,
       order: 2,
     },
@@ -2050,7 +2050,7 @@ async function main() {
       fullDesc:
         "GS Caltex operates one of the world's largest single-site petroleum refineries and base oil manufacturing facilities. Its flagship Kixx lubricant portfolio leverages ultra-pure Group II and Group III synthetic base oils, ensuring superior oxidation resistance, reduced friction, and exceptional fuel economy under severe loads.",
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
       isFeatured: true,
       order: 3,
     },
@@ -2061,7 +2061,7 @@ async function main() {
       fullDesc:
         "Idemitsu is Japan's premier OEM lubricant partner, formulating factory-fill fluids for world-leading Japanese automotive and machinery manufacturers. Its specialized Daphne product line is engineered for high-speed spindles, EDM dielectric spark erosion, and ultra-tight tolerance CNC machine tools.",
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       isFeatured: true,
       order: 4,
     },
@@ -2072,7 +2072,7 @@ async function main() {
       fullDesc:
         "Molygraph is India's leading manufacturer of engineered specialty greases, anti-seize pastes, and high-temperature tribological lubricants. Built specifically for cement kilns, steel mills, continuous casters, and heavy forging plants where conventional lubricants melt or wash off under extreme pressure.",
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       isFeatured: true,
       order: 5,
     },
@@ -2083,7 +2083,7 @@ async function main() {
       fullDesc:
         "MotulTech is the dedicated heavy industrial division of France's Motul Group. Specializing in high-performance CNC metalworking coolants, neat cutting oils, dielectric spark erosion fluids, and accelerated quench oils, MotulTech products optimize tool life, machine uptime, and metal transformation quality.",
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       isFeatured: true,
       order: 6,
     },
@@ -2094,7 +2094,7 @@ async function main() {
       fullDesc:
         'Deep Pneumatics is an industrial leader providing high-efficiency rotary screw compressors, air treatment dryers, pneumatic filtration units, and custom synthetic compressor fluids. Engineered to provide continuous, carbon-free compressed air for critical automation, pneumatic machinery, and heavy industrial facilities.',
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       isFeatured: true,
       order: 7,
     },
@@ -2105,7 +2105,7 @@ async function main() {
       fullDesc:
         'Lubricon delivers customized industrial lubricant blends, precision slideway fluids, and plant-specific process oils formulated to match machinery configurations. Designed for continuous manufacturing lines, severe circulating sumps, heavy machine tools, and specialized industrial gear drives.',
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       isFeatured: true,
       order: 8,
     },
@@ -2116,7 +2116,7 @@ async function main() {
       fullDesc:
         'TW Chemin represents German precision chemical formulations for multi-axis CNC metal cutting, surface preparation, and long-term corrosion prevention. Formulated with bio-stable biocides, zero-chlorine lubricity boosters, and thin-film dewatering anti-corrosion barriers.',
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       isFeatured: true,
       order: 9,
     },
@@ -2127,7 +2127,7 @@ async function main() {
       fullDesc:
         "Filtermist is the international standard in oil mist collectors, centrifugal smoke eliminators, and workshop air filtration units since 1969. Engineered to capture hazardous oil mist directly at the CNC machine source, recover valuable coolants, and protect workers' health.",
       coverImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
       isFeatured: true,
       order: 10,
     },
@@ -2142,7 +2142,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Engine Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2213,7 +2213,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Engine Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2284,7 +2284,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Engine Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2355,7 +2355,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Gear Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2426,7 +2426,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Gear Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2497,7 +2497,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Gear Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2568,7 +2568,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2639,7 +2639,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2710,7 +2710,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2781,7 +2781,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Greases',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2852,7 +2852,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Greases',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2923,7 +2923,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Greases',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -2994,7 +2994,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Industrial Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3065,7 +3065,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Industrial Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3136,7 +3136,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Specialty Products',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3207,7 +3207,7 @@ async function main() {
       categoryName: 'HP Lubricants',
       subCategoryTitle: 'Specialty Products',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3278,7 +3278,7 @@ async function main() {
       categoryName: 'Valvoline',
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3349,7 +3349,7 @@ async function main() {
       categoryName: 'Valvoline',
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3420,7 +3420,7 @@ async function main() {
       categoryName: 'Valvoline',
       subCategoryTitle: 'Commercial Vehicle Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3491,7 +3491,7 @@ async function main() {
       categoryName: 'Valvoline',
       subCategoryTitle: 'Commercial Vehicle Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3562,7 +3562,7 @@ async function main() {
       categoryName: 'Valvoline',
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3633,7 +3633,7 @@ async function main() {
       categoryName: 'Valvoline',
       subCategoryTitle: 'Greases',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3704,7 +3704,7 @@ async function main() {
       categoryName: 'Valvoline',
       subCategoryTitle: 'Specialty Products',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3775,7 +3775,7 @@ async function main() {
       categoryName: 'GS Caltex',
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3846,7 +3846,7 @@ async function main() {
       categoryName: 'GS Caltex',
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
       descriptionTitle: 'Description',
 
       description: 'Low-SAPS heavy duty diesel engine oil preserving particulate filters (DPF).',
@@ -3916,7 +3916,7 @@ async function main() {
       categoryName: 'GS Caltex',
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -3987,7 +3987,7 @@ async function main() {
       categoryName: 'GS Caltex',
       subCategoryTitle: 'Greases',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4058,7 +4058,7 @@ async function main() {
       categoryName: 'GS Caltex',
       subCategoryTitle: 'Specialty Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4129,7 +4129,7 @@ async function main() {
       categoryName: 'Idemitsu',
       subCategoryTitle: 'Automotive Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4200,7 +4200,7 @@ async function main() {
       categoryName: 'Idemitsu',
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4271,7 +4271,7 @@ async function main() {
       categoryName: 'Idemitsu',
       subCategoryTitle: 'Gear Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4342,7 +4342,7 @@ async function main() {
       categoryName: 'Idemitsu',
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4413,7 +4413,7 @@ async function main() {
       categoryName: 'Idemitsu',
       subCategoryTitle: 'Greases',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4484,7 +4484,7 @@ async function main() {
       categoryName: 'Idemitsu',
       subCategoryTitle: 'Specialty Products',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description: 'Specialized dielectric fluid for spark erosion electrical discharge machines.',
@@ -4554,7 +4554,7 @@ async function main() {
       categoryName: 'Molygraph Lubricants',
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4625,7 +4625,7 @@ async function main() {
       categoryName: 'Molygraph Lubricants',
       subCategoryTitle: 'Specialty Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description: 'Sprayable open girth gear lubricant for rotary cement kilns and ball mills.',
@@ -4695,7 +4695,7 @@ async function main() {
       categoryName: 'Molygraph Lubricants',
       subCategoryTitle: 'Greases',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4766,7 +4766,7 @@ async function main() {
       categoryName: 'Molygraph Lubricants',
       subCategoryTitle: 'Metalworking Fluids',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4837,7 +4837,7 @@ async function main() {
       categoryName: 'Molygraph Lubricants',
       subCategoryTitle: 'Assembly & Maintenance Products',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4908,7 +4908,7 @@ async function main() {
       categoryName: 'Motul Tech',
       subCategoryTitle: 'Metalworking Fluids',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -4979,7 +4979,7 @@ async function main() {
       categoryName: 'Motul Tech',
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5050,7 +5050,7 @@ async function main() {
       categoryName: 'Motul Tech',
       subCategoryTitle: 'Greases',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description: 'Engineered for high-temperature furnace exhaust bearings and drying fans.',
@@ -5120,7 +5120,7 @@ async function main() {
       categoryName: 'Motul Tech',
       subCategoryTitle: 'Specialty Products',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5191,7 +5191,7 @@ async function main() {
       categoryName: 'Motul Tech',
       subCategoryTitle: 'Maintenance Solutions',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5262,7 +5262,7 @@ async function main() {
       categoryName: 'Deep Pneumatics',
       subCategoryTitle: 'Air Compressors',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5333,7 +5333,7 @@ async function main() {
       categoryName: 'Deep Pneumatics',
       subCategoryTitle: 'Pneumatic Products',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5404,7 +5404,7 @@ async function main() {
       categoryName: 'Deep Pneumatics',
       subCategoryTitle: 'Air Treatment Solutions',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description: 'Eliminates pipe condensation, rust, and water damage across factory air lines.',
@@ -5474,7 +5474,7 @@ async function main() {
       categoryName: 'Deep Pneumatics',
       subCategoryTitle: 'Industrial Equipment',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5545,7 +5545,7 @@ async function main() {
       categoryName: 'Deep Pneumatics',
       subCategoryTitle: 'Compressor Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5616,7 +5616,7 @@ async function main() {
       categoryName: 'Lubricon',
       subCategoryTitle: 'Engine Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675213/jaideva/products/engine-oil-bottles.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743998/jaidevaoil-assets/products/engine-oil-bottles.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5687,7 +5687,7 @@ async function main() {
       categoryName: 'Lubricon',
       subCategoryTitle: 'Gear Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5758,7 +5758,7 @@ async function main() {
       categoryName: 'Lubricon',
       subCategoryTitle: 'Hydraulic Oils',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description: 'High anti-wear hydraulic oil for heavy duty industrial pumps and presses.',
@@ -5828,7 +5828,7 @@ async function main() {
       categoryName: 'Lubricon',
       subCategoryTitle: 'Greases',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5899,7 +5899,7 @@ async function main() {
       categoryName: 'Lubricon',
       subCategoryTitle: 'Specialty Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -5970,7 +5970,7 @@ async function main() {
       categoryName: 'Lubricon',
       subCategoryTitle: 'Industrial Lubricants',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6041,7 +6041,7 @@ async function main() {
       categoryName: 'TW Chemin',
       subCategoryTitle: 'Industrial Chemicals',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6112,7 +6112,7 @@ async function main() {
       categoryName: 'TW Chemin',
       subCategoryTitle: 'Lubrication Solutions',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6183,7 +6183,7 @@ async function main() {
       categoryName: 'TW Chemin',
       subCategoryTitle: 'Specialty Chemicals',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6254,7 +6254,7 @@ async function main() {
       categoryName: 'TW Chemin',
       subCategoryTitle: 'Maintenance Products',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6325,7 +6325,7 @@ async function main() {
       categoryName: 'Filtermist',
       subCategoryTitle: 'Oil Mist Collectors',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6396,7 +6396,7 @@ async function main() {
       categoryName: 'Filtermist',
       subCategoryTitle: 'Oil Mist Collectors',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675216/jaideva/products/engine-oil-hero.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744000/jaidevaoil-assets/products/engine-oil-hero.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6467,7 +6467,7 @@ async function main() {
       categoryName: 'Filtermist',
       subCategoryTitle: 'Filtration Systems',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6538,7 +6538,7 @@ async function main() {
       categoryName: 'Filtermist',
       subCategoryTitle: 'Industrial Air Filtration',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675162/jaideva/about/oil-lab-quality.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743995/jaidevaoil-assets/about/oil-lab-quality.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6609,7 +6609,7 @@ async function main() {
       categoryName: 'Filtermist',
       subCategoryTitle: 'Extraction Solutions',
       containerImage:
-        'https://res.cloudinary.com/dpa93copz/image/upload/v1790675219/jaideva/products/industrial-gear-oil.jpg',
+        'https://res.cloudinary.com/lfsnye1i/image/upload/v1792744002/jaidevaoil-assets/products/industrial-gear-oil.jpg',
       descriptionTitle: 'Description',
 
       description:
@@ -6806,7 +6806,7 @@ async function main() {
       order: 0,
       content: {
         image:
-          'https://res.cloudinary.com/dpa93copz/image/upload/v1787738185/mahalaxmi/blogs/blogs-banner.jpg',
+          'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743975/jaidevaoil-assets/blogs/blogs-banner.jpg',
         altText: 'Blogs - Jai Deva Oil Co. HP Lubricants',
       },
     },

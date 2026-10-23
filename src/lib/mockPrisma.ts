@@ -26,7 +26,7 @@ let mockSettings: Record<string, string> = {
   working_hours: 'Monday - Saturday: 9:00 AM - 6:00 PM (Closed on Public Holidays)',
   gstin: '07AABCU9603R1ZM',
   established_year: '2008',
-  logo: 'https://res.cloudinary.com/dpa93copz/image/upload/v1788504772/jaideva/logo/jaideva-main-logo.png',
+  logo: 'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743977/jaidevaoil-assets/logo/jaideva-main-logo.png',
 };
 
 let mockNavigation: any[] = [
@@ -462,7 +462,7 @@ let mockPages: any[] = [
           description:
             'Jai Deva Oil Co. is a multi-brand industrial and automotive lubricant distributor. We source, stock, and supply genuine oils, greases, and specialty fluids for plants, fleets, and workshops — with quality checks and dependable regional delivery.',
           bannerImage:
-            'https://res.cloudinary.com/dpa93copz/image/upload/v1790674698/jaideva/about/oil-drums-warehouse.jpg',
+            'https://res.cloudinary.com/lfsnye1i/image/upload/v1792743994/jaidevaoil-assets/about/oil-drums-warehouse.jpg',
           altText: 'Jai Deva Oil Co. lubricant warehouse and supply',
           ctaPrimaryText: 'Read our story',
           ctaPrimaryUrl: '#about-story',
