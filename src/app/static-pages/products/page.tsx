@@ -71,6 +71,12 @@ export default function ProductsCatalogCMSPage() {
 
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Category Edit Modal state
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+  const [categoryModalLoading, setCategoryModalLoading] = useState(false);
+  const [editingCategoryName, setEditingCategoryName] = useState('');
+  const [newCategoryName, setNewCategoryName] = useState('');
+
   // Brand Edit Modal state
   const [isBrandModalOpen, setIsBrandModalOpen] = useState(false);
   const [brandModalLoading, setBrandModalLoading] = useState(false);
@@ -199,24 +205,32 @@ export default function ProductsCatalogCMSPage() {
     }
   };
 
-  const handleDeleteBrand = async (id: string, name: string) => {
+  const handleDeleteBrand = async (id: string, name: string, slug?: string) => {
     if (!confirm(`Are you sure you want to delete brand "${name}" and its associated products?`))
       return;
 
     try {
+      setBrandModalLoading(true);
       const res = await fetch(`/api/products/categories?id=${id}`, {
         method: 'DELETE',
       });
       const json = await res.json();
       if (json.success) {
         toast.success('Brand deleted successfully');
-        if (selectedBrandSlug === id) setSelectedBrandSlug('all');
+        setIsBrandModalOpen(false);
+        setEditingBrand(null);
+        if (selectedBrandSlug === id || (slug && selectedBrandSlug === slug)) {
+          setSelectedBrandSlug('all');
+          setSelectedCategoryTitle('all');
+        }
         fetchCatalog();
       } else {
         toast.error(json.error || 'Failed to delete brand');
       }
     } catch {
       toast.error('Network error deleting brand');
+    } finally {
+      setBrandModalLoading(false);
     }
   };
 
@@ -236,6 +250,86 @@ export default function ProductsCatalogCMSPage() {
       }
     } catch (err: any) {
       toast.error(err?.message || 'Failed to delete product');
+    }
+  };
+
+  const openEditCategoryModal = (catName: string) => {
+    setEditingCategoryName(catName);
+    setNewCategoryName(catName);
+    setIsCategoryModalOpen(true);
+  };
+
+  const handleSaveCategory = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newCategoryName.trim()) {
+      toast.error('Category name cannot be empty');
+      return;
+    }
+    if (newCategoryName.trim() === editingCategoryName) {
+      setIsCategoryModalOpen(false);
+      return;
+    }
+
+    setCategoryModalLoading(true);
+    try {
+      const res = await fetch('/api/products/subcategories', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          oldCategory: editingCategoryName,
+          newCategory: newCategoryName.trim(),
+          brandSlug: selectedBrandSlug,
+        }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        toast.success(`Category renamed to "${newCategoryName.trim()}"`);
+        setIsCategoryModalOpen(false);
+        setSelectedCategoryTitle(newCategoryName.trim());
+        fetchCatalog();
+      } else {
+        toast.error(json.error || 'Failed to update category');
+      }
+    } catch {
+      toast.error('Network error saving category');
+    } finally {
+      setCategoryModalLoading(false);
+    }
+  };
+
+  const handleDeleteCategory = async (catName: string) => {
+    const brandLabel =
+      selectedBrandSlug !== 'all'
+        ? ` under ${brands.find((b) => b.slug === selectedBrandSlug)?.name || 'this brand'}`
+        : '';
+    if (
+      !confirm(
+        `Are you sure you want to delete category "${catName}"${brandLabel}? This will remove this category label from the associated products.`
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const params = new URLSearchParams({
+        category: catName,
+        ...(selectedBrandSlug !== 'all' ? { brand: selectedBrandSlug } : {}),
+      });
+      const res = await fetch(`/api/products/subcategories?${params.toString()}`, {
+        method: 'DELETE',
+      });
+      const json = await res.json();
+      if (json.success) {
+        toast.success(`Category "${catName}" removed`);
+        setIsCategoryModalOpen(false);
+        setEditingCategoryName('');
+        setSelectedCategoryTitle('all');
+        fetchCatalog();
+      } else {
+        toast.error(json.error || 'Failed to delete category');
+      }
+    } catch {
+      toast.error('Network error deleting category');
     }
   };
 
@@ -335,23 +429,39 @@ export default function ProductsCatalogCMSPage() {
             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 pl-1">
               Brand
             </label>
-            <div className="relative">
-              <select
-                value={selectedBrandSlug}
-                onChange={(e) => handleSelectBrand(e.target.value)}
-                className="appearance-none pl-3 pr-8 py-2 rounded-xl border border-gray-200 bg-gray-50 text-[12px] font-semibold text-gray-700 focus:outline-none focus:border-[#C86218] focus:ring-2 focus:ring-[#C86218]/10 cursor-pointer transition-all hover:border-gray-300 min-w-[180px]"
-              >
-                <option value="all">All Brands ({products.length})</option>
-                {brands.map((brand) => {
-                  const count = products.filter((p) => p.categorySlug === brand.slug).length;
-                  return (
-                    <option key={brand.slug} value={brand.slug}>
-                      {brand.name} ({count})
-                    </option>
-                  );
-                })}
-              </select>
-              <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            <div className="flex items-center gap-1.5">
+              <div className="relative">
+                <select
+                  value={selectedBrandSlug}
+                  onChange={(e) => handleSelectBrand(e.target.value)}
+                  className="appearance-none pl-3 pr-8 py-2 rounded-xl border border-gray-200 bg-gray-50 text-[12px] font-semibold text-gray-700 focus:outline-none focus:border-[#C86218] focus:ring-2 focus:ring-[#C86218]/10 cursor-pointer transition-all hover:border-gray-300 min-w-[180px]"
+                >
+                  <option value="all">All Brands ({products.length})</option>
+                  {brands.map((brand) => {
+                    const count = products.filter((p) => p.categorySlug === brand.slug).length;
+                    return (
+                      <option key={brand.slug} value={brand.slug}>
+                        {brand.name} ({count})
+                      </option>
+                    );
+                  })}
+                </select>
+                <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+              </div>
+              {selectedBrandSlug !== 'all' &&
+                (() => {
+                  const activeBrand = brands.find((b) => b.slug === selectedBrandSlug);
+                  return activeBrand ? (
+                    <button
+                      type="button"
+                      onClick={() => openEditBrandModal(activeBrand)}
+                      className="p-2 rounded-xl text-gray-500 hover:text-[#C86218] hover:bg-orange-50 border border-gray-200 hover:border-orange-200 transition-all cursor-pointer"
+                      title={`Edit Brand: ${activeBrand.name}`}
+                    >
+                      <Edit2 className="w-3.5 h-3.5" />
+                    </button>
+                  ) : null;
+                })()}
             </div>
           </div>
 
@@ -360,20 +470,32 @@ export default function ProductsCatalogCMSPage() {
             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 pl-1">
               Category
             </label>
-            <div className="relative">
-              <select
-                value={selectedCategoryTitle}
-                onChange={(e) => setSelectedCategoryTitle(e.target.value)}
-                className="appearance-none pl-3 pr-8 py-2 rounded-xl border border-gray-200 bg-gray-50 text-[12px] font-semibold text-gray-700 focus:outline-none focus:border-[#C86218] focus:ring-2 focus:ring-[#C86218]/10 cursor-pointer transition-all hover:border-gray-300 min-w-[180px]"
-              >
-                <option value="all">All Categories ({availableCategoriesForBrand.length})</option>
-                {availableCategoriesForBrand.map((cat) => (
-                  <option key={cat.name} value={cat.name}>
-                    {cat.name} ({cat.count})
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+            <div className="flex items-center gap-1.5">
+              <div className="relative">
+                <select
+                  value={selectedCategoryTitle}
+                  onChange={(e) => setSelectedCategoryTitle(e.target.value)}
+                  className="appearance-none pl-3 pr-8 py-2 rounded-xl border border-gray-200 bg-gray-50 text-[12px] font-semibold text-gray-700 focus:outline-none focus:border-[#C86218] focus:ring-2 focus:ring-[#C86218]/10 cursor-pointer transition-all hover:border-gray-300 min-w-[180px]"
+                >
+                  <option value="all">All Categories ({availableCategoriesForBrand.length})</option>
+                  {availableCategoriesForBrand.map((cat) => (
+                    <option key={cat.name} value={cat.name}>
+                      {cat.name} ({cat.count})
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="w-3.5 h-3.5 absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
+              </div>
+              {selectedCategoryTitle !== 'all' && (
+                <button
+                  type="button"
+                  onClick={() => openEditCategoryModal(selectedCategoryTitle)}
+                  className="p-2 rounded-xl text-gray-500 hover:text-[#C86218] hover:bg-orange-50 border border-gray-200 hover:border-orange-200 transition-all cursor-pointer"
+                  title={`Edit Category: ${selectedCategoryTitle}`}
+                >
+                  <Edit2 className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
           </div>
 
@@ -572,6 +694,88 @@ export default function ProductsCatalogCMSPage() {
         </div>
       )}
 
+      {/* Category Edit Modal */}
+      {isCategoryModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in duration-150">
+          <div className="bg-white w-full max-w-lg rounded-3xl shadow-2xl border border-gray-100 flex flex-col overflow-hidden">
+            <div className="flex items-center justify-between px-8 py-5 border-b border-gray-100 bg-gray-50/50">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-2xl bg-orange-50 text-[#C86218] flex items-center justify-center font-bold">
+                  <Edit2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-gray-900">Edit Category</h3>
+                  <p className="text-xs text-gray-400 font-medium">
+                    Rename or delete this category across catalog products
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsCategoryModalOpen(false)}
+                className="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveCategory} className="p-8 flex flex-col gap-6">
+              <InputField
+                label="Category Name *"
+                value={newCategoryName}
+                onChange={(e) => setNewCategoryName(e.target.value)}
+                placeholder="e.g. Engine Oils, Hydraulic Oils, Greases"
+                required
+              />
+
+              <div className="flex items-start gap-3 p-4 bg-orange-50/70 border border-orange-200/60 rounded-2xl text-[12px] text-orange-950 leading-relaxed">
+                <Sparkles className="w-4 h-4 text-[#C86218] shrink-0 mt-0.5" />
+                <div className="font-medium">
+                  {selectedBrandSlug !== 'all' ? (
+                    <>
+                      Renaming will update this category for products under{' '}
+                      <span className="font-bold text-[#C86218]">
+                        {brands.find((b) => b.slug === selectedBrandSlug)?.name || 'this brand'}
+                      </span>
+                      .
+                    </>
+                  ) : (
+                    'Renaming will update this category across all products with this category title.'
+                  )}
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsCategoryModalOpen(false);
+                    handleDeleteCategory(editingCategoryName);
+                  }}
+                  className="text-xs font-semibold text-red-600 hover:underline cursor-pointer whitespace-nowrap"
+                >
+                  Delete Category
+                </button>
+                <div className="flex items-center gap-3 ml-auto">
+                  <button
+                    type="button"
+                    onClick={() => setIsCategoryModalOpen(false)}
+                    className="px-6 py-2.5 border border-gray-200 text-gray-700 rounded-full font-bold text-xs hover:bg-gray-50 transition-colors cursor-pointer whitespace-nowrap"
+                  >
+                    Cancel
+                  </button>
+                  <SaveButton
+                    loading={categoryModalLoading}
+                    label="Save Category"
+                    className="w-auto px-7 py-2.5 text-xs whitespace-nowrap"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Brand Partner Modal (Clear, Unambiguous Naming!) */}
       {isBrandModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in duration-150">
@@ -679,10 +883,13 @@ export default function ProductsCatalogCMSPage() {
                 {editingBrand && (
                   <button
                     type="button"
-                    onClick={() => handleDeleteBrand(editingBrand.id, editingBrand.name)}
-                    className="text-xs font-semibold text-red-600 hover:underline cursor-pointer"
+                    disabled={brandModalLoading}
+                    onClick={() =>
+                      handleDeleteBrand(editingBrand.id, editingBrand.name, editingBrand.slug)
+                    }
+                    className="text-xs font-semibold text-red-600 hover:underline cursor-pointer disabled:opacity-50"
                   >
-                    Delete Brand
+                    {brandModalLoading ? 'Deleting...' : 'Delete Brand'}
                   </button>
                 )}
                 <div className="flex items-center gap-3 ml-auto">

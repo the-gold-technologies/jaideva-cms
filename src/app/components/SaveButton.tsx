@@ -36,7 +36,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       ) : (
         <Save className="w-4 h-4" />
       )}
-      <span>{loading ? 'Saving...' : saved ? 'Saved!' : label}</span>
+      <span className="whitespace-nowrap">{loading ? 'Saving...' : saved ? 'Saved!' : label}</span>
     </button>
   );
 };

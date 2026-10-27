@@ -9,7 +9,6 @@ import { IndustriesWeServeSection } from './components/IndustriesWeServeSection'
 import { WhyJaiDevaSection } from './components/WhyJaiDevaSection';
 import { TrustedClientsSection } from './components/TrustedClientsSection';
 import { BrandClosingBannerSection } from './components/BrandClosingBannerSection';
-import { InstagramRibbonCMS } from './components/InstagramRibbonCMS';
 import { LocateDistributorSection } from './components/LocateDistributorSection';
 import { FirstTimePopupSection } from './components/FirstTimePopupSection';
 
@@ -61,9 +60,6 @@ export default function HomePageEditor() {
 
       {/* 8. Brand Summary Closing Banner */}
       <BrandClosingBannerSection initialData={homeData?.BrandClosingBannerSection} />
-
-      {/* 9 Instagram Live Marquee Ribbon */}
-      <InstagramRibbonCMS initialData={homeData?.InstagramRibbon} />
 
       {/* 10. Locate Distributor & Direct Enquiry Contact */}
       <LocateDistributorSection initialData={homeData?.LocateDistributorSection} />

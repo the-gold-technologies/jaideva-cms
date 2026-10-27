@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
 export async function GET() {
   try {
@@ -135,8 +136,47 @@ export async function DELETE(request: Request) {
       );
     }
 
+    // 1. Locate category by id or slug
+    const category = await prisma.productCategory.findFirst({
+      where: {
+        OR: [{ id }, { slug: id }],
+      },
+    });
+
+    if (!category) {
+      return NextResponse.json({ success: false, error: 'Category not found' }, { status: 404 });
+    }
+
+    // 2. Fetch associated products to clean up Cloudinary assets
+    const associatedProducts = await prisma.product.findMany({
+      where: { categorySlug: category.slug },
+    });
+
+    for (const prod of associatedProducts) {
+      try {
+        await cleanupReplacedCloudinaryFiles(prod, null);
+      } catch (err) {
+        console.warn('Failed cleaning up Cloudinary files for product:', prod.id, err);
+      }
+    }
+
+    // Clean up category cover image if present
+    if (category.coverImage) {
+      try {
+        await cleanupReplacedCloudinaryFiles({ coverImage: category.coverImage }, null);
+      } catch (err) {
+        console.warn('Failed cleaning up category cover image:', err);
+      }
+    }
+
+    // 3. Delete all products belonging to this brand category first (prevents FK/null constraint errors)
+    await prisma.product.deleteMany({
+      where: { categorySlug: category.slug },
+    });
+
+    // 4. Delete the brand category itself
     await prisma.productCategory.delete({
-      where: { id },
+      where: { id: category.id },
     });
 
     return NextResponse.json({ success: true });

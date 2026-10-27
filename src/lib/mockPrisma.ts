@@ -3134,7 +3134,15 @@ export const mockPrisma: any = {
       return null;
     },
     delete: async ({ where }: any) => {
-      mockCategories = mockCategories.filter((c) => c.id !== where.id && c.slug !== where.slug);
+      const cat = mockCategories.find(
+        (c) => (where?.id && c.id === where.id) || (where?.slug && c.slug === where.slug)
+      );
+      if (cat) {
+        mockProducts = mockProducts.filter((p) => p.categorySlug !== cat.slug);
+      }
+      mockCategories = mockCategories.filter(
+        (c) => (!where?.id || c.id !== where.id) && (!where?.slug || c.slug !== where.slug)
+      );
       return { success: true };
     },
     count: async () => mockCategories.length,
@@ -3205,6 +3213,46 @@ export const mockPrisma: any = {
     delete: async ({ where }: any) => {
       mockProducts = mockProducts.filter((p) => p.id !== where.id && p.slug !== where.slug);
       return { success: true };
+    },
+    updateMany: async ({ where, data }: any) => {
+      let count = 0;
+      mockProducts = mockProducts.map((p) => {
+        let match = true;
+        if (
+          where?.categorySlug &&
+          where.categorySlug !== 'all' &&
+          p.categorySlug !== where.categorySlug
+        ) {
+          match = false;
+        }
+        if (where?.subCategoryTitle && p.subCategoryTitle !== where.subCategoryTitle) {
+          match = false;
+        }
+        if (match) {
+          count++;
+          return { ...p, ...data, updatedAt: new Date() };
+        }
+        return p;
+      });
+      return { count };
+    },
+    deleteMany: async ({ where }: any) => {
+      const initialCount = mockProducts.length;
+      mockProducts = mockProducts.filter((p) => {
+        let match = true;
+        if (
+          where?.categorySlug &&
+          where.categorySlug !== 'all' &&
+          p.categorySlug !== where.categorySlug
+        ) {
+          match = false;
+        }
+        if (where?.subCategoryTitle && p.subCategoryTitle !== where.subCategoryTitle) {
+          match = false;
+        }
+        return !match;
+      });
+      return { count: initialCount - mockProducts.length };
     },
     count: async () => mockProducts.length,
   },
