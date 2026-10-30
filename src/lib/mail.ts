@@ -61,7 +61,7 @@ const BRAND_LOGO_URL =
 export async function sendEnquiryNotificationEmail(data: EnquiryEmailData) {
   try {
     const transporter = getMailTransporter();
-    const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || 'sude8920esh@gmail.com';
+    const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || 'info@jaidevaoilco.com';
     const fromAddress = getFromAddress();
 
     if (!transporter) {
