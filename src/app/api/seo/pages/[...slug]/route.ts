@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
+import { cleanupReplacedCloudinaryFiles, pickUpdatedFields } from '@/lib/cloudinary';
 
 export const dynamic = 'force-dynamic';
 
@@ -140,7 +140,7 @@ export async function PUT(
 
     const existingPage = await prisma.page.findUnique({ where: { slug } });
     if (existingPage) {
-      await cleanupReplacedCloudinaryFiles(existingPage, seo);
+      await cleanupReplacedCloudinaryFiles(pickUpdatedFields(existingPage, seo), seo);
     }
 
     const updatedPage = await prisma.page.upsert({

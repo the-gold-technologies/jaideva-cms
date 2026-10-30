@@ -180,6 +180,15 @@ export async function deleteCloudinaryFileByUrl(url: string): Promise<boolean> {
 }
 
 /**
+ * Returns only the fields of `oldData` that are present in `newData`, so partial updates
+ * don't treat untouched fields as removed.
+ */
+export function pickUpdatedFields(oldData: any, newData: Record<string, any>): Record<string, any> {
+  if (!oldData) return {};
+  return Object.fromEntries(Object.keys(newData).map((key) => [key, oldData[key]]));
+}
+
+/**
  * Compares old data and new data, finds any Cloudinary URLs that were replaced or removed,
  * and deletes them from Cloudinary storage.
  */

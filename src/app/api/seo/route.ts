@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
+import { cleanupReplacedCloudinaryFiles, pickUpdatedFields } from '@/lib/cloudinary';
 
 export const dynamic = 'force-dynamic';
 
@@ -38,7 +38,7 @@ export async function PUT(request: Request) {
 
       const existingPage = await prisma.page.findUnique({ where: { slug } });
       if (existingPage) {
-        await cleanupReplacedCloudinaryFiles(existingPage, seoData);
+        await cleanupReplacedCloudinaryFiles(pickUpdatedFields(existingPage, seoData), seoData);
       }
 
       const updated = await prisma.page.upsert({
@@ -57,7 +57,7 @@ export async function PUT(request: Request) {
 
     const existingConfig = await prisma.globalConfig.findUnique({ where: { id: 'global' } });
     if (existingConfig) {
-      await cleanupReplacedCloudinaryFiles(existingConfig, body);
+      await cleanupReplacedCloudinaryFiles(pickUpdatedFields(existingConfig, body), body);
     }
 
     const updatedConfig = await prisma.globalConfig.upsert({
