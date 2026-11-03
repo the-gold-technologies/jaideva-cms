@@ -12,33 +12,12 @@ export async function GET(
     const { slug: rawSlug } = await params;
     const slug = Array.isArray(rawSlug) ? rawSlug.join('/') : rawSlug;
 
-    // Check by exact slug first
-    let page = await prisma.page.findUnique({
-      where: { slug },
-      select: {
-        id: true,
-        title: true,
-        slug: true,
-        metaTitle: true,
-        metaDescription: true,
-        targetKeywords: true,
-        canonicalUrl: true,
-        noIndex: true,
-        featuredImage: true,
-        ogTitle: true,
-        ogDescription: true,
-        ogImage: true,
-        schema: true,
-        headingOptions: true,
-      },
-    });
-
-    // If not found and starts with products/, check product table
-    if (!page && (slug.startsWith('products/') || slug.startsWith('product/'))) {
-      const parts = slug.split('/');
-      const lastSlug = parts[parts.length - 1];
+    // Product detail SEO (products/<category>/<product>) lives on the Product record — it is also
+    // edited from the product form — so read it from there first to avoid showing a stale Page copy.
+    const slugParts = slug.split('/');
+    if (slugParts[0] === 'products' && slugParts.length === 3) {
       const product = await prisma.product.findUnique({
-        where: { slug: lastSlug },
+        where: { slug: slugParts[2] },
       });
 
       if (product) {
@@ -59,6 +38,27 @@ export async function GET(
         });
       }
     }
+
+    // Check by exact slug
+    let page = await prisma.page.findUnique({
+      where: { slug },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        metaTitle: true,
+        metaDescription: true,
+        targetKeywords: true,
+        canonicalUrl: true,
+        noIndex: true,
+        featuredImage: true,
+        ogTitle: true,
+        ogDescription: true,
+        ogImage: true,
+        schema: true,
+        headingOptions: true,
+      },
+    });
 
     // If not found and starts with blogs/, check blog post or stripped slug
     if (!page && (slug.startsWith('blogs/') || slug.startsWith('blog/'))) {
@@ -83,7 +83,8 @@ export async function GET(
               metaTitle: blogPost.title,
               metaDescription: blogPost.excerpt,
               targetKeywords: blogPost.category,
-              canonicalUrl: `https://jaidevaoil.com/${slug}`,
+              // Must match what /api/blogs serves for an unsaved article (no canonical until saved)
+              canonicalUrl: '',
               noIndex: false,
               headingOptions: 'h1',
             },

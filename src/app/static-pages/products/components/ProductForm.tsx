@@ -153,6 +153,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [specsText, setSpecsText] = useState('');
   const [propertiesTableTitle, setPropertiesTableTitle] = useState('Physico-Chemical Properties');
   const [propertiesTable, setPropertiesTable] = useState<PropertyRow[]>([]);
+  const [tableHeaders, setTableHeaders] = useState<string[]>([]);
   const [pdfUrl, setPdfUrl] = useState('');
   const [msdsUrl, setMsdsUrl] = useState('');
   const [isFeatured, setIsFeatured] = useState(false);
@@ -216,6 +217,12 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             setSpecsText(p.specsText || '');
             setPropertiesTableTitle(p.propertiesTableTitle || 'Physico-Chemical Properties');
             setPropertiesTable(Array.isArray(p.propertiesTable) ? p.propertiesTable : []);
+            // Legacy default ["Property", "Value"] means a simple 2-column table (no extra columns).
+            setTableHeaders(
+              Array.isArray(p.tableHeaders) && !p.tableHeaders.includes('Property')
+                ? p.tableHeaders
+                : []
+            );
             setPdfUrl(p.pdfUrl || '');
             setMsdsUrl(p.msdsUrl || '');
             setIsFeatured(!!p.isFeatured);
@@ -302,6 +309,8 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         specsText: specsText.trim(),
         propertiesTableTitle: propertiesTableTitle.trim() || 'Physico-Chemical Properties',
         propertiesTable,
+        tableHeaders:
+          tableHeaders.length > 0 ? tableHeaders.map((h) => h.trim()) : ['Property', 'Value'],
         pdfUrl: pdfUrl.trim(),
         msdsUrl: msdsUrl.trim(),
         isFeatured,
@@ -485,7 +494,8 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                   </button>
                 </div>
                 <p className="text-[10px] text-gray-400 leading-snug pl-0.5">
-                  Generated automatically from the product name. Editable manually, or click Auto to re-generate.
+                  Generated automatically from the product name. Editable manually, or click Auto to
+                  re-generate.
                 </p>
               </div>
             </div>
@@ -694,7 +704,12 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
               placeholder="Physico-Chemical Properties (default)"
             />
 
-            <PropertiesTableEditor properties={propertiesTable} onChange={setPropertiesTable} />
+            <PropertiesTableEditor
+              properties={propertiesTable}
+              headers={tableHeaders}
+              onChange={setPropertiesTable}
+              onHeadersChange={setTableHeaders}
+            />
           </div>
         </div>
 

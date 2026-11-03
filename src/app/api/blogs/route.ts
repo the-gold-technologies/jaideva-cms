@@ -4,6 +4,45 @@ import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
 
 const BLOGS_SLUG = 'blogs';
 
+type BlogRecord = { title: string; excerpt: string; category: string };
+type BlogSEOPage = {
+  metaTitle: string | null;
+  metaDescription: string | null;
+  targetKeywords: string | null;
+  canonicalUrl: string | null;
+  noIndex: boolean;
+  schema: string | null;
+  headingOptions: string | null;
+} | null;
+
+/**
+ * SEO for a single blog article. Uses the saved SEO record (Page `blogs/<slug>`) when one exists;
+ * otherwise the article's own title / excerpt / category — the same defaults the CMS
+ * "Page SEO" editor shows for an article that has not been saved yet.
+ */
+function buildBlogSEO(blog: BlogRecord, blogPage: BlogSEOPage) {
+  if (blogPage) {
+    return {
+      metaTitle: blogPage.metaTitle,
+      metaDescription: blogPage.metaDescription,
+      targetKeywords: blogPage.targetKeywords,
+      canonicalUrl: blogPage.canonicalUrl,
+      noIndex: blogPage.noIndex,
+      schema: blogPage.schema,
+      headingOptions: blogPage.headingOptions,
+    };
+  }
+  return {
+    metaTitle: blog.title,
+    metaDescription: blog.excerpt,
+    targetKeywords: blog.category,
+    canonicalUrl: '',
+    noIndex: false,
+    schema: '',
+    headingOptions: '',
+  };
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -16,17 +55,7 @@ export async function GET(request: Request) {
         const blogPage = await prisma.page.findUnique({
           where: { slug: `blogs/${blog.slug}` },
         });
-        const seo = blogPage
-          ? {
-              metaTitle: blogPage.metaTitle,
-              metaDescription: blogPage.metaDescription,
-              targetKeywords: blogPage.targetKeywords,
-              canonicalUrl: blogPage.canonicalUrl,
-              noIndex: blogPage.noIndex,
-              schema: blogPage.schema,
-              headingOptions: blogPage.headingOptions,
-            }
-          : null;
+        const seo = buildBlogSEO(blog, blogPage);
         return NextResponse.json({ success: true, data: blog, seo });
       }
       return NextResponse.json({ success: true, data: blog, seo: null });
@@ -39,17 +68,7 @@ export async function GET(request: Request) {
         const blogPage = await prisma.page.findUnique({
           where: { slug: `blogs/${pureSlug}` },
         });
-        const seo = blogPage
-          ? {
-              metaTitle: blogPage.metaTitle,
-              metaDescription: blogPage.metaDescription,
-              targetKeywords: blogPage.targetKeywords,
-              canonicalUrl: blogPage.canonicalUrl,
-              noIndex: blogPage.noIndex,
-              schema: blogPage.schema,
-              headingOptions: blogPage.headingOptions,
-            }
-          : null;
+        const seo = buildBlogSEO(blog, blogPage);
         return NextResponse.json({ success: true, data: blog, seo });
       }
       return NextResponse.json({ success: true, data: blog, seo: null });
