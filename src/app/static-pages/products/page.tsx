@@ -85,6 +85,7 @@ export default function ProductsCatalogCMSPage() {
   // Brand Form Fields
   const [brandName, setBrandName] = useState('');
   const [brandSlug, setBrandSlug] = useState('');
+  const [isAutoBrandSlug, setIsAutoBrandSlug] = useState(true);
   const [brandTagline, setBrandTagline] = useState('');
   const [brandAbout, setBrandAbout] = useState('');
   const [brandImages, setBrandImages] = useState<(File | string | null)[]>([]);
@@ -118,6 +119,7 @@ export default function ProductsCatalogCMSPage() {
     setEditingBrand(null);
     setBrandName('');
     setBrandSlug('');
+    setIsAutoBrandSlug(true);
     setBrandTagline('');
     setBrandAbout('');
     setBrandImages([]);
@@ -132,6 +134,7 @@ export default function ProductsCatalogCMSPage() {
     setEditingBrand(brand);
     setBrandName(brand.name);
     setBrandSlug(brand.slug);
+    setIsAutoBrandSlug(false);
     setBrandTagline(brand.shortDesc || '');
     setBrandAbout(brand.fullDesc || '');
     setBrandImages(brand.coverImage ? [brand.coverImage] : []);
@@ -144,8 +147,30 @@ export default function ProductsCatalogCMSPage() {
 
   const handleBrandNameChange = (val: string) => {
     setBrandName(val);
+    if (isAutoBrandSlug) {
+      setBrandSlug(
+        val
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '')
+      );
+    }
+  };
+
+  const handleBrandSlugChange = (val: string) => {
+    setIsAutoBrandSlug(false);
     setBrandSlug(
       val
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^a-z0-9-]/g, '')
+    );
+  };
+
+  const handleAutoBrandSlug = () => {
+    setIsAutoBrandSlug(true);
+    setBrandSlug(
+      brandName
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/^-+|-+$/g, '')
@@ -815,13 +840,40 @@ export default function ProductsCatalogCMSPage() {
                   placeholder="Enter brand name"
                   required
                 />
-                <InputField
-                  label="Brand URL Slug *"
-                  value={brandSlug}
-                  readOnly
-                  placeholder="Auto-generated from brand name"
-                  className="bg-gray-50 text-gray-500 cursor-not-allowed select-none"
-                />
+                <div className="flex flex-col gap-1.5 px-0.5">
+                  <div className="flex items-center justify-between">
+                    <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest ml-4">
+                      Brand URL Slug *
+                    </label>
+                    {isAutoBrandSlug && (
+                      <span className="text-[10px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">
+                        Auto-sync
+                      </span>
+                    )}
+                  </div>
+                  <div className="relative flex items-center">
+                    <input
+                      type="text"
+                      value={brandSlug}
+                      onChange={(e) => handleBrandSlugChange(e.target.value)}
+                      placeholder="e.g. hp-lubricants"
+                      required
+                      className="w-full px-5 pr-20 py-3.5 bg-white border border-gray-200 rounded-2xl text-sm font-mono focus:ring-2 focus:outline-none focus:border-[#0C356A] focus:ring-1 focus:ring-[#0C356A] outline-none transition-all text-gray-800"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleAutoBrandSlug}
+                      title="Auto-generate slug from brand name"
+                      className={`absolute right-2.5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full transition-all cursor-pointer border ${
+                        isAutoBrandSlug
+                          ? 'bg-[#0C356A] text-white border-[#0C356A]'
+                          : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-gray-200 hover:text-gray-900'
+                      }`}
+                    >
+                      Auto
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <InputField

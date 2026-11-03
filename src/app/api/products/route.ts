@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { cleanupReplacedCloudinaryFiles } from '@/lib/cloudinary';
+import { cleanupReplacedCloudinaryFiles, pickUpdatedFields } from '@/lib/cloudinary';
 
 export async function GET(request: Request) {
   try {
@@ -140,7 +140,7 @@ export async function PUT(request: Request) {
     });
 
     if (existingProduct) {
-      await cleanupReplacedCloudinaryFiles(existingProduct, data);
+      await cleanupReplacedCloudinaryFiles(pickUpdatedFields(existingProduct, data), data);
     }
 
     const product = await prisma.product.update({

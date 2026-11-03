@@ -136,6 +136,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   // Form State
   const [name, setName] = useState('');
   const [slug, setSlug] = useState('');
+  const [isAutoSlug, setIsAutoSlug] = useState(isNew ?? true);
   const [subtitle, setSubtitle] = useState('');
   const [categorySlug, setCategorySlug] = useState('');
   const [categoryName, setCategoryName] = useState('');
@@ -196,6 +197,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             const p = prodJson.data;
             setName(p.name || '');
             setSlug(p.slug || '');
+            setIsAutoSlug(false);
             setSubtitle(p.subtitle || '');
             setCategorySlug(p.categorySlug || 'hp-lubricants');
             setCategoryName(p.categoryName || 'HP Lubricants');
@@ -236,16 +238,32 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
     loadData();
   }, [productId, isNew, router]);
 
+  const formatSlug = (val: string) => {
+    return val
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  };
+
   const handleNameChange = (val: string) => {
     setName(val);
-    if (isNew) {
-      setSlug(
-        val
-          .toLowerCase()
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/^-+|-+$/g, '')
-      );
+    if (isAutoSlug) {
+      setSlug(formatSlug(val));
     }
+  };
+
+  const handleSlugChange = (val: string) => {
+    setIsAutoSlug(false);
+    const formatted = val
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '');
+    setSlug(formatted);
+  };
+
+  const handleAutoGenerateSlug = () => {
+    setIsAutoSlug(true);
+    setSlug(formatSlug(name));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -412,38 +430,62 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                 placeholder="e.g. HP Milcy Turbo 15W-40"
                 required
               />
-              {/* Auto-generated slug — read-only */}
+              {/* URL Slug — Auto & Editable */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                  URL SLUG <span className="text-[#C86218]">*</span>
-                </label>
-                <div className="flex items-center gap-2 px-4 py-3 rounded-2xl border border-gray-200 bg-gray-50/80 text-sm font-mono text-gray-700 select-all min-h-[44px]">
-                  <svg
-                    className="w-3.5 h-3.5 text-gray-400 shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
+                <div className="flex items-center justify-between">
+                  <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
+                    URL SLUG <span className="text-[#C86218]">*</span>
+                  </label>
+                  {isAutoSlug && (
+                    <span className="text-[10px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60 flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Auto-sync active
+                    </span>
+                  )}
+                </div>
+                <div className="relative flex items-center group">
+                  <div className="absolute left-4 pointer-events-none text-gray-400">
+                    <svg
+                      className="w-3.5 h-3.5 text-gray-400 shrink-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    value={slug}
+                    onChange={(e) => handleSlugChange(e.target.value)}
+                    placeholder="e.g. hp-racer-4t-20w40"
+                    required
+                    className="w-full bg-white border border-gray-200 focus:border-[#C86218] focus:ring-2 focus:ring-[#C86218]/20 rounded-2xl pl-10 pr-20 py-3 text-sm font-mono text-gray-800 transition-all placeholder:text-gray-400 placeholder:font-sans"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAutoGenerateSlug}
+                    title={
+                      isAutoSlug
+                        ? 'Auto-sync active (click to re-generate from name)'
+                        : 'Click to auto-generate slug from product commercial name'
+                    }
+                    className={`absolute right-2.5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full transition-all cursor-pointer border ${
+                      isAutoSlug
+                        ? 'bg-[#C86218] text-white border-[#C86218] shadow-xs hover:bg-[#b05514]'
+                        : 'bg-gray-100 text-gray-600 border-gray-200 hover:bg-gray-200 hover:text-gray-900'
+                    }`}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                    />
-                  </svg>
-                  <span className="truncate">
-                    {slug || (
-                      <span className="text-gray-400 font-sans italic">
-                        auto-generated from name
-                      </span>
-                    )}
-                  </span>
-                  <span className="ml-auto shrink-0 text-[10px] font-bold text-gray-400 bg-gray-100 border border-gray-200 px-2 py-0.5 rounded-full uppercase tracking-wide">
                     Auto
-                  </span>
+                  </button>
                 </div>
                 <p className="text-[10px] text-gray-400 leading-snug pl-0.5">
-                  Generated automatically from the product name. Cannot be edited manually.
+                  Generated automatically from the product name. Editable manually, or click Auto to re-generate.
                 </p>
               </div>
             </div>
