@@ -12,13 +12,17 @@ import {
   FlaskConical,
   ShieldCheck,
   Globe,
+  LayoutList,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { InputField } from '@/components/InputField';
 import { TextAreaField } from '@/components/TextAreaField';
 import { SelectField } from '@/components/SelectField';
 import { ImageUploadField } from '@/components/ImageUploadField';
-import { PropertiesTableEditor, PropertyRow } from '@/components/PropertiesTableEditor';
+import { PropertiesTableEditor } from '@/components/PropertiesTableEditor';
+import { fromStored, toStored, type PropertiesTableData } from '@/lib/propertiesTable';
+import { ProductSectionsEditor } from '@/components/ProductSectionsEditor';
+import { sectionsFromStored, sectionsToStored, type EditorSection } from '@/lib/productSections';
 import { StringListEditor } from '@/components/StringListEditor';
 import { PdfUploadField } from '@/components/PdfUploadField';
 import { SaveButton } from '@/components/SaveButton';
@@ -46,12 +50,6 @@ const DEFAULT_SPECIAL_FEATURES = [
   'API CI-4 / SL Certified',
   'Meets MB 228.3, Volvo VDS-3, Cummins CES 20078',
   'Compatible with EGR equipped engines',
-];
-
-const DEFAULT_SPECS_TABLE: PropertyRow[] = [
-  { property: 'Kinematic Viscosity @ 100°C, cSt', value: '14.5' },
-  { property: 'Viscosity Index', value: '135' },
-  { property: 'Flash Point, °C', value: '225' },
 ];
 
 const BRAND_SUBCATEGORIES: Record<string, string[]> = {
@@ -152,8 +150,10 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [specialFeatures, setSpecialFeatures] = useState<string[]>([]);
   const [specsText, setSpecsText] = useState('');
   const [propertiesTableTitle, setPropertiesTableTitle] = useState('Physico-Chemical Properties');
-  const [propertiesTable, setPropertiesTable] = useState<PropertyRow[]>([]);
-  const [tableHeaders, setTableHeaders] = useState<string[]>([]);
+  const [propertiesTable, setPropertiesTable] = useState<PropertiesTableData>(() =>
+    fromStored([], [])
+  );
+  const [customSections, setCustomSections] = useState<EditorSection[]>([]);
   const [pdfUrl, setPdfUrl] = useState('');
   const [msdsUrl, setMsdsUrl] = useState('');
   const [isFeatured, setIsFeatured] = useState(false);
@@ -216,13 +216,10 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             setSpecialFeatures(Array.isArray(p.specialFeatures) ? p.specialFeatures : []);
             setSpecsText(p.specsText || '');
             setPropertiesTableTitle(p.propertiesTableTitle || 'Physico-Chemical Properties');
-            setPropertiesTable(Array.isArray(p.propertiesTable) ? p.propertiesTable : []);
-            // Legacy default ["Property", "Value"] means a simple 2-column table (no extra columns).
-            setTableHeaders(
-              Array.isArray(p.tableHeaders) && !p.tableHeaders.includes('Property')
-                ? p.tableHeaders
-                : []
+            setPropertiesTable(
+              fromStored(p.tableHeaders, p.propertiesTable, p.tablePropertyHeader)
             );
+            setCustomSections(sectionsFromStored(p.customSections));
             setPdfUrl(p.pdfUrl || '');
             setMsdsUrl(p.msdsUrl || '');
             setIsFeatured(!!p.isFeatured);
@@ -308,9 +305,8 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         specialFeatures: specialFeatures.map((s) => s.trim()).filter(Boolean),
         specsText: specsText.trim(),
         propertiesTableTitle: propertiesTableTitle.trim() || 'Physico-Chemical Properties',
-        propertiesTable,
-        tableHeaders:
-          tableHeaders.length > 0 ? tableHeaders.map((h) => h.trim()) : ['Property', 'Value'],
+        ...toStored(propertiesTable), // tablePropertyHeader + tableHeaders + propertiesTable
+        customSections: sectionsToStored(customSections),
         pdfUrl: pdfUrl.trim(),
         msdsUrl: msdsUrl.trim(),
         isFeatured,
@@ -567,6 +563,14 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
               </div>
             </div>
 
+            <InputField
+              label="Specifications Summary String"
+              value={specsText}
+              onChange={(e) => setSpecsText(e.target.value)}
+              placeholder="API CI-4/SL, ACEA E7, MB 228.3, Cummins CES 20078"
+              tooltip='Shown under the product name as "Meets Specifications". Leave blank to hide the box.'
+            />
+
             {/* Brand Category Selection with Quick Chips */}
             <div className="flex flex-col gap-2.5 p-4 bg-gray-50/70 rounded-2xl border border-gray-100">
               <InputField
@@ -681,13 +685,6 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
                 accentColor="red"
               />
             </div>
-
-            <InputField
-              label="Specifications Summary String"
-              value={specsText}
-              onChange={(e) => setSpecsText(e.target.value)}
-              placeholder="API CI-4/SL, ACEA E7, MB 228.3, Cummins CES 20078"
-            />
           </div>
 
           {/* Card 4: Physico-Chemical Lab Properties */}
@@ -704,12 +701,23 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
               placeholder="Physico-Chemical Properties (default)"
             />
 
-            <PropertiesTableEditor
-              properties={propertiesTable}
-              headers={tableHeaders}
-              onChange={setPropertiesTable}
-              onHeadersChange={setTableHeaders}
-            />
+            <PropertiesTableEditor value={propertiesTable} onChange={setPropertiesTable} />
+          </div>
+
+          {/* Card 5: Additional Sections */}
+          <div className="bg-white rounded-3xl p-7 border border-gray-100 shadow-sm flex flex-col gap-5">
+            <div className="flex flex-col gap-1">
+              <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
+                <LayoutList className="w-4 h-4 text-[#C86218]" />
+                5. Additional Sections
+              </h3>
+              <p className="text-xs text-gray-400">
+                Add any number of extra sections. They appear on the product page below the
+                properties table, in this order.
+              </p>
+            </div>
+
+            <ProductSectionsEditor sections={customSections} setSections={setCustomSections} />
           </div>
         </div>
 

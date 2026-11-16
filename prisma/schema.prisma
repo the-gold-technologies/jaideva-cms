@@ -81,8 +81,10 @@ model Product {
   specialFeatures          Json?            @default("[]")
   specsText                String?
   propertiesTableTitle     String?          @default("Physico-Chemical Properties")
+  tablePropertyHeader      String?
   tableHeaders             Json?            @default("[\"Property\", \"Value\"]")
   propertiesTable          Json?            @default("[]")
+  customSections           Json?            @default("[]")
   pdfUrl              String?
   msdsUrl             String?
   isFeatured          Boolean          @default(false)
