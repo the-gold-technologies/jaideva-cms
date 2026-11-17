@@ -129,16 +129,34 @@ export function fromStored(
   };
 }
 
-/** Editor model → stored DB data (trims text, drops empty rows) */
+/**
+ * Editor model → stored DB data (trims text, drops empty rows and empty columns).
+ * Blank text is saved as "" so the website shows nothing for it.
+ */
 export function toStored(data: PropertiesTableData): StoredPropertiesTable {
-  const n = Math.max(data.headers.length, 1);
-  const headers = pad(data.headers, n).map((h) => h.trim());
+  const total = Math.max(data.headers.length, 1);
+  const allHeaders = pad(data.headers, total).map((h) => h.trim());
   const tablePropertyHeader = (data.propertyHeader || '').trim();
 
-  const rows = data.rows
+  const allRows = data.rows.map((r) => ({
+    property: r.property.trim(),
+    values: pad(r.values, total).map((v) => v.trim()),
+    merged: total > 1 && r.merged,
+  }));
+
+  // A value column with no header and no values in any (non-merged) row is dropped
+  const keep = allHeaders
+    .map((h, i) => i)
+    .filter((i) => allHeaders[i] || allRows.some((r) => !r.merged && r.values[i]));
+  if (keep.length === 0) keep.push(0);
+
+  const n = keep.length;
+  const headers = keep.map((i) => allHeaders[i]);
+  const rows = allRows
     .map((r) => ({
-      property: r.property.trim(),
-      values: pad(r.values, n).map((v) => v.trim()),
+      property: r.property,
+      // A merged row keeps its single spanning value in slot 0
+      values: r.merged ? pad([r.values[0]], n) : keep.map((i) => r.values[i]),
       merged: n > 1 && r.merged,
     }))
     .filter((r) => r.property || (r.merged ? r.values[0] : r.values.some(Boolean)));
@@ -153,7 +171,7 @@ export function toStored(data: PropertiesTableData): StoredPropertiesTable {
 
   return {
     tablePropertyHeader,
-    tableHeaders: headers.map((h, i) => h || `Column ${i + 1}`),
+    tableHeaders: headers,
     propertiesTable: rows.map((r) =>
       r.merged
         ? { property: r.property, value: r.values[0] }

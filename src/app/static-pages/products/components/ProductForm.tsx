@@ -149,7 +149,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
   const [specialFeaturesTitle, setSpecialFeaturesTitle] = useState('Special Features');
   const [specialFeatures, setSpecialFeatures] = useState<string[]>([]);
   const [specsText, setSpecsText] = useState('');
-  const [propertiesTableTitle, setPropertiesTableTitle] = useState('Physico-Chemical Properties');
+  const [propertiesTableTitle, setPropertiesTableTitle] = useState('');
   const [propertiesTable, setPropertiesTable] = useState<PropertiesTableData>(() =>
     fromStored([], [])
   );
@@ -215,7 +215,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
             setSpecialFeaturesTitle(p.specialFeaturesTitle || 'Special Features');
             setSpecialFeatures(Array.isArray(p.specialFeatures) ? p.specialFeatures : []);
             setSpecsText(p.specsText || '');
-            setPropertiesTableTitle(p.propertiesTableTitle || 'Physico-Chemical Properties');
+            setPropertiesTableTitle(p.propertiesTableTitle ?? '');
             setPropertiesTable(
               fromStored(p.tableHeaders, p.propertiesTable, p.tablePropertyHeader)
             );
@@ -304,7 +304,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
         specialFeaturesTitle: specialFeaturesTitle.trim() || 'Special Features',
         specialFeatures: specialFeatures.map((s) => s.trim()).filter(Boolean),
         specsText: specsText.trim(),
-        propertiesTableTitle: propertiesTableTitle.trim() || 'Physico-Chemical Properties',
+        propertiesTableTitle: propertiesTableTitle.trim(),
         ...toStored(propertiesTable), // tablePropertyHeader + tableHeaders + propertiesTable
         customSections: sectionsToStored(customSections),
         pdfUrl: pdfUrl.trim(),
@@ -698,7 +698,7 @@ export function ProductForm({ productId, isNew = false }: ProductFormProps) {
               label="Table Display Title"
               value={propertiesTableTitle}
               onChange={(e) => setPropertiesTableTitle(e.target.value)}
-              placeholder="Physico-Chemical Properties (default)"
+              placeholder="e.g. Physico-Chemical Properties (leave empty to hide the title)"
             />
 
             <PropertiesTableEditor value={propertiesTable} onChange={setPropertiesTable} />
